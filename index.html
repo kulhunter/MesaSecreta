@@ -125,7 +125,7 @@
       </h1>
       
       <p class="text-obsidian-cream/90 text-lg sm:text-xl max-w-xl font-light leading-relaxed mb-10 drop-shadow-md">
-        El chef cocina exclusivamente para ti y tus invitados. Nos trasladamos a tu domicilio en la Región Metropolitana o te recibimos en nuestro espacio privado en Macul con Quilín.
+        El chef cocina exclusivamente para ti y tus invitados. Nos trasladamos a tu domicilio en la Región Metropolitana o te recibimos en nuestro espacio privado.
       </p>
       
       <div class="flex flex-wrap items-center gap-5">
@@ -169,7 +169,7 @@
             La privacidad es la mayor elegancia.
           </h2>
           <p class="text-obsidian-muted text-base leading-relaxed mb-6 font-light">
-            Mesa Secreta redefine el arte de cenar. Eliminamos el salón ruidoso, la prisa de las mesas contiguas y los turnos de atención. Durante la velada, todo el personal y la cocina están dedicados 100% a tu grupo.
+            Mesa Secreta redefine el arte de cenar. Eliminamos el salón ruidoso, la prisa de las mesas contiguas y los turnos de atención. Durante la velada, el chef está dedicado 100% a tu grupo.
           </p>
           <p class="text-obsidian-muted text-base leading-relaxed font-light">
             Si tienes espacio, llevamos el restaurante completo a tu hogar. Si prefieres no preocuparte por nada, ponemos a tu disposición nuestro salón gourmet/azotea totalmente equipado.
@@ -341,9 +341,9 @@
 
             <div class="p-6 border border-obsidian-gold/50 bg-obsidian-850/90 rounded-xs shadow-lg shadow-obsidian-gold/5">
               <span class="text-xs font-mono text-obsidian-gold uppercase tracking-wider block mb-1">Opción 02 · Arriendo +$50.000 / Grupo</span>
-              <h3 class="font-serif text-2xl mb-2 text-obsidian-cream">Espacio Gourmet / Azotea (Macul c/ Quilín)</h3>
+              <h3 class="font-serif text-2xl mb-2 text-obsidian-cream">Espacio Gourmet / Azotea </h3>
               <p class="text-xs text-obsidian-muted leading-relaxed font-light mb-3">
-                Salón privado y azotea con vista panorámica. Un espacio reservado únicamente para tu grupo, sin límites de tiempo ni molestias.
+                Salón privado y azotea con vista panorámica. Un espacio reservado únicamente para tu grupo, sin molestias.
               </p>
               <div class="text-[11px] font-mono text-obsidian-gold bg-obsidian-950/80 p-3 border border-obsidian-border/60">
                 ✨ <strong>Totalmente equipado:</strong> Incluye mesas, sillas, mantelería, vajilla, cristalería, audio ambiental y montaje completo.
@@ -355,10 +355,10 @@
         <div class="relative h-96 lg:h-[520px] rounded-xs overflow-hidden border border-obsidian-border/80 flex items-center justify-center">
           <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000&auto=format&fit=crop" alt="Espacio Gourmet Macul" class="absolute inset-0 w-full h-full object-cover filter brightness-50">
           <div class="relative z-10 p-8 text-center bg-obsidian-950/80 backdrop-blur-md border border-obsidian-gold/30 max-w-sm">
-            <span class="font-serif italic text-4xl text-obsidian-gold block mb-2">Macul & Quilín</span>
-            <h3 class="font-serif text-2xl mb-2">Azotea Privada</h3>
+            <span class="font-serif italic text-4xl text-obsidian-gold block mb-2">Ubicación Secreta</span>
+            <h3 class="font-serif text-2xl mb-2">Ubicación Privada</h3>
             <p class="text-xs text-obsidian-muted font-light leading-relaxed mb-4">
-              Estacionamiento disponible, privacidad absoluta y ambiente climatizado para sobremesas inolvidables.
+              Estacionamiento disponible, privacidad absoluta y ambiente climatizado para sobremesas inolvidables. Dentro de la región metropolitana, con estacionamientos según la cantidad de invitados.
             </p>
             <span class="px-3 py-1.5 border border-obsidian-gold/50 text-obsidian-gold font-mono text-[10px] uppercase tracking-widest block">
               Equipamiento Integral Incluido
@@ -479,7 +479,7 @@
                 <input type="radio" name="locationChoice" value="macul" class="mt-1 accent-amber-500">
                 <div class="flex-1">
                   <div class="flex justify-between items-center mb-1">
-                    <span class="font-serif text-xl text-obsidian-cream">Arriendo Espacio Gourmet (Macul c/ Quilín)</span>
+                    <span class="font-serif text-xl text-obsidian-cream">Arriendo Espacio Gourmet</span>
                     <span class="text-xs font-mono text-obsidian-gold">+$50.000 / grupo</span>
                   </div>
                   <p class="text-xs text-obsidian-muted font-light leading-relaxed mb-2">
@@ -1131,7 +1131,7 @@
       // Build Addons Text
       let selectedAddonsText = [];
       if (selectedLocation === 'macul') {
-        selectedAddonsText.push('Arriendo Espacio Gourmet Macul con Quilín (+$50.000)');
+        selectedAddonsText.push('Arriendo Espacio Gourmet (+$50.000)');
       }
       Object.keys(addonPrices).forEach(key => {
         const checkbox = document.getElementById(`addon-${key}`);
@@ -1152,7 +1152,7 @@
         Fecha_Solicitada: selectedDate.toLocaleDateString('es-CL'),
         Hora_Llegada: selectedTime,
         Comensales: guestCount,
-        Ubicacion_Evento: selectedLocation === 'macul' ? 'Espacio Gourmet Macul c/ Quilín' : 'A Domicilio en RM',
+        Ubicacion_Evento: selectedLocation === 'macul' ? 'Espacio Gourmet' : 'A Domicilio en RM',
         Menu_Seleccionado: selectedMenu,
         Restricciones_Alimentarias: dietString,
         Personalizaciones_Extras: selectedAddonsText.length > 0 ? selectedAddonsText.join(', ') : 'Ninguna',
