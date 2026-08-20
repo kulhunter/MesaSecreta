@@ -1,0 +1,898 @@
+<!doctype html>
+<html lang="es" class="scroll-smooth dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesa Secreta — Una Noche. Una Mesa.</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Inter"', 'sans-serif'],
+          },
+          colors: {
+            noir: {
+              950: '#060605',
+              900: '#0d0c0a',
+              850: '#141310',
+              800: '#1c1a16',
+              700: '#2d2923',
+              border: '#2a2620',
+              muted: '#8e867a',
+              accent: '#d4af37',
+              gold: '#c5a059',
+              goldlight: '#e6ca85',
+              paper: '#f3efea'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom scrollbar & subtle grain effect */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #060605; }
+    ::-webkit-scrollbar-thumb { background: #2a2620; border-radius: 2px; }
+    
+    .bg-grain {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+    }
+    
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #f3efea 30%, #c5a059 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .border-glow {
+      box-shadow: 0 0 25px -5px rgba(197, 160, 89, 0.12);
+    }
+  </style>
+</head>
+<body class="bg-noir-950 text-noir-paper font-sans antialiased selection:bg-noir-gold selection:text-noir-950 min-h-screen relative overflow-x-hidden">
+  
+  <div class="fixed inset-0 bg-grain pointer-events-none z-50"></div>
+
+  <nav class="fixed top-0 left-0 w-full z-40 bg-noir-950/80 backdrop-blur-md border-b border-noir-border/40 px-6 lg:px-16 py-5 flex justify-between items-center">
+    <a href="#" class="group">
+      <span class="font-serif text-2xl tracking-widest text-noir-paper font-light group-hover:text-noir-gold transition-colors">MESA SECRETA</span>
+      <span class="block text-[9px] uppercase tracking-[0.3em] text-noir-muted -mt-1 font-mono">Santiago · Chile</span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-10 text-xs tracking-[0.2em] font-light uppercase text-noir-muted">
+      <a href="#concepto" class="hover:text-noir-paper transition-colors">La Experiencia</a>
+      <a href="#menu" class="hover:text-noir-paper transition-colors">Propuestas</a>
+      <a href="#ubicacion" class="hover:text-noir-paper transition-colors">Ubicación</a>
+      <a href="#reserva" class="hover:text-noir-paper transition-colors">Agenda</a>
+    </div>
+
+    <a href="#reserva" class="px-5 py-2.5 border border-noir-gold/50 text-noir-gold hover:bg-noir-gold hover:text-noir-950 text-xs uppercase tracking-widest transition-all duration-300 rounded-sm">
+      Reservar Noche
+    </a>
+  </nav>
+
+  <header class="relative min-h-screen flex flex-col justify-between pt-36 pb-16 px-6 lg:px-16 overflow-hidden">
+    <div class="absolute inset-0 bg-radial-at-c from-noir-800/20 via-noir-950 to-noir-950 pointer-events-none"></div>
+    <div class="absolute -right-32 -top-32 w-[600px] h-[600px] bg-noir-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-4xl relative z-10 my-auto">
+      <span class="inline-block text-xs uppercase tracking-[0.4em] text-noir-gold mb-6 font-mono border-b border-noir-gold/20 pb-1">
+        Exclusividad Absoluta
+      </span>
+      <h1 class="font-serif text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-light leading-[0.9] tracking-tight mb-8">
+        Una Noche.<br>
+        <span class="italic font-normal gold-gradient-text">Una Sola Mesa.</span>
+      </h1>
+      <p class="text-noir-muted text-base sm:text-lg max-w-xl font-light leading-relaxed mb-10">
+        El chef va hasta tu domicilio en la Región Metropolitana. O si prefieres, te ofrecemos nuestro espacio exclusivo en Macul con Quilín con todo equipado.
+      </p>
+      
+      <div class="flex flex-wrap items-center gap-6">
+        <a href="#reserva" class="px-8 py-4 bg-noir-gold text-noir-950 font-medium text-xs uppercase tracking-widest hover:bg-noir-goldlight transition-colors shadow-lg shadow-noir-gold/10">
+          Explorar Fechas Disponibles
+        </a>
+        <a href="#concepto" class="px-8 py-4 border border-noir-border text-noir-paper text-xs uppercase tracking-widest hover:border-noir-muted transition-colors">
+          Conocer la propuesta
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero Footer Strip -->
+    <div class="relative z-10 pt-12 border-t border-noir-border/40 grid grid-cols-2 md:grid-cols-4 gap-6 text-xs text-noir-muted tracking-wider uppercase">
+      <div>
+        <span class="block font-mono text-[10px] text-noir-gold mb-1">Capacidad</span>
+        <span class="text-noir-paper">4 a 10 Comensales</span>
+      </div>
+      <div>
+        <span class="block font-mono text-[10px] text-noir-gold mb-1">Formato</span>
+        <span class="text-noir-paper">A Domicilio / Espacio Privado</span>
+      </div>
+      <div>
+        <span class="block font-mono text-[10px] text-noir-gold mb-1">Inclusión</span>
+        <span class="text-noir-paper">Maridaje & Bebidas</span>
+      </div>
+      <div>
+        <span class="block font-mono text-[10px] text-noir-gold mb-1">Cobertura</span>
+        <span class="text-noir-paper">Santiago (RM) / Macul</span>
+      </div>
+    </div>
+  </header>
+
+  <section id="concepto" class="py-28 px-6 lg:px-16 border-t border-noir-border/30 bg-noir-900/40 relative">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+        <div class="md:col-span-5">
+          <span class="text-xs font-mono uppercase tracking-widest text-noir-gold">El Concepto</span>
+          <h2 class="font-serif text-4xl sm:text-5xl font-light leading-tight mt-3 mb-6">
+            La privacidad como la mayor elegancia.
+          </h2>
+          <p class="text-noir-muted text-sm leading-relaxed mb-6 font-light">
+            Mesa Secreta redefine la gastronomía de alta gama eliminando el formato tradicional de restaurante. Aquí no compartes espacio con extraños ni apresuras la sobremesa.
+          </p>
+          <p class="text-noir-muted text-sm leading-relaxed font-light">
+            Nos adaptamos a ti: si cuentas con espacio, el chef cocina directamente en tu casa. Si no lo tienes, disponemos de una azotea / salón gourmet exclusivo para tu grupo.
+          </p>
+        </div>
+
+        <div class="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-8 border border-noir-border/50 bg-noir-850/60 rounded-xs">
+            <span class="text-noir-gold font-serif text-2xl block mb-2">01.</span>
+            <h3 class="font-serif text-xl mb-2 text-noir-paper">Aperitivo de Bienvenida</h3>
+            <p class="text-xs text-noir-muted leading-relaxed">Coctelería de autor y bocados para iniciar la noche sin prisas.</p>
+          </div>
+          <div class="p-8 border border-noir-border/50 bg-noir-850/60 rounded-xs">
+            <span class="text-noir-gold font-serif text-2xl block mb-2">02.</span>
+            <h3 class="font-serif text-xl mb-2 text-noir-paper">Menú de Tiempo</h3>
+            <p class="text-xs text-noir-muted leading-relaxed">Cena completa minuciosamente diseñada con ingredientes de origen.</p>
+          </div>
+          <div class="p-8 border border-noir-border/50 bg-noir-850/60 rounded-xs">
+            <span class="text-noir-gold font-serif text-2xl block mb-2">03.</span>
+            <h3 class="font-serif text-xl mb-2 text-noir-paper">Maridaje Libre</h3>
+            <p class="text-xs text-noir-muted leading-relaxed">Vinos seleccionados, bebidas, agua e infusiones ilimitadas.</p>
+          </div>
+          <div class="p-8 border border-noir-border/50 bg-noir-850/60 rounded-xs">
+            <span class="text-noir-gold font-serif text-2xl block mb-2">04.</span>
+            <h3 class="font-serif text-xl mb-2 text-noir-paper">Sobremesa Exclusiva</h3>
+            <p class="text-xs text-noir-muted leading-relaxed">Café de especialidad, destilados y el espacio a tu entera disposición.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="py-28 px-6 lg:px-16 border-t border-noir-border/30">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-mono uppercase tracking-widest text-noir-gold">Propuestas Gastronómicas</span>
+        <h2 class="font-serif text-4xl sm:text-5xl font-light mt-3 mb-4">Elige la narrativa de tu noche</h2>
+        <p class="text-noir-muted text-sm font-light">Todas las opciones incluyen la cena completa, aperitivo, postre, maridaje y café por $35.000 por persona.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Card 1 -->
+        <div class="border border-noir-border/60 bg-noir-900/50 p-6 flex flex-col justify-between hover:border-noir-gold/50 transition-colors group">
+          <div>
+            <div class="w-full h-32 bg-noir-800 mb-6 flex items-center justify-center border border-noir-border/30 group-hover:border-noir-gold/30 transition-colors">
+              <span class="font-serif italic text-3xl text-noir-gold">K</span>
+            </div>
+            <h3 class="font-serif text-2xl mb-2">Cena Keto</h3>
+            <p class="text-xs text-noir-muted leading-relaxed font-light mb-4">Enfoque en proteína de alta calidad, grasas saludables, corte de carne de lenta cocción y vegetales orgánicos.</p>
+          </div>
+          <span class="text-[10px] font-mono text-noir-gold uppercase tracking-wider">$35.000 / Persona</span>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="border border-noir-border/60 bg-noir-900/50 p-6 flex flex-col justify-between hover:border-noir-gold/50 transition-colors group">
+          <div>
+            <div class="w-full h-32 bg-noir-800 mb-6 flex items-center justify-center border border-noir-border/30 group-hover:border-noir-gold/30 transition-colors">
+              <span class="font-serif italic text-3xl text-noir-gold">V</span>
+            </div>
+            <h3 class="font-serif text-2xl mb-2">Venezochilena</h3>
+            <p class="text-xs text-noir-muted leading-relaxed font-light mb-4">Fusión contemporánea de sabores del Caribe y el Pacífico sur. Matices ahumados, arepitas gourmet y asados integrados.</p>
+          </div>
+          <span class="text-[10px] font-mono text-noir-gold uppercase tracking-wider">$35.000 / Persona</span>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="border border-noir-border/60 bg-noir-900/50 p-6 flex flex-col justify-between hover:border-noir-gold/50 transition-colors group">
+          <div>
+            <div class="w-full h-32 bg-noir-800 mb-6 flex items-center justify-center border border-noir-border/30 group-hover:border-noir-gold/30 transition-colors">
+              <span class="font-serif italic text-3xl text-noir-gold">B</span>
+            </div>
+            <h3 class="font-serif text-2xl mb-2">Burgers Caseras</h3>
+            <p class="text-xs text-noir-muted leading-relaxed font-light mb-4">Hamburguesas de autor elaboradas desde cero: pan brioche horneado en el día, blends de carnes seleccionadas y salsas artesanales.</p>
+          </div>
+          <span class="text-[10px] font-mono text-noir-gold uppercase tracking-wider">$35.000 / Persona</span>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="border border-noir-border/60 bg-noir-900/50 p-6 flex flex-col justify-between hover:border-noir-gold/50 transition-colors group">
+          <div>
+            <div class="w-full h-32 bg-noir-800 mb-6 flex items-center justify-center border border-noir-border/30 group-hover:border-noir-gold/30 transition-colors">
+              <span class="font-serif italic text-3xl text-noir-gold">P</span>
+            </div>
+            <h3 class="font-serif text-2xl mb-2">Pasta Casera</h3>
+            <p class="text-xs text-noir-muted leading-relaxed font-light mb-4">Pasta artesanal estirada a mano, rellenos exquisitos, salsas de cocción lenta y parmesano italiano de origen.</p>
+          </div>
+          <span class="text-[10px] font-mono text-noir-gold uppercase tracking-wider">$35.000 / Persona</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ubicacion" class="py-24 px-6 lg:px-16 border-t border-noir-border/30 bg-noir-900/20">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-noir-gold">Modalidades de Lugar</span>
+          <h2 class="font-serif text-4xl sm:text-5xl font-light mt-2 mb-6">¿Dónde cenamos?</h2>
+          <p class="text-noir-muted text-sm leading-relaxed mb-6 font-light">
+            Queremos que la experiencia sea cómoda para ti. Puedes elegir entre recibirnos en tu espacio o utilizar un lugar privado equipado.
+          </p>
+          
+          <div class="space-y-4">
+            <div class="p-6 border border-noir-border/60 bg-noir-850/80">
+              <span class="text-xs font-mono text-noir-gold uppercase tracking-wider block mb-1">Opción 01 · Incluido en la Reserva</span>
+              <h3 class="font-serif text-2xl mb-2 text-noir-paper">A Domicilio en la RM</h3>
+              <p class="text-xs text-noir-muted leading-relaxed font-light">
+                El chef y el equipo se trasladan a tu casa u oficina dentro de la Región Metropolitana. Llevamos todos los ingredientes e insumos necesarios.
+              </p>
+            </div>
+
+            <div class="p-6 border border-noir-gold/40 bg-noir-850/80 border-glow">
+              <div class="flex justify-between items-start mb-1">
+                <span class="text-xs font-mono text-noir-gold uppercase tracking-wider">Opción 02 · Adicional +$50.000 (Grupo)</span>
+              </div>
+              <h3 class="font-serif text-2xl mb-2 text-noir-paper">Espacio Gourmet / Azotea Privada</h3>
+              <p class="text-xs text-noir-muted leading-relaxed font-light mb-3">
+                Ubicado en <strong>Macul con Quilín</strong>. Salón o azotea privada con vista panorámica reservada únicamente para tu grupo.
+              </p>
+              <div class="text-[11px] font-mono text-noir-gold bg-noir-900/80 p-3 border border-noir-border/40">
+                ✨ <strong>Incluye todo:</strong> Mesas, sillas, mantelería, platos, cubiertos, cristalería, audio ambiental y ambientación completa.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative h-96 lg:h-[500px] bg-noir-800 border border-noir-border/60 flex flex-col justify-center items-center p-8 text-center bg-gradient-to-br from-noir-800 via-noir-900 to-noir-950">
+          <span class="font-serif italic text-6xl text-noir-gold mb-4">Macul & Quilín</span>
+          <h3 class="font-serif text-3xl mb-2">Espacio Gourmet Privado</h3>
+          <p class="text-xs text-noir-muted font-light max-w-sm leading-relaxed mb-6">
+            Azotea y salón privado para sobremesas sin límite de horario. Estacionamientos disponibles.
+          </p>
+          <span class="px-4 py-2 border border-noir-gold/40 text-noir-gold font-mono text-[10px] uppercase tracking-widest">
+            Todo Equipado · Mesas · Vajilla · Sonido
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reserva" class="py-28 px-6 lg:px-16 border-t border-noir-border/30 bg-noir-900/30">
+    <div class="max-w-6xl mx-auto">
+      
+      <div class="mb-12">
+        <span class="text-xs font-mono uppercase tracking-widest text-noir-gold">Sistema de Reserva Directa</span>
+        <h2 class="font-serif text-4xl sm:text-5xl font-light mt-2">Configura tu noche</h2>
+        <p class="text-noir-muted text-sm font-light mt-1">Selecciona la fecha, hora, ubicación, menú y personalizaciones requeridas para tu grupo.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Form Left Column -->
+        <div class="lg:col-span-7 space-y-10">
+          
+          <!-- Step 1: Infinite Calendar -->
+          <div class="border border-noir-border bg-noir-850/80 p-6 sm:p-8 rounded-xs">
+            <div class="flex items-center justify-between mb-6 pb-4 border-b border-noir-border/40">
+              <div>
+                <span class="text-[10px] font-mono uppercase text-noir-gold block">Paso 01</span>
+                <h3 class="font-serif text-2xl">Selecciona la Fecha</h3>
+              </div>
+              <div class="flex items-center gap-2">
+                <button id="prevMonth" class="w-8 h-8 border border-noir-border hover:border-noir-gold flex items-center justify-center text-noir-muted hover:text-noir-paper text-sm transition-colors">←</button>
+                <span id="calendarMonthYear" class="font-serif text-lg min-w-[140px] text-center capitalize"></span>
+                <button id="nextMonth" class="w-8 h-8 border border-noir-border hover:border-noir-gold flex items-center justify-center text-noir-muted hover:text-noir-paper text-sm transition-colors">→</button>
+              </div>
+            </div>
+
+            <!-- Notice Legend -->
+            <div class="flex items-center justify-between text-xs text-noir-muted mb-4 font-mono">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-900/80 border border-red-500/50 inline-block"></span>
+                <span>Ocupado / Reservado</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 border border-emerald-400 inline-block"></span>
+                <span class="text-emerald-400 font-medium">Disponible (23 Sep)</span>
+              </div>
+            </div>
+
+            <!-- Calendar Grid -->
+            <div class="grid grid-cols-7 gap-1 sm:gap-2 text-center text-xs font-mono mb-2 text-noir-muted">
+              <div>LUN</div><div>MAR</div><div>MIÉ</div><div>JUE</div><div>VIE</div><div>SÁB</div><div>DOM</div>
+            </div>
+            <div id="calendarDays" class="grid grid-cols-7 gap-1 sm:gap-2">
+              <!-- Dynamically populated -->
+            </div>
+
+            <div id="selectedDateText" class="mt-4 p-3 bg-noir-900 border border-noir-border/50 text-xs text-noir-gold font-mono flex items-center justify-between">
+              <span>Fecha elegida:</span>
+              <strong id="displaySelectedDate">23 de Septiembre, 2026</strong>
+            </div>
+          </div>
+
+          <!-- Step 2: Hora & Comensales -->
+          <div class="border border-noir-border bg-noir-850/80 p-6 sm:p-8 rounded-xs space-y-6">
+            <span class="text-[10px] font-mono uppercase text-noir-gold block">Paso 02</span>
+            
+            <div>
+              <label class="block text-sm font-serif text-noir-paper mb-3">Hora de llegada</label>
+              <div class="grid grid-cols-2 gap-4">
+                <button type="button" onclick="selectTime('20:00')" id="time-20" class="time-btn p-4 border border-noir-gold bg-noir-900 text-left transition-colors">
+                  <span class="font-serif text-xl block">20:00 hrs</span>
+                  <span class="text-[10px] text-noir-muted font-mono block">Recomendado para cenar temprano</span>
+                </button>
+                <button type="button" onclick="selectTime('21:00')" id="time-21" class="time-btn p-4 border border-noir-border/60 bg-noir-900 text-left hover:border-noir-muted transition-colors">
+                  <span class="font-serif text-xl block">21:00 hrs</span>
+                  <span class="text-[10px] text-noir-muted font-mono block">Sobremesa extendida</span>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-serif text-noir-paper mb-3">Número de Comensales (4 a 10 personas)</label>
+              <div class="flex items-center gap-4 bg-noir-900 p-3 border border-noir-border/60">
+                <button type="button" onclick="changeGuests(-1)" class="w-10 h-10 border border-noir-border text-noir-paper font-serif text-xl hover:border-noir-gold transition-colors">-</button>
+                <span id="guestCount" class="font-serif text-3xl px-6 text-noir-gold min-w-[60px] text-center">4</span>
+                <button type="button" onclick="changeGuests(1)" class="w-10 h-10 border border-noir-border text-noir-paper font-serif text-xl hover:border-noir-gold transition-colors">+</button>
+                <span class="text-xs text-noir-muted font-mono ml-auto">$35.000 / comensal base</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Selección de Ubicación del Evento -->
+          <div class="border border-noir-border bg-noir-850/80 p-6 sm:p-8 rounded-xs space-y-6">
+            <span class="text-[10px] font-mono uppercase text-noir-gold block">Paso 03</span>
+            <h3 class="font-serif text-2xl mb-2">Lugar de la Cena</h3>
+            
+            <div class="space-y-4">
+              <!-- Option A: Domicilio -->
+              <label onclick="selectLocation('domicilio')" id="loc-domicilio" class="location-card flex items-start gap-4 p-5 border border-noir-gold bg-noir-900 cursor-pointer transition-colors rounded-xs">
+                <input type="radio" name="locationChoice" value="domicilio" checked class="mt-1 accent-amber-600">
+                <div class="flex-1">
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="font-serif text-xl text-noir-paper">A Domicilio / Tu Espacio</span>
+                    <span class="text-xs font-mono text-emerald-400">Incluido ($0)</span>
+                  </div>
+                  <p class="text-xs text-noir-muted font-light leading-relaxed">
+                    El chef llega a tu casa o lugar en la Región Metropolitana con todos los ingredientes e insumos necesarios.
+                  </p>
+                </div>
+              </label>
+
+              <!-- Option B: Arriendo Azotea / Salón Gourmet Macul -->
+              <label onclick="selectLocation('macul')" id="loc-macul" class="location-card flex items-start gap-4 p-5 border border-noir-border/60 bg-noir-900 cursor-pointer hover:border-noir-gold/50 transition-colors rounded-xs">
+                <input type="radio" name="locationChoice" value="macul" class="mt-1 accent-amber-600">
+                <div class="flex-1">
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="font-serif text-xl text-noir-paper">Arriendo Espacio Gourmet (Macul c/ Quilín)</span>
+                    <span class="text-xs font-mono text-noir-gold">+$50.000 / grupo</span>
+                  </div>
+                  <p class="text-xs text-noir-muted font-light leading-relaxed mb-2">
+                    Azotea o salón gourmet totalmente equipado para tu grupo. Sin límites de ruido ni apresuramientos.
+                  </p>
+                  <span class="inline-block text-[10px] font-mono text-noir-paper bg-noir-800 px-2 py-1 border border-noir-border">
+                    ✨ Incluye: Mesas, sillas, platos, vasos, cubiertos y ambientación
+                  </span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Step 4: Experiencia Gastronómica & Personalizaciones -->
+          <div class="border border-noir-border bg-noir-850/80 p-6 sm:p-8 rounded-xs space-y-6">
+            <span class="text-[10px] font-mono uppercase text-noir-gold block">Paso 04</span>
+            
+            <div>
+              <label class="block text-sm font-serif text-noir-paper mb-3">Menú Principal para el Grupo</label>
+              <select id="experienceSelect" onchange="updateSummary()" class="w-full bg-noir-900 border border-noir-border p-4 text-noir-paper font-serif text-lg focus:border-noir-gold outline-none">
+                <option value="Cena Keto">Cena Keto — Producto, carnes cocción lenta y vegetales</option>
+                <option value="Cena Venezochilena">Cena Venezochilena — Fusión Caribe & Pacífico Sur</option>
+                <option value="Burguers Caseras">Burguers Caseras — Elaboradas 100% artesanal</option>
+                <option value="Pasta Casera">Pasta Casera — Hecha a mano con salsas tradicionales</option>
+              </select>
+            </div>
+
+            <!-- Custom Addons -->
+            <div>
+              <label class="block text-sm font-serif text-noir-paper mb-3">Actividades & Personalizaciones Especiales</label>
+              <div class="space-y-3">
+                
+                <!-- Happy Food -->
+                <label class="flex items-center justify-between p-4 border border-noir-border/60 bg-noir-900 hover:border-noir-gold/50 cursor-pointer transition-colors rounded-xs">
+                  <div class="flex items-center gap-3">
+                    <input type="checkbox" id="addon-happy-food" onchange="updateSummary()" class="accent-amber-600 w-4 h-4">
+                    <div>
+                      <span class="font-serif text-lg block leading-tight text-noir-paper">Happy Food ✨</span>
+                      <span class="text-xs text-noir-muted font-light">Un toque mágico a la comida</span>
+                    </div>
+                  </div>
+                  <span class="text-xs font-mono text-noir-gold">+$20.000 / pers</span>
+                </label>
+
+                <!-- Happy Smoke -->
+                <label class="flex items-center justify-between p-4 border border-noir-border/60 bg-noir-900 hover:border-noir-gold/50 cursor-pointer transition-colors rounded-xs">
+                  <div class="flex items-center gap-3">
+                    <input type="checkbox" id="addon-happy-smoke" onchange="updateSummary()" class="accent-amber-600 w-4 h-4">
+                    <div>
+                      <span class="font-serif text-lg block leading-tight text-noir-paper">Happy Smoke 🌿</span>
+                      <span class="text-xs text-noir-muted font-light">Un aperitivo 420 smoke para abrir el apetito</span>
+                    </div>
+                  </div>
+                  <span class="text-xs font-mono text-noir-gold">+$15.000 / pers</span>
+                </label>
+
+                <!-- Taller Pasta -->
+                <label class="flex items-center justify-between p-4 border border-noir-border/60 bg-noir-900 hover:border-noir-gold/50 cursor-pointer transition-colors rounded-xs">
+                  <div class="flex items-center gap-3">
+                    <input type="checkbox" id="addon-pasta" onchange="updateSummary()" class="accent-amber-600 w-4 h-4">
+                    <div>
+                      <span class="font-serif text-lg block leading-tight text-noir-paper">Taller: Prepara tu Pasta</span>
+                      <span class="text-xs text-noir-muted font-light">Cocina participativa de pasta fresca</span>
+                    </div>
+                  </div>
+                  <span class="text-xs font-mono text-noir-gold">+$25.000 / pers</span>
+                </label>
+
+                <!-- Pinta Tu Pieza -->
+                <label class="flex items-center justify-between p-4 border border-noir-border/60 bg-noir-900 hover:border-noir-gold/50 cursor-pointer transition-colors rounded-xs">
+                  <div class="flex items-center gap-3">
+                    <input type="checkbox" id="addon-yeso" onchange="updateSummary()" class="accent-amber-600 w-4 h-4">
+                    <div>
+                      <span class="font-serif text-lg block leading-tight text-noir-paper">Pinta tu Pieza de Yeso</span>
+                      <span class="text-xs text-noir-muted font-light">Actividad creativa pre-cena con insumos</span>
+                    </div>
+                  </div>
+                  <span class="text-xs font-mono text-noir-gold">+$20.000 / pers</span>
+                </label>
+
+                <!-- Sesión Fotográfica -->
+                <label class="flex items-center justify-between p-4 border border-noir-border/60 bg-noir-900 hover:border-noir-gold/50 cursor-pointer transition-colors rounded-xs">
+                  <div class="flex items-center gap-3">
+                    <input type="checkbox" id="addon-fotos" onchange="updateSummary()" class="accent-amber-600 w-4 h-4">
+                    <div>
+                      <span class="font-serif text-lg block leading-tight text-noir-paper">Fotografía Privada de la Noche</span>
+                      <span class="text-xs text-noir-muted font-light">Cobertura fotográfica profesional del evento</span>
+                    </div>
+                  </div>
+                  <span class="text-xs font-mono text-noir-gold">+$25.000 / grupo</span>
+                </label>
+
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Step 5: Contact Form -->
+          <div class="border border-noir-border bg-noir-850/80 p-6 sm:p-8 rounded-xs space-y-4">
+            <span class="text-[10px] font-mono uppercase text-noir-gold block">Paso 05</span>
+            <h3 class="font-serif text-2xl mb-4">Datos del Anfitrión</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono uppercase text-noir-muted mb-1">Nombre Completo *</label>
+                <input type="text" id="clientName" placeholder="Ej: Daniel Tagle" required class="w-full bg-noir-900 border border-noir-border p-3 text-sm text-noir-paper focus:border-noir-gold outline-none">
+              </div>
+              <div>
+                <label class="block text-xs font-mono uppercase text-noir-muted mb-1">Correo Electrónico *</label>
+                <input type="email" id="clientEmail" placeholder="hola@ejemplo.cl" required class="w-full bg-noir-900 border border-noir-border p-3 text-sm text-noir-paper focus:border-noir-gold outline-none">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-mono uppercase text-noir-muted mb-1">Teléfono / WhatsApp *</label>
+                <input type="tel" id="clientPhone" placeholder="+56 9 1234 5678" required class="w-full bg-noir-900 border border-noir-border p-3 text-sm text-noir-paper focus:border-noir-gold outline-none">
+              </div>
+              <div>
+                <label class="block text-xs font-mono uppercase text-noir-muted mb-1">Comuna / Dirección o Notas</label>
+                <input type="text" id="clientNotes" placeholder="Ej: Providencia / Restricciones alimentarias" class="w-full bg-noir-900 border border-noir-border p-3 text-sm text-noir-paper focus:border-noir-gold outline-none">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Summary Sticky Box -->
+        <div class="lg:col-span-5">
+          <div class="sticky top-28 border border-noir-gold/40 bg-noir-850 p-6 sm:p-8 rounded-xs border-glow space-y-6">
+            <div class="border-b border-noir-border pb-4">
+              <span class="text-[10px] font-mono uppercase tracking-widest text-noir-gold block mb-1">Resumen de la Solicitud</span>
+              <h3 class="font-serif text-3xl text-noir-paper">Mesa Secreta</h3>
+            </div>
+
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between py-1 border-b border-noir-border/30">
+                <span class="text-noir-muted font-light">Fecha:</span>
+                <span id="summaryDate" class="font-mono text-xs text-noir-gold">23 de Septiembre, 2026</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-noir-border/30">
+                <span class="text-noir-muted font-light">Hora:</span>
+                <span id="summaryTime" class="font-mono text-xs text-noir-paper">20:00 hrs</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-noir-border/30">
+                <span class="text-noir-muted font-light">Comensales:</span>
+                <span id="summaryGuests" class="font-mono text-xs text-noir-paper">4 Comensales</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-noir-border/30">
+                <span class="text-noir-muted font-light">Lugar:</span>
+                <span id="summaryLocation" class="font-mono text-xs text-noir-paper text-right">A Domicilio (RM)</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-noir-border/30">
+                <span class="text-noir-muted font-light">Menú:</span>
+                <span id="summaryExperience" class="font-mono text-xs text-noir-paper text-right">Cena Keto</span>
+              </div>
+              <div>
+                <span class="text-noir-muted font-light block mb-1">Personalizaciones:</span>
+                <ul id="summaryAddonsList" class="text-xs font-mono text-noir-gold list-disc list-inside space-y-1 pl-1">
+                  <li class="text-noir-muted italic list-none">Ningún extra seleccionado</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-noir-border">
+              <div class="flex justify-between items-baseline mb-1">
+                <span class="text-xs uppercase font-mono tracking-widest text-noir-muted">Inversión Total ESTIMADA</span>
+                <span id="summaryTotal" class="font-serif text-3xl text-noir-gold">$140.000</span>
+              </div>
+              <p id="summaryPerPerson" class="text-[10px] font-mono text-noir-muted text-right">($35.000 por persona)</p>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="button" id="submitBtn" onclick="submitReservation()" class="w-full py-4 bg-noir-gold text-noir-950 font-medium text-xs uppercase tracking-widest hover:bg-noir-goldlight transition-colors text-center block shadow-lg">
+              Solicitar Esta Noche
+            </button>
+
+            <p class="text-[10px] text-noir-muted leading-relaxed font-light text-center">
+              La solicitud será enviada directamente a <span class="text-noir-paper">hola@dantagle.cl</span>. Nos contactaremos en un plazo máximo de 12 hrs para coordinar.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Status Modal -->
+  <div id="statusModal" class="fixed inset-0 bg-noir-950/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-6">
+    <div class="bg-noir-850 border border-noir-gold p-8 max-w-md w-full text-center space-y-4 rounded-xs border-glow">
+      <div id="modalIcon" class="text-4xl text-noir-gold font-serif">✨</div>
+      <h3 id="modalTitle" class="font-serif text-3xl text-noir-paper">¡Solicitud Enviada!</h3>
+      <p id="modalMessage" class="text-xs text-noir-muted leading-relaxed font-light">
+        Hemos enviado el detalle completo de tu reserva a hola@dantagle.cl. Te responderemos a la brevedad.
+      </p>
+      <button onclick="closeModal()" class="w-full py-3 border border-noir-gold text-noir-gold text-xs uppercase tracking-widest hover:bg-noir-gold hover:text-noir-950 transition-colors">
+        Entendido
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-16 px-6 lg:px-16 border-t border-noir-border/40 text-xs text-noir-muted">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+      <div>
+        <span class="font-serif text-xl tracking-widest text-noir-paper block">MESA SECRETA</span>
+        <span class="text-[10px] font-mono text-noir-muted">Experiencias gastronómicas privadas & a domicilio</span>
+      </div>
+      
+      <div class="text-center font-mono text-[10px] tracking-widest">
+        Dudas y consultas privadas: <a href="mailto:hola@dantagle.cl" class="text-noir-gold hover:underline">hola@dantagle.cl</a>
+      </div>
+
+      <div class="text-right text-[10px] font-mono">
+        © 2026 Mesa Secreta · Santiago, Chile
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // State Management
+    let currentDate = new Date(2026, 8, 1); // Default Sept 2026
+    let selectedDate = new Date(2026, 8, 23); // Default Sept 23, 2026 (Open)
+    let selectedTime = "20:00";
+    let guestCount = 4;
+    let selectedLocation = "domicilio"; // 'domicilio' or 'macul'
+    
+    // Addon Prices
+    const addonPrices = {
+      'happy-food': { name: 'Happy Food ✨', price: 20000, type: 'person' },
+      'happy-smoke': { name: 'Happy Smoke 🌿', price: 15000, type: 'person' },
+      'pasta': { name: 'Taller Prepara tu Pasta', price: 25000, type: 'person' },
+      'yeso': { name: 'Pinta tu Pieza', price: 20000, type: 'person' },
+      'fotos': { name: 'Fotografía Privada', price: 25000, type: 'group' }
+    };
+
+    const monthNames = [
+      "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+      "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    ];
+
+    window.onload = function() {
+      renderCalendar();
+      updateSummary();
+
+      document.getElementById('prevMonth').addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar();
+      });
+
+      document.getElementById('nextMonth').addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar();
+      });
+    };
+
+    // Render Infinite Calendar
+    function renderCalendar() {
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+
+      // Set Month Year Title
+      document.getElementById('calendarMonthYear').innerText = `${monthNames[month]} ${year}`;
+
+      const daysContainer = document.getElementById('calendarDays');
+      daysContainer.innerHTML = '';
+
+      const firstDayOfMonth = new Date(year, month, 1).getDay();
+      // Adjust to Monday start
+      const startingDay = (firstDayOfMonth === 0) ? 6 : firstDayOfMonth - 1;
+      const totalDays = new Date(year, month + 1, 0).getDate();
+
+      // Empty padding cells
+      for (let i = 0; i < startingDay; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.className = "h-10 sm:h-12 border border-transparent";
+        daysContainer.appendChild(emptyCell);
+      }
+
+      // Render Days
+      for (let day = 1; day <= totalDays; day++) {
+        const dayBtn = document.createElement('button');
+        dayBtn.type = "button";
+        
+        // Check if this specific day is September 23, 2026 (The requested open date)
+        const isOpenDate = (year === 2026 && month === 8 && day === 23);
+        const isSelected = selectedDate && (selectedDate.getFullYear() === year && selectedDate.getMonth() === month && selectedDate.getDate() === day);
+
+        if (isOpenDate) {
+          dayBtn.className = `h-10 sm:h-12 border flex flex-col items-center justify-center transition-all cursor-pointer relative text-xs font-mono font-bold ${
+            isSelected 
+              ? 'bg-noir-gold text-noir-950 border-noir-gold shadow-md scale-105' 
+              : 'border-emerald-500/80 bg-emerald-950/30 text-emerald-300 hover:bg-emerald-900/50'
+          }`;
+          
+          dayBtn.innerHTML = `<span>${day}</span><span class="text-[8px] uppercase tracking-widest ${isSelected ? 'text-noir-950' : 'text-emerald-400'}">LIBRE</span>`;
+          dayBtn.onclick = () => selectDate(year, month, day);
+
+        } else {
+          // Blocked / Taken days
+          dayBtn.className = "h-10 sm:h-12 border border-noir-border/40 bg-noir-950/60 text-noir-muted/40 cursor-not-allowed flex flex-col items-center justify-center text-xs font-mono relative opacity-60";
+          dayBtn.disabled = true;
+          dayBtn.innerHTML = `<span>${day}</span><span class="text-[7px] uppercase tracking-tighter text-red-800/80">OCUPADO</span>`;
+        }
+
+        daysContainer.appendChild(dayBtn);
+      }
+    }
+
+    // Select Available Date
+    function selectDate(year, month, day) {
+      selectedDate = new Date(year, month, day);
+      renderCalendar();
+      updateSummary();
+    }
+
+    // Select Time Slot
+    function selectTime(timeStr) {
+      selectedTime = timeStr;
+      document.querySelectorAll('.time-btn').forEach(btn => {
+        btn.classList.remove('border-noir-gold');
+        btn.classList.add('border-noir-border/60');
+      });
+      if (timeStr === '20:00') {
+        document.getElementById('time-20').classList.add('border-noir-gold');
+      } else {
+        document.getElementById('time-21').classList.add('border-noir-gold');
+      }
+      updateSummary();
+    }
+
+    // Select Location Option
+    function selectLocation(loc) {
+      selectedLocation = loc;
+      const domCard = document.getElementById('loc-domicilio');
+      const macCard = document.getElementById('loc-macul');
+
+      if (loc === 'domicilio') {
+        domCard.classList.add('border-noir-gold');
+        domCard.classList.remove('border-noir-border/60');
+        macCard.classList.remove('border-noir-gold');
+        macCard.classList.add('border-noir-border/60');
+        domCard.querySelector('input').checked = true;
+      } else {
+        macCard.classList.add('border-noir-gold');
+        macCard.classList.remove('border-noir-border/60');
+        domCard.classList.remove('border-noir-gold');
+        domCard.classList.add('border-noir-border/60');
+        macCard.querySelector('input').checked = true;
+      }
+      updateSummary();
+    }
+
+    // Change Guest Count
+    function changeGuests(delta) {
+      const newCount = guestCount + delta;
+      if (newCount >= 4 && newCount <= 10) {
+        guestCount = newCount;
+        document.getElementById('guestCount').innerText = guestCount;
+        updateSummary();
+      }
+    }
+
+    function updateSummary() {
+      // Date Display
+      if (selectedDate) {
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        const dateStr = selectedDate.toLocaleDateString('es-CL', options);
+        document.getElementById('displaySelectedDate').innerText = dateStr;
+        document.getElementById('summaryDate').innerText = dateStr;
+      }
+
+      // Time & Guests
+      document.getElementById('summaryTime').innerText = `${selectedTime} hrs`;
+      document.getElementById('summaryGuests').innerText = `${guestCount} Comensales`;
+
+      // Location
+      const locText = selectedLocation === 'macul' ? 'Espacio Gourmet Macul (+$50k)' : 'A Domicilio (RM)';
+      document.getElementById('summaryLocation').innerText = locText;
+
+      // Experience Menu
+      const expVal = document.getElementById('experienceSelect').value;
+      document.getElementById('summaryExperience').innerText = expVal;
+
+      // Base Price: 35,000 per guest
+      let baseTotal = guestCount * 35000;
+      let locationTotal = (selectedLocation === 'macul') ? 50000 : 0;
+      let addonTotal = 0;
+
+      const addonsList = document.getElementById('summaryAddonsList');
+      addonsList.innerHTML = '';
+      let hasAddons = false;
+
+      // Add venue cost in list if selected
+      if (selectedLocation === 'macul') {
+        hasAddons = true;
+        const li = document.createElement('li');
+        li.innerText = `Arriendo Espacio Gourmet Macul (+$50.000)`;
+        addonsList.appendChild(li);
+      }
+
+      // Check selected addons
+      Object.keys(addonPrices).forEach(key => {
+        const checkbox = document.getElementById(`addon-${key}`);
+        if (checkbox && checkbox.checked) {
+          hasAddons = true;
+          const addon = addonPrices[key];
+          const cost = (addon.type === 'person') ? (addon.price * guestCount) : addon.price;
+          addonTotal += cost;
+
+          const li = document.createElement('li');
+          li.innerText = `${addon.name} (+$${cost.toLocaleString('es-CL')})`;
+          addonsList.appendChild(li);
+        }
+      });
+
+      if (!hasAddons) {
+        addonsList.innerHTML = '<li class="text-noir-muted italic list-none">Ningún extra seleccionado</li>';
+      }
+
+      const finalTotal = baseTotal + locationTotal + addonTotal;
+      document.getElementById('summaryTotal').innerText = `$${finalTotal.toLocaleString('es-CL')}`;
+      
+      const perPersonAverage = Math.round(finalTotal / guestCount);
+      document.getElementById('summaryPerPerson').innerText = `($${perPersonAverage.toLocaleString('es-CL')} promedio / pers)`;
+    }
+
+    function submitReservation() {
+      const name = document.getElementById('clientName').value.trim();
+      const email = document.getElementById('clientEmail').value.trim();
+      const phone = document.getElementById('clientPhone').value.trim();
+      const notes = document.getElementById('clientNotes').value.trim();
+
+      if (!name || !email || !phone) {
+        showModal('Faltan Datos', 'Por favor completa tu Nombre, Correo y Teléfono para poder procesar la solicitud.', '⚠️');
+        return;
+      }
+
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerText = "ENVIANDO SOLICITUD...";
+
+      // Build Addon Summary Text for email
+      let selectedAddonsText = [];
+      if (selectedLocation === 'macul') {
+        selectedAddonsText.push('Arriendo Espacio Gourmet / Azotea Macul con Quilín (+$50.000)');
+      }
+      Object.keys(addonPrices).forEach(key => {
+        const checkbox = document.getElementById(`addon-${key}`);
+        if (checkbox && checkbox.checked) {
+          selectedAddonsText.push(addonPrices[key].name);
+        }
+      });
+
+      const payload = {
+        _subject: `Mesa Secreta: Reserva de ${name} - ${selectedDate.toLocaleDateString('es-CL')}`,
+        Anfitrión: name,
+        Email: email,
+        Telefono: phone,
+        Fecha_Reservada: selectedDate.toLocaleDateString('es-CL'),
+        Hora: selectedTime,
+        Comensales: guestCount,
+        Lugar_Cena: selectedLocation === 'macul' ? 'Espacio Gourmet en Macul c/ Quilín' : 'A Domicilio en RM',
+        Menu_Elegido: document.getElementById('experienceSelect').value,
+        Personalizaciones_Extras: selectedAddonsText.length > 0 ? selectedAddonsText.join(', ') : 'Ninguna',
+        Direccion_o_Notas: notes || 'Ninguna',
+        Monto_Estimado: document.getElementById('summaryTotal').innerText
+      };
+
+      fetch('https://formsubmit.co/ajax/hola@dantagle.cl', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(response => response.json())
+      .then(data => {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "SOLICITAR ESTA NOCHE";
+        showModal('¡Reserva Solicitada!', `Gracias ${name}. La información de tu reserva ha sido enviada a hola@dantagle.cl. Te contactaremos dentro de 12 hrs para confirmar.`, '✨');
+      })
+      .catch(error => {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "SOLICITAR ESTA NOCHE";
+        // Fallback email client launch
+        const bodyText = `Hola Daniel,%0D%0A%0D%0AQuisiera solicitar una reserva en Mesa Secreta con los siguientes datos:%0D%0A%0D%0A- Nombre: ${name}%0D%0A- Fecha: ${selectedDate.toLocaleDateString('es-CL')}%0D%0A- Hora: ${selectedTime}%0D%0A- Comensales: ${guestCount}%0D%0A- Lugar: ${payload.Lugar_Cena}%0D%0A- Menú: ${payload.Menu_Elegido}%0D%0A- Extras: ${payload.Personalizaciones_Extras}%0D%0A- Teléfono: ${phone}%0D%0A%0D%0AQuedo atento a la confirmación.`;
+        window.location.href = `mailto:hola@dantagle.cl?subject=Reserva Mesa Secreta - ${name}&body=${bodyText}`;
+        showModal('Redirigiendo a tu Correo', 'Te estamos conectando con tu aplicación de correo para enviar la solicitud a hola@dantagle.cl.', '✉️');
+      });
+    }
+
+    function showModal(title, message, icon = '✨') {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalMessage').innerText = message;
+      document.getElementById('modalIcon').innerText = icon;
+      document.getElementById('statusModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('statusModal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
