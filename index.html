@@ -3,12 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mesa Secreta — Una Noche. Una Mesa.</title>
+  <title>Mesa Secreta — Taller Íntimo de Pasta & Cena Clandestina</title>
+  <meta name="description" content="Una experiencia de pasta fresca y vino para solo 4 personas por noche en Santiago de Chile. Amasa con tus manos en dos duplas y cena lo que creaste.">
   
-  <!-- Fonts -->
+  <!-- Open Graph -->
+  <meta property="og:title" content="Mesa Secreta — Taller Íntimo de Pasta & Cena Clandestina">
+  <meta property="og:description" content="Solo 4 puestos por noche. Dos duplas. Amasa pasta fresca italiana y cena con maridaje curado en un departamento íntimo en Santiago.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mesasecreta.cl">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20y=%220%22%20width=%22100%22%20height=%22100%22><text y=%22.9em%22 font-size=%2290%22>🍝</text></svg>">
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -18,18 +28,21 @@
         extend: {
           colors: {
             obsidian: {
-              DEFAULT: '#090807',
-              card: '#12110e',
-              border: '#26231d',
+              DEFAULT: '#0b0a09',
+              card: '#13110f',
+              elevated: '#1a1714',
+              border: '#28241e',
+              borderlight: '#3d372e',
               gold: '#cba358',
-              goldlight: '#e2c27c',
-              cream: '#f5f1e8',
-              muted: '#9e9689'
+              goldlight: '#e6c88b',
+              golddark: '#9a7531',
+              cream: '#f5f0e6',
+              muted: '#a39b8d'
             }
           },
           fontFamily: {
             serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-            sans: ['Inter', 'sans-serif']
+            sans: ['"Plus Jakarta Sans"', 'sans-serif']
           }
         }
       }
@@ -38,9 +51,9 @@
 
   <style>
     body {
-      background-color: #090807;
-      color: #f5f1e8;
-      font-family: 'Inter', sans-serif;
+      background-color: #0b0a09;
+      color: #f5f0e6;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
     
     /* Noise texture overlay */
@@ -48,9 +61,9 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: 0.035;
+      opacity: 0.032;
       z-index: 50;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
     /* Custom Scrollbar */
@@ -58,23 +71,22 @@
       width: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #090807;
+      background: #0b0a09;
     }
     ::-webkit-scrollbar-thumb {
-      background: #26231d;
+      background: #28241e;
       border-radius: 3px;
     }
     ::-webkit-scrollbar-thumb:hover {
       background: #cba358;
     }
 
-    /* Ambient luxury glows */
     .ambient-glow {
-      background: radial-gradient(circle at 50% 0%, rgba(203, 163, 88, 0.12) 0%, transparent 70%);
+      background: radial-gradient(circle at 50% 10%, rgba(203, 163, 88, 0.12) 0%, transparent 65%);
     }
 
     .modal-backdrop {
-      background: rgba(9, 8, 7, 0.88);
+      background: rgba(11, 10, 9, 0.92);
       backdrop-filter: blur(12px);
     }
   </style>
@@ -85,140 +97,503 @@
   <div class="grain-overlay"></div>
 
   <!-- NAVIGATION -->
-  <nav class="fixed top-0 left-0 w-full z-40 bg-obsidian/80 backdrop-blur-md border-b border-obsidian-border/50 transition-all duration-300">
+  <nav class="fixed top-0 left-0 w-full z-40 bg-obsidian/85 backdrop-blur-md border-b border-obsidian-border/60 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="#" class="font-serif text-2xl tracking-widest text-obsidian-cream hover:text-obsidian-gold transition-colors">
+      <a href="#" class="font-serif text-2xl tracking-[0.18em] text-obsidian-cream hover:text-obsidian-gold transition-colors">
         MESA <span class="italic font-light text-obsidian-gold">SECRETA</span>
       </a>
-      <div class="hidden md:flex items-center space-x-10 text-xs tracking-widest text-obsidian-muted uppercase">
-        <a href="#concepto" class="hover:text-obsidian-cream transition-colors">El Concepto</a>
-        <a href="#experiencias" class="hover:text-obsidian-cream transition-colors">Experiencias</a>
-        <a href="#reservar" class="hover:text-obsidian-cream transition-colors">Reserva Privada</a>
+      <div class="hidden md:flex items-center space-x-9 text-xs tracking-widest text-obsidian-muted uppercase font-medium">
+        <a href="#experiencia" class="hover:text-obsidian-cream transition-colors">La Experiencia</a>
+        <a href="#menu" class="hover:text-obsidian-cream transition-colors">Las Salsas & Vino</a>
+        <a href="#precios" class="hover:text-obsidian-cream transition-colors">Precios</a>
+        <a href="#politicas" class="hover:text-obsidian-cream transition-colors">Políticas</a>
+        <a href="#faq" class="hover:text-obsidian-cream transition-colors">Preguntas</a>
       </div>
-      <a href="#reservar" class="border border-obsidian-gold/50 text-obsidian-gold hover:bg-obsidian-gold hover:text-obsidian px-5 py-2.5 text-xs font-mono tracking-widest uppercase transition-all duration-300 rounded-sm">
-        Reservar una noche
+      <a href="#reservar" class="border border-obsidian-gold/60 text-obsidian-gold hover:bg-obsidian-gold hover:text-obsidian px-5 py-2.5 text-xs font-mono tracking-widest uppercase transition-all duration-300 rounded-xs font-semibold shadow-sm shadow-obsidian-gold/10">
+        Reservar Puestos
       </a>
     </div>
   </nav>
 
   <!-- HERO SECTION -->
-  <section class="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
-    <!-- Atmospheric Ambient Lights -->
+  <section class="relative min-h-[92vh] flex items-center justify-center pt-28 pb-20 overflow-hidden">
+    <!-- Ambient Glow Lights -->
     <div class="absolute inset-0 ambient-glow pointer-events-none"></div>
-    <div class="absolute -top-40 -left-40 w-96 h-96 bg-amber-900/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-obsidian-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-amber-950/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-obsidian-gold/10 rounded-full blur-3xl pointer-events-none"></div>
 
-    <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
-      <span class="inline-block text-xs font-mono text-obsidian-gold uppercase tracking-[0.3em] mb-6 border border-obsidian-gold/30 px-4 py-1.5 rounded-full bg-obsidian-gold/5">
-        Santiago de Chile · Experiencia Privada
-      </span>
-      <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl font-normal text-obsidian-cream tracking-tight leading-[0.95] mb-8">
-        Una noche.<br>
-        <span class="italic font-light text-obsidian-gold">Una sola mesa.</span>
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+      <div class="inline-flex items-center space-x-2 border border-obsidian-gold/30 px-4 py-1.5 rounded-full bg-obsidian-gold/5 mb-8">
+        <span class="w-2 h-2 rounded-full bg-obsidian-gold animate-pulse"></span>
+        <span class="text-[11px] font-mono text-obsidian-gold uppercase tracking-[0.25em]">
+          Santiago de Chile · 4 Puestos por Noche
+        </span>
+      </div>
+
+      <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl font-normal text-obsidian-cream tracking-tight leading-[0.98] mb-8">
+        Harina. Vino.<br>
+        <span class="italic font-light text-obsidian-gold">Y una mesa para cuatro.</span>
       </h1>
-      <p class="max-w-xl mx-auto text-obsidian-muted text-base sm:text-lg font-light leading-relaxed mb-12">
-        Sin turnos. Sin desconocidos. El espacio, el equipo y la cocina dedicados exclusivamente a ti y a tus invitados.
+      
+      <p class="max-w-2xl mx-auto text-obsidian-muted text-base sm:text-lg font-light leading-relaxed mb-10">
+        Una experiencia gastronómica a puertas cerradas en mi departamento. En dos duplas, aprenderemos a crear pasta fresca artesanal desde cero, cocinaremos con salsas lentas y cenaremos a la luz de las velas con maridaje de vino seleccionado.
       </p>
       
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
-        <a href="#reservar" class="w-full sm:w-auto bg-obsidian-gold text-obsidian font-mono text-xs tracking-widest uppercase font-medium px-8 py-4 hover:bg-obsidian-goldlight transition-all duration-300 shadow-lg shadow-obsidian-gold/10">
-          Explorar Calendario
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#reservar" class="w-full sm:w-auto bg-obsidian-gold text-obsidian font-mono text-xs tracking-widest uppercase font-semibold px-9 py-4 hover:bg-obsidian-goldlight transition-all duration-300 shadow-xl shadow-obsidian-gold/15">
+          Ver Fechas Disponibles
         </a>
-        <a href="#concepto" class="w-full sm:w-auto border border-obsidian-border text-obsidian-cream font-mono text-xs tracking-widest uppercase px-8 py-4 hover:border-obsidian-gold/50 transition-all duration-300">
-          Saber Más
+        <a href="#experiencia" class="w-full sm:w-auto border border-obsidian-border text-obsidian-cream font-mono text-xs tracking-widest uppercase px-8 py-4 hover:border-obsidian-gold/60 hover:text-obsidian-gold transition-all duration-300">
+          Cómo Funciona la Noche
         </a>
       </div>
 
-      <!-- Quick Highlights -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 pt-10 border-t border-obsidian-border/40 text-left">
-        <div>
-          <span class="block text-xs text-obsidian-gold font-mono mb-1">CAPACIDAD</span>
-          <p class="font-serif text-xl text-obsidian-cream">4 a 10 Comensales</p>
+      <!-- Quick Pillars -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-10 border-t border-obsidian-border/40 text-left">
+        <div class="border-l border-obsidian-gold/40 pl-4">
+          <span class="block text-[10px] text-obsidian-gold font-mono uppercase tracking-widest mb-1">Capacidad</span>
+          <p class="font-serif text-xl sm:text-2xl text-obsidian-cream">Solo 4 Puestos</p>
+          <span class="text-[11px] text-obsidian-muted">2 duplas por velada</span>
         </div>
-        <div>
-          <span class="block text-xs text-obsidian-gold font-mono mb-1">EXCLUSIVIDAD</span>
-          <p class="font-serif text-xl text-obsidian-cream">1 Grupo por Noche</p>
+        <div class="border-l border-obsidian-gold/40 pl-4">
+          <span class="block text-[10px] text-obsidian-gold font-mono uppercase tracking-widest mb-1">Formato</span>
+          <p class="font-serif text-xl sm:text-2xl text-obsidian-cream">Manos en la Masa</p>
+          <span class="text-[11px] text-obsidian-muted">Amasas, cortas y cenas</span>
         </div>
-        <div>
-          <span class="block text-xs text-obsidian-gold font-mono mb-1">FORMATO</span>
-          <p class="font-serif text-xl text-obsidian-cream">A Domicilio o Espacio</p>
+        <div class="border-l border-obsidian-gold/40 pl-4">
+          <span class="block text-[10px] text-obsidian-gold font-mono uppercase tracking-widest mb-1">Maridaje</span>
+          <p class="font-serif text-xl sm:text-2xl text-obsidian-cream">Vino Curado</p>
+          <span class="text-[11px] text-obsidian-muted">3 tiempos por persona</span>
         </div>
-        <div>
-          <span class="block text-xs text-obsidian-gold font-mono mb-1">INCLUYE</span>
-          <p class="font-serif text-xl text-obsidian-cream">Menú Completo & Maridaje</p>
+        <div class="border-l border-obsidian-gold/40 pl-4">
+          <span class="block text-[10px] text-obsidian-gold font-mono uppercase tracking-widest mb-1">Ubicación</span>
+          <p class="font-serif text-xl sm:text-2xl text-obsidian-cream">Secreta</p>
+          <span class="text-[11px] text-obsidian-muted">Enviada 24h antes</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MANIFESTO / CONCEPTO -->
-  <section id="concepto" class="py-28 border-t border-obsidian-border/50 relative">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <span class="text-xs font-mono text-obsidian-gold uppercase tracking-[0.2em]">La Filosofía</span>
-      <h2 class="font-serif text-4xl sm:text-6xl text-obsidian-cream mt-4 mb-8 font-normal leading-tight">
-        No reservas un plato.<br>Reservas la atmósfera.
+  <!-- LA HISTORIA / EL CAMBIO -->
+  <section class="py-24 border-t border-obsidian-border/50 bg-obsidian-card/40 relative">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <span class="text-xs font-mono text-obsidian-gold uppercase tracking-[0.25em]">La Razón de Ser</span>
+      <h2 class="font-serif text-3xl sm:text-5xl text-obsidian-cream mt-4 mb-6 font-normal leading-tight">
+        "Dejé los eventos masivos para cocinar con alma."
       </h2>
-      <p class="text-obsidian-muted font-light text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-        Diseñamos cenas privadas a medida. Nos encargamos de la cocina de alta técnica, la vajilla, la cristalería y el maridaje. Tú solo eliges a los acompañantes.
-      </p>
+      <div class="text-obsidian-muted font-light text-base sm:text-lg leading-relaxed space-y-4 text-left sm:text-center">
+        <p>
+          Antes preparaba banquetes a domicilio y eventos para decenas de personas. Pero con el tiempo me di cuenta de algo esencial: en una sala llena de gente se pierde la intimidad de la cocina, las anécdotas de sobremesa y la conexión real que surge alrededor del fuego.
+        </p>
+        <p>
+          Hoy abro la puerta de mi propio departamento en Santiago. <strong>Solo 4 puestos por noche</strong>, distribuidos en dos duplas. Todos los utensilios, la harina, los huevos de campo, el fuego y el vino listos para que vivas una velada cálida, divertida y profundamente deliciosa.
+        </p>
+      </div>
+    </div>
+  </section>
 
-      <div class="grid md:grid-cols-3 gap-8 mt-16 text-left">
-        <div class="bg-obsidian-card p-8 border border-obsidian-border/60 rounded-sm">
-          <span class="font-serif text-3xl text-obsidian-gold italic block mb-3">01.</span>
-          <h3 class="font-serif text-xl text-obsidian-cream mb-2">Aperitivo & Bienvenida</h3>
-          <p class="text-xs text-obsidian-muted leading-relaxed">Coctelería de autor o maridaje seleccionado para abrir los sentidos desde el primer instante.</p>
+  <!-- EL RECORRIDO DE LA EXPERIENCIA -->
+  <section id="experiencia" class="py-28 border-t border-obsidian-border/50 relative">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-20">
+        <span class="text-xs font-mono text-obsidian-gold uppercase tracking-[0.25em]">Paso a Paso</span>
+        <h2 class="font-serif text-4xl sm:text-6xl text-obsidian-cream mt-3 mb-5 font-normal">
+          Qué sucede en una noche de Mesa Secreta
+        </h2>
+        <p class="text-obsidian-muted text-sm sm:text-base font-light">
+          Aproximadamente 3 horas diseñadas con cariño para aprender, compartir y brindar.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- 01 -->
+        <div class="bg-obsidian-card p-8 border border-obsidian-border rounded-xs relative group hover:border-obsidian-gold/60 transition-all">
+          <span class="font-serif text-4xl text-obsidian-gold/40 group-hover:text-obsidian-gold italic block mb-4 transition-colors">01.</span>
+          <h3 class="font-serif text-2xl text-obsidian-cream mb-3">Recepción & Bienvenida</h3>
+          <p class="text-xs sm:text-sm text-obsidian-muted leading-relaxed mb-4">
+            Llegas a mi departamento, dejamos abrigos y servimos la primera copa de vino fresco para romper el hielo. Nos ponemos el delantal y preparamos las estaciones de trabajo para las 2 duplas.
+          </p>
+          <span class="text-[11px] font-mono text-obsidian-gold bg-obsidian-gold/10 px-2.5 py-1 rounded-xs inline-block">Copa 1 · Vino Blanco o Espumante</span>
         </div>
-        <div class="bg-obsidian-card p-8 border border-obsidian-border/60 rounded-sm">
-          <span class="font-serif text-3xl text-obsidian-gold italic block mb-3">02.</span>
-          <h3 class="font-serif text-xl text-obsidian-cream mb-2">Cena en Tiempos</h3>
-          <p class="text-xs text-obsidian-muted leading-relaxed">Menú elegido por ti, ejecutado en vivo por nuestro equipo gastronómico.</p>
+
+        <!-- 02 -->
+        <div class="bg-obsidian-card p-8 border border-obsidian-border rounded-xs relative group hover:border-obsidian-gold/60 transition-all">
+          <span class="font-serif text-4xl text-obsidian-gold/40 group-hover:text-obsidian-gold italic block mb-4 transition-colors">02.</span>
+          <h3 class="font-serif text-2xl text-obsidian-cream mb-3">El Taller: Manos en la Masa</h3>
+          <p class="text-xs sm:text-sm text-obsidian-muted leading-relaxed mb-4">
+            Volcán de harina, huevos de campo y amasado al ritmo de la música. Aprenderás el punto exacto de humedad, elasticidad, y cómo estirar la masa con rodillo y máquina tradicional para cortar tagliatelle o fettuccine perfectos.
+          </p>
+          <span class="text-[11px] font-mono text-obsidian-gold bg-obsidian-gold/10 px-2.5 py-1 rounded-xs inline-block">Técnica Italiana + Utensilios Incluidos</span>
         </div>
-        <div class="bg-obsidian-card p-8 border border-obsidian-border/60 rounded-sm">
-          <span class="font-serif text-3xl text-obsidian-gold italic block mb-3">03.</span>
-          <h3 class="font-serif text-xl text-obsidian-cream mb-2">Sobremesa Infinita</h3>
-          <p class="text-xs text-obsidian-muted leading-relaxed">Sin prisas por entregar la mesa. La noche finaliza cuando tu grupo lo decida.</p>
+
+        <!-- 03 -->
+        <div class="bg-obsidian-card p-8 border border-obsidian-border rounded-xs relative group hover:border-obsidian-gold/60 transition-all">
+          <span class="font-serif text-4xl text-obsidian-gold/40 group-hover:text-obsidian-gold italic block mb-4 transition-colors">03.</span>
+          <h3 class="font-serif text-2xl text-obsidian-cream mb-3">Cocción en Vivo & Salsas</h3>
+          <p class="text-xs sm:text-sm text-obsidian-muted leading-relaxed mb-4">
+            Hervimos tu pasta en ollas amplias al dente exacto. Montamos y emulsionamos con nuestras salsas artesanales preparadas con ingredientes frescos y cocciones pacientes.
+          </p>
+          <span class="text-[11px] font-mono text-obsidian-gold bg-obsidian-gold/10 px-2.5 py-1 rounded-xs inline-block">Ragù de Carne · Bechamel Vegetariana · Pesto</span>
+        </div>
+
+        <!-- 04 -->
+        <div class="bg-obsidian-card p-8 border border-obsidian-border rounded-xs relative group hover:border-obsidian-gold/60 transition-all">
+          <span class="font-serif text-4xl text-obsidian-gold/40 group-hover:text-obsidian-gold italic block mb-4 transition-colors">04.</span>
+          <h3 class="font-serif text-2xl text-obsidian-cream mb-3">La Cena & Maridaje</h3>
+          <p class="text-xs sm:text-sm text-obsidian-muted leading-relaxed mb-4">
+            Nos sentamos a la mesa iluminada con velas. Servimos tu plato humeante con queso Grana Padano rallado al momento y maridamos con una copa de vino tinto seleccionado para la velada.
+          </p>
+          <span class="text-[11px] font-mono text-obsidian-gold bg-obsidian-gold/10 px-2.5 py-1 rounded-xs inline-block">Copas 2 y 3 · Tinto Estructurado</span>
+        </div>
+
+        <!-- 05 -->
+        <div class="bg-obsidian-card p-8 border border-obsidian-border rounded-xs relative group hover:border-obsidian-gold/60 transition-all">
+          <span class="font-serif text-4xl text-obsidian-gold/40 group-hover:text-obsidian-gold italic block mb-4 transition-colors">05.</span>
+          <h3 class="font-serif text-2xl text-obsidian-cream mb-3">Sobremesa, Café & Souvenir</h3>
+          <p class="text-xs sm:text-sm text-obsidian-muted leading-relaxed mb-4">
+            Cerramos con un buen espresso italiano y un bocadito dulce. Además, la pasta fresca que hayas cortado de más te la empacamos en una cajita kraft con sémola: <em>tu almuerzo casero para el día siguiente</em>.
+          </p>
+          <span class="text-[11px] font-mono text-obsidian-gold bg-obsidian-gold/10 px-2.5 py-1 rounded-xs inline-block">Cajita Kraft con Pasta Cruda para Llevar</span>
+        </div>
+
+        <!-- 06 -->
+        <div class="bg-obsidian-card p-8 border border-obsidian-border rounded-xs relative group hover:border-obsidian-gold/60 transition-all">
+          <span class="font-serif text-4xl text-obsidian-gold/40 group-hover:text-obsidian-gold italic block mb-4 transition-colors">06.</span>
+          <h3 class="font-serif text-2xl text-obsidian-cream mb-3">Cero Lavado, Todo Disfrute</h3>
+          <p class="text-xs sm:text-sm text-obsidian-muted leading-relaxed mb-4">
+            Tú cocinas, aprendes, te ríes y disfrutas. Toda la limpieza, ollas, platos y orden de la cocina corren por nuestra cuenta mientras disfrutas la conversación.
+          </p>
+          <span class="text-[11px] font-mono text-obsidian-gold bg-obsidian-gold/10 px-2.5 py-1 rounded-xs inline-block">Servicio Completo Incluido</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- BOOKING WIZARD -->
-  <section id="reservar" class="py-24 bg-obsidian-card/40 border-t border-obsidian-border/60 relative">
+  <!-- SALSAS, VINO & RESTRICCIONES DIETARIAS -->
+  <section id="menu" class="py-24 bg-obsidian-card/40 border-t border-obsidian-border/50">
     <div class="max-w-6xl mx-auto px-6">
       
-      <div class="mb-12">
-        <span class="text-xs font-mono text-obsidian-gold uppercase tracking-widest block mb-2">Sistema de Reservas Directas</span>
-        <h2 class="font-serif text-4xl sm:text-5xl text-obsidian-cream">Configura tu Noche Exclusiva</h2>
-        <p class="text-obsidian-muted text-xs sm:text-sm mt-2">Valor base: $35.000 por persona (Todo incluido).</p>
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-mono text-obsidian-gold uppercase tracking-[0.25em]">La Gastronomía</span>
+        <h2 class="font-serif text-4xl sm:text-5xl text-obsidian-cream mt-3 mb-4">
+          Nuestras Salsas de la Noche
+        </h2>
+        <p class="text-obsidian-muted text-sm sm:text-base font-light">
+          Ingredientes honestos, tiempos lentos de cocción y respeto por la tradición.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Salsa con carne -->
+        <div class="bg-obsidian p-6 sm:p-8 border border-obsidian-border rounded-xs">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono text-obsidian-gold uppercase tracking-wider">Tradición</span>
+            <span class="text-[10px] font-mono text-amber-300 bg-amber-950/40 border border-amber-800/40 px-2 py-0.5 rounded-xs">Con Carne</span>
+          </div>
+          <h3 class="font-serif text-2xl text-obsidian-cream mb-3">Ragù Clásico Lento</h3>
+          <p class="text-xs text-obsidian-muted leading-relaxed mb-4">
+            Cortes de carne seleccionada sofritos con mirepoix clásica de vegetales, vino tinto, tomates maduros y hierbas aromáticas, cocinada a fuego muy lento por más de 3 horas.
+          </p>
+          <div class="text-[11px] text-obsidian-muted/80 border-t border-obsidian-border/40 pt-3 font-mono">
+            Intenso, aterciopelado y reconfortante.
+          </div>
+        </div>
+
+        <!-- Salsa blanca vegetariana -->
+        <div class="bg-obsidian p-6 sm:p-8 border border-obsidian-border rounded-xs">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono text-obsidian-gold uppercase tracking-wider">Cremosa</span>
+            <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-800/40 px-2 py-0.5 rounded-xs">Apto Vegetarianos</span>
+          </div>
+          <h3 class="font-serif text-2xl text-obsidian-cream mb-3">Bechamel Sedosa Artesanal</h3>
+          <p class="text-xs text-obsidian-muted leading-relaxed mb-4">
+            Roux dorado de mantequilla, leche entera emulsionada, un toque aromático de nuez moscada recién rallada y queso maduro. Sin ningún tipo de carnes.
+          </p>
+          <div class="text-[11px] text-obsidian-muted/80 border-t border-obsidian-border/40 pt-3 font-mono">
+            100% vegetariana. Suave y elegante.
+          </div>
+        </div>
+
+        <!-- Pesto estacional -->
+        <div class="bg-obsidian p-6 sm:p-8 border border-obsidian-border rounded-xs">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono text-obsidian-gold uppercase tracking-wider">De Estación</span>
+            <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-800/40 px-2 py-0.5 rounded-xs">Apto Vegetarianos</span>
+          </div>
+          <h3 class="font-serif text-2xl text-obsidian-cream mb-3">Pesto Fresco Genovés</h3>
+          <p class="text-xs text-obsidian-muted leading-relaxed mb-4">
+            Elaborado en fechas según disponibilidad de albahaca fresca de huerto, nueces seleccionadas (o piñones), ajo confitado suave, aceite de oliva virgen extra y queso curado.
+          </p>
+          <div class="text-[11px] text-obsidian-muted/80 border-t border-obsidian-border/40 pt-3 font-mono">
+            Sujeto a estacionalidad e ingredientes frescos.
+          </div>
+        </div>
+      </div>
+
+      <!-- Alcohol Policy & Dietary Clarifications -->
+      <div class="grid md:grid-cols-2 gap-6 mt-10">
+        <!-- Alcohol Policy Card -->
+        <div class="bg-obsidian p-6 sm:p-8 border border-obsidian-gold/40 rounded-xs">
+          <div class="flex items-center space-x-3 mb-3">
+            <span class="text-xl">🍷</span>
+            <h4 class="font-serif text-xl text-obsidian-cream">El Vino: Maridaje Curado por Tiempos</h4>
+          </div>
+          <p class="text-xs sm:text-sm text-obsidian-muted leading-relaxed mb-4">
+            Para mantener un ambiente gastronómico, seguro y grato en nuestro departamento, el vino no es barra libre, sino un <strong>maridaje guiado de 3 tiempos</strong> (aprox. media botella de vino por persona):
+          </p>
+          <ul class="text-xs text-obsidian-cream space-y-2 font-mono list-disc list-inside">
+            <li><span class="text-obsidian-gold">Copa 1:</span> Blanco fresco o espumante al amasar.</li>
+            <li><span class="text-obsidian-gold">Copas 2 y 3:</span> Tinto estructurado durante la cena.</li>
+            <li>Agua fresca y aromatizada con cítricos siempre disponible en jarra.</li>
+          </ul>
+        </div>
+
+        <!-- Dietary Notice Card -->
+        <div class="bg-obsidian p-6 sm:p-8 border border-obsidian-border rounded-xs">
+          <div class="flex items-center space-x-3 mb-3">
+            <span class="text-xl">🌱</span>
+            <h4 class="font-serif text-xl text-obsidian-cream">Aclaración de Restricciones Dietarias</h4>
+          </div>
+          <div class="space-y-3 text-xs sm:text-sm text-obsidian-muted leading-relaxed">
+            <p>
+              <strong class="text-emerald-400">✓ Vegetarianos:</strong> Completamente bienvenidos. Nuestras opciones de bechamel y pesto no contienen carnes.
+            </p>
+            <p>
+              <strong class="text-amber-400">✕ No apto para Veganos ni Celíacos:</strong> La receta tradicional de la masa italiana se elabora con huevo fresco de campo y harina/sémola con gluten.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRECIOS Y FORMATOS -->
+  <section id="precios" class="py-24 border-t border-obsidian-border/50 relative">
+    <div class="max-w-5xl mx-auto px-6">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-mono text-obsidian-gold uppercase tracking-[0.25em]">Formatos & Valores</span>
+        <h2 class="font-serif text-4xl sm:text-6xl text-obsidian-cream mt-3 mb-4">
+          Elige tu Modalidad
+        </h2>
+        <p class="text-obsidian-muted text-sm sm:text-base font-light">
+          Reserva en dupla para compartir con otra pareja, o cierra la mesa completa solo para tu grupo.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 items-stretch">
+        
+        <!-- Opción 1: Dupla -->
+        <div class="bg-obsidian-card p-8 sm:p-10 border border-obsidian-border rounded-xs flex flex-col justify-between relative hover:border-obsidian-gold/60 transition-all">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="text-xs font-mono text-obsidian-gold uppercase tracking-widest">Opción Compartida</span>
+              <span class="text-[10px] font-mono text-obsidian-cream bg-obsidian border border-obsidian-border px-2.5 py-1 rounded-xs">2 Puestos</span>
+            </div>
+            <h3 class="font-serif text-3xl text-obsidian-cream mb-2">La Dupla</h3>
+            <p class="text-xs text-obsidian-muted mb-6">
+              Ideal para citas en pareja o dos amigos que disfrutan de la gastronomía y no les importa compartir la conversación de mesa con otra dupla.
+            </p>
+            
+            <div class="mb-8 pb-6 border-b border-obsidian-border/50">
+              <span class="font-serif text-5xl text-obsidian-gold font-normal">$110.000</span>
+              <span class="text-xs font-mono text-obsidian-muted block mt-1">($55.000 CLP por persona · Todo incluido)</span>
+            </div>
+
+            <ul class="text-xs text-obsidian-cream space-y-3 font-mono mb-8">
+              <li class="flex items-center space-x-2">
+                <span class="text-obsidian-gold font-bold">✓</span>
+                <span>2 puestos en estación de amasado</span>
+              </li>
+              <li class="flex items-center space-x-2">
+                <span class="text-obsidian-gold font-bold">✓</span>
+                <span>Maridaje de vino para ambos comensales</span>
+              </li>
+              <li class="flex items-center space-x-2">
+                <span class="text-obsidian-gold font-bold">✓</span>
+                <span>Cena completa de la pasta elaborada</span>
+              </li>
+              <li class="flex items-center space-x-2">
+                <span class="text-obsidian-gold font-bold">✓</span>
+                <span>Postre, café y cajita para llevar a casa</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="#reservar" onclick="selectBookingType('dupla')" class="w-full text-center border border-obsidian-gold text-obsidian-gold hover:bg-obsidian-gold hover:text-obsidian py-3.5 font-mono text-xs uppercase tracking-widest transition-all font-semibold">
+            Reservar Dupla (2 Puestos)
+          </a>
+        </div>
+
+        <!-- Opción 2: Mesa Completa -->
+        <div class="bg-obsidian-card p-8 sm:p-10 border-2 border-obsidian-gold/80 rounded-xs flex flex-col justify-between relative shadow-2xl shadow-obsidian-gold/10">
+          <div class="absolute -top-3.5 right-6 bg-obsidian-gold text-obsidian text-[10px] font-mono uppercase tracking-widest px-3 py-1 font-bold">
+            100% Exclusivo
+          </div>
+          
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="text-xs font-mono text-obsidian-gold uppercase tracking-widest">Mesa Privada</span>
+              <span class="text-[10px] font-mono text-obsidian-gold bg-obsidian-gold/10 border border-obsidian-gold/30 px-2.5 py-1 rounded-xs">4 Puestos Cerrados</span>
+            </div>
+            <h3 class="font-serif text-3xl text-obsidian-cream mb-2">Mesa Completa Cerrada</h3>
+            <p class="text-xs text-obsidian-muted mb-6">
+              El departamento y el anfitrión 100% dedicados a ti y a tus 3 invitados. Ideal para doble cita, cumpleaños íntimo o familia.
+            </p>
+            
+            <div class="mb-8 pb-6 border-b border-obsidian-border/50">
+              <span class="font-serif text-5xl text-obsidian-gold font-normal">$210.000</span>
+              <span class="text-xs font-mono text-obsidian-muted block mt-1">($52.500 CLP por persona · Tarifa grupo)</span>
+            </div>
+
+            <ul class="text-xs text-obsidian-cream space-y-3 font-mono mb-8">
+              <li class="flex items-center space-x-2">
+                <span class="text-obsidian-gold font-bold">✓</span>
+                <span>Los 4 puestos reservados para tu grupo</span>
+              </li>
+              <li class="flex items-center space-x-2">
+                <span class="text-obsidian-gold font-bold">✓</span>
+                <span>Sin desconocidos en el departamento</span>
+              </li>
+              <li class="flex items-center space-x-2">
+                <span class="text-obsidian-gold font-bold">✓</span>
+                <span>Maridaje de vino para los 4 comensales</span>
+              </li>
+              <li class="flex items-center space-x-2">
+                <span class="text-obsidian-gold font-bold">✓</span>
+                <span>Música y ritmo de la noche a su gusto</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="#reservar" onclick="selectBookingType('mesa_completa')" class="w-full text-center bg-obsidian-gold text-obsidian hover:bg-obsidian-goldlight py-3.5 font-mono text-xs uppercase tracking-widest transition-all font-semibold shadow-md shadow-obsidian-gold/20">
+            Reservar Mesa Completa (4 Puestos)
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- POLÍTICAS DE CANCELACIÓN Y REAGENDAMIENTO -->
+  <section id="politicas" class="py-20 bg-obsidian-card/40 border-t border-obsidian-border/50">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="border border-obsidian-border p-8 sm:p-10 rounded-xs bg-obsidian">
+        <span class="text-xs font-mono text-obsidian-gold uppercase tracking-[0.25em] block mb-2">Transparencia Total</span>
+        <h3 class="font-serif text-3xl text-obsidian-cream mb-6">Políticas de Reserva & Cancelación</h3>
+        
+        <div class="space-y-4 text-xs sm:text-sm text-obsidian-muted leading-relaxed">
+          <p>
+            Al tener únicamente 4 puestos disponibles por noche, cada comensal representa el 25% o el 50% de la velada y los insumos frescos se compran a medida el mismo día. Por eso operamos bajo reglas claras:
+          </p>
+          <div class="grid sm:grid-cols-2 gap-6 pt-4 border-t border-obsidian-border/50">
+            <div>
+              <h4 class="font-serif text-lg text-obsidian-cream mb-1 text-emerald-400">✓ Reagendamiento (72 Horas)</h4>
+              <p class="text-xs text-obsidian-muted">
+                Puedes solicitar reagendar tu fecha con un mínimo de <strong>72 horas de anticipación</strong>. Se podrá reagendar para una fecha dentro de los <strong>próximos 7 días</strong> o para la próxima fecha disponible con cupos en el calendario.
+              </p>
+            </div>
+            <div>
+              <h4 class="font-serif text-lg text-obsidian-cream mb-1 text-amber-400">⚠️ Con menos de 72 Horas</h4>
+              <p class="text-xs text-obsidian-muted">
+                No se realizan reembolsos ni reagendamientos tardíos. Sin embargo, tu reserva es <strong>100% transferible</strong>: puedes invitar o cederle tus puestos a otros amigos o familiares notificándonos sus nombres.
+              </p>
+            </div>
+          </div>
+          <div class="pt-4 text-xs font-mono text-obsidian-gold border-t border-obsidian-border/40">
+            💳 Pago 100% anticipado y protegido a través de Stripe para asegurar la fecha de tu mesa.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WIZARD DE RESERVAS & CHECKOUT STRIPE -->
+  <section id="reservar" class="py-24 border-t border-obsidian-border/50 relative">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <div class="mb-12 text-center sm:text-left">
+        <span class="text-xs font-mono text-obsidian-gold uppercase tracking-widest block mb-2">Agenda Oficial</span>
+        <h2 class="font-serif text-4xl sm:text-5xl text-obsidian-cream">Reserva tu Noche en Mesa Secreta</h2>
+        <p class="text-obsidian-muted text-xs sm:text-sm mt-2">Selecciona tu modalidad, fecha y confirma tu pago de forma instantánea.</p>
       </div>
 
       <!-- Step Indicator Bar -->
-      <div class="grid grid-cols-5 gap-2 mb-10 text-center font-mono text-[10px] sm:text-xs">
-        <div id="step-tab-1" class="step-tab active py-3 border-b-2 border-obsidian-gold text-obsidian-gold font-medium">01 FECHA</div>
-        <div id="step-tab-2" class="step-tab py-3 border-b-2 border-obsidian-border text-obsidian-muted">02 LUGAR</div>
-        <div id="step-tab-3" class="step-tab py-3 border-b-2 border-obsidian-border text-obsidian-muted">03 CENA</div>
-        <div id="step-tab-4" class="step-tab py-3 border-b-2 border-obsidian-border text-obsidian-muted">04 GUESTS</div>
-        <div id="step-tab-5" class="step-tab py-3 border-b-2 border-obsidian-border text-obsidian-muted">05 CONTACTO</div>
+      <div class="grid grid-cols-4 gap-2 mb-10 text-center font-mono text-[10px] sm:text-xs">
+        <div id="step-tab-1" class="step-tab active py-3 border-b-2 border-obsidian-gold text-obsidian-gold font-medium">01 MODALIDAD</div>
+        <div id="step-tab-2" class="step-tab py-3 border-b-2 border-obsidian-border text-obsidian-muted">02 FECHA</div>
+        <div id="step-tab-3" class="step-tab py-3 border-b-2 border-obsidian-border text-obsidian-muted">03 PREFERENCIAS</div>
+        <div id="step-tab-4" class="step-tab py-3 border-b-2 border-obsidian-border text-obsidian-muted">04 PAGO STRIPE</div>
       </div>
 
-      <!-- Grid Layout: Left Controls / Right Summary -->
+      <!-- Grid Layout -->
       <div class="grid lg:grid-cols-12 gap-10 items-start">
         
-        <!-- Left Steps Content (8 Cols) -->
-        <div class="lg:col-span-7 bg-obsidian p-6 sm:p-8 border border-obsidian-border rounded-sm shadow-xl">
+        <!-- Left Steps Content (7 Cols) -->
+        <div class="lg:col-span-7 bg-obsidian p-6 sm:p-8 border border-obsidian-border rounded-xs shadow-xl">
           
-          <!-- STEP 1: CALENDAR -->
+          <!-- STEP 1: TIPO DE RESERVA (DUPLA O COMPLETA) -->
           <div id="step-panel-1" class="step-panel space-y-6">
+            <div>
+              <h3 class="font-serif text-2xl text-obsidian-cream">Elige tu Formato de Mesa</h3>
+              <p class="text-xs text-obsidian-muted mt-1">¿Vienes en pareja o cierras el departamento para 4 amigos?</p>
+            </div>
+
+            <div class="space-y-4">
+              <!-- Card Dupla -->
+              <div id="cardDupla" onclick="selectBookingType('dupla')" class="booking-type-card border border-obsidian-gold bg-obsidian-card p-5 rounded-xs cursor-pointer transition-all">
+                <div class="flex items-start justify-between">
+                  <div>
+                    <span class="text-[10px] font-mono text-obsidian-gold uppercase">2 Personas</span>
+                    <h4 class="font-serif text-xl text-obsidian-cream mt-0.5">La Dupla</h4>
+                    <p class="text-xs text-obsidian-muted mt-1">2 puestos en estación de amasado. Compartirás la velada con otra dupla gastronómica.</p>
+                  </div>
+                  <span class="text-xs font-mono text-obsidian-gold bg-obsidian-gold/10 px-3 py-1.5 rounded-xs font-semibold shrink-0">$110.000</span>
+                </div>
+              </div>
+
+              <!-- Card Mesa Completa -->
+              <div id="cardMesa" onclick="selectBookingType('mesa_completa')" class="booking-type-card border border-obsidian-border bg-obsidian p-5 rounded-xs cursor-pointer transition-all hover:border-obsidian-gold/60">
+                <div class="flex items-start justify-between">
+                  <div>
+                    <span class="text-[10px] font-mono text-obsidian-gold uppercase">4 Personas</span>
+                    <h4 class="font-serif text-xl text-obsidian-cream mt-0.5">Mesa Completa Cerrada</h4>
+                    <p class="text-xs text-obsidian-muted mt-1">Los 4 puestos del departamento reservados exclusivamente para tu grupo privado.</p>
+                  </div>
+                  <span class="text-xs font-mono text-obsidian-cream bg-obsidian-card border border-obsidian-border px-3 py-1.5 rounded-xs font-semibold shrink-0">$210.000</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Horario -->
+            <div class="pt-4 border-t border-obsidian-border">
+              <label class="block text-xs font-mono text-obsidian-gold uppercase mb-3">Horario de Inicio</label>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="time-card border border-obsidian-gold bg-obsidian-card p-4 text-center cursor-pointer rounded-xs" data-time="20:00">
+                  <span class="font-serif text-2xl text-obsidian-cream block">20:00 HRS</span>
+                  <span class="text-[10px] text-obsidian-muted font-mono">Horario estándar</span>
+                </div>
+                <div class="time-card border border-obsidian-border bg-obsidian p-4 text-center cursor-pointer rounded-xs hover:border-obsidian-gold" data-time="20:30">
+                  <span class="font-serif text-2xl text-obsidian-cream block">20:30 HRS</span>
+                  <span class="text-[10px] text-obsidian-muted font-mono">Sobremesa extendida</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2: CALENDARIO -->
+          <div id="step-panel-2" class="step-panel hidden space-y-6">
             <div class="flex items-center justify-between pb-4 border-b border-obsidian-border">
               <div>
                 <h3 class="font-serif text-2xl text-obsidian-cream">Selecciona la Fecha</h3>
-                <p class="text-xs text-obsidian-muted mt-1">Noches anteriores reservadas. Navega los meses disponibles.</p>
+                <p class="text-xs text-obsidian-muted mt-1">Recuerda: solo 4 puestos por noche en todo Santiago.</p>
               </div>
               <div class="flex items-center space-x-2">
                 <button id="prevMonthBtn" type="button" class="w-9 h-9 border border-obsidian-border flex items-center justify-center text-obsidian-cream hover:border-obsidian-gold hover:text-obsidian-gold transition-colors">
                   &larr;
                 </button>
-                <span id="currentMonthYearLabel" class="font-mono text-xs text-obsidian-gold font-medium px-3 uppercase tracking-wider min-w-[120px] text-center">
+                <span id="currentMonthYearLabel" class="font-mono text-xs text-obsidian-gold font-medium px-3 uppercase tracking-wider min-w-[130px] text-center">
                   Cargando...
                 </span>
                 <button id="nextMonthBtn" type="button" class="w-9 h-9 border border-obsidian-border flex items-center justify-center text-obsidian-cream hover:border-obsidian-gold hover:text-obsidian-gold transition-colors">
@@ -249,267 +624,108 @@
               </div>
               <div class="flex items-center space-x-2">
                 <span class="w-3 h-3 bg-stone-900 border border-stone-800 opacity-40 inline-block rounded-xs"></span>
-                <span>Ocupado / Agotado</span>
+                <span>Reservado</span>
               </div>
             </div>
           </div>
 
-          <!-- STEP 2: LUGAR Y HORA -->
-          <div id="step-panel-2" class="step-panel hidden space-y-6">
+          <!-- STEP 3: PREFERENCIAS & DIETAS -->
+          <div id="step-panel-3" class="step-panel hidden space-y-6">
             <div>
-              <h3 class="font-serif text-2xl text-obsidian-cream">Ubicación & Horario</h3>
-              <p class="text-xs text-obsidian-muted mt-1">Elige dónde viviremos la experiencia y la hora de inicio.</p>
+              <h3 class="font-serif text-2xl text-obsidian-cream">Preferencias de la Noche</h3>
+              <p class="text-xs text-obsidian-muted mt-1">Queremos preparar la mesa exacta para ustedes.</p>
             </div>
 
             <div class="space-y-4">
-              <label class="block text-xs font-mono text-obsidian-gold uppercase">Modalidad de Lugar</label>
+              <label class="block text-xs font-mono text-obsidian-gold uppercase">Salsas de Preferencia</label>
               
-              <!-- Option A: Home -->
-              <div class="location-card border border-obsidian-border p-5 rounded-sm cursor-pointer transition-all duration-300 hover:border-obsidian-gold/60 selected bg-obsidian-card" data-location="home">
-                <div class="flex items-start justify-between">
+              <div class="space-y-2 text-xs">
+                <label class="flex items-center space-x-3 bg-obsidian-card p-3 border border-obsidian-border rounded-xs cursor-pointer">
+                  <input type="checkbox" id="prefRagu" checked class="accent-amber-500 w-4 h-4">
                   <div>
-                    <h4 class="font-serif text-lg text-obsidian-cream">A Domicilio (Región Metropolitana)</h4>
-                    <p class="text-xs text-obsidian-muted mt-1">El chef y su equipo llegan a tu casa o espacio personal. Incluye montaje, cocina, atención y limpieza posterior.</p>
+                    <span class="text-obsidian-cream font-medium block">Ragù Clásico con Carne</span>
+                    <span class="text-obsidian-muted text-[11px]">Cocinado lento por más de 3 horas.</span>
                   </div>
-                  <span class="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-2.5 py-1 rounded-xs shrink-0">Incluido</span>
+                </label>
+
+                <label class="flex items-center space-x-3 bg-obsidian-card p-3 border border-obsidian-border rounded-xs cursor-pointer">
+                  <input type="checkbox" id="prefBechamel" checked class="accent-amber-500 w-4 h-4">
+                  <div>
+                    <span class="text-obsidian-cream font-medium block">Bechamel Sedosa sin Carnes (Vegetariana)</span>
+                    <span class="text-obsidian-muted text-[11px]">Aromática con nuez moscada y quesos curados.</span>
+                  </div>
+                </label>
+
+                <label class="flex items-center space-x-3 bg-obsidian-card p-3 border border-obsidian-border rounded-xs cursor-pointer">
+                  <input type="checkbox" id="prefPesto" class="accent-amber-500 w-4 h-4">
+                  <div>
+                    <span class="text-obsidian-cream font-medium block">Pesto de Temporada (Si hay disponibilidad fresca)</span>
+                    <span class="text-obsidian-muted text-[11px]">Albahaca fresca y frutos secos.</span>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Vegetariano count -->
+              <div class="pt-4 border-t border-obsidian-border space-y-3">
+                <label class="block text-xs font-mono text-obsidian-gold uppercase">¿Cuántos comensales son vegetarianos?</label>
+                <div class="flex items-center space-x-4">
+                  <button type="button" id="btnVegMinus" class="w-9 h-9 border border-obsidian-border text-obsidian-cream font-mono hover:border-obsidian-gold flex items-center justify-center">-</button>
+                  <span id="vegDisplay" class="font-serif text-2xl text-obsidian-gold w-6 text-center">0</span>
+                  <button type="button" id="btnVegPlus" class="w-9 h-9 border border-obsidian-border text-obsidian-cream font-mono hover:border-obsidian-gold flex items-center justify-center">+</button>
+                  <span class="text-xs text-obsidian-muted">Tendremos más bechamel/pesto preparada para ellos.</span>
                 </div>
               </div>
 
-              <!-- Option B: Gourmet Space -->
-              <div class="location-card border border-obsidian-border p-5 rounded-sm cursor-pointer transition-all duration-300 hover:border-obsidian-gold/60 bg-obsidian" data-location="space">
-                <div class="flex items-start justify-between">
-                  <div>
-                    <h4 class="font-serif text-lg text-obsidian-cream">Espacio Gourmet Privado (RM)</h4>
-                    <p class="text-xs text-obsidian-muted mt-1">Azotea o salón gourmet privado equipado con mesas, sillas, vajilla, cristalería, audio y ambientación completa. Ubicación exacta coordinada tras confirmar.</p>
-                  </div>
-                  <span class="text-xs font-mono text-obsidian-gold bg-obsidian-gold/10 border border-obsidian-gold/30 px-2 py-1 rounded-xs shrink-0">+$50.000 / grupo</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Time Selection -->
-            <div class="pt-4 border-t border-obsidian-border">
-              <label class="block text-xs font-mono text-obsidian-gold uppercase mb-3">Hora de Recepción</label>
-              <div class="grid grid-cols-2 gap-4">
-                <div class="time-card border border-obsidian-border p-4 text-center cursor-pointer rounded-sm hover:border-obsidian-gold selected bg-obsidian-card" data-time="20:00">
-                  <span class="font-serif text-2xl text-obsidian-cream block">20:00 HRS</span>
-                  <span class="text-[10px] text-obsidian-muted">Recepción nocturna clásica</span>
-                </div>
-                <div class="time-card border border-obsidian-border p-4 text-center cursor-pointer rounded-sm hover:border-obsidian-gold bg-obsidian" data-time="21:00">
-                  <span class="font-serif text-2xl text-obsidian-cream block">21:00 HRS</span>
-                  <span class="text-[10px] text-obsidian-muted">Sobremesa extendida</span>
-                </div>
+              <!-- Notes -->
+              <div>
+                <label class="block text-obsidian-muted text-xs mb-1">Observaciones o motivo de celebración (opcional)</label>
+                <textarea id="bookingNotes" rows="2" placeholder="Ej: Aniversario de matrimonio, alergia a mariscos (no aplica acá pero bueno saberlo), etc." class="w-full bg-obsidian border border-obsidian-border p-3 text-xs text-obsidian-cream focus:border-obsidian-gold outline-none resize-none rounded-xs"></textarea>
               </div>
             </div>
           </div>
 
-          <!-- STEP 3: EXPERIENCIA Y EXTRAS -->
-          <div id="step-panel-3" class="step-panel hidden space-y-6">
-            <div>
-              <h3 class="font-serif text-2xl text-obsidian-cream">Experiencia Gastronómica & Extras</h3>
-              <p class="text-xs text-obsidian-muted mt-1">Selecciona el menú principal de la mesa y opcionales especiales.</p>
-            </div>
-
-            <!-- Menu Cards -->
-            <div class="space-y-3">
-              <label class="block text-xs font-mono text-obsidian-gold uppercase">Menú Principal</label>
-
-              <!-- Menu 1 -->
-              <div class="experience-card border border-obsidian-border p-4 rounded-sm cursor-pointer transition-all hover:border-obsidian-gold selected bg-obsidian-card" data-exp="Cena Keto">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <h4 class="font-serif text-xl text-obsidian-cream">Cena Keto</h4>
-                    <p class="text-xs text-obsidian-muted mt-0.5">Proteínas de alta maduración, vegetales asados al fuego y grasas saludables culinarias.</p>
-                    <span class="inline-block mt-2 text-[10px] font-mono text-amber-400 bg-amber-950/40 border border-amber-800/50 px-2 py-0.5 rounded-xs">No apto para Vegetarianos / Veganos</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Menu 2 -->
-              <div class="experience-card border border-obsidian-border p-4 rounded-sm cursor-pointer transition-all hover:border-obsidian-gold bg-obsidian" data-exp="Venezochilena">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <h4 class="font-serif text-xl text-obsidian-cream">Venezochilena</h4>
-                    <p class="text-xs text-obsidian-muted mt-0.5">Fusión cultural de sabores, sazones caribeñas y materia prima local del Pacífico.</p>
-                    <span class="inline-block mt-2 text-[10px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-800/50 px-2 py-0.5 rounded-xs">Adaptable con aviso previo</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Menu 3 -->
-              <div class="experience-card border border-obsidian-border p-4 rounded-sm cursor-pointer transition-all hover:border-obsidian-gold bg-obsidian" data-exp="Burguers Caseras">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <h4 class="font-serif text-xl text-obsidian-cream">Burguers Caseras Gourmet</h4>
-                    <p class="text-xs text-obsidian-muted mt-0.5">Panes horneados en el día, blend de cortes seleccionados y salsas artesanales.</p>
-                    <span class="inline-block mt-2 text-[10px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-800/50 px-2 py-0.5 rounded-xs">Adaptable con aviso previo</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Menu 4 -->
-              <div class="experience-card border border-obsidian-border p-4 rounded-sm cursor-pointer transition-all hover:border-obsidian-gold bg-obsidian" data-exp="Pasta Casera">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <h4 class="font-serif text-xl text-obsidian-cream">Pasta Casera Italiana</h4>
-                    <p class="text-xs text-obsidian-muted mt-0.5">Masas frescas amasadas al minuto con yemas de campo, rellenos ricos y salsas lentas.</p>
-                    <span class="inline-block mt-2 text-[10px] font-mono text-amber-400 bg-amber-950/40 border border-amber-800/50 px-2 py-0.5 rounded-xs">Contiene huevo (No apto Veganos)</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Extras / Personalización -->
-            <div class="pt-4 border-t border-obsidian-border space-y-3">
-              <label class="block text-xs font-mono text-obsidian-gold uppercase">Personalizaciones de la Noche</label>
-              
-              <!-- Happy Food Extra -->
-              <div class="extra-card border border-obsidian-border p-4 rounded-sm cursor-pointer transition-all hover:border-obsidian-gold flex items-center justify-between bg-obsidian" data-extra="happy_food" data-price="20000" data-type="person">
-                <div>
-                  <div class="flex items-center space-x-2">
-                    <h5 class="font-serif text-lg text-obsidian-cream">Happy Food</h5>
-                    <span class="text-[10px] font-mono text-obsidian-gold bg-obsidian-gold/10 px-2 py-0.5 rounded border border-obsidian-gold/30">+$20.000 / pers</span>
-                  </div>
-                  <p class="text-xs text-obsidian-muted mt-0.5">Un toque mágico y sensorial a la experiencia gastronómica.</p>
-                </div>
-                <div class="check-box w-5 h-5 border border-obsidian-border flex items-center justify-center text-obsidian-gold font-bold"></div>
-              </div>
-
-              <!-- Happy Smoke Extra -->
-              <div class="extra-card border border-obsidian-border p-4 rounded-sm cursor-pointer transition-all hover:border-obsidian-gold flex items-center justify-between bg-obsidian" data-extra="happy_smoke" data-price="15000" data-type="person">
-                <div>
-                  <div class="flex items-center space-x-2">
-                    <h5 class="font-serif text-lg text-obsidian-cream">Happy Smoke</h5>
-                    <span class="text-[10px] font-mono text-obsidian-gold bg-obsidian-gold/10 px-2 py-0.5 rounded border border-obsidian-gold/30">+$15.000 / pers</span>
-                  </div>
-                  <p class="text-xs text-obsidian-muted mt-0.5">Aperitivo 420 smoke diseñado para abrir el apetito antes de cenar.</p>
-                </div>
-                <div class="check-box w-5 h-5 border border-obsidian-border flex items-center justify-center text-obsidian-gold font-bold"></div>
-              </div>
-
-              <!-- Workshop Pasta Extra -->
-              <div class="extra-card border border-obsidian-border p-4 rounded-sm cursor-pointer transition-all hover:border-obsidian-gold flex items-center justify-between bg-obsidian" data-extra="prepara_pasta" data-price="25000" data-type="person">
-                <div>
-                  <div class="flex items-center space-x-2">
-                    <h5 class="font-serif text-lg text-obsidian-cream">Prepara tu Pasta</h5>
-                    <span class="text-[10px] font-mono text-obsidian-gold bg-obsidian-gold/10 px-2 py-0.5 rounded border border-obsidian-gold/30">+$25.000 / pers</span>
-                  </div>
-                  <p class="text-xs text-obsidian-muted mt-0.5">Taller interactivo en vivo antes de la cena.</p>
-                </div>
-                <div class="check-box w-5 h-5 border border-obsidian-border flex items-center justify-center text-obsidian-gold font-bold"></div>
-              </div>
-
-              <!-- Photoshoot Extra -->
-              <div class="extra-card border border-obsidian-border p-4 rounded-sm cursor-pointer transition-all hover:border-obsidian-gold flex items-center justify-between bg-obsidian" data-extra="fotografia" data-price="25000" data-type="group">
-                <div>
-                  <div class="flex items-center space-x-2">
-                    <h5 class="font-serif text-lg text-obsidian-cream">Sesión Fotográfica Privada</h5>
-                    <span class="text-[10px] font-mono text-obsidian-gold bg-obsidian-gold/10 px-2 py-0.5 rounded border border-obsidian-gold/30">+$25.000 / grupo</span>
-                  </div>
-                  <p class="text-xs text-obsidian-muted mt-0.5">Fotógrafo profesional retratando la velada.</p>
-                </div>
-                <div class="check-box w-5 h-5 border border-obsidian-border flex items-center justify-center text-obsidian-gold font-bold"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- STEP 4: GUESTS & RESTICCIONES -->
+          <!-- STEP 4: DATOS DE CONTACTO & STRIPE -->
           <div id="step-panel-4" class="step-panel hidden space-y-6">
             <div>
-              <h3 class="font-serif text-2xl text-obsidian-cream">Número de Invitados & Restricciones</h3>
-              <p class="text-xs text-obsidian-muted mt-1">El número exacto de comensales y necesidades dietéticas especiales.</p>
+              <h3 class="font-serif text-2xl text-obsidian-cream">Tus Datos de Contacto</h3>
+              <p class="text-xs text-obsidian-muted mt-1">La dirección exacta y las instrucciones de llegada se envían 24h antes por WhatsApp y correo.</p>
             </div>
 
-            <!-- Guest Counter -->
-            <div class="bg-obsidian-card p-6 border border-obsidian-border rounded-sm flex items-center justify-between">
+            <form id="contactForm" class="space-y-4">
               <div>
-                <span class="text-xs font-mono text-obsidian-gold uppercase block">Comensales</span>
-                <span class="text-xs text-obsidian-muted">Mínimo 4 · Máximo 10 personas</span>
-              </div>
-              <div class="flex items-center space-x-4">
-                <button type="button" id="btnGuestsMinus" class="w-10 h-10 border border-obsidian-border text-obsidian-cream font-mono text-xl hover:border-obsidian-gold flex items-center justify-center">-</button>
-                <span id="guestDisplay" class="font-serif text-4xl text-obsidian-gold w-8 text-center">4</span>
-                <button type="button" id="btnGuestsPlus" class="w-10 h-10 border border-obsidian-border text-obsidian-cream font-mono text-xl hover:border-obsidian-gold flex items-center justify-center">+</button>
-              </div>
-            </div>
-
-            <!-- Dietary Restrictions Form -->
-            <div class="space-y-4 pt-4 border-t border-obsidian-border">
-              <label class="block text-xs font-mono text-obsidian-gold uppercase">Restricciones Alimentarias en el Grupo</label>
-              
-              <div id="dietaryWarning" class="hidden p-4 bg-amber-950/60 border border-amber-800 text-amber-200 text-xs rounded-sm">
-                ⚠️ <span id="dietaryWarningText"></span>
-              </div>
-
-              <div class="grid grid-cols-2 gap-4 text-xs">
-                <div>
-                  <label class="block text-obsidian-muted mb-1">Vegetarianos</label>
-                  <input type="number" id="dietVegetarian" min="0" value="0" class="w-full bg-obsidian border border-obsidian-border p-2.5 text-obsidian-cream focus:border-obsidian-gold outline-none font-mono">
-                </div>
-                <div>
-                  <label class="block text-obsidian-muted mb-1">Veganos</label>
-                  <input type="number" id="dietVegan" min="0" value="0" class="w-full bg-obsidian border border-obsidian-border p-2.5 text-obsidian-cream focus:border-obsidian-gold outline-none font-mono">
-                </div>
-                <div>
-                  <label class="block text-obsidian-muted mb-1">Celíacos / Sin Gluten</label>
-                  <input type="number" id="dietGluten" min="0" value="0" class="w-full bg-obsidian border border-obsidian-border p-2.5 text-obsidian-cream focus:border-obsidian-gold outline-none font-mono">
-                </div>
-                <div>
-                  <label class="block text-obsidian-muted mb-1">Alergias / Kosher / Otro</label>
-                  <input type="number" id="dietOther" min="0" value="0" class="w-full bg-obsidian border border-obsidian-border p-2.5 text-obsidian-cream focus:border-obsidian-gold outline-none font-mono">
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-obsidian-muted text-xs mb-1">Detalle de Alergias u Observaciones</label>
-                <textarea id="dietNotes" rows="2" placeholder="Ej: 1 persona con alergia severa a frutos secos..." class="w-full bg-obsidian border border-obsidian-border p-3 text-xs text-obsidian-cream focus:border-obsidian-gold outline-none resize-none"></textarea>
-              </div>
-            </div>
-          </div>
-
-          <!-- STEP 5: CONTACTO Y CAPTCHA -->
-          <div id="step-panel-5" class="step-panel hidden space-y-6">
-            <div>
-              <h3 class="font-serif text-2xl text-obsidian-cream">Datos de Contacto & Seguridad</h3>
-              <p class="text-xs text-obsidian-muted mt-1">Ingresa tus datos para registrar la reserva y enviar los comprobantes.</p>
-            </div>
-
-            <form id="bookingForm" class="space-y-4">
-              <div>
-                <label class="block text-xs font-mono text-obsidian-gold uppercase mb-1">Nombre Completo *</label>
-                <input type="text" id="custName" required placeholder="Ej: Sofía Valenzuela" class="w-full bg-obsidian border border-obsidian-border p-3 text-xs text-obsidian-cream focus:border-obsidian-gold outline-none">
+                <label class="block text-xs font-mono text-obsidian-gold uppercase mb-1">Nombre y Apellido *</label>
+                <input type="text" id="custName" required placeholder="Ej: Camila Silva" class="w-full bg-obsidian-card border border-obsidian-border p-3 text-xs text-obsidian-cream focus:border-obsidian-gold outline-none rounded-xs">
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label class="block text-xs font-mono text-obsidian-gold uppercase mb-1">Email *</label>
-                  <input type="email" id="custEmail" required placeholder="tu@correo.com" class="w-full bg-obsidian border border-obsidian-border p-3 text-xs text-obsidian-cream focus:border-obsidian-gold outline-none">
+                  <input type="email" id="custEmail" required placeholder="tu@correo.com" class="w-full bg-obsidian-card border border-obsidian-border p-3 text-xs text-obsidian-cream focus:border-obsidian-gold outline-none rounded-xs">
                 </div>
                 <div>
-                  <label class="block text-xs font-mono text-obsidian-gold uppercase mb-1">Teléfono WhatsApp *</label>
-                  <input type="tel" id="custPhone" required placeholder="+56 9 1234 5678" class="w-full bg-obsidian border border-obsidian-border p-3 text-xs text-obsidian-cream focus:border-obsidian-gold outline-none">
+                  <label class="block text-xs font-mono text-obsidian-gold uppercase mb-1">WhatsApp (+56 9...) *</label>
+                  <input type="tel" id="custPhone" required placeholder="+56 9 9876 5432" class="w-full bg-obsidian-card border border-obsidian-border p-3 text-xs text-obsidian-cream focus:border-obsidian-gold outline-none rounded-xs">
                 </div>
               </div>
 
-              <!-- Math Captcha -->
-              <div class="pt-4 border-t border-obsidian-border bg-obsidian-card p-4 rounded-sm">
-                <label class="block text-xs font-mono text-obsidian-gold uppercase mb-2">Verificación Anti-Spam *</label>
-                <div class="flex items-center space-x-3">
-                  <span id="captchaQuestion" class="font-mono text-sm text-obsidian-cream bg-obsidian px-3 py-2 border border-obsidian-border">
-                    ¿Cuánto es 5 + 3?
-                  </span>
-                  <input type="number" id="captchaAnswer" required placeholder="Respuesta" class="w-28 bg-obsidian border border-obsidian-border p-2.5 text-xs text-obsidian-cream focus:border-obsidian-gold outline-none font-mono">
+              <div class="p-4 bg-obsidian-card border border-obsidian-border text-xs text-obsidian-muted space-y-2 rounded-xs">
+                <div class="flex items-center space-x-2 text-obsidian-gold font-mono">
+                  <span>🔒</span>
+                  <span>Pago Seguro con Stripe</span>
                 </div>
+                <p>
+                  Al hacer clic en pagar serás redirigido a la pasarela oficial de <strong>Stripe</strong> para abonar de forma segura con tarjeta de crédito, débito, Apple Pay o Google Pay.
+                </p>
               </div>
             </form>
           </div>
 
           <!-- Wizard Navigation Controls -->
           <div class="flex items-center justify-between pt-6 border-t border-obsidian-border mt-8">
-            <button id="btnPrevStep" type="button" class="invisible border border-obsidian-border text-obsidian-cream hover:border-obsidian-gold px-5 py-2.5 text-xs font-mono uppercase tracking-wider transition-colors">
-              Anterior
+            <button id="btnPrevStep" type="button" class="invisible border border-obsidian-border text-obsidian-cream hover:border-obsidian-gold px-5 py-2.5 text-xs font-mono uppercase tracking-wider transition-colors rounded-xs">
+              &larr; Anterior
             </button>
-            <button id="btnNextStep" type="button" class="bg-obsidian-gold text-obsidian font-mono text-xs font-medium uppercase tracking-wider px-6 py-2.5 hover:bg-obsidian-goldlight transition-colors">
+            <button id="btnNextStep" type="button" class="bg-obsidian-gold text-obsidian font-mono text-xs font-semibold uppercase tracking-wider px-6 py-2.5 hover:bg-obsidian-goldlight transition-colors rounded-xs">
               Continuar &rarr;
             </button>
           </div>
@@ -517,53 +733,53 @@
         </div>
 
         <!-- Right Summary Card (5 Cols) -->
-        <div class="lg:col-span-5 bg-obsidian p-6 sm:p-8 border border-obsidian-border rounded-sm shadow-xl sticky top-28">
-          <span class="text-[10px] font-mono text-obsidian-gold uppercase tracking-widest block mb-1">Desglose de Reserva</span>
-          <h3 class="font-serif text-3xl text-obsidian-cream mb-6 pb-4 border-b border-obsidian-border">Tu Mesa</h3>
+        <div class="lg:col-span-5 bg-obsidian p-6 sm:p-8 border border-obsidian-border rounded-xs shadow-xl sticky top-28">
+          <span class="text-[10px] font-mono text-obsidian-gold uppercase tracking-widest block mb-1">Resumen de la Experiencia</span>
+          <h3 class="font-serif text-3xl text-obsidian-cream mb-6 pb-4 border-b border-obsidian-border">Tu Mesa Secreta</h3>
 
           <div class="space-y-3 text-xs font-mono">
             <div class="flex justify-between py-1 border-b border-obsidian-border/40">
-              <span class="text-obsidian-muted">Fecha:</span>
-              <span id="sumDate" class="text-obsidian-cream font-medium">Elige en el calendario</span>
+              <span class="text-obsidian-muted">Modalidad:</span>
+              <span id="sumType" class="text-obsidian-cream font-medium">La Dupla (2 personas)</span>
             </div>
             <div class="flex justify-between py-1 border-b border-obsidian-border/40">
-              <span class="text-obsidian-muted">Horario:</span>
+              <span class="text-obsidian-muted">Fecha:</span>
+              <span id="sumDate" class="text-obsidian-gold font-medium">Elige en el calendario</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-obsidian-border/40">
+              <span class="text-obsidian-muted">Hora:</span>
               <span id="sumTime" class="text-obsidian-cream">20:00 HRS</span>
             </div>
             <div class="flex justify-between py-1 border-b border-obsidian-border/40">
               <span class="text-obsidian-muted">Lugar:</span>
-              <span id="sumLocation" class="text-obsidian-cream text-right">A Domicilio (RM)</span>
+              <span class="text-obsidian-cream text-right">Depto Privado (Santiago)</span>
             </div>
             <div class="flex justify-between py-1 border-b border-obsidian-border/40">
-              <span class="text-obsidian-muted">Comensales:</span>
-              <span id="sumGuests" class="text-obsidian-cream">4 Personas</span>
+              <span class="text-obsidian-muted">Maridaje:</span>
+              <span class="text-obsidian-cream">3 Copas p/persona (Vino)</span>
             </div>
             <div class="flex justify-between py-1 border-b border-obsidian-border/40">
-              <span class="text-obsidian-muted">Menú:</span>
-              <span id="sumExp" class="text-obsidian-cream">Cena Keto</span>
-            </div>
-            <div class="flex justify-between py-1 border-b border-obsidian-border/40">
-              <span class="text-obsidian-muted">Personalizaciones:</span>
-              <span id="sumExtras" class="text-obsidian-cream text-right">Ninguna</span>
+              <span class="text-obsidian-muted">Vegetarianos:</span>
+              <span id="sumVeg" class="text-obsidian-cream">0</span>
             </div>
           </div>
 
           <!-- Total Price Section -->
           <div class="mt-8 pt-6 border-t border-obsidian-border">
             <div class="flex items-baseline justify-between">
-              <span class="text-xs font-mono text-obsidian-gold uppercase">Inversión Total</span>
-              <span id="sumTotal" class="font-serif text-4xl text-obsidian-gold">$140.000</span>
+              <span class="text-xs font-mono text-obsidian-gold uppercase">Total Reserva</span>
+              <span id="sumTotal" class="font-serif text-4xl text-obsidian-gold">$110.000</span>
             </div>
-            <p id="sumAvg" class="text-[11px] text-obsidian-muted text-right font-mono mt-1">$35.000 promedio por persona</p>
+            <p id="sumAvg" class="text-[11px] text-obsidian-muted text-right font-mono mt-1">$55.000 CLP por persona</p>
           </div>
 
           <!-- Reserve Button -->
-          <button id="btnSubmitFinal" type="button" class="w-full mt-6 bg-obsidian-gold text-obsidian font-mono text-xs uppercase tracking-widest font-semibold py-4 hover:bg-obsidian-goldlight transition-all shadow-lg shadow-obsidian-gold/10 disabled:opacity-50 disabled:cursor-not-allowed">
-            Solicitar Esta Noche
+          <button id="btnSubmitFinal" type="button" class="w-full mt-6 bg-obsidian-gold text-obsidian font-mono text-xs uppercase tracking-widest font-semibold py-4 hover:bg-obsidian-goldlight transition-all shadow-lg shadow-obsidian-gold/10 disabled:opacity-50 disabled:cursor-not-allowed rounded-xs">
+            Pagar con Stripe & Asegurar Mesa
           </button>
 
           <p class="text-[10px] text-obsidian-muted leading-relaxed mt-4 text-center">
-            🔒 Al solicitar, recibirás la confirmación de disponibilidad inmediata en tu correo y en hola@dantagle.cl.
+            🔒 Reagendamiento con 72 hrs de anticipación según políticas. Cupos no reembolsables pero transferibles.
           </p>
         </div>
 
@@ -571,83 +787,145 @@
     </div>
   </section>
 
-  <!-- CONFIRMATION MODAL -->
-  <div id="confirmModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
-    <div class="bg-obsidian border border-obsidian-gold/60 max-w-lg w-full p-8 rounded-sm text-center relative shadow-2xl">
-      <div class="w-16 h-16 bg-obsidian-gold/10 border border-obsidian-gold rounded-full flex items-center justify-center mx-auto mb-6 text-obsidian-gold text-2xl">
-        ✓
-      </div>
-      <span class="text-xs font-mono text-obsidian-gold uppercase tracking-widest block mb-2">Solicitud Registrada</span>
-      <h3 class="font-serif text-3xl text-obsidian-cream mb-4">¡Tu mesa ha sido solicitada!</h3>
-      
-      <div class="bg-obsidian-card p-5 border border-obsidian-border text-left text-xs space-y-3 mb-6">
-        <p class="text-obsidian-cream font-medium">
-          Hemos enviado los detalles completos a tu correo y al equipo de cocina (<span class="text-obsidian-gold">hola@dantagle.cl</span>).
-        </p>
-        <div class="p-3 bg-amber-950/40 border border-amber-800/60 text-amber-200 rounded-xs leading-relaxed">
-          <strong>⚠️ Política de Garantía & Reserva:</strong><br>
-          Recuerda que debes abonar el <strong>50% del total</strong> con un mínimo de <strong>10 días de anticipación</strong> a la fecha seleccionada o tu reserva será anulada automáticamente para liberar la fecha.
-        </div>
+  <!-- PREGUNTAS FRECUENTES (FAQ) -->
+  <section id="faq" class="py-24 bg-obsidian-card/40 border-t border-obsidian-border/50">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <span class="text-xs font-mono text-obsidian-gold uppercase tracking-[0.25em]">Dudas Habituales</span>
+        <h2 class="font-serif text-4xl sm:text-5xl text-obsidian-cream mt-3">Preguntas Frecuentes</h2>
       </div>
 
-      <button id="btnCloseModal" type="button" class="w-full bg-obsidian-gold text-obsidian font-mono text-xs uppercase tracking-widest py-3.5 font-medium hover:bg-obsidian-goldlight transition-colors">
-        Entendido & Cerrar
-      </button>
+      <div class="space-y-4">
+        <details class="bg-obsidian border border-obsidian-border p-6 rounded-xs group cursor-pointer">
+          <summary class="font-serif text-xl text-obsidian-cream flex justify-between items-center list-none">
+            <span>¿Dónde queda exactamente el departamento?</span>
+            <span class="text-obsidian-gold text-sm font-mono group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-obsidian-muted mt-4 leading-relaxed font-light">
+            Está ubicado en una zona céntrica y segura de Santiago (con fácil acceso a Metro y estacionamientos cercanos). Para preservar el misterio y la tranquilidad del vecindario, la dirección exacta, el piso y el citófono se envían exclusivamente a quienes tienen su reserva confirmada <strong>24 horas antes</strong> de la experiencia vía WhatsApp y correo.
+          </p>
+        </details>
+
+        <details class="bg-obsidian border border-obsidian-border p-6 rounded-xs group cursor-pointer">
+          <summary class="font-serif text-xl text-obsidian-cream flex justify-between items-center list-none">
+            <span>¿Qué pasa si nunca en mi vida he hecho pasta o cocinado?</span>
+            <span class="text-obsidian-gold text-sm font-mono group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-obsidian-muted mt-4 leading-relaxed font-light">
+            ¡Es el lugar ideal! No necesitas ninguna experiencia previa. Te guiaremos paso a paso desde el primer huevo hasta el corte final de la pasta. Es un ambiente relajado, divertido y cero intimidante.
+          </p>
+        </details>
+
+        <details class="bg-obsidian border border-obsidian-border p-6 rounded-xs group cursor-pointer">
+          <summary class="font-serif text-xl text-obsidian-cream flex justify-between items-center list-none">
+            <span>¿Puedo llevar mi propio vino o botellas extras?</span>
+            <span class="text-obsidian-gold text-sm font-mono group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-obsidian-muted mt-4 leading-relaxed font-light">
+            Nuestra experiencia está concebida como un maridaje gastronómico curado (3 tiempos de vino por persona, además de agua fresca ilimitada). Si reservas la <strong>Mesa Completa Cerrada (los 4 puestos)</strong> y deseas traer una botella especial, puedes coordinar un servicio de descorche previo con nosotros. En formato compartido (duplas), mantenemos el maridaje de la casa para asegurar una atmósfera armónica.
+          </p>
+        </details>
+
+        <details class="bg-obsidian border border-obsidian-border p-6 rounded-xs group cursor-pointer">
+          <summary class="font-serif text-xl text-obsidian-cream flex justify-between items-center list-none">
+            <span>¿Cómo funciona la cancelación o reagendamiento?</span>
+            <span class="text-obsidian-gold text-sm font-mono group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-obsidian-muted mt-4 leading-relaxed font-light">
+            Puedes reagendar avisando con al menos <strong>72 horas de anticipación</strong> para cualquier fecha disponible en los siguientes 7 días. Si avisas con menos de 72 horas no podemos devolver el dinero porque los insumos ya fueron comprados y la mesa no se puede revender a última hora, pero puedes regalarle o transferirle tus cupos a amigos avisándonos previamente.
+          </p>
+        </details>
+
+        <details class="bg-obsidian border border-obsidian-border p-6 rounded-xs group cursor-pointer">
+          <summary class="font-serif text-xl text-obsidian-cream flex justify-between items-center list-none">
+            <span>¿Qué ropa debo llevar?</span>
+            <span class="text-obsidian-gold text-sm font-mono group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-xs sm:text-sm text-obsidian-muted mt-4 leading-relaxed font-light">
+            Ven con ropa cómoda. En el departamento te proporcionaremos delantales profesionales para proteger tu ropa mientras amasamos y manipulamos la harina.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFIRMATION / STRIPE MODAL -->
+  <div id="stripeModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
+    <div class="bg-obsidian border border-obsidian-gold/60 max-w-lg w-full p-8 rounded-xs text-center relative shadow-2xl">
+      <div class="w-16 h-16 bg-obsidian-gold/10 border border-obsidian-gold rounded-full flex items-center justify-center mx-auto mb-6 text-obsidian-gold text-2xl">
+        💳
+      </div>
+      <span class="text-xs font-mono text-obsidian-gold uppercase tracking-widest block mb-2">Redirección a Stripe</span>
+      <h3 class="font-serif text-3xl text-obsidian-cream mb-4">Confirmando tu Mesa</h3>
+      
+      <div class="bg-obsidian-card p-5 border border-obsidian-border text-left text-xs space-y-3 mb-6">
+        <p class="text-obsidian-cream font-medium" id="stripeModalSummaryText">
+          Preparando el pago seguro para tu noche en Mesa Secreta.
+        </p>
+        <p class="text-obsidian-muted text-[11px]">
+          Tus datos quedaron guardados. Una vez completado el pago en Stripe, recibirás un correo y mensaje de WhatsApp con la confirmación de tu mesa.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <button id="btnProceedStripe" type="button" class="w-full bg-obsidian-gold text-obsidian font-mono text-xs uppercase tracking-widest py-4 font-semibold hover:bg-obsidian-goldlight transition-colors rounded-xs">
+          Ir al Checkout Seguro de Stripe &rarr;
+        </button>
+        <button id="btnCloseModal" type="button" class="w-full border border-obsidian-border text-obsidian-muted font-mono text-xs uppercase tracking-widest py-3 hover:text-obsidian-cream transition-colors rounded-xs">
+          Volver a Editar
+        </button>
+      </div>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer class="py-16 border-t border-obsidian-border bg-obsidian">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between text-xs text-obsidian-muted">
-      <div class="mb-4 md:mb-0">
-        <span class="font-serif text-lg text-obsidian-cream tracking-widest">MESA SECRETA</span>
-        <p class="mt-1">Experiencias gastronómicas privadas · Región Metropolitana, Chile</p>
+      <div class="mb-4 md:mb-0 text-center md:text-left">
+        <span class="font-serif text-xl text-obsidian-cream tracking-widest">MESA SECRETA</span>
+        <p class="mt-1">Taller de pasta fresca artesanal & cena clandestina · 4 puestos por noche · Santiago de Chile</p>
       </div>
-      <div class="flex items-center space-x-6 font-mono text-[11px]">
-        <span>Contacto: hola@dantagle.cl</span>
+      <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 font-mono text-[11px]">
+        <a href="https://instagram.com/mesasecreta.cl" target="_blank" rel="noopener" class="text-obsidian-gold hover:underline">@mesasecreta.cl</a>
+        <span>Contacto: hola@mesasecreta.cl</span>
         <span>© 2026 Mesa Secreta</span>
       </div>
     </div>
   </footer>
 
-  <!-- APPLICATION LOGIC JS -->
+  <!-- SCRIPT LOGIC -->
   <script>
-    /* Global Application State */
+    /* =====================================================================
+     * CONFIGURACIÓN DE STRIPE
+     * Aquí configuras tus links de pago creados en tu dashboard de Stripe:
+     * https://dashboard.stripe.com/payment-links
+     * ===================================================================== */
+    const STRIPE_CONFIG = {
+      // Reemplaza con tus Stripe Payment Links reales cuando los tengas creados:
+      duplaPaymentLink: 'https://buy.stripe.com/test_dupla_mesasecreta',
+      mesaCompletaPaymentLink: 'https://buy.stripe.com/test_mesacompleta_mesasecreta',
+      // Correo para respaldo de solicitudes
+      notificationEmail: 'hola@mesasecreta.cl'
+    };
+
+    /* Estado de la aplicación */
     const state = {
       step: 1,
+      bookingType: 'dupla', // 'dupla' (2 puestos) | 'mesa_completa' (4 puestos)
       currentYear: 2026,
-      currentMonth: 8, // September (0-indexed: 8 = Sept)
+      currentMonth: 9, // Octubre (0-indexed: 9 = Oct)
       selectedDateStr: null,
       selectedDay: null,
       selectedMonth: null,
       selectedYear: null,
-      location: 'home', // 'home' | 'space'
       time: '20:00',
-      guests: 4,
-      experience: 'Cena Keto',
-      extras: new Set(),
-      dietary: {
-        vegetarian: 0,
-        vegan: 0,
-        gluten: 0,
-        other: 0,
-        notes: ''
-      },
-      captcha: {
-        num1: 0,
-        num2: 0,
-        expected: 0
-      }
+      vegetarians: 0,
+      notes: ''
     };
 
-    const BASE_PRICE = 35000;
-    const LOCATION_SPACE_PRICE = 50000;
-
-    const EXTRAS_INFO = {
-      happy_food: { name: 'Happy Food', price: 20000, type: 'person' },
-      happy_smoke: { name: 'Happy Smoke', price: 15000, type: 'person' },
-      prepara_pasta: { name: 'Prepara tu Pasta', price: 25000, type: 'person' },
-      fotografia: { name: 'Sesión Fotográfica Privada', price: 25000, type: 'group' }
+    const PRICES = {
+      dupla: 110000,
+      mesa_completa: 210000
     };
 
     const MONTH_NAMES = [
@@ -655,29 +933,44 @@
       'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
     ];
 
-    function isDateBooked(year, month, day) {
-      // Rule 1: September 23, 2026 is ALWAYS available
-      if (year === 2026 && month === 8 && day === 23) {
-        return false;
-      }
-
-      // Rule 2: Until November 2026 (month <= 10 of 2026), ALL other dates are FULLY BOOKED
-      if (year < 2026 || (year === 2026 && month <= 10)) {
-        return true;
-      }
-
-      // Rule 3: From December 2026 onwards, create realistic booking patterns
-      // Mondays and Tuesdays are mostly closed for maintenance/prep (e.g., 80% booked)
-      const dateObj = new Date(year, month, day);
-      const dayOfWeek = dateObj.getDay(); // 0 = Sun, 1 = Mon, ...
+    function selectBookingType(type) {
+      state.bookingType = type;
       
-      if (dayOfWeek === 1 || dayOfWeek === 2) {
-        return (day % 3 !== 0); // Most Mondays/Tuesdays booked
+      const cardDupla = document.getElementById('cardDupla');
+      const cardMesa = document.getElementById('cardMesa');
+
+      if (type === 'dupla') {
+        cardDupla.className = 'booking-type-card border border-obsidian-gold bg-obsidian-card p-5 rounded-xs cursor-pointer transition-all';
+        cardMesa.className = 'booking-type-card border border-obsidian-border bg-obsidian p-5 rounded-xs cursor-pointer transition-all hover:border-obsidian-gold/60';
+      } else {
+        cardMesa.className = 'booking-type-card border border-obsidian-gold bg-obsidian-card p-5 rounded-xs cursor-pointer transition-all';
+        cardDupla.className = 'booking-type-card border border-obsidian-border bg-obsidian p-5 rounded-xs cursor-pointer transition-all hover:border-obsidian-gold/60';
       }
 
-      // Deterministic random booked days using date math to feel realistic
-      const seed = (year * 365) + (month * 31) + day;
-      return (seed % 7 === 0 || seed % 11 === 0);
+      // Max vegetarians adjust
+      const maxAllowed = type === 'dupla' ? 2 : 4;
+      if (state.vegetarians > maxAllowed) {
+        state.vegetarians = maxAllowed;
+        document.getElementById('vegDisplay').textContent = state.vegetarians;
+      }
+
+      updateSummary();
+    }
+
+    function isDateBooked(year, month, day) {
+      // No reservar días del pasado
+      const today = new Date(2026, 9, 8); // Fecha actual
+      const checkDate = new Date(year, month, day);
+      if (checkDate <= today) return true;
+
+      // Domingos y Lunes cerrado por descanso
+      const dayOfWeek = checkDate.getDay(); // 0 = Sun, 1 = Mon
+      if (dayOfWeek === 0 || dayOfWeek === 1) return true;
+
+      // Disponibilidad realista de las noches:
+      // Para generar escasez orgánica atractiva, simulamos ocupación de algunas fechas
+      const seed = (year * 31) + (month * 12) + day;
+      return (seed % 4 === 0);
     }
 
     function renderCalendar() {
@@ -690,18 +983,16 @@
       const firstDayOfMonth = new Date(state.currentYear, state.currentMonth, 1);
       const daysInMonth = new Date(state.currentYear, state.currentMonth + 1, 0).getDate();
       
-      // Calculate day offset for Monday-first calendar (0=Mon, 6=Sun)
+      // Lunes primer día (0=Lun, 6=Dom)
       let startDay = firstDayOfMonth.getDay() - 1;
       if (startDay === -1) startDay = 6;
 
-      // Empty padding cells
       for (let i = 0; i < startDay; i++) {
         const emptyCell = document.createElement('div');
         emptyCell.className = 'h-11';
         grid.appendChild(emptyCell);
       }
 
-      // Populate Days
       for (let day = 1; day <= daysInMonth; day++) {
         const booked = isDateBooked(state.currentYear, state.currentMonth, day);
         const dateStr = `${state.currentYear}-${state.currentMonth + 1}-${day}`;
@@ -736,107 +1027,36 @@
       }
     }
 
-    function calculateTotal() {
-      let base = state.guests * BASE_PRICE;
-      
-      // Location surcharge
-      if (state.location === 'space') {
-        base += LOCATION_SPACE_PRICE;
-      }
-
-      // Extras surcharge
-      let extrasTotal = 0;
-      state.extras.forEach(key => {
-        const item = EXTRAS_INFO[key];
-        if (item) {
-          if (item.type === 'person') {
-            extrasTotal += item.price * state.guests;
-          } else {
-            extrasTotal += item.price;
-          }
-        }
-      });
-
-      return base + extrasTotal;
-    }
-
     function updateSummary() {
-      // Date Summary
+      // Tipo de reserva
+      const isDupla = state.bookingType === 'dupla';
+      document.getElementById('sumType').textContent = isDupla ? 'La Dupla (2 personas)' : 'Mesa Completa (4 personas)';
+
+      // Fecha
       if (state.selectedDateStr) {
         document.getElementById('sumDate').textContent = `${state.selectedDay} de ${MONTH_NAMES[state.selectedMonth]} de ${state.selectedYear}`;
       } else {
         document.getElementById('sumDate').textContent = 'Elige en el calendario';
       }
 
-      // Time Summary
+      // Horario
       document.getElementById('sumTime').textContent = `${state.time} HRS`;
 
-      // Location Summary
-      document.getElementById('sumLocation').textContent = state.location === 'home' 
-        ? 'A Domicilio (RM)' 
-        : 'Espacio Gourmet (+ $50.000)';
+      // Vegetarianos
+      document.getElementById('sumVeg').textContent = state.vegetarians;
 
-      // Guests Summary
-      document.getElementById('sumGuests').textContent = `${state.guests} Personas`;
-
-      // Experience Summary
-      document.getElementById('sumExp').textContent = state.experience;
-
-      // Extras Summary
-      if (state.extras.size > 0) {
-        const labels = Array.from(state.extras).map(k => EXTRAS_INFO[k].name);
-        document.getElementById('sumExtras').textContent = labels.join(', ');
-      } else {
-        document.getElementById('sumExtras').textContent = 'Ninguna';
-      }
-
-      // Price Totals
-      const total = calculateTotal();
-      const avg = Math.round(total / state.guests);
+      // Precios
+      const total = PRICES[state.bookingType];
+      const avg = isDupla ? 55000 : 52500;
 
       document.getElementById('sumTotal').textContent = `$${total.toLocaleString('es-CL')}`;
-      document.getElementById('sumAvg').textContent = `$${avg.toLocaleString('es-CL')} promedio por persona`;
-
-      // Validate dietary restrictions compatibility with selected menu
-      checkDietaryCompatibility();
-    }
-
-    function checkDietaryCompatibility() {
-      const warnBox = document.getElementById('dietaryWarning');
-      const warnText = document.getElementById('dietaryWarningText');
-      
-      const vegCount = parseInt(document.getElementById('dietVegetarian').value) || 0;
-      const veganCount = parseInt(document.getElementById('dietVegan').value) || 0;
-
-      let warning = '';
-
-      if (state.experience === 'Cena Keto' && (vegCount > 0 || veganCount > 0)) {
-        warning = 'La Cena Keto no es compatible con vegetarianos o veganos por su alta concentración proteica animal. Te recomendamos seleccionar "Pasta Casera" o "Venezochilena".';
-      } else if (state.experience === 'Pasta Casera' && veganCount > 0) {
-        warning = 'Nuestra masa de Pasta Casera fresca contiene huevo de campo (no apta para veganos). Podemos adaptar la porción o sugerirte la opción "Burguers Gourmet".';
-      }
-
-      if (warning) {
-        warnText.textContent = warning;
-        warnBox.classList.remove('hidden');
-      } else {
-        warnBox.classList.add('hidden');
-      }
-    }
-
-    function generateCaptcha() {
-      state.captcha.num1 = Math.floor(Math.random() * 8) + 2;
-      state.captcha.num2 = Math.floor(Math.random() * 8) + 1;
-      state.captcha.expected = state.captcha.num1 + state.captcha.num2;
-
-      document.getElementById('captchaQuestion').textContent = `¿Cuánto es ${state.captcha.num1} + ${state.captcha.num2}?`;
+      document.getElementById('sumAvg').textContent = `$${avg.toLocaleString('es-CL')} CLP por persona`;
     }
 
     function goToStep(step) {
-      state.step = Math.max(1, Math.min(5, step));
+      state.step = Math.max(1, Math.min(4, step));
 
-      // Toggle Panels
-      for (let i = 1; i <= 5; i++) {
+      for (let i = 1; i <= 4; i++) {
         const panel = document.getElementById(`step-panel-${i}`);
         const tab = document.getElementById(`step-tab-${i}`);
         
@@ -851,7 +1071,6 @@
         }
       }
 
-      // Prev / Next Buttons
       const btnPrev = document.getElementById('btnPrevStep');
       const btnNext = document.getElementById('btnNextStep');
 
@@ -861,7 +1080,7 @@
         btnPrev.classList.remove('invisible');
       }
 
-      if (state.step === 5) {
+      if (state.step === 4) {
         btnNext.classList.add('hidden');
       } else {
         btnNext.classList.remove('hidden');
@@ -869,13 +1088,10 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      
-      // Initialize Calendar
       renderCalendar();
-      generateCaptcha();
       updateSummary();
 
-      // Month Navigation
+      // Month Nav
       document.getElementById('prevMonthBtn').onclick = () => {
         state.currentMonth--;
         if (state.currentMonth < 0) {
@@ -894,189 +1110,130 @@
         renderCalendar();
       };
 
-      // Location Option Selectors
-      document.querySelectorAll('.location-card').forEach(card => {
-        card.onclick = () => {
-          document.querySelectorAll('.location-card').forEach(c => {
-            c.classList.remove('selected', 'bg-obsidian-card', 'border-obsidian-gold');
-            c.classList.add('bg-obsidian', 'border-obsidian-border');
-          });
-          card.classList.add('selected', 'bg-obsidian-card', 'border-obsidian-gold');
-          state.location = card.dataset.location;
-          updateSummary();
-        };
-      });
-
       // Time Selectors
       document.querySelectorAll('.time-card').forEach(card => {
         card.onclick = () => {
           document.querySelectorAll('.time-card').forEach(c => {
-            c.classList.remove('selected', 'bg-obsidian-card', 'border-obsidian-gold');
-            c.classList.add('bg-obsidian', 'border-obsidian-border');
+            c.classList.remove('border-obsidian-gold', 'bg-obsidian-card');
+            c.classList.add('border-obsidian-border', 'bg-obsidian');
           });
-          card.classList.add('selected', 'bg-obsidian-card', 'border-obsidian-gold');
+          card.classList.add('border-obsidian-gold', 'bg-obsidian-card');
           state.time = card.dataset.time;
           updateSummary();
         };
       });
 
-      // Menu Experience Selectors
-      document.querySelectorAll('.experience-card').forEach(card => {
-        card.onclick = () => {
-          document.querySelectorAll('.experience-card').forEach(c => {
-            c.classList.remove('selected', 'bg-obsidian-card', 'border-obsidian-gold');
-            c.classList.add('bg-obsidian', 'border-obsidian-border');
-          });
-          card.classList.add('selected', 'bg-obsidian-card', 'border-obsidian-gold');
-          state.experience = card.dataset.exp;
-          updateSummary();
-        };
-      });
-
-      // Extras Toggle
-      document.querySelectorAll('.extra-card').forEach(card => {
-        card.onclick = () => {
-          const key = card.dataset.extra;
-          const checkBox = card.querySelector('.check-box');
-
-          if (state.extras.has(key)) {
-            state.extras.delete(key);
-            card.classList.remove('selected', 'bg-obsidian-card', 'border-obsidian-gold');
-            checkBox.textContent = '';
-          } else {
-            state.extras.add(key);
-            card.classList.add('selected', 'bg-obsidian-card', 'border-obsidian-gold');
-            checkBox.textContent = '✓';
-          }
-          updateSummary();
-        };
-      });
-
-      // Guest Buttons
-      document.getElementById('btnGuestsMinus').onclick = () => {
-        if (state.guests > 4) {
-          state.guests--;
-          document.getElementById('guestDisplay').textContent = state.guests;
+      // Vegetarian Counter
+      document.getElementById('btnVegMinus').onclick = () => {
+        if (state.vegetarians > 0) {
+          state.vegetarians--;
+          document.getElementById('vegDisplay').textContent = state.vegetarians;
           updateSummary();
         }
       };
 
-      document.getElementById('btnGuestsPlus').onclick = () => {
-        if (state.guests < 10) {
-          state.guests++;
-          document.getElementById('guestDisplay').textContent = state.guests;
+      document.getElementById('btnVegPlus').onclick = () => {
+        const max = state.bookingType === 'dupla' ? 2 : 4;
+        if (state.vegetarians < max) {
+          state.vegetarians++;
+          document.getElementById('vegDisplay').textContent = state.vegetarians;
           updateSummary();
+        } else {
+          alert(`En la opción seleccionada el máximo de personas es ${max}.`);
         }
       };
 
-      // Dietary Inputs
-      ['dietVegetarian', 'dietVegan', 'dietGluten', 'dietOther'].forEach(id => {
-        document.getElementById(id).oninput = checkDietaryCompatibility;
-      });
-
-      // Step Wizard Navigation Buttons
+      // Wizard Nav
       document.getElementById('btnPrevStep').onclick = () => goToStep(state.step - 1);
       document.getElementById('btnNextStep').onclick = () => {
-        if (state.step === 1 && !state.selectedDateStr) {
+        if (state.step === 2 && !state.selectedDateStr) {
           alert('Por favor selecciona una fecha disponible en el calendario para continuar.');
           return;
         }
         goToStep(state.step + 1);
       };
 
-      // Direct Tab Clicks
       document.querySelectorAll('.step-tab').forEach((tab, idx) => {
         tab.onclick = () => {
-          if (idx + 1 > 1 && !state.selectedDateStr) {
-            alert('Por favor primero elige una fecha disponible en el calendario.');
+          if (idx + 1 > 2 && !state.selectedDateStr) {
+            alert('Primero elige una fecha disponible en el calendario.');
             return;
           }
           goToStep(idx + 1);
         };
       });
 
-      document.getElementById('btnSubmitFinal').onclick = submitBooking;
+      // Submit / Stripe checkout action
+      document.getElementById('btnSubmitFinal').onclick = handleStripeBooking;
+
       document.getElementById('btnCloseModal').onclick = () => {
-        document.getElementById('confirmModal').classList.add('hidden');
-        window.location.reload();
+        document.getElementById('stripeModal').classList.add('hidden');
+      };
+
+      document.getElementById('btnProceedStripe').onclick = () => {
+        const link = state.bookingType === 'dupla' ? STRIPE_CONFIG.duplaPaymentLink : STRIPE_CONFIG.mesaCompletaPaymentLink;
+        // Agregamos metadata por query param para trazabilidad
+        const checkoutUrl = `${link}?client_reference_id=${encodeURIComponent(state.selectedDateStr + '_' + state.bookingType)}`;
+        window.location.href = checkoutUrl;
       };
     });
 
-    function submitBooking() {
+    function handleStripeBooking() {
       if (!state.selectedDateStr) {
-        alert('Debes elegir una fecha en el calendario.');
-        goToStep(1);
+        alert('Por favor selecciona una fecha disponible en el calendario.');
+        goToStep(2);
         return;
+      }
+
+      if (state.step !== 4) {
+        goToStep(4);
       }
 
       const name = document.getElementById('custName').value.trim();
       const email = document.getElementById('custEmail').value.trim();
       const phone = document.getElementById('custPhone').value.trim();
-      const captchaAns = parseInt(document.getElementById('captchaAnswer').value);
-
-      if (state.step !== 5) {
-        goToStep(5);
-      }
 
       if (!name || !email || !phone) {
-        alert('Por favor completa todos tus datos de contacto (Nombre, Email y Teléfono).');
+        alert('Por favor completa todos tus datos de contacto (Nombre, Email y WhatsApp) para coordinar tu mesa.');
         return;
       }
 
-      if (isNaN(captchaAns) || captchaAns !== state.captcha.expected) {
-        alert('La respuesta a la pregunta anti-spam es incorrecta. Inténtalo de nuevo.');
-        generateCaptcha();
-        return;
-      }
+      // Preparar resumen para el modal
+      const modalText = document.getElementById('stripeModalSummaryText');
+      const isDupla = state.bookingType === 'dupla';
+      const typeLabel = isDupla ? 'La Dupla (2 puestos)' : 'Mesa Completa (4 puestos)';
+      const totalAmount = `$${PRICES[state.bookingType].toLocaleString('es-CL')} CLP`;
 
-      const btn = document.getElementById('btnSubmitFinal');
-      btn.disabled = true;
-      btn.textContent = 'Enviando Solicitud...';
+      modalText.innerHTML = `
+        <strong>${typeLabel}</strong><br>
+        📅 Fecha: ${state.selectedDay} de ${MONTH_NAMES[state.selectedMonth]} de ${state.selectedYear} (${state.time} HRS)<br>
+        👤 Nombre: ${name}<br>
+        📱 WhatsApp: ${phone}<br>
+        💰 Total a pagar: <strong class="text-obsidian-gold">${totalAmount}</strong>
+      `;
 
-      // Prepare FormSubmit payload
-      const totalAmount = calculateTotal();
-      const extrasList = Array.from(state.extras).map(k => EXTRAS_INFO[k].name).join(', ') || 'Ninguna';
-
+      // Notificación en segundo plano al correo para respaldo
       const payload = {
-        _subject: `NUEVA RESERVA: Mesa Secreta - ${state.selectedDay} ${MONTH_NAMES[state.selectedMonth]} (${name})`,
-        _replyto: email,
-        _cc: email, // Copy to customer
+        _subject: `INICIO RESERVA MESA SECRETA: ${name} (${state.selectedDay} ${MONTH_NAMES[state.selectedMonth]})`,
+        Tipo: typeLabel,
         Nombre: name,
         Email: email,
         Telefono: phone,
-        Fecha_Reserva: `${state.selectedDay} de ${MONTH_NAMES[state.selectedMonth]} de ${state.selectedYear}`,
+        Fecha: `${state.selectedDay} de ${MONTH_NAMES[state.selectedMonth]} de ${state.selectedYear}`,
         Hora: `${state.time} HRS`,
-        Ubicacion: state.location === 'home' ? 'A Domicilio (Región Metropolitana)' : 'Espacio Gourmet Privado (RM)',
-        Cantidad_Invitados: state.guests,
-        Menu_Elegido: state.experience,
-        Personalizaciones_Extras: extrasList,
-        Restricciones_Dietarias: `Vegetarianos: ${document.getElementById('dietVegetarian').value}, Veganos: ${document.getElementById('dietVegan').value}, Celíacos: ${document.getElementById('dietGluten').value}, Otros: ${document.getElementById('dietOther').value}`,
-        Notas_Especiales: document.getElementById('dietNotes').value || 'Sin observaciones',
-        Monto_Total: `$${totalAmount.toLocaleString('es-CL')} CLP`,
-        Politica_Abono: 'ACORDADO: El cliente abonará el 50% con un mínimo de 10 días de anticipación o la fecha se libera.'
+        Vegetarianos: state.vegetarians,
+        Notas: document.getElementById('bookingNotes').value || 'Sin notas',
+        Total: totalAmount
       };
 
-      fetch('https://formsubmit.co/ajax/hola@dantagle.cl', {
+      fetch(`https://formsubmit.co/ajax/${STRIPE_CONFIG.notificationEmail}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload)
-      })
-      .then(response => response.json())
-      .then(data => {
-        btn.disabled = false;
-        btn.textContent = 'Solicitar Esta Noche';
-        document.getElementById('confirmModal').classList.remove('hidden');
-      })
-      .catch(error => {
-        console.error('Error enviando reserva:', error);
-        btn.disabled = false;
-        btn.textContent = 'Solicitar Esta Noche';
-        // Fallback for demo/offline success display
-        document.getElementById('confirmModal').classList.remove('hidden');
-      });
+      }).catch(err => console.log('Log local:', err));
+
+      // Mostrar modal Stripe
+      document.getElementById('stripeModal').classList.remove('hidden');
     }
   </script>
 </body>
