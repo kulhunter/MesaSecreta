@@ -13,7 +13,7 @@
 ## 2. Precios Escalonados (A más puestos, más barato p/p)
 
 * **1 Puesto (Individual / Foodie):** **$60.000 CLP** ($60.000 p/p)
-  * Pensado para aficionados que quieren aprender la técnica solos y no les incomoda compartir mesa.
+  * Pensado para quien asiste solo. **El trabajo de la pasta siempre es en duplas**, por lo que compartirá mesón y amasará codo a codo con un desconocido (al final de la noche, ya no lo son).
 * **2 Puestos (La Dupla):** **$110.000 CLP** ($55.000 p/p · Ahorro de $10.000)
   * La opción más popular para parejas / date nights.
 * **4 Puestos (Mesa Completa Cerrada):** **$200.000 CLP** ($50.000 p/p · Ahorro de $40.000)
@@ -29,6 +29,7 @@
 * **RUT:** 16.667.108-6 (166671086)
 * **Titular:** Dan Mesa Secreta
 * **Email Comprobante:** `dan.tagle@gmail.com`
+* **WhatsApp Confirmación:** `+56 9 2862 3092`
 
 ---
 
