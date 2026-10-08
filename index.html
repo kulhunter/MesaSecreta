@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth bg-[#050403] text-[#F5F2EA]">
+<html lang="es" class="scroll-smooth bg-[#080705] text-[#F4F1EA]">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MESA SECRETA — 4 Puestos. Una Noche.</title>
-  <meta name="description" content="En una ciudad de 7 millones, esta noche solo hay 4 puestos. Amasas tu propia pasta, bebes vino seleccionado y el Metro está a la puerta. Santiago.">
+  <title>MESA SECRETA — 4 Puestos. Pasta Fresca a Mano. Santiago.</title>
+  <meta name="description" content="Una experiencia clandestina de cocina en Santiago. Amasas pasta fresca desde cero con tus manos, bebes buen vino y estás al lado del Metro. Solo 4 puestos por noche.">
 
   <!-- Open Graph -->
   <meta property="og:title" content="MESA SECRETA — Esta noche solo hay 4 puestos">
-  <meta property="og:description" content="No es un restaurante. No hay meseros. Amasas pasta desde cero con copa en mano al lado del Metro.">
+  <meta property="og:description" content="Amasas tu propia pasta con tus manos, bebes vino y estás al lado del Metro. Solo 4 personas por noche.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mesasecreta.cl">
 
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍷</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍝</text></svg>">
 
-  <!-- Typography: Syne (Ultra Bold Display) + Space Grotesk (Bold Editorial) -->
+  <!-- Typography: Syne (Ultra Bold Poster Headline) + Space Grotesk (Editorial Mono/Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@800;900&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -27,21 +27,20 @@
       theme: {
         extend: {
           fontFamily: {
-            headline: ['"Syne"', 'sans-serif'],
+            display: ['"Syne"', 'sans-serif'],
             mono: ['"Space Grotesk"', 'monospace'],
             sans: ['"Space Grotesk"', 'sans-serif']
           },
           colors: {
-            cannes: {
-              black: '#050403',
-              dark: '#0B0907',
-              surface: '#13100D',
-              border: '#231E18',
-              accent: '#E6C687',
-              wine: '#821B24',
-              muted: '#8A8275',
-              bone: '#F5F2EA'
-            }
+            noir: '#080705',
+            card: '#120F0C',
+            surface: '#1A1612',
+            border: '#2E2720',
+            gold: '#D9B46F',
+            goldlight: '#F3D698',
+            wine: '#8A1E27',
+            bone: '#F4F1EA',
+            muted: '#8C8375'
           }
         }
       }
@@ -55,547 +54,514 @@
     }
 
     body {
-      background-color: #050403;
-      color: #F5F2EA;
+      background-color: #080705;
+      color: #F4F1EA;
       font-family: 'Space Grotesk', sans-serif;
       overflow-x: hidden;
     }
 
-    /* Cannes Big Bold Display */
-    .hero-title {
+    /* Cannes Headline Scale */
+    .title-cannes {
       font-family: 'Syne', sans-serif;
       font-weight: 900;
-      line-height: 0.88;
+      line-height: 0.9;
       letter-spacing: -0.04em;
       text-transform: uppercase;
     }
 
     /* Film Grain Simulation */
-    .grain {
+    .film-grain {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 50;
-      opacity: 0.04;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    /* Ambient Lighting */
-    .vignette {
-      box-shadow: inset 0 0 140px rgba(0, 0, 0, 0.95);
+    /* Music Disc Spin */
+    @keyframes vinylSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .spinning {
+      animation: vinylSpin 4s linear infinite;
     }
 
-    /* Section pacing */
-    .chapter {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 6rem 1.5rem;
+    /* Real Photo Treatment */
+    .photo-frame {
       position: relative;
+      overflow: hidden;
+      border: 1px solid #2E2720;
+    }
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .photo-frame:hover img {
+      transform: scale(1.04);
     }
 
-    /* Parallax / Cinematic Photo Card */
-    .film-still {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      opacity: 0.28;
-      filter: grayscale(40%) contrast(120%);
-      transition: transform 12s ease-out, opacity 1s ease;
-    }
-    .chapter:hover .film-still {
-      transform: scale(1.03);
-      opacity: 0.35;
-    }
-
-    /* Sound indicator */
-    @keyframes soundBar {
-      0%, 100% { height: 4px; }
-      50% { height: 16px; }
-    }
-    .sound-anim span:nth-child(1) { animation: soundBar 1.2s ease-in-out infinite; }
-    .sound-anim span:nth-child(2) { animation: soundBar 0.9s ease-in-out infinite 0.2s; }
-    .sound-anim span:nth-child(3) { animation: soundBar 1.4s ease-in-out infinite 0.4s; }
-
-    /* Calendar Day Cell */
-    .cal-cell {
+    /* Calendar Grid Days */
+    .cal-day-btn {
       aspect-ratio: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
       font-size: 0.9rem;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      border: 1px solid transparent;
-    }
-    .cal-cell.available {
-      color: #F5F2EA;
-      background: #13100D;
-      border-color: #231E18;
+      border: 1px solid #2E2720;
+      background: #120F0C;
+      color: #F4F1EA;
+      transition: all 0.2s ease;
       cursor: pointer;
     }
-    .cal-cell.available:hover {
-      background: #E6C687;
-      color: #050403;
+    .cal-day-btn:hover:not(.disabled) {
+      background: #D9B46F;
+      color: #080705;
+      border-color: #D9B46F;
       transform: scale(1.05);
     }
-    .cal-cell.selected {
-      background: #E6C687 !important;
-      color: #050403 !important;
-      border-color: #E6C687 !important;
+    .cal-day-btn.selected {
+      background: #D9B46F !important;
+      color: #080705 !important;
+      border-color: #D9B46F !important;
       font-weight: 900;
     }
-    .cal-cell.disabled {
-      color: #38322A;
+    .cal-day-btn.disabled {
+      color: #3D352B;
+      background: #080705;
+      border-color: #1A1612;
       cursor: not-allowed;
-      opacity: 0.3;
+      opacity: 0.35;
     }
 
     /* Custom Selection */
     ::selection {
-      background: #E6C687;
-      color: #050403;
+      background: #D9B46F;
+      color: #080705;
     }
 
     /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: #050403; }
-    ::-webkit-scrollbar-thumb { background: #231E18; }
-    ::-webkit-scrollbar-thumb:hover { background: #E6C687; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #080705; }
+    ::-webkit-scrollbar-thumb { background: #2E2720; }
+    ::-webkit-scrollbar-thumb:hover { background: #D9B46F; }
   </style>
 </head>
 <body class="relative">
 
-  <div class="grain"></div>
+  <div class="film-grain"></div>
 
-  <!-- FIXED NAVIGATION / STATUS -->
-  <header class="fixed top-0 left-0 right-0 z-40 px-6 py-5 flex items-center justify-between border-b border-[#231E18]/50 bg-[#050403]/85 backdrop-blur-md">
+  <!-- REAL AUDIO ELEMENT -->
+  <audio id="audioTrack" src="noche.mp3" loop preload="auto"></audio>
+
+  <!-- FIXED HEADER -->
+  <header class="fixed top-0 left-0 right-0 z-40 px-5 sm:px-8 py-4 flex items-center justify-between border-b border-[#2E2720]/80 bg-[#080705]/90 backdrop-blur-md">
     <div class="flex items-center gap-3">
-      <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#E6C687] animate-pulse"></span>
-      <a href="#inicio" class="font-headline font-black text-sm tracking-widest text-[#F5F2EA] hover:text-[#E6C687] transition">
+      <span class="w-2.5 h-2.5 rounded-full bg-[#D9B46F] animate-pulse"></span>
+      <a href="#inicio" class="font-display font-black text-sm tracking-widest text-[#F4F1EA] hover:text-[#D9B46F] transition">
         MESA SECRETA
       </a>
-      <span class="hidden md:inline-block text-xs uppercase tracking-widest text-[#8A8275] border-l border-[#231E18] pl-3">
+      <span class="hidden md:inline-block text-xs uppercase tracking-widest text-[#8C8375] border-l border-[#2E2720] pl-3 font-mono">
         4 SILLAS · SANTIAGO
       </span>
     </div>
 
-    <div class="flex items-center gap-4">
-      <!-- Metro Callout -->
-      <div class="hidden sm:flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8A8275]">
+    <div class="flex items-center gap-3 sm:gap-5">
+      <!-- Metro badge -->
+      <div class="hidden sm:flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#D9B46F] bg-[#1A1612] px-3 py-1.5 border border-[#2E2720]">
         <span>🚇</span>
         <span>A PASOS DEL METRO</span>
       </div>
 
-      <!-- Ambient Sound Button -->
-      <button id="soundToggle" onclick="toggleAtmosphereAudio()" class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#231E18] bg-[#13100D] hover:border-[#E6C687] text-xs font-mono tracking-wider transition text-[#F5F2EA]">
-        <div id="soundBars" class="sound-anim flex items-end gap-0.5 h-4 opacity-40">
-          <span class="w-0.5 bg-[#E6C687] h-1 rounded-full"></span>
-          <span class="w-0.5 bg-[#E6C687] h-2 rounded-full"></span>
-          <span class="w-0.5 bg-[#E6C687] h-1 rounded-full"></span>
-        </div>
-        <span id="soundLabel">SONIDO [OFF]</span>
+      <!-- Real Audio Player Button -->
+      <button id="btnAudioToggle" onclick="toggleAudio()" class="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-[#2E2720] bg-[#120F0C] hover:border-[#D9B46F] text-xs font-mono tracking-wider transition text-[#F4F1EA] group">
+        <span id="discIcon" class="inline-block text-sm transition-transform">💿</span>
+        <span id="audioStatusText" class="font-bold">MÚSICA [PLAY]</span>
       </button>
 
-      <!-- Direct Booking CTA -->
-      <a href="#reservar" class="px-4 py-2 bg-[#E6C687] text-[#050403] font-headline font-black text-xs uppercase tracking-widest hover:bg-white transition">
+      <!-- Book CTA -->
+      <a href="#reservar" class="px-4 py-2 bg-[#D9B46F] text-[#080705] font-display font-black text-xs uppercase tracking-widest hover:bg-white transition">
         RESERVAR
       </a>
     </div>
   </header>
 
   <!-- ═════════════════════════════════════════════════════════════════
-       ACTO I: EL IMPACTO (LA COARTADA)
-       Textos masivos, centrados, autoridad absoluta.
+       ACTO 1: EL IMPACTO (LA COARTADA DE LAS 4 SILLAS)
   ═════════════════════════════════════════════════════════════════ -->
-  <section id="inicio" class="chapter relative overflow-hidden pt-28">
-    <div class="film-still" style="background-image: url('https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?auto=format&fit=crop&w=2000&q=80');"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-[#050403]/90 via-[#050403]/75 to-[#050403]"></div>
-
-    <div class="relative z-10 max-w-5xl mx-auto px-4">
-      <p class="text-xs md:text-sm font-mono uppercase tracking-[0.35em] text-[#E6C687] mb-6">
+  <section id="inicio" class="min-h-screen pt-32 pb-20 px-4 flex flex-col justify-center items-center text-center relative border-b border-[#2E2720]">
+    <div class="max-w-5xl mx-auto w-full">
+      <p class="text-xs sm:text-sm font-mono uppercase tracking-[0.35em] text-[#D9B46F] mb-6">
         SANTIAGO · NOVIEMBRE 2026 · 20:00 HRS
       </p>
 
-      <h1 class="hero-title text-4xl sm:text-6xl md:text-8xl lg:text-[7.5rem] text-[#F5F2EA] mb-8">
-        ESTA NOCHE<br>
-        SOLO ENTRAN<br>
-        <span class="text-[#E6C687]">CUATRO.</span>
+      <h1 class="title-cannes text-5xl sm:text-7xl md:text-8xl lg:text-[7.8rem] text-[#F4F1EA] mb-8">
+        EN SANTIAGO HAY<br>
+        7 MILLONES.<br>
+        <span class="text-[#D9B46F]">ESTA NOCHE SOLO<br>HAY CUATRO.</span>
       </h1>
 
-      <div class="h-12 w-[1px] bg-[#E6C687] mx-auto mb-8"></div>
-
-      <p class="max-w-xl mx-auto text-base md:text-xl text-[#8A8275] font-light leading-relaxed mb-10">
-        En una ciudad de 7 millones de personas,<br class="hidden sm:inline">
-        mi departamento abre una sola mesa por noche.
+      <p class="max-w-2xl mx-auto text-base sm:text-xl text-[#8C8375] font-light leading-relaxed mb-10">
+        No es un restaurante. Mi departamento abre una sola mesa.<br class="hidden sm:inline">
+        Vienes a amasar tu propia pasta, beber buen vino y cenar a puertas cerradas.
       </p>
 
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#reservar" class="w-full sm:w-auto px-10 py-5 bg-[#E6C687] text-[#050403] font-headline font-black text-sm tracking-widest uppercase hover:bg-white transition transform hover:-translate-y-0.5">
-          ELEGIR MI NOCHE
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+        <a href="#reservar" class="w-full sm:w-auto px-10 py-5 bg-[#D9B46F] text-[#080705] font-display font-black text-sm tracking-widest uppercase hover:bg-white transition shadow-xl shadow-[#D9B46F]/10">
+          ASEGURAR MI NOCHE →
         </a>
-        <a href="#manifiesto" class="w-full sm:w-auto px-8 py-5 border border-[#231E18] bg-[#13100D]/80 text-[#F5F2EA] font-headline font-bold text-sm tracking-widest uppercase hover:border-[#E6C687] transition">
-          EL MANIFIESTO ↓
+        <a href="#experiencia" class="w-full sm:w-auto px-8 py-5 border border-[#2E2720] bg-[#120F0C] text-[#F4F1EA] font-display font-bold text-sm tracking-widest uppercase hover:border-[#D9B46F] transition">
+          LA EXPERIENCIA ↓
         </a>
       </div>
     </div>
 
-    <!-- Indicator -->
-    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs font-mono tracking-widest text-[#8A8275] flex items-center gap-2">
-      <span>SCROLL</span>
-      <span class="animate-bounce">↓</span>
-    </div>
-  </section>
-
-  <!-- ═════════════════════════════════════════════════════════════════
-       ACTO II: LA NEGACIÓN (QUÉ NO SOMOS)
-       Tono Cannes: decir lo menos posible con la mayor fuerza.
-  ═════════════════════════════════════════════════════════════════ -->
-  <section id="manifiesto" class="chapter bg-[#0B0907] border-y border-[#231E18]">
-    <div class="max-w-4xl mx-auto px-4">
-      <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#8A8275] mb-6">
-        01 / LA REGLA
-      </p>
-
-      <h2 class="hero-title text-3xl sm:text-5xl md:text-7xl text-[#F5F2EA] mb-10">
-        NO ES UN<br>RESTAURANTE.<br>
-        <span class="text-[#8A8275]">NO HAY MESEROS.</span><br>
-        NO HAY CARTA.
-      </h2>
-
-      <p class="text-lg md:text-2xl text-[#8A8275] max-w-2xl mx-auto font-light leading-relaxed">
-        Aquí nadie viene a sentarse a esperar.<br>
-        Vienes a amasar con tus propias manos.
+    <!-- HERO IMAGE: REAL, PROMINENT, CRISP -->
+    <div class="max-w-5xl mx-auto w-full px-2 sm:px-0">
+      <div class="photo-frame h-[320px] sm:h-[500px] w-full rounded-sm">
+        <img src="img/amasado.jpg" alt="Amasado de pasta fresca artesanal con harina en las manos">
+      </div>
+      <p class="text-left text-xs font-mono text-[#8C8375] mt-3 uppercase tracking-wider">
+        ↑ FOTO REAL DEL AMASADO · HARINA, HUEVOS Y TUS PROPIAS MANOS
       </p>
     </div>
   </section>
 
   <!-- ═════════════════════════════════════════════════════════════════
-       ACTO III: LA MATERIA (EL TALLER & EL VINO)
+       ACTO 2: EL CORAZÓN DE LA EXPERIENCIA (PREPARAR LA PASTA)
   ═════════════════════════════════════════════════════════════════ -->
-  <section class="chapter relative overflow-hidden">
-    <div class="film-still" style="background-image: url('https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=2000&q=80');"></div>
-    <div class="absolute inset-0 bg-[#050403]/85"></div>
-
-    <div class="relative z-10 max-w-4xl mx-auto px-4">
-      <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#E6C687] mb-6">
-        02 / EL FUEGO
+  <section id="experiencia" class="py-24 sm:py-32 px-4 bg-[#120F0C] border-b border-[#2E2720]">
+    <div class="max-w-5xl mx-auto text-center">
+      <p class="text-xs font-mono uppercase tracking-[0.35em] text-[#D9B46F] mb-4">
+        01 / LA EXPERIENCIA
       </p>
 
-      <h2 class="hero-title text-3xl sm:text-6xl md:text-8xl text-[#F5F2EA] mb-8">
-        HARINA.<br>
-        HUEVO.<br>
-        FUEGO.
+      <h2 class="title-cannes text-4xl sm:text-6xl md:text-7xl text-[#F4F1EA] mb-8">
+        EL OBJETIVO ES<br>
+        <span class="text-[#D9B46F]">PREPARAR LA PASTA.</span>
       </h2>
 
-      <p class="text-lg md:text-2xl text-[#F5F2EA] max-w-2xl mx-auto mb-12 font-light leading-relaxed">
-        En duplas, amasas desde cero.<br>
-        Lo que comes esa noche nació de tus manos.
+      <p class="max-w-2xl mx-auto text-lg sm:text-2xl text-[#8C8375] font-light leading-relaxed mb-16">
+        Aquí no vienes a sentarte a mirar una carta.<br>
+        Vienes a ensuciarte las manos. La pasta que cenas la hiciste tú.
       </p>
 
-      <!-- 3 Elements Row -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-[#231E18] text-left">
-        <div class="p-6 bg-[#13100D]/80 border border-[#231E18]">
-          <p class="font-headline font-black text-2xl text-[#E6C687] mb-1">AMASADO</p>
-          <p class="text-xs font-mono uppercase text-[#8A8275] tracking-widest mb-3">TÉCNICA PURA</p>
-          <p class="text-sm text-[#F5F2EA]/80 font-light leading-relaxed">
-            Sin mezclas industriales. Harina, yemas, amasado rítmico, corte y cocción exacta en ollas de hierro.
+      <!-- 2 VISIBLE LARGE PHOTOS GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 text-left">
+        <div>
+          <div class="photo-frame h-[360px] w-full mb-4">
+            <img src="img/huevo_harina.jpg" alt="El volcán de harina con yema de huevo fresca">
+          </div>
+          <h3 class="font-display font-black text-2xl text-[#F4F1EA] mb-2 uppercase">EL VOLCÁN DE HARINA</h3>
+          <p class="text-sm text-[#8C8375] leading-relaxed">
+            Harina sobre la madera, huevos frescos al centro. Amasas a mano con fuerza, paciencia y técnica hasta lograr una masa lisa, viva y elástica.
           </p>
         </div>
 
-        <div class="p-6 bg-[#13100D]/80 border border-[#231E18]">
-          <p class="font-headline font-black text-2xl text-[#E6C687] mb-1">3 SALSAS</p>
-          <p class="text-xs font-mono uppercase text-[#8A8275] tracking-widest mb-3">LENTO & FRESCO</p>
-          <p class="text-sm text-[#F5F2EA]/80 font-light leading-relaxed">
-            Ragù clásico de 3 horas. Bechamel sedosa sin carne (apto vegetarianos). Pesto fresco de albahaca si es temporada.
+        <div>
+          <div class="photo-frame h-[360px] w-full mb-4">
+            <img src="img/fettuccine.jpg" alt="Corte artesanal de fettuccine a mano">
+          </div>
+          <h3 class="font-display font-black text-2xl text-[#F4F1EA] mb-2 uppercase">EL ESTIRADO Y CORTE</h3>
+          <p class="text-sm text-[#8C8375] leading-relaxed">
+            Estirar hasta el grosor exacto. Plegar y cortar a mano cada cinta de fettuccine. Al agua hirviendo por solo dos minutos y directo al plato.
+          </p>
+        </div>
+      </div>
+
+      <!-- Essential Rules Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left border-t border-[#2E2720] pt-12">
+        <div class="p-6 bg-[#1A1612] border border-[#2E2720]">
+          <p class="text-xs font-mono uppercase text-[#D9B46F] tracking-widest mb-2">TRABAJO EN DUPLAS</p>
+          <p class="font-display font-black text-xl text-[#F4F1EA] mb-3">DE A DOS</p>
+          <p class="text-xs text-[#8C8375] leading-relaxed">
+            La pasta se prepara en duplas. Si vienes en pareja, amasan juntos. Si vienes solo, compartirás estación con otro invitado.
           </p>
         </div>
 
-        <div class="p-6 bg-[#13100D]/80 border border-[#231E18]">
-          <p class="font-headline font-black text-2xl text-[#E6C687] mb-1">3 COPAS</p>
-          <p class="text-xs font-mono uppercase text-[#8A8275] tracking-widest mb-3">MARIDAJE CURADO</p>
-          <p class="text-sm text-[#F5F2EA]/80 font-light leading-relaxed">
-            Copa 1 de bienvenida al amasar. Copas 2 y 3 con cuerpo para cenar. Suficiente para conectar, sin excesos.
+        <div class="p-6 bg-[#1A1612] border border-[#2E2720]">
+          <p class="text-xs font-mono uppercase text-[#D9B46F] tracking-widest mb-2">LAS SALSAS</p>
+          <p class="font-display font-black text-xl text-[#F4F1EA] mb-3">SABOR REAL</p>
+          <p class="text-xs text-[#8C8375] leading-relaxed">
+            Ragù tradicional de cocción lenta y salsa bechamel sedosa sin carne (apta para vegetarianos). Pesto fresco si es época.
           </p>
         </div>
+
+        <div class="p-6 bg-[#1A1612] border border-[#2E2720]">
+          <p class="text-xs font-mono uppercase text-[#D9B46F] tracking-widest mb-2">TODO INCLUIDO</p>
+          <p class="font-display font-black text-xl text-[#F4F1EA] mb-3">CERO COMPLICACIÓN</p>
+          <p class="text-xs text-[#8C8375] leading-relaxed">
+            Harina, huevos, servicio, platos, salsas y vino para acompañar la noche. Solo traes tus ganas de cocinar.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════════════════════════════
+       ACTO 3: EL VINO Y LA LIBERTAD DEL METRO
+  ═════════════════════════════════════════════════════════════════ -->
+  <section class="py-24 sm:py-32 px-4 bg-[#080705] border-b border-[#2E2720]">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <div class="lg:col-span-6 text-left">
+          <p class="text-xs font-mono uppercase tracking-[0.35em] text-[#D9B46F] mb-4">
+            02 / LA COARTADA
+          </p>
+          <h2 class="title-cannes text-4xl sm:text-6xl text-[#F4F1EA] mb-6">
+            BEBE EN PAZ.<br>
+            <span class="text-[#D9B46F]">EL METRO ESTÁ<br>A LA PUERTA.</span>
+          </h2>
+          <p class="text-base sm:text-lg text-[#8C8375] font-light leading-relaxed mb-6">
+            El vino acompaña toda la velada: copa en mano mientras tienes las manos llenas de harina y copas servidas en la mesa cuando la pasta sale humeante.
+          </p>
+          <p class="text-sm text-[#F4F1EA] font-medium leading-relaxed mb-8">
+            Mi departamento está literalmente al lado de la estación del Metro. No necesitas auto, no te preocupas por controles de alcotest ni por buscar estacionamiento. Vienes, cocinas, bebes y te regresas tranquilo.
+          </p>
+          <div class="inline-flex items-center gap-3 px-5 py-3 border border-[#D9B46F] bg-[#120F0C] text-xs font-mono uppercase tracking-widest text-[#D9B46F]">
+            <span>🚇</span>
+            <span>A PASOS DE LA ESTACIÓN · SANTIAGO</span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6">
+          <div class="photo-frame h-[420px] w-full rounded-sm">
+            <img src="img/vino_noche.jpg" alt="Copa de vino tinto y plato de pasta fresca en la mesa">
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- ═════════════════════════════════════════════════════════════════
-       ACTO IV: LA COARTADA (EL METRO & EL ALCOHOL)
-       Venta emocional clave: bebe tranquilo, nadie conduce.
-  ═════════════════════════════════════════════════════════════════ -->
-  <section class="chapter relative overflow-hidden bg-[#0B0907] border-y border-[#231E18]">
-    <div class="film-still" style="background-image: url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=2000&q=80');"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-[#050403] via-[#0B0907]/90 to-[#050403]"></div>
-
-    <div class="relative z-10 max-w-4xl mx-auto px-4">
-      <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#E6C687] mb-6">
-        03 / LA LIBERTAD
-      </p>
-
-      <h2 class="hero-title text-4xl sm:text-6xl md:text-8xl text-[#F5F2EA] mb-8">
-        ALGUIEN MÁS<br>
-        <span class="text-[#E6C687]">CONDUCE.</span>
-      </h2>
-
-      <p class="text-xl md:text-3xl font-light text-[#F5F2EA] max-w-2xl mx-auto mb-6 leading-tight">
-        Mi departamento está al lado de la estación del Metro.
-      </p>
-
-      <p class="text-base md:text-lg text-[#8A8275] max-w-xl mx-auto font-light leading-relaxed mb-10">
-        Disfruta cada copa. Sin autos, sin llaves, sin controles de alcotest en la cabeza.<br>
-        Vienes, cocinas, bebes y te devuelves en paz.
-      </p>
-
-      <div class="inline-flex items-center gap-3 px-6 py-3 border border-[#E6C687]/40 bg-[#13100D]/90 text-xs font-mono uppercase tracking-widest text-[#E6C687]">
-        <span>🚇</span>
-        <span>A PASOS DE LA ESTACIÓN · SANTIAGO</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════════════════════════════════════════════════════════════
-       ACTO V: EL VALOR (LOS PRECIOS ESCALONADOS)
+       ACTO 4: LOS PRECIOS ESCALONADOS
        A más puestos, más barato p/p.
   ═════════════════════════════════════════════════════════════════ -->
-  <section id="precios" class="chapter bg-[#050403]">
-    <div class="max-w-5xl mx-auto px-4 w-full">
-      <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#E6C687] mb-4">
-        04 / LA TARIFA
+  <section id="precios" class="py-24 sm:py-32 px-4 bg-[#120F0C] border-b border-[#2E2720]">
+    <div class="max-w-5xl mx-auto text-center">
+      <p class="text-xs font-mono uppercase tracking-[0.35em] text-[#D9B46F] mb-4">
+        03 / LOS PUESTOS
       </p>
 
-      <h2 class="hero-title text-3xl sm:text-5xl md:text-7xl text-[#F5F2EA] mb-4">
+      <h2 class="title-cannes text-4xl sm:text-6xl md:text-7xl text-[#F4F1EA] mb-4">
         TRES FORMAS<br>DE ENTRAR.
       </h2>
 
-      <p class="text-sm md:text-base text-[#8A8275] font-mono tracking-widest uppercase mb-16">
-        A MÁS PUESTOS, MENOR EL COSTO POR PERSONA
+      <p class="text-sm font-mono text-[#8C8375] uppercase tracking-widest mb-16">
+        A MÁS PUESTOS RESERVES, MENOR EL VALOR POR PERSONA
       </p>
 
-      <!-- 3 Tier Pricing Grid -->
+      <!-- 3 CARDS GRID -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
         
-        <!-- 1 Puesto -->
-        <div onclick="selectTierAndJump('single')" class="tier-card p-8 bg-[#13100D] border border-[#231E18] hover:border-[#E6C687] transition cursor-pointer flex flex-col justify-between group">
+        <!-- 1 PUESTO -->
+        <div onclick="pickTierAndScroll('single')" class="p-8 bg-[#1A1612] border border-[#2E2720] hover:border-[#D9B46F] transition cursor-pointer flex flex-col justify-between group">
           <div>
             <div class="flex justify-between items-start mb-6">
-              <span class="text-xs font-mono uppercase tracking-widest text-[#8A8275]">1 PUESTO</span>
-              <span class="text-xs px-2.5 py-1 bg-[#231E18] text-[#8A8275] font-mono">INDIVIDUAL</span>
+              <span class="text-xs font-mono uppercase tracking-widest text-[#8C8375]">1 PUESTO</span>
+              <span class="text-xs px-2.5 py-1 bg-[#2E2720] text-[#D9B46F] font-mono">SOLO</span>
             </div>
-            <p class="font-headline font-black text-4xl sm:text-5xl text-[#F5F2EA] group-hover:text-[#E6C687] transition mb-2">
+            <p class="font-display font-black text-4xl sm:text-5xl text-[#F4F1EA] group-hover:text-[#D9B46F] transition mb-2">
               $60.000
             </p>
-            <p class="text-xs font-mono text-[#8A8275] uppercase tracking-wider mb-6">
+            <p class="text-xs font-mono text-[#8C8375] uppercase tracking-wider mb-6">
               $60.000 CLP POR PERSONA
             </p>
-            <p class="text-sm text-[#F5F2EA]/90 leading-relaxed mb-3">
-              Para quien asiste a solas. <strong class="text-[#E6C687]">El amasado siempre es en duplas</strong>: compartirás estación y amasarás codo a codo con un desconocido.
-            </p>
-            <p class="text-xs text-[#8A8275] italic mb-8">
-              (Al servir la segunda copa, ya nadie es un extraño).
-            </p>
+            <div class="p-4 bg-[#120F0C] border border-[#2E2720] text-xs text-[#F4F1EA] leading-relaxed mb-6">
+              <strong class="text-[#D9B46F] block mb-1">⚠️ IMPORTANTE:</strong>
+              El amasado siempre se hace en duplas. Si vienes solo, compartirás estación y amasarás codo a codo con un desconocido. (Al final de la noche ya nadie es un extraño).
+            </div>
           </div>
-          <button class="w-full py-4 text-center font-headline font-black text-xs uppercase tracking-widest border border-[#231E18] text-[#F5F2EA] group-hover:bg-[#E6C687] group-hover:text-[#050403] group-hover:border-[#E6C687] transition">
+          <button class="w-full py-4 text-center font-display font-black text-xs uppercase tracking-widest border border-[#2E2720] text-[#F4F1EA] group-hover:bg-[#D9B46F] group-hover:text-[#080705] group-hover:border-[#D9B46F] transition">
             ELEGIR 1 PUESTO →
           </button>
         </div>
 
-        <!-- 2 Puestos (Recomendado) -->
-        <div onclick="selectTierAndJump('dupla')" class="tier-card relative p-8 bg-[#181410] border-2 border-[#E6C687] transition cursor-pointer flex flex-col justify-between group shadow-2xl shadow-[#E6C687]/5">
-          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#E6C687] text-[#050403] font-headline font-black text-[10px] tracking-widest uppercase">
+        <!-- 2 PUESTOS (LA DUPLA) -->
+        <div onclick="pickTierAndScroll('dupla')" class="relative p-8 bg-[#1E1914] border-2 border-[#D9B46F] transition cursor-pointer flex flex-col justify-between group shadow-2xl shadow-[#D9B46F]/10">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#D9B46F] text-[#080705] font-display font-black text-[10px] tracking-widest uppercase">
             LA OPCIÓN MÁS ELEGIDA
           </div>
           <div>
             <div class="flex justify-between items-start mb-6 mt-2">
-              <span class="text-xs font-mono uppercase tracking-widest text-[#E6C687]">LA DUPLA</span>
-              <span class="text-xs px-2.5 py-1 bg-[#E6C687]/20 text-[#E6C687] font-mono font-bold">2 PUESTOS</span>
+              <span class="text-xs font-mono uppercase tracking-widest text-[#D9B46F]">LA DUPLA</span>
+              <span class="text-xs px-2.5 py-1 bg-[#D9B46F]/20 text-[#D9B46F] font-mono font-bold">2 PUESTOS</span>
             </div>
-            <p class="font-headline font-black text-4xl sm:text-5xl text-[#E6C687] mb-2">
+            <p class="font-display font-black text-4xl sm:text-5xl text-[#D9B46F] mb-2">
               $110.000
             </p>
-            <p class="text-xs font-mono text-[#E6C687]/80 uppercase tracking-wider mb-6 font-bold">
+            <p class="text-xs font-mono text-[#D9B46F]/80 uppercase tracking-wider mb-6 font-bold">
               $55.000 CLP POR PERSONA
             </p>
-            <p class="text-sm text-[#F5F2EA]/90 leading-relaxed mb-8">
-              La dupla perfecta. Parejas o amigos amasando juntos. Una noche clandestina que ningún restaurante comercial puede igualar.
+            <p class="text-sm text-[#F4F1EA]/90 leading-relaxed mb-8">
+              Tu dupla completa. Parejas o dos amigos en su propia estación de amasado. La mejor cita gastronómica a puertas cerradas.
             </p>
           </div>
-          <button class="w-full py-4 text-center font-headline font-black text-xs uppercase tracking-widest bg-[#E6C687] text-[#050403] hover:bg-white transition">
+          <button class="w-full py-4 text-center font-display font-black text-xs uppercase tracking-widest bg-[#D9B46F] text-[#080705] hover:bg-white transition">
             ELEGIR LA DUPLA →
           </button>
         </div>
 
-        <!-- 4 Puestos (Mesa Completa) -->
-        <div onclick="selectTierAndJump('mesa_completa')" class="tier-card p-8 bg-[#13100D] border border-[#231E18] hover:border-[#E6C687] transition cursor-pointer flex flex-col justify-between group">
+        <!-- 4 PUESTOS (MESA COMPLETA) -->
+        <div onclick="pickTierAndScroll('mesa_completa')" class="p-8 bg-[#1A1612] border border-[#2E2720] hover:border-[#D9B46F] transition cursor-pointer flex flex-col justify-between group">
           <div>
             <div class="flex justify-between items-start mb-6">
-              <span class="text-xs font-mono uppercase tracking-widest text-[#8A8275]">MESA PRIVADA</span>
-              <span class="text-xs px-2.5 py-1 bg-[#231E18] text-[#8A8275] font-mono">4 PUESTOS</span>
+              <span class="text-xs font-mono uppercase tracking-widest text-[#8C8375]">MESA COMPLETA</span>
+              <span class="text-xs px-2.5 py-1 bg-[#2E2720] text-[#D9B46F] font-mono">4 PUESTOS</span>
             </div>
-            <p class="font-headline font-black text-4xl sm:text-5xl text-[#F5F2EA] group-hover:text-[#E6C687] transition mb-2">
+            <p class="font-display font-black text-4xl sm:text-5xl text-[#F4F1EA] group-hover:text-[#D9B46F] transition mb-2">
               $200.000
             </p>
-            <p class="text-xs font-mono text-[#8A8275] uppercase tracking-wider mb-6">
+            <p class="text-xs font-mono text-[#8C8375] uppercase tracking-wider mb-6">
               $50.000 CLP POR PERSONA
             </p>
-            <p class="text-sm text-[#8A8275] leading-relaxed mb-8">
-              Cierra el departamento completo para tu grupo íntimo. 4 sillas, toda la mesa, el chef y la noche exclusivamente para ustedes.
+            <p class="text-sm text-[#8C8375] leading-relaxed mb-8">
+              Cierra el departamento exclusivamente para tu grupo de 4. Amasado, vino, cena íntima y las 4 sillas solo para ustedes.
             </p>
           </div>
-          <button class="w-full py-4 text-center font-headline font-black text-xs uppercase tracking-widest border border-[#231E18] text-[#F5F2EA] group-hover:bg-[#E6C687] group-hover:text-[#050403] group-hover:border-[#E6C687] transition">
+          <button class="w-full py-4 text-center font-display font-black text-xs uppercase tracking-widest border border-[#2E2720] text-[#F4F1EA] group-hover:bg-[#D9B46F] group-hover:text-[#080705] group-hover:border-[#D9B46F] transition">
             CERRAR MESA (4) →
           </button>
         </div>
 
       </div>
 
-      <!-- Detail checklist minimal -->
-      <div class="mt-12 pt-8 border-t border-[#231E18] text-xs font-mono text-[#8A8275] flex flex-wrap justify-center gap-6 uppercase tracking-wider">
-        <span>✓ TODOS LOS INGREDIENTES</span>
-        <span>✓ 3 COPAS DE VINO</span>
-        <span>✓ AGUA INFUSIONADA</span>
-        <span>✓ APTO VEGETARIANOS</span>
-        <span>✕ NO CELÍACOS NI VEGANOS</span>
+      <!-- Detail checklist -->
+      <div class="mt-12 pt-8 border-t border-[#2E2720] text-xs font-mono text-[#8C8375] flex flex-wrap justify-center gap-6 uppercase tracking-wider">
+        <span>✓ TODOS LOS INGREDIENTES INCLUIDOS</span>
+        <span>✓ VINO DE ACOMPAÑAMIENTO</span>
+        <span>✓ APTO VEGETARIANOS (BECHAMEL)</span>
+        <span>✕ NO APTO VEGANOS NI CELÍACOS</span>
       </div>
     </div>
   </section>
 
   <!-- ═════════════════════════════════════════════════════════════════
-       ACTO VI: EL RITUAL DE RESERVA (CALENDARIO & AGENDA)
-       Diseño brutalista, limpio, sin fricción.
+       ACTO 5: LA AGENDA Y RESERVA (TERMINAL BRUTALISTA)
   ═════════════════════════════════════════════════════════════════ -->
-  <section id="reservar" class="chapter bg-[#0B0907] border-t border-[#231E18] py-24">
-    <div class="max-w-4xl mx-auto px-4 w-full">
-      <p class="text-xs font-mono uppercase tracking-[0.35em] text-[#E6C687] mb-4">
-        RESERVA DIRECTA
-      </p>
+  <section id="reservar" class="py-24 sm:py-32 px-4 bg-[#080705]">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-xs font-mono uppercase tracking-[0.35em] text-[#D9B46F] mb-3">
+          AGENDA OFICIAL
+        </p>
+        <h2 class="title-cannes text-4xl sm:text-6xl text-[#F4F1EA] mb-4">
+          RESERVA TU FECHA.
+        </h2>
+        <p class="text-xs sm:text-sm font-mono text-[#8C8375] uppercase tracking-widest">
+          DISPONIBLE DESDE NOVIEMBRE 2026 · 20:00 HRS SIEMPRE
+        </p>
+      </div>
 
-      <h2 class="hero-title text-3xl sm:text-5xl md:text-7xl text-[#F5F2EA] mb-6">
-        ASEGURA<br>TU FECHA.
-      </h2>
-
-      <p class="text-sm font-mono text-[#8A8275] uppercase tracking-widest mb-12">
-        DISPONIBLE EXCLUSIVAMENTE DESDE NOVIEMBRE 2026 · 20:00 HRS PUNTUAL
-      </p>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 text-left bg-[#13100D] border border-[#231E18] p-6 sm:p-10">
+      <div class="bg-[#120F0C] border border-[#2E2720] p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 text-left">
         
-        <!-- CALENDAR COLUMN (7 cols) -->
+        <!-- CALENDAR (7 COLS) -->
         <div class="lg:col-span-7">
-          <div class="flex items-center justify-between mb-6 pb-4 border-b border-[#231E18]">
-            <p id="calHeader" class="font-headline font-black text-xl text-[#F5F2EA] uppercase tracking-wider"></p>
-            <div class="flex items-center gap-2">
-              <button onclick="calPrevMonth()" class="w-9 h-9 flex items-center justify-center border border-[#231E18] hover:border-[#E6C687] text-[#F5F2EA] transition">
+          <div class="flex items-center justify-between pb-4 mb-6 border-b border-[#2E2720]">
+            <p id="calMonthHeader" class="font-display font-black text-xl text-[#F4F1EA] uppercase tracking-wider"></p>
+            <div class="flex gap-2">
+              <button onclick="navCal(-1)" class="w-9 h-9 flex items-center justify-center border border-[#2E2720] hover:border-[#D9B46F] text-[#F4F1EA] transition">
                 ←
               </button>
-              <button onclick="calNextMonth()" class="w-9 h-9 flex items-center justify-center border border-[#231E18] hover:border-[#E6C687] text-[#F5F2EA] transition">
+              <button onclick="navCal(1)" class="w-9 h-9 flex items-center justify-center border border-[#2E2720] hover:border-[#D9B46F] text-[#F4F1EA] transition">
                 →
               </button>
             </div>
           </div>
 
-          <!-- Day names -->
-          <div class="grid grid-cols-7 gap-1 text-center mb-2">
-            <span class="text-[11px] font-mono text-[#8A8275]">LU</span>
-            <span class="text-[11px] font-mono text-[#8A8275]">MA</span>
-            <span class="text-[11px] font-mono text-[#8A8275]">MI</span>
-            <span class="text-[11px] font-mono text-[#8A8275]">JU</span>
-            <span class="text-[11px] font-mono text-[#8A8275]">VI</span>
-            <span class="text-[11px] font-mono text-[#8A8275]">SA</span>
-            <span class="text-[11px] font-mono text-[#8A8275]">DO</span>
+          <div class="grid grid-cols-7 gap-1 text-center mb-2 font-mono text-[11px] text-[#8C8375]">
+            <span>LU</span><span>MA</span><span>MI</span><span>JU</span><span>VI</span><span>SA</span><span>DO</span>
           </div>
 
-          <!-- Calendar Grid -->
           <div id="calGrid" class="grid grid-cols-7 gap-1"></div>
 
-          <!-- Policy banner -->
-          <div class="mt-6 p-4 border border-[#231E18] bg-[#0B0907] text-xs text-[#8A8275] leading-relaxed">
-            <span class="font-bold text-[#E6C687]">POLÍTICA CLARA:</span> Reagenda con 72 hrs de anticipación para los siguientes 7 días. Con menos de 72 hrs no hay reembolso (insumos frescos ya comprados), pero tu cupo es <strong class="text-[#F5F2EA]">100% transferible</strong> a otra persona.
+          <!-- Policy notice -->
+          <div class="mt-6 p-4 bg-[#080705] border border-[#2E2720] text-xs text-[#8C8375] leading-relaxed">
+            <strong class="text-[#D9B46F]">POLÍTICA DE CANCELACIÓN:</strong> Reagendamiento permitido con 72 hrs de anticipación para los siguientes 7 días. Con menos de 72 hrs no hay reembolso, pero tu reserva es <strong class="text-[#F4F1EA]">100% transferible</strong> a quien tú elijas.
           </div>
         </div>
 
-        <!-- SELECTION & CONTACT DOSSIER (5 cols) -->
-        <div class="lg:col-span-5 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-[#231E18] pt-6 lg:pt-0 lg:pl-8">
+        <!-- FORM DOSSIER (5 COLS) -->
+        <div class="lg:col-span-5 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-[#2E2720] pt-6 lg:pt-0 lg:pl-8">
           <div>
-            <p class="text-xs font-mono uppercase tracking-widest text-[#8A8275] mb-4">
-              DETALLE DE TU NOCHE
+            <p class="text-xs font-mono uppercase tracking-widest text-[#8C8375] mb-4">
+              DETALLES DE LA NOCHE
             </p>
 
-            <!-- Format Selector -->
-            <div class="space-y-2 mb-6">
-              <label class="block text-xs font-mono uppercase text-[#8A8275]">FORMATO DE PUESTOS</label>
+            <!-- Tier Selector -->
+            <div class="mb-5">
+              <label class="block text-xs font-mono uppercase text-[#8C8375] mb-2">FORMATO</label>
               <div class="grid grid-cols-3 gap-2">
-                <button type="button" onclick="setBookingTier('single')" id="btnTierSingle" class="py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#231E18] bg-[#0B0907] text-[#8A8275] hover:border-[#E6C687] transition">
+                <button type="button" onclick="chooseTier('single')" id="btnTierSingle" class="py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#2E2720] bg-[#080705] text-[#8C8375] hover:border-[#D9B46F] transition">
                   1 PUESTO<br><span class="text-[10px]">$60K</span>
                 </button>
-                <button type="button" onclick="setBookingTier('dupla')" id="btnTierDupla" class="py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#E6C687] bg-[#E6C687]/15 text-[#E6C687] font-bold transition">
+                <button type="button" onclick="chooseTier('dupla')" id="btnTierDupla" class="py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#D9B46F] bg-[#D9B46F]/15 text-[#D9B46F] font-bold transition">
                   LA DUPLA<br><span class="text-[10px]">$110K</span>
                 </button>
-                <button type="button" onclick="setBookingTier('mesa_completa')" id="btnTierMesa" class="py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#231E18] bg-[#0B0907] text-[#8A8275] hover:border-[#E6C687] transition">
+                <button type="button" onclick="chooseTier('mesa_completa')" id="btnTierMesa" class="py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#2E2720] bg-[#080705] text-[#8C8375] hover:border-[#D9B46F] transition">
                   MESA (4)<br><span class="text-[10px]">$200K</span>
                 </button>
               </div>
 
-              <!-- Solo Notice (Dynamically shown if 1 puesto is chosen) -->
-              <div id="soloNotice" class="hidden p-3 bg-[#181410] border border-[#E6C687]/40 text-xs text-[#E6C687] leading-relaxed mt-3">
-                <span class="font-bold">⚠️ ATENCIÓN (1 PUESTO):</span> En esta experiencia el trabajo de cocina siempre es en duplas. Amasarás y compartirás mesón con un comensal desconocido.
+              <!-- Dynamic Solo Warning -->
+              <div id="soloNotice" class="hidden mt-3 p-3 bg-[#1A1612] border border-[#D9B46F]/50 text-xs text-[#D9B46F] leading-relaxed">
+                <strong>⚠️ SI VIENES SOLO:</strong> El trabajo de la pasta es en duplas. Amasarás y compartirás mesón con otro comensal desconocido.
               </div>
             </div>
 
-            <!-- Date indicator -->
-            <div class="p-3 bg-[#0B0907] border border-[#231E18] mb-6">
-              <span class="block text-[10px] font-mono uppercase tracking-widest text-[#8A8275]">FECHA SELECCIONADA</span>
-              <span id="selectedDateDisplay" class="font-headline font-bold text-base text-[#E6C687]">
-                Selecciona un día en el calendario
+            <!-- Date Box -->
+            <div class="p-3 bg-[#080705] border border-[#2E2720] mb-5">
+              <span class="block text-[10px] font-mono uppercase text-[#8C8375]">FECHA SELECCIONADA</span>
+              <span id="dateDisplay" class="font-display font-bold text-base text-[#D9B46F]">
+                Elige un día en el calendario
               </span>
-              <span class="block text-[11px] text-[#8A8275] mt-1">Horario: 20:00 HRS (Puntual)</span>
+              <span class="block text-[11px] text-[#8C8375] mt-1">Horario: 20:00 HRS (Puntual)</span>
             </div>
 
-            <!-- Customer inputs -->
-            <div class="space-y-3 mb-6">
+            <!-- Inputs -->
+            <div class="space-y-3 mb-5">
               <div>
-                <label class="block text-[10px] font-mono uppercase text-[#8A8275] mb-1">NOMBRE COMPLETO</label>
-                <input type="text" id="custName" placeholder="Tu nombre" class="w-full bg-[#0B0907] border border-[#231E18] px-3 py-2 text-sm text-[#F5F2EA] focus:outline-none focus:border-[#E6C687] transition">
+                <label class="block text-[10px] font-mono uppercase text-[#8C8375] mb-1">NOMBRE COMPLETO</label>
+                <input type="text" id="inputName" placeholder="Tu nombre" class="w-full bg-[#080705] border border-[#2E2720] px-3 py-2 text-sm text-[#F4F1EA] focus:outline-none focus:border-[#D9B46F]">
+              </div>
+              <div>
+                <label class="block text-[10px] font-mono uppercase text-[#8C8375] mb-1">WHATSAPP</label>
+                <input type="tel" id="inputPhone" placeholder="+56 9 1234 5678" class="w-full bg-[#080705] border border-[#2E2720] px-3 py-2 text-sm text-[#F4F1EA] focus:outline-none focus:border-[#D9B46F]">
+              </div>
+              <div>
+                <label class="block text-[10px] font-mono uppercase text-[#8C8375] mb-1">EMAIL</label>
+                <input type="email" id="inputEmail" placeholder="tu@email.com" class="w-full bg-[#080705] border border-[#2E2720] px-3 py-2 text-sm text-[#F4F1EA] focus:outline-none focus:border-[#D9B46F]">
               </div>
 
-              <div>
-                <label class="block text-[10px] font-mono uppercase text-[#8A8275] mb-1">WHATSAPP</label>
-                <input type="tel" id="custPhone" placeholder="+56 9 1234 5678" class="w-full bg-[#0B0907] border border-[#231E18] px-3 py-2 text-sm text-[#F5F2EA] focus:outline-none focus:border-[#E6C687] transition">
-              </div>
-
-              <div>
-                <label class="block text-[10px] font-mono uppercase text-[#8A8275] mb-1">CORREO ELECTRÓNICO</label>
-                <input type="email" id="custEmail" placeholder="tu@email.com" class="w-full bg-[#0B0907] border border-[#231E18] px-3 py-2 text-sm text-[#F5F2EA] focus:outline-none focus:border-[#E6C687] transition">
-              </div>
-
-              <!-- Vegetarian count -->
-              <div class="flex items-center justify-between p-2.5 bg-[#0B0907] border border-[#231E18]">
-                <span class="text-xs font-mono uppercase text-[#8A8275]">¿VEGETARIANOS?</span>
+              <!-- Vegetarians counter -->
+              <div class="flex items-center justify-between p-2.5 bg-[#080705] border border-[#2E2720]">
+                <span class="text-xs font-mono uppercase text-[#8C8375]">¿VEGETARIANOS?</span>
                 <div class="flex items-center gap-3">
-                  <button type="button" onclick="modifyVegCount(-1)" class="w-7 h-7 border border-[#231E18] hover:border-[#E6C687] text-sm flex items-center justify-center text-[#F5F2EA] transition">−</button>
-                  <span id="vegCountDisplay" class="font-mono font-bold text-sm text-[#E6C687]">0</span>
-                  <button type="button" onclick="modifyVegCount(1)" class="w-7 h-7 border border-[#231E18] hover:border-[#E6C687] text-sm flex items-center justify-center text-[#F5F2EA] transition">+</button>
+                  <button type="button" onclick="alterVeg(-1)" class="w-7 h-7 border border-[#2E2720] hover:border-[#D9B46F] text-sm flex items-center justify-center text-[#F4F1EA] transition">−</button>
+                  <span id="vegCount" class="font-mono font-bold text-sm text-[#D9B46F]">0</span>
+                  <button type="button" onclick="alterVeg(1)" class="w-7 h-7 border border-[#2E2720] hover:border-[#D9B46F] text-sm flex items-center justify-center text-[#F4F1EA] transition">+</button>
                 </div>
               </div>
             </div>
 
-            <!-- Total Price Display -->
-            <div class="flex justify-between items-end pb-4 mb-6 border-b border-[#231E18]">
-              <span class="text-xs font-mono uppercase tracking-widest text-[#8A8275]">TOTAL A TRANSFERIR</span>
-              <span id="displayTotal" class="font-headline font-black text-3xl text-[#E6C687]">
+            <!-- Total display -->
+            <div class="flex justify-between items-end pb-4 mb-6 border-b border-[#2E2720]">
+              <span class="text-xs font-mono uppercase tracking-widest text-[#8C8375]">TOTAL TRANSFERENCIA</span>
+              <span id="totalDisplay" class="font-display font-black text-3xl text-[#D9B46F]">
                 $110.000 CLP
               </span>
             </div>
           </div>
 
-          <button onclick="confirmAndOpenTransferModal()" class="w-full py-5 bg-[#E6C687] text-[#050403] font-headline font-black text-sm uppercase tracking-widest hover:bg-white transition transform hover:-translate-y-0.5">
-            RESERVAR VÍA TRANSFERENCIA →
+          <button onclick="submitReservation()" class="w-full py-5 bg-[#D9B46F] text-[#080705] font-display font-black text-sm uppercase tracking-widest hover:bg-white transition transform hover:-translate-y-0.5 shadow-xl shadow-[#D9B46F]/10">
+            CONTINUAR A TRANSFERENCIA →
           </button>
         </div>
 
@@ -604,105 +570,86 @@
   </section>
 
   <!-- ═════════════════════════════════════════════════════════════════
-       MODAL: DOSSIER DE TRANSFERENCIA PREX
+       MODAL: TRANSFERENCIA PREX
   ═════════════════════════════════════════════════════════════════ -->
-  <div id="transferModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#050403]/95 backdrop-blur-xl hidden">
-    <div class="relative w-full max-w-lg bg-[#13100D] border border-[#E6C687] p-8 text-left shadow-2xl">
+  <div id="transferModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#080705]/95 backdrop-blur-xl hidden">
+    <div class="relative w-full max-w-lg bg-[#120F0C] border border-[#D9B46F] p-7 sm:p-9 text-left shadow-2xl">
       
-      <!-- Close button -->
-      <button onclick="closeTransferModal()" class="absolute top-6 right-6 text-xl text-[#8A8275] hover:text-white transition">
+      <button onclick="closeModal()" class="absolute top-6 right-6 text-xl text-[#8C8375] hover:text-white transition">
         ✕
       </button>
 
-      <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#E6C687] mb-2">
-        PASO FINAL · PAGO 100% DIRECTO
+      <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#D9B46F] mb-2">
+        PASO FINAL · PAGO DIRECTO
       </p>
 
-      <h3 class="font-headline font-black text-3xl text-[#F5F2EA] mb-2">
+      <h3 class="font-display font-black text-3xl text-[#F4F1EA] mb-4">
         DATOS DE TRANSFERENCIA
       </h3>
 
-      <p class="text-xs text-[#8A8275] mb-6">
-        Transfiere el monto para congelar tus puestos de inmediato. Cero comisiones.
-      </p>
-
-      <!-- Reservation Summary Box -->
-      <div class="p-4 bg-[#0B0907] border border-[#231E18] mb-6">
-        <div class="flex justify-between text-xs mb-1">
-          <span class="text-[#8A8275]">EXPERIENCIA:</span>
-          <span id="modalReservaTipo" class="font-bold text-[#F5F2EA]">La Dupla (2 puestos)</span>
-        </div>
-        <div class="flex justify-between text-xs mb-1">
-          <span class="text-[#8A8275]">FECHA:</span>
-          <span id="modalReservaFecha" class="font-bold text-[#F5F2EA]">-</span>
-        </div>
-        <div class="flex justify-between text-xs mb-1">
-          <span class="text-[#8A8275]">HORA:</span>
-          <span class="font-bold text-[#F5F2EA]">20:00 HRS (Puntual)</span>
-        </div>
-        <div class="flex justify-between text-xs pt-2 border-t border-[#231E18] mt-2">
-          <span class="text-[#8A8275]">MONTO A TRANSFERIR:</span>
-          <span id="modalReservaTotal" class="font-headline font-black text-lg text-[#E6C687]">$110.000 CLP</span>
+      <!-- Reservation Summary -->
+      <div class="p-4 bg-[#080705] border border-[#2E2720] mb-5 text-xs">
+        <div class="flex justify-between mb-1.5"><span class="text-[#8C8375]">FORMATO:</span><strong id="modalTipo" class="text-[#F4F1EA]">-</strong></div>
+        <div class="flex justify-between mb-1.5"><span class="text-[#8C8375]">FECHA:</span><strong id="modalFecha" class="text-[#F4F1EA]">-</strong></div>
+        <div class="flex justify-between mb-1.5"><span class="text-[#8C8375]">HORA:</span><strong class="text-[#F4F1EA]">20:00 HRS (Puntual)</strong></div>
+        <div class="flex justify-between pt-2 border-t border-[#2E2720] mt-2">
+          <span class="text-[#8C8375]">TOTAL A TRANSFERIR:</span>
+          <strong id="modalTotal" class="font-display font-black text-lg text-[#D9B46F]">-</strong>
         </div>
       </div>
 
       <!-- Bank Details -->
-      <div class="space-y-2 p-4 bg-[#181410] border border-[#E6C687]/40 text-xs font-mono mb-6">
-        <div class="flex justify-between"><span class="text-[#8A8275]">BANCO:</span><strong class="text-[#F5F2EA]">PREX</strong></div>
-        <div class="flex justify-between"><span class="text-[#8A8275]">TIPO DE CUENTA:</span><strong class="text-[#F5F2EA]">CUENTA VISTA</strong></div>
-        <div class="flex justify-between"><span class="text-[#8A8275]">N° CUENTA:</span><strong class="text-[#E6C687] text-sm">12771432</strong></div>
-        <div class="flex justify-between"><span class="text-[#8A8275]">RUT:</span><strong class="text-[#F5F2EA]">16.667.108-6</strong></div>
-        <div class="flex justify-between"><span class="text-[#8A8275]">TITULAR:</span><strong class="text-[#F5F2EA]">Dan Mesa Secreta</strong></div>
-        <div class="flex justify-between"><span class="text-[#8A8275]">EMAIL COMPROBANTE:</span><strong class="text-[#F5F2EA]">dan.tagle@gmail.com</strong></div>
+      <div class="space-y-2 p-4 bg-[#1A1612] border border-[#D9B46F]/40 text-xs font-mono mb-6">
+        <div class="flex justify-between"><span class="text-[#8C8375]">BANCO:</span><strong class="text-[#F4F1EA]">PREX</strong></div>
+        <div class="flex justify-between"><span class="text-[#8C8375]">TIPO DE CUENTA:</span><strong class="text-[#F4F1EA]">CUENTA VISTA</strong></div>
+        <div class="flex justify-between"><span class="text-[#8C8375]">N° CUENTA:</span><strong class="text-[#D9B46F] text-sm">12771432</strong></div>
+        <div class="flex justify-between"><span class="text-[#8C8375]">RUT:</span><strong class="text-[#F4F1EA]">16.667.108-6</strong></div>
+        <div class="flex justify-between"><span class="text-[#8C8375]">TITULAR:</span><strong class="text-[#F4F1EA]">Dan Mesa Secreta</strong></div>
+        <div class="flex justify-between"><span class="text-[#8C8375]">EMAIL COMPROBANTE:</span><strong class="text-[#F4F1EA]">dan.tagle@gmail.com</strong></div>
       </div>
 
       <!-- Actions -->
       <div class="space-y-3">
-        <button onclick="copyPrexDetails()" id="btnCopyPrex" class="w-full py-3.5 bg-[#0B0907] border border-[#E6C687] text-[#E6C687] font-headline font-black text-xs uppercase tracking-widest hover:bg-[#E6C687] hover:text-[#050403] transition flex items-center justify-center gap-2">
+        <button onclick="copyBankInfo()" id="btnCopyData" class="w-full py-3.5 bg-[#080705] border border-[#D9B46F] text-[#D9B46F] font-display font-black text-xs uppercase tracking-widest hover:bg-[#D9B46F] hover:text-[#080705] transition flex items-center justify-center gap-2">
           <span>📋</span>
-          <span id="copyPrexText">COPIAR DATOS DE TRANSFERENCIA</span>
+          <span id="copyBtnText">COPIAR DATOS BANCARIOS</span>
         </button>
 
-        <a id="btnSendWhatsAppModal" href="#" target="_blank" class="w-full py-4 bg-[#25D366] text-black font-headline font-black text-xs uppercase tracking-widest hover:bg-white transition flex items-center justify-center gap-2">
+        <a id="btnSendWA" href="#" target="_blank" class="w-full py-4 bg-[#25D366] text-black font-display font-black text-xs uppercase tracking-widest hover:bg-white transition flex items-center justify-center gap-2">
           <span>💬</span>
           <span>ENVIAR COMPROBANTE POR WHATSAPP (+56 9 2862 3092)</span>
         </a>
       </div>
 
-      <p class="text-[11px] text-[#8A8275] text-center mt-4">
-        Al recibir tu comprobante, tus puestos quedan bloqueados. La dirección exacta se envía 48 hrs antes por WhatsApp.
+      <p class="text-[11px] text-[#8C8375] text-center mt-4">
+        Tus puestos quedan bloqueados al enviar el comprobante. La dirección exacta se comparte 48 hrs antes por WhatsApp.
       </p>
 
     </div>
   </div>
 
-  <!-- ═════════════════════════════════════════════════════════════════
-       FOOTER
-  ═════════════════════════════════════════════════════════════════ -->
-  <footer class="py-16 px-6 bg-[#050403] border-t border-[#231E18] text-center">
+  <!-- FOOTER -->
+  <footer class="py-16 px-6 bg-[#080705] border-t border-[#2E2720] text-center">
     <div class="max-w-4xl mx-auto">
-      <h4 class="font-headline font-black text-2xl tracking-widest text-[#F5F2EA] mb-4">
+      <h4 class="font-display font-black text-2xl tracking-widest text-[#F4F1EA] mb-3">
         MESA SECRETA
       </h4>
-      <p class="text-xs font-mono uppercase tracking-[0.25em] text-[#8A8275] mb-8">
-        4 PUESTOS · SANTIAGO DE CHILE · A PASOS DEL METRO
+      <p class="text-xs font-mono uppercase tracking-[0.25em] text-[#8C8375] mb-6">
+        4 PUESTOS · SANTIAGO · A PASOS DEL METRO · 20:00 HRS
       </p>
-      <div class="flex justify-center gap-6 text-xs text-[#8A8275] mb-8">
-        <a href="mailto:dan.tagle@gmail.com" class="hover:text-[#E6C687] transition">dan.tagle@gmail.com</a>
+      <div class="flex justify-center gap-6 text-xs text-[#8C8375] mb-8">
+        <a href="mailto:dan.tagle@gmail.com" class="hover:text-[#D9B46F] transition">dan.tagle@gmail.com</a>
         <span>·</span>
-        <a href="https://wa.me/56928623092" target="_blank" class="hover:text-[#E6C687] transition">+56 9 2862 3092</a>
+        <a href="https://wa.me/56928623092" target="_blank" class="hover:text-[#D9B46F] transition">+56 9 2862 3092</a>
       </div>
-      <p class="text-[10px] text-[#8A8275]/60 font-mono">
+      <p class="text-[10px] text-[#8C8375]/50 font-mono">
         © 2026 MESA SECRETA. TODOS LOS DERECHOS RESERVADOS.
       </p>
     </div>
   </footer>
 
-  <!-- ═════════════════════════════════════════════════════════════════
-       ENGINE JAVASCRIPT
-  ═════════════════════════════════════════════════════════════════ -->
+  <!-- SCRIPT -->
   <script>
-    // CONSTANTS & BUSINESS RULES
     const BANK_DATA = {
       banco: 'PREX',
       tipoCuenta: 'Cuenta Vista',
@@ -710,327 +657,235 @@
       rut: '16.667.108-6',
       nombre: 'Dan Mesa Secreta',
       email: 'dan.tagle@gmail.com',
-      whatsappReceiver: '56928623092' // UPDATED DIRECT CONTACT
+      whatsapp: '56928623092'
     };
 
-    const TIER_PRICES = {
+    const PRICES = {
       single: 60000,
       dupla: 110000,
       mesa_completa: 200000
     };
 
     const TIER_NAMES = {
-      single: '1 Puesto Individual ($60.000)',
-      dupla: 'La Dupla — 2 Puestos ($110.000)',
-      mesa_completa: 'Mesa Completa Cerrada — 4 Puestos ($200.000)'
+      single: '1 Puesto Individual ($60.000 CLP)',
+      dupla: 'La Dupla — 2 Puestos ($110.000 CLP)',
+      mesa_completa: 'Mesa Completa — 4 Puestos ($200.000 CLP)'
     };
 
-    const MONTH_LABELS = [
+    const MONTHS = [
       'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
       'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
     ];
 
-    // STATE
-    const appState = {
-      currentYear: 2026,
-      currentMonth: 10, // Starts Nov 2026 (0-indexed: 10 = Noviembre)
-      selectedTier: 'dupla',
+    const state = {
+      year: 2026,
+      month: 10, // November 2026 (0-indexed: 10)
+      tier: 'dupla',
       selectedDate: null,
       vegetarians: 0
     };
 
-    // ATMOSPHERIC SOUND GENERATOR (Web Audio API for real analog warmth)
-    let audioCtx = null;
-    let audioPlaying = false;
-    let noiseNode = null;
-    let osc1 = null;
-    let osc2 = null;
-    let gainMaster = null;
+    // REAL AUDIO PLAYBACK
+    function toggleAudio() {
+      const audio = document.getElementById('audioTrack');
+      const text = document.getElementById('audioStatusText');
+      const disc = document.getElementById('discIcon');
 
-    function toggleAtmosphereAudio() {
-      if (!audioCtx) {
-        try {
-          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-          audioCtx = new AudioContextClass();
-        } catch (e) {
-          console.log('Audio not supported');
-          return;
-        }
-      }
-
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-
-      if (!audioPlaying) {
-        startAtmosphereSound();
-        audioPlaying = true;
-        document.getElementById('soundLabel').textContent = 'SONIDO [ON]';
-        document.getElementById('soundBars').classList.remove('opacity-40');
+      if (audio.paused) {
+        audio.play().then(() => {
+          text.textContent = 'MÚSICA [PAUSA]';
+          disc.classList.add('spinning');
+        }).catch(err => {
+          console.log('Error playing audio:', err);
+        });
       } else {
-        stopAtmosphereSound();
-        audioPlaying = false;
-        document.getElementById('soundLabel').textContent = 'SONIDO [OFF]';
-        document.getElementById('soundBars').classList.add('opacity-40');
-      }
-    }
-
-    function startAtmosphereSound() {
-      gainMaster = audioCtx.createGain();
-      gainMaster.gain.setValueAtTime(0.08, audioCtx.currentTime);
-      gainMaster.connect(audioCtx.destination);
-
-      // Warm analog chord (low drone + soft 5th)
-      osc1 = audioCtx.createOscillator();
-      osc1.type = 'sine';
-      osc1.frequency.setValueAtTime(110, audioCtx.currentTime); // A2 warm room note
-
-      osc2 = audioCtx.createOscillator();
-      osc2.type = 'triangle';
-      osc2.frequency.setValueAtTime(164.81, audioCtx.currentTime); // E3 warm fifth
-
-      const oscGain = audioCtx.createGain();
-      oscGain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-
-      osc1.connect(oscGain);
-      osc2.connect(oscGain);
-      oscGain.connect(gainMaster);
-
-      osc1.start();
-      osc2.start();
-
-      // Vinyl crackle generator
-      const bufferSize = audioCtx.sampleRate * 2;
-      const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-      const output = noiseBuffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) {
-        // sporadic needle crackle pops
-        output[i] = Math.random() < 0.003 ? (Math.random() * 2 - 1) * 0.4 : 0;
-      }
-      noiseNode = audioCtx.createBufferSource();
-      noiseNode.buffer = noiseBuffer;
-      noiseNode.loop = true;
-      noiseNode.connect(gainMaster);
-      noiseNode.start();
-    }
-
-    function stopAtmosphereSound() {
-      if (gainMaster) {
-        gainMaster.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.5);
-        setTimeout(() => {
-          if (osc1) osc1.stop();
-          if (osc2) osc2.stop();
-          if (noiseNode) noiseNode.stop();
-        }, 500);
+        audio.pause();
+        text.textContent = 'MÚSICA [PLAY]';
+        disc.classList.remove('spinning');
       }
     }
 
     // TIER SELECTION
-    function setBookingTier(tierKey) {
-      appState.selectedTier = tierKey;
-      
+    function chooseTier(tierKey) {
+      state.tier = tierKey;
+
       const btnSingle = document.getElementById('btnTierSingle');
       const btnDupla = document.getElementById('btnTierDupla');
       const btnMesa = document.getElementById('btnTierMesa');
 
-      [btnSingle, btnDupla, btnMesa].forEach(btn => {
-        btn.className = 'py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#231E18] bg-[#0B0907] text-[#8A8275] hover:border-[#E6C687] transition';
+      [btnSingle, btnDupla, btnMesa].forEach(b => {
+        b.className = 'py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#2E2720] bg-[#080705] text-[#8C8375] hover:border-[#D9B46F] transition';
       });
 
       if (tierKey === 'single') {
-        btnSingle.className = 'py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#E6C687] bg-[#E6C687]/15 text-[#E6C687] font-bold transition';
+        btnSingle.className = 'py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#D9B46F] bg-[#D9B46F]/15 text-[#D9B46F] font-bold transition';
       } else if (tierKey === 'dupla') {
-        btnDupla.className = 'py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#E6C687] bg-[#E6C687]/15 text-[#E6C687] font-bold transition';
+        btnDupla.className = 'py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#D9B46F] bg-[#D9B46F]/15 text-[#D9B46F] font-bold transition';
       } else if (tierKey === 'mesa_completa') {
-        btnMesa.className = 'py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#E6C687] bg-[#E6C687]/15 text-[#E6C687] font-bold transition';
+        btnMesa.className = 'py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#D9B46F] bg-[#D9B46F]/15 text-[#D9B46F] font-bold transition';
       }
 
-      document.getElementById('displayTotal').textContent = `$${TIER_PRICES[tierKey].toLocaleString('es-CL')} CLP`;
+      document.getElementById('totalDisplay').textContent = `$${PRICES[tierKey].toLocaleString('es-CL')} CLP`;
 
       // Solo warning toggle
       const soloNotice = document.getElementById('soloNotice');
-      if (soloNotice) {
-        if (tierKey === 'single') {
-          soloNotice.classList.remove('hidden');
-        } else {
-          soloNotice.classList.add('hidden');
-        }
+      if (tierKey === 'single') {
+        soloNotice.classList.remove('hidden');
+      } else {
+        soloNotice.classList.add('hidden');
       }
 
-      // Cap veg count if needed
-      const maxSeats = tierKey === 'single' ? 1 : (tierKey === 'dupla' ? 2 : 4);
-      if (appState.vegetarians > maxSeats) {
-        appState.vegetarians = maxSeats;
-        document.getElementById('vegCountDisplay').textContent = appState.vegetarians;
+      // Cap veg count
+      const max = tierKey === 'single' ? 1 : (tierKey === 'dupla' ? 2 : 4);
+      if (state.vegetarians > max) {
+        state.vegetarians = max;
+        document.getElementById('vegCount').textContent = max;
       }
     }
 
-    function selectTierAndJump(tierKey) {
-      setBookingTier(tierKey);
+    function pickTierAndScroll(tierKey) {
+      chooseTier(tierKey);
       document.getElementById('reservar').scrollIntoView({ behavior: 'smooth' });
     }
 
-    function modifyVegCount(delta) {
-      const maxSeats = appState.selectedTier === 'single' ? 1 : (appState.selectedTier === 'dupla' ? 2 : 4);
-      const next = appState.vegetarians + delta;
-      if (next >= 0 && next <= maxSeats) {
-        appState.vegetarians = next;
-        document.getElementById('vegCountDisplay').textContent = next;
+    function alterVeg(d) {
+      const max = state.tier === 'single' ? 1 : (state.tier === 'dupla' ? 2 : 4);
+      const next = state.vegetarians + d;
+      if (next >= 0 && next <= max) {
+        state.vegetarians = next;
+        document.getElementById('vegCount').textContent = next;
       }
     }
 
-    // CALENDAR LOGIC (November 2026+)
-    function renderCalendar() {
-      const year = appState.currentYear;
-      const month = appState.currentMonth;
+    // CALENDAR (November 2026 onwards)
+    function renderCal() {
+      const y = state.year;
+      const m = state.month;
 
-      document.getElementById('calHeader').textContent = `${MONTH_LABELS[month]} ${year}`;
-
+      document.getElementById('calMonthHeader').textContent = `${MONTHS[m]} ${y}`;
       const grid = document.getElementById('calGrid');
       grid.innerHTML = '';
 
-      const firstDay = new Date(year, month, 1).getDay();
-      const mondayOffset = firstDay === 0 ? 6 : firstDay - 1;
-      const totalDays = new Date(year, month + 1, 0).getDate();
+      const firstDay = new Date(y, m, 1).getDay();
+      const offset = firstDay === 0 ? 6 : firstDay - 1;
+      const totalDays = new Date(y, m + 1, 0).getDate();
 
-      // Leading blanks
-      for (let i = 0; i < mondayOffset; i++) {
+      for (let i = 0; i < offset; i++) {
         const blank = document.createElement('div');
-        blank.className = 'cal-cell disabled';
+        blank.className = 'cal-day-btn disabled';
         grid.appendChild(blank);
       }
 
-      for (let day = 1; day <= totalDays; day++) {
+      for (let d = 1; d <= totalDays; d++) {
         const cell = document.createElement('div');
-        const isEligible = (year > 2026) || (year === 2026 && month >= 10); // Noviembre 2026 en adelante
-        const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        const isEligible = (y > 2026) || (y === 2026 && m >= 10);
+        const dateStr = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
 
         if (isEligible) {
-          cell.className = 'cal-cell available';
-          if (appState.selectedDate && appState.selectedDate.str === dateString) {
+          cell.className = 'cal-day-btn';
+          if (state.selectedDate && state.selectedDate.str === dateStr) {
             cell.classList.add('selected');
           }
-          cell.onclick = () => onSelectCalendarDay(year, month, day, dateString);
+          cell.onclick = () => {
+            state.selectedDate = { y, m, d, str: dateStr };
+            document.getElementById('dateDisplay').textContent = `${d} de ${MONTHS[m]} ${y}`;
+            renderCal();
+          };
         } else {
-          cell.className = 'cal-cell disabled';
+          cell.className = 'cal-day-btn disabled';
         }
 
-        cell.textContent = day;
+        cell.textContent = d;
         grid.appendChild(cell);
       }
     }
 
-    function onSelectCalendarDay(y, m, d, dateStr) {
-      appState.selectedDate = { y, m, d, str: dateStr };
-      document.getElementById('selectedDateDisplay').textContent = `${d} de ${MONTH_LABELS[m]} ${y}`;
-      renderCalendar();
+    function navCal(d) {
+      if (state.year === 2026 && state.month <= 10 && d < 0) return;
+      state.month += d;
+      if (state.month > 11) { state.month = 0; state.year++; }
+      if (state.month < 0) { state.month = 11; state.year--; }
+      renderCal();
     }
 
-    function calPrevMonth() {
-      // Do not allow scrolling before November 2026
-      if (appState.currentYear === 2026 && appState.currentMonth <= 10) {
-        return;
-      }
-      appState.currentMonth--;
-      if (appState.currentMonth < 0) {
-        appState.currentMonth = 11;
-        appState.currentYear--;
-      }
-      renderCalendar();
-    }
-
-    function calNextMonth() {
-      appState.currentMonth++;
-      if (appState.currentMonth > 11) {
-        appState.currentMonth = 0;
-        appState.currentYear++;
-      }
-      renderCalendar();
-    }
-
-    // MODAL & TRANSFER FLOW
-    function confirmAndOpenTransferModal() {
-      if (!appState.selectedDate) {
+    // RESERVATION & MODAL
+    function submitReservation() {
+      if (!state.selectedDate) {
         alert('Por favor selecciona una fecha disponible en el calendario (Noviembre 2026 en adelante).');
         return;
       }
 
-      const name = document.getElementById('custName').value.trim();
-      const phone = document.getElementById('custPhone').value.trim();
-      const email = document.getElementById('custEmail').value.trim();
+      const name = document.getElementById('inputName').value.trim();
+      const phone = document.getElementById('inputPhone').value.trim();
+      const email = document.getElementById('inputEmail').value.trim();
 
       if (!name || !phone || !email) {
-        alert('Por favor ingresa tu Nombre, WhatsApp y Correo Electrónico.');
+        alert('Por favor ingresa tu Nombre, WhatsApp y Email de contacto.');
         return;
       }
 
-      const totalFormatted = `$${TIER_PRICES[appState.selectedTier].toLocaleString('es-CL')} CLP`;
-      const dateFormatted = `${appState.selectedDate.d} de ${MONTH_LABELS[appState.selectedDate.m]} ${appState.selectedDate.y}`;
+      const totalFmt = `$${PRICES[state.tier].toLocaleString('es-CL')} CLP`;
+      const dateFmt = `${state.selectedDate.d} de ${MONTHS[state.selectedDate.m]} ${state.selectedDate.y}`;
 
-      document.getElementById('modalReservaTipo').textContent = TIER_NAMES[appState.selectedTier];
-      document.getElementById('modalReservaFecha').textContent = `${dateFormatted} · 20:00 HRS`;
-      document.getElementById('modalReservaTotal').textContent = totalFormatted;
+      document.getElementById('modalTipo').textContent = TIER_NAMES[state.tier];
+      document.getElementById('modalFecha').textContent = `${dateFmt} — 20:00 HRS`;
+      document.getElementById('modalTotal').textContent = totalFmt;
 
-      // Pre-filled WhatsApp message to the client's direct number (+56928623092)
       const waMsg = `Hola Dan! Acabo de registrar mi reserva en Mesa Secreta:
 - Nombre: ${name}
-- Fecha: ${dateFormatted} a las 20:00 HRS
-- Formato: ${TIER_NAMES[appState.selectedTier]}
-- Total: ${totalFormatted}
-- Vegetarianos: ${appState.vegetarians}
+- Fecha: ${dateFmt} a las 20:00 HRS
+- Formato: ${TIER_NAMES[state.tier]}
+- Total: ${totalFmt}
+- Vegetarianos: ${state.vegetarians}
 
-Te adjunto el comprobante de transferencia PREX para asegurar mis puestos. ¡Gracias!`;
+Te adjunto el comprobante de transferencia PREX para congelar mis puestos. ¡Gracias!`;
 
-      document.getElementById('btnSendWhatsAppModal').href = `https://wa.me/${BANK_DATA.whatsappReceiver}?text=${encodeURIComponent(waMsg)}`;
+      document.getElementById('btnSendWA').href = `https://wa.me/${BANK_DATA.whatsapp}?text=${encodeURIComponent(waMsg)}`;
 
-      // Backup email alert via FormSubmit
       fetch(`https://formsubmit.co/ajax/${BANK_DATA.email}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          _subject: `NUEVA RESERVA: ${name} (${dateFormatted})`,
+          _subject: `NUEVA RESERVA: ${name} (${dateFmt})`,
           Nombre: name,
           Telefono: phone,
           Email: email,
-          Fecha: `${dateFormatted} — 20:00 HRS`,
-          Formato: TIER_NAMES[appState.selectedTier],
-          Monto: totalFormatted,
-          Vegetarianos: appState.vegetarians
+          Fecha: `${dateFmt} — 20:00 HRS`,
+          Formato: TIER_NAMES[state.tier],
+          Total: totalFmt,
+          Vegetarianos: state.vegetarians
         })
       }).catch(err => console.log('Log local:', err));
 
       document.getElementById('transferModal').classList.remove('hidden');
     }
 
-    function closeTransferModal() {
+    function closeModal() {
       document.getElementById('transferModal').classList.add('hidden');
     }
 
-    function copyPrexDetails() {
-      const totalAmount = `$${TIER_PRICES[appState.selectedTier].toLocaleString('es-CL')} CLP`;
-      const text = `DATOS DE TRANSFERENCIA — MESA SECRETA
+    function copyBankInfo() {
+      const totalFmt = `$${PRICES[state.tier].toLocaleString('es-CL')} CLP`;
+      const txt = `DATOS DE TRANSFERENCIA — MESA SECRETA
 Banco: ${BANK_DATA.banco}
 Tipo: ${BANK_DATA.tipoCuenta}
 N° Cuenta: ${BANK_DATA.numeroCuenta}
 RUT: ${BANK_DATA.rut}
 Titular: ${BANK_DATA.nombre}
 Email: ${BANK_DATA.email}
-Monto a Transferir: ${totalAmount}
+Monto: ${totalFmt}
 Horario: 20:00 HRS (A pasos del Metro)`;
 
-      navigator.clipboard.writeText(text).then(() => {
-        const lbl = document.getElementById('copyPrexText');
-        lbl.textContent = '¡DATOS COPIADOS AL PORTAPAPELES!';
-        setTimeout(() => {
-          lbl.textContent = 'COPIAR DATOS DE TRANSFERENCIA';
-        }, 3000);
-      }).catch(() => alert(text));
+      navigator.clipboard.writeText(txt).then(() => {
+        const btn = document.getElementById('copyBtnText');
+        btn.textContent = '¡DATOS COPIADOS!';
+        setTimeout(() => { btn.textContent = 'COPIAR DATOS BANCARIOS'; }, 3000);
+      }).catch(() => alert(txt));
     }
 
-    // INITIALIZATION
     window.addEventListener('DOMContentLoaded', () => {
-      setBookingTier('dupla');
-      renderCalendar();
+      chooseTier('dupla');
+      renderCal();
     });
   </script>
 </body>
