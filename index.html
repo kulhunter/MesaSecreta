@@ -502,21 +502,21 @@
             </div>
           </div>
           <div class="pt-4 text-xs font-mono text-obsidian-gold border-t border-obsidian-border/40">
-            💳 Pago 100% anticipado y protegido a través de Stripe para asegurar la fecha de tu mesa.
+            💳 Pago 100% anticipado mediante transferencia bancaria directa para asegurar y bloquear la fecha de tu mesa.
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WIZARD DE RESERVAS & CHECKOUT STRIPE -->
+  <!-- WIZARD DE RESERVAS & TRANSFERENCIA BANCARIA -->
   <section id="reservar" class="py-24 border-t border-obsidian-border/50 relative">
     <div class="max-w-6xl mx-auto px-6">
       
       <div class="mb-12 text-center sm:text-left">
         <span class="text-xs font-mono text-obsidian-gold uppercase tracking-widest block mb-2">Agenda Oficial</span>
         <h2 class="font-serif text-4xl sm:text-5xl text-obsidian-cream">Reserva tu Noche en Mesa Secreta</h2>
-        <p class="text-obsidian-muted text-xs sm:text-sm mt-2">Selecciona tu modalidad, fecha y confirma tu pago de forma instantánea.</p>
+        <p class="text-obsidian-muted text-xs sm:text-sm mt-2">Selecciona tu modalidad, fecha y confirma tu solicitud.</p>
       </div>
 
       <!-- Step Indicator Bar -->
@@ -524,7 +524,7 @@
         <div id="step-tab-1" class="step-tab active py-3 border-b-2 border-obsidian-gold text-obsidian-gold font-medium">01 MODALIDAD</div>
         <div id="step-tab-2" class="step-tab py-3 border-b-2 border-obsidian-border text-obsidian-muted">02 FECHA</div>
         <div id="step-tab-3" class="step-tab py-3 border-b-2 border-obsidian-border text-obsidian-muted">03 PREFERENCIAS</div>
-        <div id="step-tab-4" class="step-tab py-3 border-b-2 border-obsidian-border text-obsidian-muted">04 PAGO STRIPE</div>
+        <div id="step-tab-4" class="step-tab py-3 border-b-2 border-obsidian-border text-obsidian-muted">04 TRANSFERENCIA</div>
       </div>
 
       <!-- Grid Layout -->
@@ -684,7 +684,7 @@
             </div>
           </div>
 
-          <!-- STEP 4: DATOS DE CONTACTO & STRIPE -->
+          <!-- STEP 4: DATOS DE CONTACTO & MERCADO PAGO -->
           <div id="step-panel-4" class="step-panel hidden space-y-6">
             <div>
               <h3 class="font-serif text-2xl text-obsidian-cream">Tus Datos de Contacto</h3>
@@ -708,13 +708,13 @@
                 </div>
               </div>
 
-              <div class="p-4 bg-obsidian-card border border-obsidian-border text-xs text-obsidian-muted space-y-2 rounded-xs">
-                <div class="flex items-center space-x-2 text-obsidian-gold font-mono">
-                  <span>🔒</span>
-                  <span>Pago Seguro con Stripe</span>
+              <div class="p-4 bg-obsidian-card border border-obsidian-gold/40 text-xs text-obsidian-muted space-y-2 rounded-xs">
+                <div class="flex items-center space-x-2 text-obsidian-gold font-mono font-medium">
+                  <span>🏦</span>
+                  <span>Transferencia Bancaria Inmediata (Sin Comisiones)</span>
                 </div>
                 <p>
-                  Al hacer clic en pagar serás redirigido a la pasarela oficial de <strong>Stripe</strong> para abonar de forma segura con tarjeta de crédito, débito, Apple Pay o Google Pay.
+                  Al hacer clic en confirmar verás en pantalla los datos de la cuenta corriente/vista para transferir desde tu banco y un botón directo para enviar tu comprobante por WhatsApp.
                 </p>
               </div>
             </form>
@@ -767,7 +767,7 @@
           <!-- Total Price Section -->
           <div class="mt-8 pt-6 border-t border-obsidian-border">
             <div class="flex items-baseline justify-between">
-              <span class="text-xs font-mono text-obsidian-gold uppercase">Total Reserva</span>
+              <span class="text-xs font-mono text-obsidian-gold uppercase">Total a Transferir</span>
               <span id="sumTotal" class="font-serif text-4xl text-obsidian-gold">$110.000</span>
             </div>
             <p id="sumAvg" class="text-[11px] text-obsidian-muted text-right font-mono mt-1">$55.000 CLP por persona</p>
@@ -775,7 +775,7 @@
 
           <!-- Reserve Button -->
           <button id="btnSubmitFinal" type="button" class="w-full mt-6 bg-obsidian-gold text-obsidian font-mono text-xs uppercase tracking-widest font-semibold py-4 hover:bg-obsidian-goldlight transition-all shadow-lg shadow-obsidian-gold/10 disabled:opacity-50 disabled:cursor-not-allowed rounded-xs">
-            Pagar con Stripe & Asegurar Mesa
+            Confirmar & Ver Datos de Transferencia
           </button>
 
           <p class="text-[10px] text-obsidian-muted leading-relaxed mt-4 text-center">
@@ -849,32 +849,81 @@
     </div>
   </section>
 
-  <!-- CONFIRMATION / STRIPE MODAL -->
-  <div id="stripeModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4">
-    <div class="bg-obsidian border border-obsidian-gold/60 max-w-lg w-full p-8 rounded-xs text-center relative shadow-2xl">
-      <div class="w-16 h-16 bg-obsidian-gold/10 border border-obsidian-gold rounded-full flex items-center justify-center mx-auto mb-6 text-obsidian-gold text-2xl">
-        💳
-      </div>
-      <span class="text-xs font-mono text-obsidian-gold uppercase tracking-widest block mb-2">Redirección a Stripe</span>
-      <h3 class="font-serif text-3xl text-obsidian-cream mb-4">Confirmando tu Mesa</h3>
+  <!-- CONFIRMATION / TRANSFERENCIA BANCARIA MODAL -->
+  <div id="transferModal" class="fixed inset-0 z-50 modal-backdrop hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-obsidian border border-obsidian-gold/80 max-w-lg w-full p-6 sm:p-8 rounded-xs text-center relative shadow-2xl my-8">
       
-      <div class="bg-obsidian-card p-5 border border-obsidian-border text-left text-xs space-y-3 mb-6">
-        <p class="text-obsidian-cream font-medium" id="stripeModalSummaryText">
-          Preparando el pago seguro para tu noche en Mesa Secreta.
-        </p>
-        <p class="text-obsidian-muted text-[11px]">
-          Tus datos quedaron guardados. Una vez completado el pago en Stripe, recibirás un correo y mensaje de WhatsApp con la confirmación de tu mesa.
-        </p>
+      <div class="w-14 h-14 bg-obsidian-gold/10 border border-obsidian-gold rounded-full flex items-center justify-center mx-auto mb-4 text-obsidian-gold text-2xl">
+        🏦
       </div>
 
-      <div class="space-y-3">
-        <button id="btnProceedStripe" type="button" class="w-full bg-obsidian-gold text-obsidian font-mono text-xs uppercase tracking-widest py-4 font-semibold hover:bg-obsidian-goldlight transition-colors rounded-xs">
-          Ir al Checkout Seguro de Stripe &rarr;
+      <span class="text-[11px] font-mono text-obsidian-gold uppercase tracking-widest block mb-1">Solicitud Registrada</span>
+      <h3 class="font-serif text-3xl text-obsidian-cream mb-2">Datos para tu Transferencia</h3>
+      <p class="text-xs text-obsidian-muted mb-6">
+        Realiza la transferencia desde tu banco y envía tu comprobante para bloquear tu mesa.
+      </p>
+      
+      <!-- Detalle Reserva -->
+      <div class="bg-obsidian-card p-4 border border-obsidian-border text-left text-xs space-y-1.5 mb-5 rounded-xs font-mono">
+        <div class="flex justify-between">
+          <span class="text-obsidian-muted">Reserva:</span>
+          <span id="modalReservaTipo" class="text-obsidian-cream font-medium">La Dupla</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-obsidian-muted">Fecha:</span>
+          <span id="modalReservaFecha" class="text-obsidian-gold font-medium">-</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-obsidian-muted">Total a transferir:</span>
+          <span id="modalReservaTotal" class="text-obsidian-gold font-bold text-sm">$110.000 CLP</span>
+        </div>
+      </div>
+
+      <!-- Tarjeta Datos Bancarios Dan -->
+      <div class="bg-obsidian-card border border-obsidian-gold/40 p-5 text-left text-xs space-y-2.5 rounded-xs font-mono mb-6 relative">
+        <div class="flex justify-between items-center pb-2 border-b border-obsidian-border/50">
+          <span class="text-obsidian-gold font-semibold uppercase text-[11px]">Banco PREX</span>
+          <span class="text-[10px] text-obsidian-muted">Cuenta Vista</span>
+        </div>
+        <div class="grid grid-cols-3 gap-1">
+          <span class="text-obsidian-muted">Titular:</span>
+          <span class="col-span-2 text-obsidian-cream font-medium">Dan Mesa Secreta</span>
+        </div>
+        <div class="grid grid-cols-3 gap-1">
+          <span class="text-obsidian-muted">RUT:</span>
+          <span class="col-span-2 text-obsidian-cream font-medium">16.667.108-6</span>
+        </div>
+        <div class="grid grid-cols-3 gap-1">
+          <span class="text-obsidian-muted">N° Cuenta:</span>
+          <span class="col-span-2 text-obsidian-cream font-medium text-obsidian-gold">12771432</span>
+        </div>
+        <div class="grid grid-cols-3 gap-1">
+          <span class="text-obsidian-muted">Email:</span>
+          <span class="col-span-2 text-obsidian-cream font-medium">dan.tagle@gmail.com</span>
+        </div>
+      </div>
+
+      <!-- Botones de Acción -->
+      <div class="space-y-3 font-mono text-xs">
+        <button id="btnCopyData" type="button" class="w-full bg-obsidian-border hover:bg-obsidian-borderlight text-obsidian-cream border border-obsidian-gold/40 py-3 uppercase tracking-wider transition-colors rounded-xs flex items-center justify-center space-x-2">
+          <span>📋</span>
+          <span id="copyBtnText">Copiar Datos Bancarios</span>
         </button>
-        <button id="btnCloseModal" type="button" class="w-full border border-obsidian-border text-obsidian-muted font-mono text-xs uppercase tracking-widest py-3 hover:text-obsidian-cream transition-colors rounded-xs">
-          Volver a Editar
+
+        <a id="btnSendWhatsApp" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3.5 uppercase tracking-wider transition-colors rounded-xs flex items-center justify-center space-x-2 shadow-lg shadow-emerald-950/40">
+          <span>💬</span>
+          <span>Enviar Comprobante por WhatsApp</span>
+        </a>
+
+        <button id="btnCloseModal" type="button" class="w-full text-obsidian-muted hover:text-obsidian-cream py-2 uppercase tracking-wider transition-colors text-[11px]">
+          Cerrar Ventana
         </button>
       </div>
+
+      <p class="text-[10px] text-obsidian-muted mt-4">
+        ✉️ También hemos enviado estos datos de reserva a <span class="text-obsidian-gold">dan.tagle@gmail.com</span>.
+      </p>
+
     </div>
   </div>
 
@@ -887,7 +936,7 @@
       </div>
       <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 font-mono text-[11px]">
         <a href="https://instagram.com/mesasecreta.cl" target="_blank" rel="noopener" class="text-obsidian-gold hover:underline">@mesasecreta.cl</a>
-        <span>Contacto: hola@mesasecreta.cl</span>
+        <span>Contacto: dan.tagle@gmail.com</span>
         <span>© 2026 Mesa Secreta</span>
       </div>
     </div>
@@ -896,16 +945,19 @@
   <!-- SCRIPT LOGIC -->
   <script>
     /* =====================================================================
-     * CONFIGURACIÓN DE STRIPE
-     * Aquí configuras tus links de pago creados en tu dashboard de Stripe:
-     * https://dashboard.stripe.com/payment-links
+     * DATOS BANCARIOS OFICIALES PARA TRANSFERENCIA (PREX)
      * ===================================================================== */
-    const STRIPE_CONFIG = {
-      // Reemplaza con tus Stripe Payment Links reales cuando los tengas creados:
-      duplaPaymentLink: 'https://buy.stripe.com/test_dupla_mesasecreta',
-      mesaCompletaPaymentLink: 'https://buy.stripe.com/test_mesacompleta_mesasecreta',
-      // Correo para respaldo de solicitudes
-      notificationEmail: 'hola@mesasecreta.cl'
+    const BANK_DATA = {
+      nombre: 'Dan Mesa Secreta',
+      rut: '16.667.108-6',
+      rutLimpio: '166671086',
+      tipoCuenta: 'Cuenta Vista',
+      numeroCuenta: '12771432',
+      banco: 'PREX',
+      email: 'dan.tagle@gmail.com',
+      // Teléfono WhatsApp para recibir el comprobante:
+      // Si tienes un número específico de WhatsApp, agrégalo aquí con código de país (ej: '56912345678')
+      whatsappReceiver: '56944621943'
     };
 
     /* Estado de la aplicación */
@@ -967,8 +1019,7 @@
       const dayOfWeek = checkDate.getDay(); // 0 = Sun, 1 = Mon
       if (dayOfWeek === 0 || dayOfWeek === 1) return true;
 
-      // Disponibilidad realista de las noches:
-      // Para generar escasez orgánica atractiva, simulamos ocupación de algunas fechas
+      // Simulación de escasez realista: algunas fechas ya reservadas
       const seed = (year * 31) + (month * 12) + day;
       return (seed % 4 === 0);
     }
@@ -1163,22 +1214,42 @@
         };
       });
 
-      // Submit / Stripe checkout action
-      document.getElementById('btnSubmitFinal').onclick = handleStripeBooking;
+      // Submit Transfer Booking
+      document.getElementById('btnSubmitFinal').onclick = handleTransferBooking;
 
       document.getElementById('btnCloseModal').onclick = () => {
-        document.getElementById('stripeModal').classList.add('hidden');
+        document.getElementById('transferModal').classList.add('hidden');
       };
 
-      document.getElementById('btnProceedStripe').onclick = () => {
-        const link = state.bookingType === 'dupla' ? STRIPE_CONFIG.duplaPaymentLink : STRIPE_CONFIG.mesaCompletaPaymentLink;
-        // Agregamos metadata por query param para trazabilidad
-        const checkoutUrl = `${link}?client_reference_id=${encodeURIComponent(state.selectedDateStr + '_' + state.bookingType)}`;
-        window.location.href = checkoutUrl;
-      };
+      // Copy Bank Data Button
+      document.getElementById('btnCopyData').onclick = copyBankDataToClipboard;
     });
 
-    function handleStripeBooking() {
+    function copyBankDataToClipboard() {
+      const isDupla = state.bookingType === 'dupla';
+      const totalAmount = `$${PRICES[state.bookingType].toLocaleString('es-CL')} CLP`;
+
+      const textToCopy = `DATOS DE TRANSFERENCIA - MESA SECRETA
+Banco: ${BANK_DATA.banco}
+Tipo: ${BANK_DATA.tipoCuenta}
+N° Cuenta: ${BANK_DATA.numeroCuenta}
+RUT: ${BANK_DATA.rut}
+Titular: ${BANK_DATA.nombre}
+Email: ${BANK_DATA.email}
+Monto: ${totalAmount}`;
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const copyBtnText = document.getElementById('copyBtnText');
+        copyBtnText.textContent = '¡Datos Copiados al Portapapeles!';
+        setTimeout(() => {
+          copyBtnText.textContent = 'Copiar Datos Bancarios';
+        }, 3000);
+      }).catch(err => {
+        alert('Datos:\n' + textToCopy);
+      });
+    }
+
+    function handleTransferBooking() {
       if (!state.selectedDateStr) {
         alert('Por favor selecciona una fecha disponible en el calendario.');
         goToStep(2);
@@ -1198,42 +1269,51 @@
         return;
       }
 
-      // Preparar resumen para el modal
-      const modalText = document.getElementById('stripeModalSummaryText');
       const isDupla = state.bookingType === 'dupla';
       const typeLabel = isDupla ? 'La Dupla (2 puestos)' : 'Mesa Completa (4 puestos)';
       const totalAmount = `$${PRICES[state.bookingType].toLocaleString('es-CL')} CLP`;
+      const dateFormatted = `${state.selectedDay} de ${MONTH_NAMES[state.selectedMonth]} de ${state.selectedYear} (${state.time} HRS)`;
 
-      modalText.innerHTML = `
-        <strong>${typeLabel}</strong><br>
-        📅 Fecha: ${state.selectedDay} de ${MONTH_NAMES[state.selectedMonth]} de ${state.selectedYear} (${state.time} HRS)<br>
-        👤 Nombre: ${name}<br>
-        📱 WhatsApp: ${phone}<br>
-        💰 Total a pagar: <strong class="text-obsidian-gold">${totalAmount}</strong>
-      `;
+      // Actualizar modal con datos del cliente
+      document.getElementById('modalReservaTipo').textContent = typeLabel;
+      document.getElementById('modalReservaFecha').textContent = dateFormatted;
+      document.getElementById('modalReservaTotal').textContent = totalAmount;
 
-      // Notificación en segundo plano al correo para respaldo
+      // Armar enlace de WhatsApp con mensaje listo
+      const whatsappMsg = `Hola Dan! Acabo de solicitar la reserva en Mesa Secreta:
+- Nombre: ${name}
+- Formato: ${typeLabel}
+- Fecha: ${dateFormatted}
+- Total: ${totalAmount}
+
+Adjunto el comprobante de transferencia desde Banco PREX para confirmar la mesa. ¡Muchas gracias!`;
+
+      const whatsappUrl = `https://wa.me/${BANK_DATA.whatsappReceiver}?text=${encodeURIComponent(whatsappMsg)}`;
+      document.getElementById('btnSendWhatsApp').href = whatsappUrl;
+
+      // Enviar respaldo automático a dan.tagle@gmail.com
       const payload = {
-        _subject: `INICIO RESERVA MESA SECRETA: ${name} (${state.selectedDay} ${MONTH_NAMES[state.selectedMonth]})`,
-        Tipo: typeLabel,
-        Nombre: name,
-        Email: email,
-        Telefono: phone,
-        Fecha: `${state.selectedDay} de ${MONTH_NAMES[state.selectedMonth]} de ${state.selectedYear}`,
-        Hora: `${state.time} HRS`,
+        _subject: `NUEVA RESERVA (PREX): ${name} - ${state.selectedDay} ${MONTH_NAMES[state.selectedMonth]} (${typeLabel})`,
+        _replyto: email,
+        Tipo_Reserva: typeLabel,
+        Nombre_Cliente: name,
+        Email_Cliente: email,
+        Telefono_WhatsApp: phone,
+        Fecha_Mesa: dateFormatted,
         Vegetarianos: state.vegetarians,
-        Notas: document.getElementById('bookingNotes').value || 'Sin notas',
-        Total: totalAmount
+        Notas_Observaciones: document.getElementById('bookingNotes').value || 'Sin notas',
+        Total_a_Transferir: totalAmount,
+        Metodo_Pago: 'Transferencia PREX Cuenta Vista 12771432'
       };
 
-      fetch(`https://formsubmit.co/ajax/${STRIPE_CONFIG.notificationEmail}`, {
+      fetch(`https://formsubmit.co/ajax/${BANK_DATA.email}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload)
       }).catch(err => console.log('Log local:', err));
 
-      // Mostrar modal Stripe
-      document.getElementById('stripeModal').classList.remove('hidden');
+      // Mostrar modal con datos bancarios
+      document.getElementById('transferModal').classList.remove('hidden');
     }
   </script>
 </body>
