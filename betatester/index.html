@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>BETA TESTERS — MESA SECRETA | Santiago</title>
+  <meta name="description" content="Convocatoria exclusiva para Beta Testers en Santiago. Postula para vivir una noche completa GRATIS en Mesa Secreta (Noviembre 2026).">
+  <meta property="og:title" content="BETA TESTERS — Una noche GRATIS en Mesa Secreta">
+  <meta property="og:description" content="Amasas tu pasta, cenas, bebes vino libre y te llevas tu pechera. Solo 4 comensales seleccionados. Santiago.">
+  <meta property="og:url" content="https://mesasecreta.cl/betatester">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍝</text></svg>">
+
+  <!-- Google Fonts coherentes con la marca principal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── RESET & TOKENS ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+    :root {
+      --bg: #060503;
+      --bg-card: #0d0a07;
+      --bg-elevated: #15100a;
+      --cream: #f6f0e4;
+      --bone: #ded3c1;
+      --muted: #827564;
+      --gold: #d8af56;
+      --gold-light: #f5d78e;
+      --wine: #821727;
+      --border: rgba(216, 175, 86, 0.22);
+      --border-subtle: rgba(246, 240, 228, 0.08);
+      --ff-cannes: 'Bebas Neue', sans-serif;
+      --ff-serif: 'Playfair Display', Georgia, serif;
+      --ff-sans: 'Space Grotesk', -apple-system, sans-serif;
+      --ff-mono: 'DM Mono', monospace;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--cream);
+      font-family: var(--ff-sans);
+      line-height: 1.5;
+      overflow-x: hidden;
+      font-size: 15px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* ── CURSOR FLUIDO (Desktop) ── */
+    @media (hover: hover) and (pointer: fine) {
+      body { cursor: none; }
+      #cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .18s, height .18s; }
+      #cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(216,175,86,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .28s, height .28s, border-color .28s; }
+      a:hover ~ #cursor, button:hover ~ #cursor, input:hover ~ #cursor { width: 18px; height: 18px; background: var(--gold-light); }
+      a:hover ~ #cursor-ring, button:hover ~ #cursor-ring, input:hover ~ #cursor-ring { width: 48px; height: 48px; border-color: var(--gold); }
+    }
+    @media (hover: none) or (pointer: coarse) {
+      #cursor, #cursor-ring { display: none !important; }
+    }
+
+    /* ── FILM GRAIN ── */
+    #grain {
+      position: fixed; inset: 0; pointer-events: none; z-index: 80; opacity: 0.038;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ── HEADER MÍNIMO ── */
+    header {
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(6,5,3,0.95);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+    @media (min-width: 768px) {
+      header { padding: 1.5rem 3.5rem; }
+    }
+    .brand-link {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-title {
+      font-family: var(--ff-cannes);
+      font-size: 1.45rem;
+      letter-spacing: .18em;
+      color: var(--cream);
+      line-height: 1;
+    }
+    .brand-tag {
+      font-family: var(--ff-mono);
+      font-size: 0.58rem;
+      letter-spacing: .25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .back-home {
+      font-family: var(--ff-mono);
+      font-size: 0.68rem;
+      letter-spacing: .15em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .back-home:hover { color: var(--gold); }
+
+    /* ── CONTENIDO PRINCIPAL (SPLIT LAYOUT) ── */
+    main {
+      flex: 1;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 3rem 1.25rem 5rem;
+      width: 100%;
+    }
+    @media (min-width: 768px) {
+      main { padding: 4.5rem 3rem 6rem; }
+    }
+
+    .tester-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+    @media (min-width: 900px) {
+      .tester-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 5rem;
+      }
+    }
+
+    /* ── LADO IZQUIERDO: CONVOCATORIA & STORYTELLING ── */
+    .tester-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .badge-convocatoria {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: rgba(13,10,7,0.9);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.9rem;
+      font-family: var(--ff-mono);
+      font-size: 0.62rem;
+      letter-spacing: .25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      width: fit-content;
+    }
+    .badge-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+      animation: pulse 1.6s infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    .tester-headline {
+      font-family: var(--ff-cannes);
+      font-size: clamp(3.2rem, 9vw, 6.8rem);
+      line-height: 0.9;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 1.35rem;
+    }
+    .tester-headline span { color: var(--gold); }
+
+    .tester-lead {
+      font-family: var(--ff-serif);
+      font-style: italic;
+      font-size: clamp(1.15rem, 2.5vw, 1.6rem);
+      line-height: 1.38;
+      color: var(--bone);
+      margin-bottom: 2rem;
+    }
+
+    .tester-bullets {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+    }
+    .bullet-title {
+      font-family: var(--ff-cannes);
+      font-size: 1.45rem;
+      letter-spacing: .08em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      font-size: 0.88rem;
+      color: var(--bone);
+    }
+    .bullet-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      line-height: 1.5;
+    }
+    .bullet-list li::before {
+      content: '◆';
+      color: var(--gold);
+      font-size: 0.65rem;
+      margin-top: 0.25rem;
+      flex-shrink: 0;
+    }
+    .bullet-list strong { color: var(--cream); }
+
+    /* Requisitos clave */
+    .conditions-card {
+      background: rgba(130,23,39,0.12);
+      border-left: 2px solid var(--wine);
+      padding: 1rem 1.25rem;
+      font-family: var(--ff-mono);
+      font-size: 0.72rem;
+      line-height: 1.6;
+      color: #f1a8b0;
+    }
+    .conditions-card strong { color: #fff; }
+
+    /* ── LADO DERECHO: FORMULARIO DE POSTULACIÓN ── */
+    .form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 2.25rem 1.5rem;
+      position: relative;
+    }
+    @media (min-width: 768px) {
+      .form-card { padding: 2.75rem 2rem; }
+    }
+    .form-title {
+      font-family: var(--ff-cannes);
+      font-size: 2.4rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .form-subtitle {
+      font-family: var(--ff-mono);
+      font-size: 0.65rem;
+      letter-spacing: .2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.35rem;
+    }
+    .form-label {
+      display: block;
+      font-family: var(--ff-mono);
+      font-size: 0.68rem;
+      letter-spacing: .15em;
+      color: var(--bone);
+      text-transform: uppercase;
+      margin-bottom: 0.45rem;
+    }
+    .form-label span { color: var(--gold); }
+    .form-input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--cream);
+      padding: 0.85rem 1rem;
+      font-family: var(--ff-sans);
+      font-size: 0.95rem;
+      transition: all .2s;
+      border-radius: 0;
+      -webkit-appearance: none;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--gold);
+      background: var(--bg-elevated);
+      box-shadow: 0 0 12px rgba(216,175,86,0.15);
+    }
+    .form-input::placeholder {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* Checkbox de requisitos */
+    .checkbox-block {
+      margin: 1.75rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .checkbox-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      cursor: pointer;
+    }
+    .checkbox-item input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+      display: grid;
+      place-content: center;
+      transition: all .2s;
+    }
+    .checkbox-item input[type="checkbox"]:checked {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .checkbox-item input[type="checkbox"]:checked::after {
+      content: '✓';
+      color: var(--bg);
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+    .checkbox-label {
+      font-size: 0.8rem;
+      color: var(--bone);
+      line-height: 1.45;
+    }
+
+    .btn-submit-postula {
+      width: 100%;
+      background: var(--gold);
+      color: var(--bg);
+      border: none;
+      padding: 1.1rem 1.5rem;
+      font-family: var(--ff-cannes);
+      font-size: 1.45rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .25s;
+    }
+    .btn-submit-postula:hover:not(:disabled) {
+      background: var(--cream);
+      transform: translateY(-2px);
+    }
+    .btn-submit-postula:disabled {
+      background: #201c16;
+      color: var(--muted);
+      cursor: not-allowed;
+    }
+
+    /* Mensajes de éxito / error */
+    .status-alert {
+      display: none;
+      padding: 1.25rem;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .status-alert.success {
+      display: block;
+      background: rgba(37,211,102,0.1);
+      border: 1px solid #25d366;
+      color: #72f099;
+    }
+    .status-alert.error {
+      display: block;
+      background: rgba(130,23,39,0.2);
+      border: 1px solid var(--wine);
+      color: #f1a8b0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 2.5rem 1.5rem;
+      background: var(--bg);
+      text-align: center;
+    }
+    .footer-note {
+      font-family: var(--ff-mono);
+      font-size: 0.65rem;
+      letter-spacing: .15em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .footer-note strong { color: var(--gold); font-weight: 500; }
+  </style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="grain"></div>
+
+<!-- ══ HEADER ═══════════════════════════════════════════ -->
+<header>
+  <a href="/" class="brand-link">
+    <span class="brand-title">MESA SECRETA</span>
+    <span class="brand-tag">Convocatoria Beta Testers · Santiago</span>
+  </a>
+  <a href="/" class="back-home">← Volver al inicio</a>
+</header>
+
+<!-- ══ CONTENIDO PRINCIPAL ══════════════════════════════ -->
+<main>
+  <div class="tester-grid">
+
+    <!-- LADO IZQUIERDO: EXPLICACIÓN Y VALOR -->
+    <div class="tester-info">
+      <div class="badge-convocatoria">
+        <span class="badge-dot"></span>
+        <span>Cupos ultra limitados · Noviembre 2026</span>
+      </div>
+
+      <h1 class="tester-headline">
+        Vive la experiencia completa <span>100% Gratis.</span>
+      </h1>
+
+      <p class="tester-lead">
+        Buscamos a nuestros primeros comensales para probar el formato antes del estreno oficial. Una noche completa de cocina, pasta al dente y vino libre para afinar cada segundo de la velada.
+      </p>
+
+      <div class="tester-bullets">
+        <h3 class="bullet-title">Lo que vivirás esa noche:</h3>
+        <ul class="bullet-list">
+          <li><strong>Amasas tu propia pasta:</strong> Técnica manual desde cero con huevos de campo y harina.</li>
+          <li><strong>Cena completa a la mesa:</strong> Tu pasta servida al momento con salsa casera reducida.</li>
+          <li><strong>Vino libre durante la velada:</strong> Copas servidas para disfrutar sin restricciones.</li>
+          <li><strong>Pechera oficial bordada de regalo:</strong> Te la llevas puesta a casa.</li>
+          <li><strong>Fotografías de recuerdo:</strong> Sesión digital en alta resolución directo a tu celular.</li>
+          <li><strong>Ambiente íntimo con vinilos:</strong> Solo 4 comensales alrededor del mesón.</li>
+        </ul>
+      </div>
+
+      <div class="conditions-card">
+        <strong>Requisitos obligatorios para postular:</strong><br>
+        1. Residir en Santiago o poder trasladarte por tus medios.<br>
+        2. Disponibilidad de asistencia en fecha por definir durante Noviembre 2026 (a las 20:00 hrs).<br>
+        3. Ayudarnos con feedback honesto y una breve reseña al terminar la noche.
+      </div>
+    </div>
+
+    <!-- LADO DERECHO: FORMULARIO DIRECTO A DAN.TAGLE@GMAIL.COM -->
+    <div class="form-card">
+      <h2 class="form-title">Postular a la mesa</h2>
+      <p class="form-subtitle">Formulario de registro · 4 cupos disponibles</p>
+
+      <!-- Formspree configurado directamente a dan.tagle@gmail.com -->
+      <form id="betaTesterForm" action="https://formspree.io/f/xovjqqkw" method="POST">
+        <!-- Destinatario explícito y asunto -->
+        <input type="hidden" name="_to" value="dan.tagle@gmail.com">
+        <input type="hidden" name="_subject" value="🍝 Nuevo Registro Beta Tester — Mesa Secreta">
+        <input type="hidden" name="origen" value="mesasecreta.cl/betatester">
+
+        <div class="form-group">
+          <label class="form-label" for="nombre">Nombre <span>*</span></label>
+          <input class="form-input" type="text" id="nombre" name="nombre" placeholder="Ej: Camila" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="apellido">Apellido <span>*</span></label>
+          <input class="form-input" type="text" id="apellido" name="apellido" placeholder="Ej: Silva" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="telefono">Teléfono / WhatsApp <span>*</span></label>
+          <input class="form-input" type="tel" id="telefono" name="telefono" placeholder="+56 9 1234 5678" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="instagram">Usuario de Instagram <span>*</span></label>
+          <input class="form-input" type="text" id="instagram" name="instagram" placeholder="@tu_usuario" required>
+        </div>
+
+        <!-- Confirmación de requisitos -->
+        <div class="checkbox-block">
+          <label class="checkbox-item">
+            <input type="checkbox" id="checkStgo" name="confirma_santiago" required>
+            <span class="checkbox-label">Puedo estar en <strong>Santiago</strong> y asistir al departamento (a pasos del Metro).</span>
+          </label>
+
+          <label class="checkbox-item">
+            <input type="checkbox" id="checkFecha" name="confirma_noviembre" required>
+            <span class="checkbox-label">Tengo disponibilidad en <strong>Noviembre 2026</strong> en la fecha y hora coordinadas (20:00 hrs).</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-submit-postula" id="btnSubmit">
+          Enviar mi postulación →
+        </button>
+
+        <div id="statusAlert" class="status-alert"></div>
+      </form>
+    </div>
+
+  </div>
+</main>
+
+<!-- ══ FOOTER ═══════════════════════════════════════════ -->
+<footer>
+  <p class="footer-note">
+    MESA SECRETA · Santiago, Chile · A pasos del Metro<br>
+    Contacto oficial: <strong>dan.tagle@gmail.com</strong> · WhatsApp: <strong>+56 9 2862 3092</strong>
+  </p>
+</footer>
+
+<!-- ══ SCRIPT DE ENVÍO Y RESPUESTA ══════════════════════ -->
+<script>
+/* ── 1. CURSOR FLUIDO ── */
+const curDot = document.getElementById('cursor');
+const curRng = document.getElementById('cursor-ring');
+let mX = 0, mY = 0, rX = 0, rY = 0;
+document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; });
+(function loopCursor() {
+  if (curDot && curRng) {
+    curDot.style.left = mX + 'px'; curDot.style.top = mY + 'px';
+    rX += (mX - rX) * 0.12; rY += (mY - rY) * 0.12;
+    curRng.style.left = rX + 'px'; curRng.style.top = rY + 'px';
+  }
+  requestAnimationFrame(loopCursor);
+})();
+
+/* ── 2. ENVÍO ASÍNCRONO DEL FORMULARIO A DAN.TAGLE@GMAIL.COM ── */
+const form = document.getElementById('betaTesterForm');
+const btnSubmit = document.getElementById('btnSubmit');
+const statusAlert = document.getElementById('statusAlert');
+
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  btnSubmit.disabled = true;
+  btnSubmit.textContent = 'Enviando postulación...';
+  statusAlert.className = 'status-alert';
+  statusAlert.style.display = 'none';
+
+  const formData = new FormData(form);
+
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      statusAlert.className = 'status-alert success';
+      statusAlert.innerHTML = '<strong>¡Postulación recibida con éxito! 🎉</strong><br>Tus datos han sido registrados y enviados a <em>dan.tagle@gmail.com</em>. Te contactaremos por WhatsApp o Instagram para coordinar la fecha exacta de Noviembre.';
+      statusAlert.style.display = 'block';
+      form.reset();
+      btnSubmit.textContent = '✓ Postulación enviada';
+    } else {
+      throw new Error('Hubo un problema al procesar el envío.');
+    }
+  } catch (error) {
+    // Si Formspree requiere fallback o el fetch falla por CORS/adblocker, respaldamos con mailto directo
+    const nombre = encodeURIComponent(document.getElementById('nombre').value);
+    const apellido = encodeURIComponent(document.getElementById('apellido').value);
+    const tel = encodeURIComponent(document.getElementById('telefono').value);
+    const ig = encodeURIComponent(document.getElementById('instagram').value);
+
+    statusAlert.className = 'status-alert error';
+    statusAlert.innerHTML = 'Ocurrió un error temporal en el envío automático. <br><a href="mailto:dan.tagle@gmail.com?subject=Postulación Beta Tester Mesa Secreta&body=Nombre: ' + nombre + ' ' + apellido + '%0ATeléfono: ' + tel + '%0AInstagram: ' + ig + '%0AConfirmo residencia en Santiago y asistencia en Noviembre 2026." style="color:#d8af56; text-decoration:underline;">Haz clic aquí para enviar tus datos directamente por correo a dan.tagle@gmail.com</a> o escríbenos a nuestro WhatsApp.';
+    statusAlert.style.display = 'block';
+    btnSubmit.disabled = false;
+    btnSubmit.textContent = 'Reintentar envío';
+  }
+});
+</script>
+</body>
+</html>
