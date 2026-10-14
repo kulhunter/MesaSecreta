@@ -3,35 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>MESA SECRETA — 4 puestos. Pasta a mano. Santiago.</title>
-  <meta name="description" content="El secreto mejor guardado de Santiago para un date: un depto a pasos del metro donde solo 4 personas se sientan a preparar pasta fresca y beber buen vino.">
-  <meta property="og:title" content="MESA SECRETA — Solo 4 puestos por noche">
-  <meta property="og:description" content="Amasas tu propia pasta con copa en mano y tienes el metro en la puerta para volver tranquilo.">
+  <title>MESA SECRETA — 4 Puestos. La Noche Clandestina de Pasta en Santiago.</title>
+  <meta name="description" content="Una experiencia íntima y clandestina en Santiago: amasas tu pasta fresca, cenas a 4 tiempos con maridaje libre de vino, vinilos sonando, sesión de fotos y tu pechera de cocina de regalo. Solo 4 sillas por noche.">
+  <meta property="og:title" content="MESA SECRETA — Esta noche no es una clase, es un festín privado">
+  <meta property="og:description" content="Cocinas con tus manos, bebes buen vino, cenas con desconocidos que terminan siendo amigos y te llevas tu pechera de regalo. A pasos del metro.">
   <meta property="og:url" content="https://mesasecreta.cl">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍝</text></svg>">
 
-  <!-- Google Fonts: Bebas Neue (Editorial Cannes), Playfair Display (Acento sensible), Space Grotesk (Técnico / Legibilidad UX) -->
+  <!-- Tipografías seleccionadas: Editorial de Alto Impacto -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,600;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ── RESET & TOKENS ── */
+    /* ── RESET & VARIABLES DE COLOR PROFUNDO ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
     :root {
-      --bg: #070604;
-      --bg-card: #100d09;
-      --bg-elevated: #16120c;
-      --cream: #f4ede1;
-      --bone: #ded5c5;
-      --muted: #7d7261;
+      --bg: #060503;
+      --bg-card: #0d0a07;
+      --bg-elevated: #140f09;
+      --cream: #f6f0e4;
+      --bone: #ded3c1;
+      --muted: #827564;
       --gold: #d8af56;
-      --gold-light: #f3d489;
-      --wine: #7f1724;
-      --wine-border: #4d0e16;
-      --border: rgba(216, 175, 86, 0.16);
-      --border-subtle: rgba(244, 237, 225, 0.08);
+      --gold-light: #f5d78e;
+      --wine: #821727;
+      --wine-dark: #38070e;
+      --border: rgba(216, 175, 86, 0.2);
+      --border-subtle: rgba(246, 240, 228, 0.08);
       --ff-cannes: 'Bebas Neue', sans-serif;
       --ff-serif: 'Playfair Display', Georgia, serif;
       --ff-sans: 'Space Grotesk', -apple-system, sans-serif;
@@ -47,37 +47,37 @@
       font-size: 15px;
     }
 
-    /* ── CURSOR (Solo desktop touchless) ── */
+    /* ── CURSOR INTERACTIVO (Desktop fine pointer) ── */
     @media (hover: hover) and (pointer: fine) {
       body { cursor: none; }
-      #cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .2s, height .2s, background .2s; }
-      #cursor-ring { position: fixed; width: 34px; height: 34px; border: 1px solid rgba(216,175,86,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .3s, height .3s, border-color .3s; }
-      a:hover ~ #cursor, button:hover ~ #cursor { width: 20px; height: 20px; background: var(--gold-light); }
+      #cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .18s, height .18s; }
+      #cursor-ring { position: fixed; width: 36px; height: 36px; border: 1px solid rgba(216,175,86,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .28s, height .28s, border-color .28s; }
+      a:hover ~ #cursor, button:hover ~ #cursor { width: 18px; height: 18px; background: var(--gold-light); }
       a:hover ~ #cursor-ring, button:hover ~ #cursor-ring { width: 50px; height: 50px; border-color: var(--gold); }
     }
     @media (hover: none) or (pointer: coarse) {
       #cursor, #cursor-ring { display: none !important; }
     }
 
-    /* ── FILM GRAIN ── */
+    /* ── FILM GRAIN EDITORIAL ── */
     #grain {
-      position: fixed; inset: 0; pointer-events: none; z-index: 90; opacity: 0.038;
+      position: fixed; inset: 0; pointer-events: none; z-index: 80; opacity: 0.038;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    /* ── HEADER ── */
+    /* ── HEADER DE NAVEGACIÓN ── */
     header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 500;
       padding: 1rem 1.25rem;
       display: flex; align-items: center; justify-content: space-between;
       transition: all .35s ease;
-      background: linear-gradient(180deg, rgba(7,6,4,0.92) 0%, rgba(7,6,4,0) 100%);
+      background: linear-gradient(180deg, rgba(6,5,3,0.92) 0%, rgba(6,5,3,0) 100%);
     }
     @media (min-width: 768px) {
       header { padding: 1.5rem 3rem; }
     }
     header.shrunk {
-      background: rgba(7,6,4,0.95);
+      background: rgba(6,5,3,0.96);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       padding: 0.75rem 1.25rem;
@@ -86,70 +86,63 @@
     @media (min-width: 768px) {
       header.shrunk { padding: 0.85rem 3rem; }
     }
-    .logo-group {
-      display: flex; flex-direction: column; text-decoration: none;
-    }
-    .logo-main {
+    .brand-wrap { text-decoration: none; display: flex; flex-direction: column; }
+    .brand-title {
       font-family: var(--ff-cannes);
-      font-size: 1.35rem;
+      font-size: 1.45rem;
       letter-spacing: .18em;
       color: var(--cream);
       line-height: 1;
-      transition: color .2s;
     }
-    .logo-sub {
+    .brand-sub {
       font-family: var(--ff-mono);
-      font-size: 0.55rem;
-      letter-spacing: .28em;
+      font-size: 0.58rem;
+      letter-spacing: .25em;
       color: var(--gold);
       text-transform: uppercase;
       margin-top: 2px;
     }
-    .header-actions {
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-    @media (min-width: 768px) {
-      .header-actions { gap: 1.25rem; }
-    }
-    .audio-btn {
-      background: rgba(16,13,9,0.7);
+    .header-right { display: flex; align-items: center; gap: 0.85rem; }
+    @media (min-width: 768px) { .header-right { gap: 1.35rem; } }
+
+    .btn-audio-toggle {
+      background: rgba(13,10,7,0.8);
       border: 1px solid var(--border);
       color: var(--cream);
-      padding: 0.45rem 0.85rem;
+      padding: 0.45rem 0.95rem;
       font-family: var(--ff-mono);
       font-size: 0.65rem;
       letter-spacing: .15em;
       text-transform: uppercase;
-      display: flex; align-items: center; gap: 0.45rem;
-      transition: all .2s;
+      display: flex; align-items: center; gap: 0.5rem;
       cursor: pointer;
+      transition: all .2s;
     }
-    .audio-btn:hover { border-color: var(--gold); color: var(--gold); }
-    .audio-dot {
+    .btn-audio-toggle:hover { border-color: var(--gold); color: var(--gold); }
+    .audio-pulsar {
       width: 6px; height: 6px; border-radius: 50%; background: var(--muted);
-      transition: background .3s;
+      transition: all .3s;
     }
-    .audio-btn.playing .audio-dot {
-      background: var(--gold);
-      box-shadow: 0 0 8px var(--gold);
-      animation: pulse 1.8s infinite;
+    .btn-audio-toggle.active .audio-pulsar {
+      background: var(--gold); box-shadow: 0 0 8px var(--gold);
+      animation: pulse 1.6s infinite;
     }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
-    .cta-header {
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    .header-cta {
       background: var(--gold);
       color: var(--bg);
-      padding: 0.5rem 1.15rem;
+      padding: 0.55rem 1.25rem;
       font-family: var(--ff-cannes);
-      font-size: 1rem;
-      letter-spacing: .14em;
+      font-size: 1.05rem;
+      letter-spacing: .12em;
       text-decoration: none;
       text-transform: uppercase;
-      transition: background .25s, transform .2s;
-      display: inline-block;
+      transition: all .25s;
     }
-    .cta-header:hover { background: var(--cream); transform: translateY(-1px); }
+    .header-cta:hover { background: var(--cream); transform: translateY(-1px); }
 
-    /* ── HERO ── */
+    /* ── HERO EDITORIAL CON VIDEO AMBIENTE INTEGRADO ── */
     #hero {
       position: relative;
       min-height: 100svh;
@@ -158,277 +151,386 @@
       overflow: hidden;
     }
     @media (min-width: 768px) {
-      #hero { padding: 8rem 3rem 4rem; justify-content: center; }
+      #hero { padding: 8.5rem 3.5rem 4rem; justify-content: center; }
     }
-    .hero-video-wrap {
+    .hero-media-bg {
       position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1;
     }
-    .hero-video-wrap video {
+    .hero-media-bg video {
       width: 100%; height: 100%; object-fit: cover;
-      filter: brightness(0.65) contrast(1.1);
+      filter: brightness(0.48) contrast(1.15) saturate(0.9);
     }
-    .hero-overlay {
+    .hero-layer {
       position: absolute; inset: 0; z-index: 2;
       background: linear-gradient(180deg, 
-        rgba(7,6,4,0.55) 0%, 
-        rgba(7,6,4,0.2) 35%, 
-        rgba(7,6,4,0.75) 75%, 
-        rgba(7,6,4,0.98) 100%
+        rgba(6,5,3,0.4) 0%, 
+        rgba(6,5,3,0.2) 30%, 
+        rgba(6,5,3,0.7) 70%, 
+        rgba(6,5,3,0.98) 100%
       );
     }
-    .hero-content {
-      position: relative; z-index: 3;
-      max-width: 1050px;
+    .hero-container {
+      position: relative; z-index: 3; max-width: 1100px;
     }
-    .hero-pill {
+    .hero-tag {
       display: inline-flex; align-items: center; gap: 0.55rem;
-      background: rgba(16,13,9,0.8);
+      background: rgba(13,10,7,0.85);
       border: 1px solid var(--border);
-      padding: 0.35rem 0.85rem;
+      padding: 0.35rem 0.9rem;
       font-family: var(--ff-mono);
       font-size: 0.62rem;
-      letter-spacing: .24em;
+      letter-spacing: .25em;
       color: var(--gold);
       text-transform: uppercase;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
       backdrop-filter: blur(8px);
     }
-    .hero-pill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
-    .hero-title {
+    .hero-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+
+    .hero-lead-h1 {
       font-family: var(--ff-cannes);
-      font-size: clamp(3.75rem, 14vw, 10.5rem);
+      font-size: clamp(3.8rem, 13vw, 10.5rem);
       line-height: 0.88;
       letter-spacing: 0.01em;
       text-transform: uppercase;
       color: var(--cream);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.35rem;
     }
-    .hero-title span { color: var(--gold); }
-    .hero-pitch {
+    .hero-lead-h1 span { color: var(--gold); }
+
+    .hero-statement {
       font-family: var(--ff-serif);
       font-style: italic;
-      font-size: clamp(1.15rem, 3.2vw, 2.1rem);
+      font-size: clamp(1.2rem, 3.2vw, 2.2rem);
       line-height: 1.35;
       color: var(--bone);
-      max-width: 680px;
-      margin-bottom: 1.75rem;
+      max-width: 780px;
+      margin-bottom: 2rem;
     }
-    .hero-foot {
-      display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem;
+
+    /* Checklist rápida de lo que vives */
+    .hero-perks {
+      display: flex; flex-wrap: wrap; gap: 0.75rem 1.75rem;
+      margin-bottom: 2.2rem;
     }
-    .hero-btn {
+    .perk-pill {
+      font-family: var(--ff-mono);
+      font-size: 0.68rem;
+      letter-spacing: .12em;
+      color: var(--cream);
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.45rem;
+    }
+    .perk-pill strong { color: var(--gold); }
+
+    .hero-actions {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2.25rem;
+    }
+    .btn-main-hero {
       background: var(--gold);
       color: var(--bg);
-      padding: 0.85rem 2rem;
+      padding: 0.95rem 2.25rem;
       font-family: var(--ff-cannes);
-      font-size: 1.35rem;
+      font-size: 1.45rem;
       letter-spacing: .12em;
       text-transform: uppercase;
       text-decoration: none;
       transition: all .25s;
-      display: inline-flex; align-items: center; gap: 0.65rem;
+      display: inline-flex; align-items: center; gap: 0.75rem;
     }
-    .hero-btn:hover { background: var(--cream); transform: translateY(-2px); }
-    .hero-metro-tag {
+    .btn-main-hero:hover { background: var(--cream); transform: translateY(-2px); }
+    .hero-note-metro {
       font-family: var(--ff-mono);
       font-size: 0.7rem;
-      letter-spacing: .15em;
+      letter-spacing: .14em;
       color: var(--muted);
       text-transform: uppercase;
     }
-    .hero-metro-tag strong { color: var(--cream); font-weight: 500; }
+    .hero-note-metro strong { color: var(--cream); font-weight: 500; }
 
-    /* ── MARQUEE TICKER ── */
-    .marquee-wrap {
+    /* ── TICKER DE MARCA ── */
+    .ticker-bar {
       overflow: hidden;
       border-top: 1px solid var(--border-subtle);
       border-bottom: 1px solid var(--border-subtle);
       padding: 0.85rem 0;
-      background: rgba(16,13,9,0.5);
+      background: rgba(13,10,7,0.7);
     }
-    .marquee-track {
-      display: flex; gap: 3rem; white-space: nowrap;
-      animation: marquee 24s linear infinite;
+    .ticker-stream {
+      display: flex; gap: 3.5rem; white-space: nowrap;
+      animation: tickerRun 22s linear infinite;
     }
-    .marquee-item {
+    .ticker-point {
       font-family: var(--ff-cannes);
-      font-size: 1.05rem;
-      letter-spacing: .26em;
+      font-size: 1.1rem;
+      letter-spacing: .25em;
       text-transform: uppercase;
       color: var(--muted);
       flex-shrink: 0;
-      display: flex; align-items: center; gap: 1.5rem;
+      display: flex; align-items: center; gap: 1.75rem;
     }
-    .marquee-dot { color: var(--gold); font-size: 0.75rem; }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .ticker-diamond { color: var(--gold); font-size: 0.75rem; }
+    @keyframes tickerRun { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* ── CAPÍTULOS DE STORYTELLING (Capítulo + Foto + Diálogo visual) ── */
-    .chapter-section {
-      padding: 4.5rem 1.25rem;
-      max-width: 1200px;
+    /* ── EL MANIFIESTO: POR QUÉ VALE CADA PESO ── */
+    .manifesto-section {
+      padding: 5rem 1.25rem;
+      max-width: 1050px;
       margin: 0 auto;
+      text-align: center;
     }
     @media (min-width: 768px) {
-      .chapter-section { padding: 7.5rem 3rem; }
+      .manifesto-section { padding: 8rem 3rem; }
     }
-    .chapter-grid {
+    .manifesto-kicker {
+      font-family: var(--ff-mono);
+      font-size: 0.65rem;
+      letter-spacing: .35em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+    .manifesto-title {
+      font-family: var(--ff-cannes);
+      font-size: clamp(2.8rem, 8vw, 6.5rem);
+      line-height: 0.9;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 1.75rem;
+    }
+    .manifesto-title em { font-style: normal; color: var(--gold); }
+    .manifesto-p {
+      font-family: var(--ff-serif);
+      font-style: italic;
+      font-size: clamp(1.15rem, 2.5vw, 1.65rem);
+      color: var(--bone);
+      line-height: 1.45;
+      max-width: 780px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* ── EL FLUJO COMPLETO DE LA EXPERIENCIA (6 PILARES) ── */
+    .experience-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.25rem 5rem;
+    }
+    @media (min-width: 768px) {
+      .experience-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.75rem;
+        padding: 0 3rem 8rem;
+      }
+    }
+    @media (min-width: 1040px) {
+      .experience-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .exp-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: 2.25rem 1.75rem;
+      position: relative;
+      display: flex; flex-direction: column; justify-content: space-between;
+      transition: all .3s ease;
+    }
+    .exp-item:hover {
+      border-color: var(--border);
+      background: var(--bg-elevated);
+      transform: translateY(-4px);
+    }
+    .exp-item.gold-highlight {
+      border: 1px solid var(--gold);
+      background: linear-gradient(180deg, #161108 0%, #0d0a07 100%);
+    }
+    .exp-num {
+      font-family: var(--ff-mono);
+      font-size: 0.65rem;
+      letter-spacing: .3em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .exp-title {
+      font-family: var(--ff-cannes);
+      font-size: 2rem;
+      line-height: 0.95;
+      letter-spacing: .06em;
+      color: var(--cream);
+      margin-bottom: 0.85rem;
+      text-transform: uppercase;
+    }
+    .exp-desc {
+      font-family: var(--ff-sans);
+      font-size: 0.88rem;
+      color: var(--bone);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+    .exp-subdetail {
+      font-family: var(--ff-mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 0.75rem;
+    }
+    .exp-subdetail strong { color: var(--gold); }
+
+    /* ── ACTOS VISUALES FOTOGRÁFICOS REALES ── */
+    .photo-narrative {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 6rem;
+    }
+    @media (min-width: 768px) {
+      .photo-narrative { padding: 3rem 3rem 8rem; }
+    }
+    .narrative-row {
       display: grid;
       grid-template-columns: 1fr;
       gap: 2.5rem;
       align-items: center;
+      margin-bottom: 5.5rem;
     }
     @media (min-width: 860px) {
-      .chapter-grid {
-        grid-template-columns: 1fr 1fr;
+      .narrative-row {
+        grid-template-columns: 1.1fr 0.9fr;
         gap: 4.5rem;
       }
-      .chapter-grid.reverse { direction: rtl; }
-      .chapter-grid.reverse > * { direction: ltr; }
+      .narrative-row.invert {
+        direction: rtl;
+      }
+      .narrative-row.invert > * {
+        direction: ltr;
+      }
     }
-    .chapter-media {
+    .narrative-frame {
       position: relative;
       overflow: hidden;
-      background: #000;
       aspect-ratio: 4 / 3;
+      background: #000;
+      border: 1px solid var(--border-subtle);
     }
     @media (min-width: 860px) {
-      .chapter-media { aspect-ratio: 5 / 4; }
+      .narrative-frame { aspect-ratio: 5 / 4; }
     }
-    .chapter-media img {
+    .narrative-frame img {
       width: 100%; height: 100%; object-fit: cover; display: block;
-      transition: transform 1.2s cubic-bezier(.16,1,.3,1), filter 0.8s ease;
-      filter: contrast(1.06) brightness(0.95);
+      transition: transform 1.2s cubic-bezier(.16,1,.3,1), filter .6s ease;
+      filter: contrast(1.08) brightness(0.92);
     }
-    .chapter-media:hover img {
+    .narrative-frame:hover img {
       transform: scale(1.04);
-      filter: contrast(1.1) brightness(1.02);
+      filter: contrast(1.12) brightness(1.02);
     }
-    .chapter-tag {
-      position: absolute; top: 1rem; left: 1rem;
-      background: rgba(7,6,4,0.85);
+    .narrative-stamp {
+      position: absolute; bottom: 1rem; left: 1rem;
+      background: rgba(6,5,3,0.85);
       border: 1px solid var(--border);
       padding: 0.35rem 0.75rem;
       font-family: var(--ff-mono);
       font-size: 0.58rem;
       letter-spacing: .25em;
-      text-transform: uppercase;
       color: var(--gold);
+      text-transform: uppercase;
       backdrop-filter: blur(6px);
     }
-    .chapter-info {
+    .narrative-text {
       display: flex; flex-direction: column; justify-content: center;
     }
-    .chapter-num {
+    .narrative-act {
       font-family: var(--ff-mono);
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       letter-spacing: .35em;
       color: var(--gold);
       text-transform: uppercase;
-      margin-bottom: 0.75rem;
-      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 0.65rem;
     }
-    .chapter-num::after {
-      content: ''; height: 1px; width: 40px; background: var(--border); display: inline-block;
-    }
-    .chapter-headline {
+    .narrative-h2 {
       font-family: var(--ff-cannes);
-      font-size: clamp(2.4rem, 6vw, 4.4rem);
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
       line-height: 0.92;
-      letter-spacing: 0.01em;
-      text-transform: uppercase;
+      letter-spacing: .02em;
       color: var(--cream);
-      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
     }
-    .chapter-headline em {
-      font-style: normal;
-      color: var(--gold);
-    }
-    .chapter-copy {
+    .narrative-h2 span { color: var(--gold); }
+    .narrative-lead {
       font-family: var(--ff-serif);
       font-style: italic;
       font-size: clamp(1.05rem, 2.2vw, 1.35rem);
       color: var(--bone);
       line-height: 1.45;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
     }
-    .chapter-detail {
-      font-family: var(--ff-sans);
-      font-size: 0.88rem;
+    .narrative-body {
+      font-size: 0.9rem;
       color: var(--muted);
       line-height: 1.65;
     }
 
     /* ── BANNER DESTACADO METRO ── */
-    .metro-banner {
+    .metro-stage {
       background: var(--bg-card);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 3.5rem 1.25rem;
+      padding: 4rem 1.25rem;
       text-align: center;
-      position: relative;
     }
     @media (min-width: 768px) {
-      .metro-banner { padding: 5rem 3rem; }
+      .metro-stage { padding: 6rem 3rem; }
     }
-    .metro-banner-inner {
-      max-width: 780px; margin: 0 auto;
+    .metro-inner { max-width: 800px; margin: 0 auto; }
+    .metro-pill-sub {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-family: var(--ff-mono); font-size: 0.65rem; letter-spacing: .25em;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 1rem;
     }
-    .metro-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-family: var(--ff-mono);
-      font-size: 0.65rem;
-      letter-spacing: .25em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    .metro-heading {
+    .metro-big-title {
       font-family: var(--ff-cannes);
-      font-size: clamp(2.2rem, 7vw, 4.8rem);
+      font-size: clamp(2.5rem, 7.5vw, 5rem);
       line-height: 0.92;
       text-transform: uppercase;
       color: var(--cream);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.35rem;
     }
-    .metro-heading span { color: var(--gold); }
-    .metro-text {
-      font-family: var(--ff-sans);
-      font-size: clamp(0.95rem, 2vw, 1.15rem);
+    .metro-big-title em { font-style: normal; color: var(--gold); }
+    .metro-p {
+      font-size: clamp(1rem, 2vw, 1.15rem);
       color: var(--bone);
       line-height: 1.6;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
-    .metro-specs {
-      display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 2.5rem;
-      padding-top: 1.5rem;
+    .metro-data-pills {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 3rem;
       border-top: 1px solid var(--border-subtle);
+      padding-top: 2rem;
     }
-    .spec-item {
-      display: flex; flex-direction: column; align-items: center; text-align: center;
+    .m-pill { display: flex; flex-direction: column; align-items: center; }
+    .m-pill-val {
+      font-family: var(--ff-cannes); font-size: 2.2rem; color: var(--gold); line-height: 1;
     }
-    .spec-kpi {
-      font-family: var(--ff-cannes);
-      font-size: 2rem;
-      color: var(--gold);
-      line-height: 1;
-    }
-    .spec-lbl {
-      font-family: var(--ff-mono);
-      font-size: 0.62rem;
-      letter-spacing: .18em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-top: 4px;
+    .m-pill-desc {
+      font-family: var(--ff-mono); font-size: 0.62rem; letter-spacing: .2em; color: var(--muted); text-transform: uppercase; margin-top: 4px;
     }
 
-    /* ── SECCIÓN DE PRECIOS ── */
+    /* ── SECCIÓN DE PRECIOS TRANSPARENTES ── */
     #precios {
-      padding: 4.5rem 1.25rem;
+      padding: 5rem 1.25rem;
       max-width: 1200px;
       margin: 0 auto;
     }
     @media (min-width: 768px) {
-      #precios { padding: 7rem 3rem; }
+      #precios { padding: 7.5rem 3rem; }
     }
     .section-eyebrow {
       font-family: var(--ff-mono);
@@ -439,55 +541,54 @@
       margin-bottom: 0.75rem;
       display: block;
     }
-    .section-title {
+    .section-headline {
       font-family: var(--ff-cannes);
-      font-size: clamp(2.6rem, 7vw, 5.5rem);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
       line-height: 0.9;
       text-transform: uppercase;
       color: var(--cream);
       margin-bottom: 2.75rem;
     }
-    .plans-grid {
+    .pricing-deck {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.5rem;
+      gap: 1.75rem;
     }
-    @media (min-width: 860px) {
-      .plans-grid {
+    @media (min-width: 880px) {
+      .pricing-deck {
         grid-template-columns: repeat(3, 1fr);
-        gap: 1.25rem;
+        gap: 1.35rem;
         align-items: stretch;
       }
     }
-    .plan-card {
+    .card-tier {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       padding: 2.25rem 1.75rem;
-      display: flex; flex-direction: column;
-      justify-content: space-between;
+      display: flex; flex-direction: column; justify-content: space-between;
       position: relative;
       transition: all .3s ease;
       cursor: pointer;
     }
-    .plan-card:hover {
+    .card-tier:hover {
       border-color: var(--border);
       background: var(--bg-elevated);
       transform: translateY(-3px);
     }
-    .plan-card.featured {
-      background: linear-gradient(180deg, #181309 0%, #100d08 100%);
+    .card-tier.most-popular {
+      background: linear-gradient(180deg, #171209 0%, #0d0a07 100%);
       border: 1px solid var(--gold);
       box-shadow: 0 10px 30px rgba(216,175,86,0.08);
     }
-    @media (min-width: 860px) {
-      .plan-card.featured {
+    @media (min-width: 880px) {
+      .card-tier.most-popular {
         transform: scale(1.02);
       }
-      .plan-card.featured:hover {
+      .card-tier.most-popular:hover {
         transform: scale(1.02) translateY(-4px);
       }
     }
-    .plan-badge {
+    .tier-badge-top {
       position: absolute; top: -11px; left: 1.75rem;
       background: var(--gold);
       color: var(--bg);
@@ -498,8 +599,7 @@
       text-transform: uppercase;
       padding: 0.25rem 0.75rem;
     }
-    .plan-header { margin-bottom: 1.5rem; }
-    .plan-seats {
+    .tier-slots {
       font-family: var(--ff-mono);
       font-size: 0.65rem;
       letter-spacing: .2em;
@@ -507,32 +607,32 @@
       text-transform: uppercase;
       display: block; margin-bottom: 0.35rem;
     }
-    .plan-name {
+    .tier-title {
       font-family: var(--ff-cannes);
       font-size: 1.85rem;
       letter-spacing: .08em;
       color: var(--cream);
       line-height: 1;
     }
-    .plan-pricing-box {
+    .tier-price-box {
       margin: 1.25rem 0;
       padding-bottom: 1.25rem;
       border-bottom: 1px solid var(--border-subtle);
     }
-    .plan-price {
+    .tier-amount {
       font-family: var(--ff-cannes);
       font-size: 3.2rem;
       line-height: 0.9;
       color: var(--cream);
     }
-    .plan-card.featured .plan-price { color: var(--gold); }
-    .plan-unit {
+    .card-tier.most-popular .tier-amount { color: var(--gold); }
+    .tier-rate-pp {
       font-family: var(--ff-mono);
       font-size: 0.68rem;
       color: var(--muted);
       margin-top: 0.35rem;
     }
-    .plan-saving {
+    .tier-discount {
       display: inline-block;
       margin-top: 0.45rem;
       background: rgba(216,175,86,0.12);
@@ -543,16 +643,23 @@
       padding: 0.2rem 0.55rem;
       text-transform: uppercase;
     }
-    .plan-body {
-      font-family: var(--ff-sans);
-      font-size: 0.85rem;
-      line-height: 1.6;
+    .tier-list {
+      list-style: none;
+      font-size: 0.82rem;
       color: var(--bone);
-      margin-bottom: 1.75rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
       flex-grow: 1;
     }
-    .plan-alert-box {
-      background: rgba(127,23,36,0.14);
+    .tier-list li {
+      margin-bottom: 0.55rem;
+      display: flex; align-items: flex-start; gap: 0.5rem;
+    }
+    .tier-list li::before {
+      content: '✓'; color: var(--gold); font-weight: bold; flex-shrink: 0;
+    }
+    .solo-dupla-warning {
+      background: rgba(130,23,39,0.14);
       border-left: 2px solid var(--wine);
       padding: 0.75rem 0.85rem;
       font-family: var(--ff-mono);
@@ -561,12 +668,12 @@
       color: #f1a8b0;
       margin-bottom: 1.5rem;
     }
-    .plan-cta-btn {
+    .tier-btn-choose {
       width: 100%;
       background: transparent;
       border: 1px solid var(--cream);
       color: var(--cream);
-      padding: 0.75rem;
+      padding: 0.8rem;
       font-family: var(--ff-cannes);
       font-size: 1.15rem;
       letter-spacing: .15em;
@@ -576,19 +683,19 @@
       transition: all .25s;
       display: block;
     }
-    .plan-card:hover .plan-cta-btn {
+    .card-tier:hover .tier-btn-choose {
       background: var(--cream); color: var(--bg);
     }
-    .plan-card.featured .plan-cta-btn {
+    .card-tier.most-popular .tier-btn-choose {
       background: var(--gold); border-color: var(--gold); color: var(--bg);
     }
-    .plan-card.featured:hover .plan-cta-btn {
+    .card-tier.most-popular:hover .tier-btn-choose {
       background: var(--cream); border-color: var(--cream);
     }
 
-    /* ── SECCIÓN DE RESERVA (CALENDARIO + SUMMARY) ── */
+    /* ── RESERVA & CALENDARIO FLUIDO ── */
     #reservar {
-      background: #090704;
+      background: #080604;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       padding: 4.5rem 1.25rem;
@@ -596,7 +703,7 @@
     @media (min-width: 768px) {
       #reservar { padding: 6.5rem 3rem; }
     }
-    .reservar-container {
+    .booking-wrapper {
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
@@ -604,63 +711,60 @@
       gap: 3rem;
     }
     @media (min-width: 900px) {
-      .reservar-container {
-        grid-template-columns: 1.1fr 0.9fr;
+      .booking-wrapper {
+        grid-template-columns: 1.15fr 0.85fr;
         gap: 4.5rem;
         align-items: start;
       }
     }
-    .cal-card {
+    .calendar-container {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       padding: 1.75rem 1.25rem;
     }
     @media (min-width: 768px) {
-      .cal-card { padding: 2.25rem 2rem; }
+      .calendar-container { padding: 2.25rem 2rem; }
     }
-    .cal-header {
+    .cal-top {
       display: flex; align-items: center; justify-content: space-between;
       margin-bottom: 1.5rem;
       padding-bottom: 1rem;
       border-bottom: 1px solid var(--border-subtle);
     }
-    .cal-title-group {
-      display: flex; flex-direction: column;
-    }
-    .cal-month {
+    .cal-lead-month {
       font-family: var(--ff-cannes);
       font-size: 1.65rem;
       letter-spacing: .08em;
       text-transform: uppercase;
       color: var(--cream);
     }
-    .cal-meta {
+    .cal-kicker {
       font-family: var(--ff-mono);
       font-size: 0.6rem;
       letter-spacing: .2em;
       color: var(--gold);
       text-transform: uppercase;
     }
-    .cal-arrows { display: flex; gap: 0.4rem; }
-    .cal-nav-btn {
+    .cal-ctrls { display: flex; gap: 0.4rem; }
+    .cal-btn-arrow {
       background: var(--bg);
       border: 1px solid var(--border);
       color: var(--cream);
-      width: 36px; height: 36px;
+      width: 38px; height: 38px;
       display: flex; align-items: center; justify-content: center;
       font-size: 1.1rem;
       cursor: pointer;
       transition: all .2s;
     }
-    .cal-nav-btn:hover {
+    .cal-btn-arrow:hover {
       border-color: var(--gold); color: var(--gold); background: var(--bg-card);
     }
-    .cal-grid {
+    .cal-matrix {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 4px;
+      gap: 5px;
     }
-    .cal-dow {
+    .cal-matrix-header {
       font-family: var(--ff-mono);
       font-size: 0.58rem;
       letter-spacing: .15em;
@@ -669,58 +773,52 @@
       text-align: center;
       padding: 0.5rem 0;
     }
-    .cal-cell {
+    .cal-slot {
       aspect-ratio: 1;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-family: var(--ff-mono);
-      font-size: 0.78rem;
-      background: rgba(16,13,9,0.5);
+      font-size: 0.8rem;
+      background: rgba(13,10,7,0.6);
       border: 1px solid transparent;
       color: var(--cream);
       cursor: pointer;
-      position: relative;
       transition: all .2s;
     }
-    .cal-cell:not(.disabled):hover {
+    .cal-slot:not(.disabled):hover {
       border-color: var(--gold); color: var(--gold); background: var(--bg-elevated);
     }
-    .cal-cell.selected {
+    .cal-slot.selected {
       background: var(--gold) !important;
       color: var(--bg) !important;
       font-weight: 700;
       border-color: var(--gold) !important;
     }
-    .cal-cell.disabled {
-      color: var(--muted);
-      opacity: 0.22;
-      cursor: not-allowed;
-      background: transparent;
+    .cal-slot.disabled {
+      color: var(--muted); opacity: 0.22; cursor: not-allowed; background: transparent;
     }
-    .cal-legend {
+    .cal-footer-note {
       margin-top: 1.5rem;
       padding-top: 1rem;
       border-top: 1px solid var(--border-subtle);
-      display: flex; flex-wrap: wrap; gap: 1rem 1.5rem;
       font-family: var(--ff-mono);
-      font-size: 0.62rem;
+      font-size: 0.65rem;
+      letter-spacing: .12em;
       color: var(--muted);
       text-transform: uppercase;
+      display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem;
     }
-    .legend-item { display: flex; align-items: center; gap: 0.45rem; }
-    .legend-indicator { width: 8px; height: 8px; border-radius: 50%; }
+    .cal-footer-note strong { color: var(--gold); }
 
-    /* ── BOOKING SUMMARY CARD (MOBILE FIRST STICKY) ── */
-    .summary-card {
+    /* ── TARJETA RESUMEN INTERACTIVA (MOBILE-FIRST) ── */
+    .summary-dock {
       background: var(--bg-card);
       border: 1px solid var(--border);
       padding: 2rem 1.5rem;
     }
     @media (min-width: 900px) {
-      .summary-card {
-        position: sticky; top: 100px; padding: 2.25rem 2rem;
-      }
+      .summary-dock { position: sticky; top: 100px; padding: 2.25rem 2rem; }
     }
-    .summary-heading {
+    .summary-dock-title {
       font-family: var(--ff-cannes);
       font-size: 2.2rem;
       letter-spacing: .06em;
@@ -729,7 +827,7 @@
       line-height: 1;
       margin-bottom: 0.35rem;
     }
-    .summary-subtitle {
+    .summary-dock-sub {
       font-family: var(--ff-mono);
       font-size: 0.65rem;
       letter-spacing: .2em;
@@ -737,11 +835,12 @@
       text-transform: uppercase;
       margin-bottom: 1.75rem;
     }
-    .tier-switcher {
-      display: grid; grid-template-columns: 1fr; gap: 0.45rem;
+
+    .tier-toggle-stack {
+      display: grid; grid-template-columns: 1fr; gap: 0.5rem;
       margin-bottom: 1.5rem;
     }
-    .tier-option {
+    .tier-toggle-item {
       background: var(--bg);
       border: 1px solid var(--border-subtle);
       padding: 0.85rem 1rem;
@@ -750,23 +849,20 @@
       cursor: pointer;
       transition: all .2s;
     }
-    .tier-option.active {
+    .tier-toggle-item.active {
       border-color: var(--gold);
       background: rgba(216,175,86,0.08);
       color: var(--cream);
     }
-    .tier-option-name {
-      font-family: var(--ff-sans);
-      font-size: 0.82rem;
-      font-weight: 600;
+    .tier-toggle-title {
+      font-size: 0.85rem; font-weight: 600;
     }
-    .tier-option-price {
-      font-family: var(--ff-mono);
-      font-size: 0.78rem;
-      color: var(--gold);
+    .tier-toggle-cost {
+      font-family: var(--ff-mono); font-size: 0.78rem; color: var(--gold);
     }
-    .solo-pairing-notice {
-      background: rgba(127,23,36,0.12);
+
+    .solo-pairing-box {
+      background: rgba(130,23,39,0.12);
       border-left: 2px solid var(--wine);
       padding: 0.75rem 0.85rem;
       font-family: var(--ff-mono);
@@ -775,38 +871,33 @@
       color: #f1a8b0;
       margin-bottom: 1.25rem;
     }
-    .summary-lines {
-      margin-bottom: 1.5rem;
-    }
-    .summary-row {
+
+    .dock-rows { margin-bottom: 1.5rem; }
+    .dock-row {
       display: flex; justify-content: space-between; align-items: center;
       padding: 0.7rem 0;
       border-bottom: 1px solid var(--border-subtle);
       font-size: 0.82rem;
     }
-    .summary-label {
+    .dock-label {
       font-family: var(--ff-mono);
       font-size: 0.68rem;
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: .1em;
     }
-    .summary-val {
-      font-family: var(--ff-sans);
-      font-weight: 500;
-      color: var(--cream);
-      text-align: right;
+    .dock-val {
+      font-weight: 500; color: var(--cream); text-align: right;
     }
-    .summary-val.highlight { color: var(--gold); font-family: var(--ff-mono); }
-    .veg-bar {
+    .dock-val.highlight { color: var(--gold); font-family: var(--ff-mono); }
+
+    .veg-bar-wrapper {
       display: flex; align-items: center; justify-content: space-between;
       padding: 0.75rem 0;
       border-bottom: 1px solid var(--border-subtle);
     }
-    .veg-counter {
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-    .veg-count-btn {
+    .veg-stepper { display: flex; align-items: center; gap: 0.75rem; }
+    .btn-step {
       width: 28px; height: 28px;
       background: var(--bg);
       border: 1px solid var(--border);
@@ -816,59 +907,54 @@
       cursor: pointer;
       transition: all .2s;
     }
-    .veg-count-btn:hover { border-color: var(--gold); color: var(--gold); }
-    .veg-count-display {
-      font-family: var(--ff-mono); font-size: 0.95rem; font-weight: 700;
-      color: var(--cream); min-width: 1.5ch; text-align: center;
+    .btn-step:hover { border-color: var(--gold); color: var(--gold); }
+    .veg-count-num {
+      font-family: var(--ff-mono); font-size: 0.95rem; font-weight: 700; color: var(--cream);
+      min-width: 1.5ch; text-align: center;
     }
-    .summary-total-block {
+
+    .dock-total-area {
       display: flex; justify-content: space-between; align-items: baseline;
       padding: 1.25rem 0 1.5rem;
     }
-    .total-title {
-      font-family: var(--ff-mono);
-      font-size: 0.7rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--muted);
+    .total-title-lbl {
+      font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
     }
-    .total-amount {
-      font-family: var(--ff-cannes);
-      font-size: 2.8rem;
-      line-height: 1;
-      color: var(--gold);
+    .total-big-val {
+      font-family: var(--ff-cannes); font-size: 2.8rem; line-height: 1; color: var(--gold);
     }
-    .cta-submit {
+
+    .btn-proceed {
       width: 100%;
       background: var(--gold);
       color: var(--bg);
       border: none;
-      padding: 1rem 1.5rem;
+      padding: 1.05rem 1.5rem;
       font-family: var(--ff-cannes);
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       letter-spacing: .15em;
       text-transform: uppercase;
       cursor: pointer;
       transition: all .25s;
     }
-    .cta-submit:hover:not(:disabled) {
+    .btn-proceed:hover:not(:disabled) {
       background: var(--cream); transform: translateY(-2px);
     }
-    .cta-submit:disabled {
-      background: #24201a; color: var(--muted); cursor: not-allowed;
+    .btn-proceed:disabled {
+      background: #201c16; color: var(--muted); cursor: not-allowed;
     }
 
-    /* ── MODAL DE PAGO ── */
+    /* ── MODAL DE PAGO Y CONFIRMACIÓN ── */
     #modal {
       position: fixed; inset: 0; z-index: 1000;
-      background: rgba(7,6,4,0.96);
+      background: rgba(6,5,3,0.96);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       display: none; align-items: center; justify-content: center;
       padding: 1rem;
     }
     #modal.open { display: flex; }
-    .modal-card {
+    .modal-box {
       background: var(--bg-card);
       border: 1px solid var(--border);
       max-width: 520px; width: 100%;
@@ -876,84 +962,62 @@
       position: relative;
       max-height: 92vh; overflow-y: auto;
     }
-    .modal-close-btn {
+    .btn-modal-close {
       position: absolute; top: 1.25rem; right: 1.25rem;
       background: none; border: none; color: var(--muted);
       font-size: 1.25rem; cursor: pointer; line-height: 1;
       transition: color .2s;
     }
-    .modal-close-btn:hover { color: var(--cream); }
-    .modal-kicker {
-      font-family: var(--ff-mono);
-      font-size: 0.6rem;
-      letter-spacing: .25em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 0.25rem;
+    .btn-modal-close:hover { color: var(--cream); }
+    .modal-pretitle {
+      font-family: var(--ff-mono); font-size: 0.6rem; letter-spacing: .25em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.25rem;
     }
-    .modal-heading {
-      font-family: var(--ff-cannes);
-      font-size: 2.4rem;
-      line-height: 0.95;
-      text-transform: uppercase;
-      color: var(--cream);
-      margin-bottom: 1.5rem;
+    .modal-maintitle {
+      font-family: var(--ff-cannes); font-size: 2.4rem; line-height: 0.95; text-transform: uppercase; color: var(--cream); margin-bottom: 1.5rem;
     }
-    .modal-recap {
-      background: rgba(7,6,4,0.6);
+    .modal-summary-box {
+      background: rgba(6,5,3,0.6);
       border: 1px solid var(--border-subtle);
       padding: 1rem 1.25rem;
       margin-bottom: 1.5rem;
     }
-    .recap-row {
+    .m-line {
       display: flex; justify-content: space-between;
-      font-family: var(--ff-mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-      padding: 0.35rem 0;
+      font-family: var(--ff-mono); font-size: 0.72rem; color: var(--muted); padding: 0.35rem 0;
     }
-    .recap-row span:last-child { color: var(--cream); font-weight: 500; }
-    .recap-total {
+    .m-line span:last-child { color: var(--cream); font-weight: 500; }
+    .m-total-line {
       display: flex; justify-content: space-between; align-items: baseline;
       border-top: 1px solid var(--border-subtle);
       margin-top: 0.5rem; padding-top: 0.65rem;
     }
-    .recap-total-lbl {
-      font-family: var(--ff-mono); font-size: 0.65rem;
-      letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+    .m-total-lbl {
+      font-family: var(--ff-mono); font-size: 0.65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
     }
-    .recap-total-num {
+    .m-total-num {
       font-family: var(--ff-cannes); font-size: 2.2rem; color: var(--gold);
     }
-    .bank-details-box {
+
+    .bank-info-card {
       background: rgba(216,175,86,0.04);
       border: 1px solid var(--border);
       padding: 1.25rem;
       margin-bottom: 1.5rem;
     }
-    .bank-badge {
-      font-family: var(--ff-mono);
-      font-size: 0.58rem;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.75rem;
-      display: block;
+    .bank-info-card span.b-badge {
+      font-family: var(--ff-mono); font-size: 0.58rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: block;
     }
-    .bank-grid-row {
+    .b-row {
       display: flex; justify-content: space-between;
-      font-family: var(--ff-mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
+      font-family: var(--ff-mono); font-size: 0.72rem; color: var(--muted); margin-bottom: 0.4rem;
     }
-    .bank-grid-row span:last-child { color: var(--cream); font-weight: 500; }
-    .copy-data-btn {
+    .b-row span:last-child { color: var(--cream); font-weight: 500; }
+    .btn-copy-bank {
       width: 100%;
       background: transparent;
       border: 1px solid var(--border);
       color: var(--gold);
-      padding: 0.5rem;
+      padding: 0.55rem;
       font-family: var(--ff-mono);
       font-size: 0.62rem;
       letter-spacing: .18em;
@@ -962,56 +1026,53 @@
       margin-top: 0.75rem;
       transition: all .2s;
     }
-    .copy-data-btn:hover { background: rgba(216,175,86,0.1); border-color: var(--gold); }
-    .wa-button {
+    .btn-copy-bank:hover { background: rgba(216,175,86,0.1); border-color: var(--gold); }
+
+    .btn-whatsapp-finish {
       display: block; width: 100%;
       background: #25d366;
       color: #fff;
       text-align: center;
-      padding: 0.95rem;
+      padding: 1rem;
       font-family: var(--ff-cannes);
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       letter-spacing: .15em;
       text-transform: uppercase;
       text-decoration: none;
       transition: background .2s, transform .2s;
     }
-    .wa-button:hover { background: #1eb956; transform: translateY(-1px); }
+    .btn-whatsapp-finish:hover { background: #1eb956; transform: translateY(-1px); }
 
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border-subtle);
-      padding: 3.5rem 1.25rem;
+      padding: 4rem 1.25rem;
       background: var(--bg);
     }
-    @media (min-width: 768px) {
-      footer { padding: 4.5rem 3rem; }
-    }
-    .footer-inner {
+    @media (min-width: 768px) { footer { padding: 5rem 3rem; } }
+    .footer-flex {
       max-width: 1200px; margin: 0 auto;
       display: flex; flex-direction: column; gap: 2rem;
     }
     @media (min-width: 768px) {
-      .footer-inner {
-        flex-direction: row; justify-content: space-between; align-items: flex-end;
-      }
+      .footer-flex { flex-direction: row; justify-content: space-between; align-items: flex-end; }
     }
-    .footer-brand {
+    .footer-big-brand {
       font-family: var(--ff-cannes);
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       letter-spacing: .12em;
       color: var(--cream);
       line-height: 1;
     }
-    .footer-quote {
+    .footer-baseline {
       font-family: var(--ff-serif);
       font-style: italic;
       color: var(--muted);
       font-size: 0.95rem;
       margin-top: 0.5rem;
-      max-width: 440px;
+      max-width: 480px;
     }
-    .footer-right {
+    .footer-details {
       font-family: var(--ff-mono);
       font-size: 0.65rem;
       letter-spacing: .18em;
@@ -1019,19 +1080,14 @@
       line-height: 2.1;
       text-transform: uppercase;
     }
-    .footer-right strong { color: var(--gold); font-weight: 500; }
+    .footer-details strong { color: var(--gold); font-weight: 500; }
 
-    /* ── ANIMACIONES DE ENTRADA (REVEAL) ── */
+    /* REVEAL OBSERVER */
     .reveal {
-      opacity: 0;
-      transform: translateY(32px);
+      opacity: 0; transform: translateY(28px);
       transition: opacity 0.8s cubic-bezier(.16,1,.3,1), transform 0.8s cubic-bezier(.16,1,.3,1);
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
+    .reveal.visible { opacity: 1; transform: none; }
     .hidden { display: none !important; }
   </style>
 </head>
@@ -1042,171 +1098,261 @@
 <div id="grain"></div>
 <audio id="audioTrack" src="noche.mp3" loop preload="auto"></audio>
 
-<!-- ══ CABECERA PRINCIPAL ═══════════════════════════════ -->
+<!-- ══ HEADER ═══════════════════════════════════════════ -->
 <header id="siteHeader">
-  <a href="#" class="logo-group">
-    <span class="logo-main">MESA SECRETA</span>
-    <span class="logo-sub">Santiago · 4 puestos</span>
+  <a href="#" class="brand-wrap">
+    <span class="brand-title">MESA SECRETA</span>
+    <span class="brand-sub">Santiago · 4 Puestos Privados</span>
   </a>
-  <div class="header-actions">
-    <button class="audio-btn" id="btnAudio" onclick="toggleAudio()" aria-label="Música ambiente">
-      <span class="audio-dot"></span>
-      <span id="audioLabel">Música [Play]</span>
+  <div class="header-right">
+    <button class="btn-audio-toggle" id="btnAudioToggle" onclick="toggleAudio()" aria-label="Música">
+      <span class="audio-pulsar"></span>
+      <span id="audioStatusText">Música [Play]</span>
     </button>
-    <a href="#reservar" class="cta-header">Reservar</a>
+    <a href="#reservar" class="header-cta">Reservar</a>
   </div>
 </header>
 
-<!-- ══ HERO CINEMATOGRÁFICO (Cannes Style) ══════════════ -->
+<!-- ══ HERO: STORYTELLING POTENTE & VIDEO LOOP ══════════ -->
 <section id="hero">
-  <div class="hero-video-wrap">
+  <div class="hero-media-bg">
     <video autoplay muted loop playsinline poster="img/amasado.jpg">
       <source src="video/pasta_loop.mp4" type="video/mp4">
     </video>
   </div>
-  <div class="hero-overlay"></div>
+  <div class="hero-layer"></div>
 
-  <div class="hero-content">
-    <div class="hero-pill">
-      <span class="hero-pill-dot"></span>
-      <span>Disponible desde Noviembre 2026 · Solo 4 puestos</span>
+  <div class="hero-container">
+    <div class="hero-tag">
+      <span class="hero-tag-dot"></span>
+      <span>Disponible desde Noviembre 2026 · Solo 4 puestos por noche</span>
     </div>
-    <h1 class="hero-title">
-      Esta noche<br>amasas tu <span>propia pasta.</span>
+    <h1 class="hero-lead-h1">
+      No es una clase.<br>Es un <span>festín privado.</span>
     </h1>
-    <p class="hero-pitch">
-      El secreto mejor guardado de Santiago para un date: un departamento íntimo a pasos del metro donde solo 4 personas se sientan a cocinar con sus manos y tomar vino.
+    <p class="hero-statement">
+      Amasas tu pasta desde cero con copa en mano, cenas un menú completo a la mesa con vino libre, suena vinilo de fondo, te llevas una pechera de cocina de regalo y tienes el metro en la puerta para volver a casa tranquilo.
     </p>
-    <div class="hero-foot">
-      <a href="#reservar" class="hero-btn">
-        <span>Asegurar un puesto</span>
+
+    <!-- Perks reales de la noche -->
+    <div class="hero-perks">
+      <span class="perk-pill">🍝 <strong>Amasas &amp; Cenas</strong></span>
+      <span class="perk-pill">🍷 <strong>Vino libre</strong></span>
+      <span class="perk-pill">🎁 <strong>Pechera de regalo</strong></span>
+      <span class="perk-pill">📸 <strong>Fotos de la noche</strong></span>
+      <span class="perk-pill">🎵 <strong>Música &amp; Vinilos</strong></span>
+      <span class="perk-pill">🚇 <strong>Al lado del Metro</strong></span>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#reservar" class="btn-main-hero">
+        <span>Asegurar mis puestos</span>
         <span>→</span>
       </a>
-      <div class="hero-metro-tag">
-        🚇 Turno único <strong>20:00 hrs</strong> · Regreso en metro <strong>sin alcotest</strong>
+      <div class="hero-note-metro">
+        Turno único <strong>20:00 hrs</strong> · Regreso en metro <strong>sin alcotest</strong>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ MARQUEE TICKER ═══════════════════════════════════ -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span class="marquee-item">4 Sillas por noche <span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Pasta fresca con huevo y harina <span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Siempre en duplas <span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">20:00 hrs puntual <span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">A pasos del Metro de Santiago <span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Vino en mano <span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">4 Sillas por noche <span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Pasta fresca con huevo y harina <span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Siempre en duplas <span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">20:00 hrs puntual <span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">A pasos del Metro de Santiago <span class="marquee-dot">◆</span></span>
-    <span class="marquee-item">Vino en mano <span class="marquee-dot">◆</span></span>
+<!-- ══ TICKER STREAM ════════════════════════════════════ -->
+<div class="ticker-bar">
+  <div class="ticker-stream">
+    <span class="ticker-point">Haces tu pasta <span class="ticker-diamond">◆</span></span>
+    <span class="ticker-point">Cenas a la mesa <span class="ticker-diamond">◆</span></span>
+    <span class="ticker-point">Vino Libre <span class="ticker-diamond">◆</span></span>
+    <span class="ticker-point">Pechera de Regalo <span class="ticker-diamond">◆</span></span>
+    <span class="ticker-point">Fotos de tu noche <span class="ticker-diamond">◆</span></span>
+    <span class="ticker-point">Música y Vinilos <span class="ticker-diamond">◆</span></span>
+    <span class="ticker-point">Metro en la puerta <span class="ticker-diamond">◆</span></span>
+    <span class="ticker-point">Haces tu pasta <span class="ticker-diamond">◆</span></span>
+    <span class="ticker-point">Cenas a la mesa <span class="ticker-diamond">◆</span></span>
+    <span class="ticker-point">Vino Libre <span class="ticker-diamond">◆</span></span>
+    <span class="ticker-point">Pechera de Regalo <span class="ticker-diamond">◆</span></span>
+    <span class="ticker-point">Fotos de tu noche <span class="ticker-diamond">◆</span></span>
+    <span class="ticker-point">Música y Vinilos <span class="ticker-diamond">◆</span></span>
+    <span class="ticker-point">Metro en la puerta <span class="ticker-diamond">◆</span></span>
   </div>
 </div>
 
-<!-- ══ CAPÍTULO 1: EL ORIGEN DEL GESTO (Foto: huevo_harina.jpg) ════ -->
-<section class="chapter-section reveal">
-  <div class="chapter-grid">
-    <div class="chapter-media">
-      <span class="chapter-tag">01 / Materia prima</span>
-      <img src="img/huevo_harina.jpg" alt="Huevo fresco sobre volcán de harina" loading="lazy">
-    </div>
-    <div class="chapter-info">
-      <div class="chapter-num">Acto primero</div>
-      <h2 class="chapter-headline">Sin máquinas.<br><em>Sin atajos.</em></h2>
-      <p class="chapter-copy">
-        "Solo harina, yemas frescas y el calor de tus manos. El volcán se abre en el mesón antes de que toques la primera copa."
+<!-- ══ MANIFIESTO: LO QUE HACE INOLVIDABLE LA NOCHE ══════ -->
+<section class="manifesto-section reveal">
+  <span class="manifesto-kicker">¿Qué estás pagando realmente?</span>
+  <h2 class="manifesto-title">Una noche completa.<br><em>Nada a medias.</em></h2>
+  <p class="manifesto-p">
+    No vienes a mirar una pizarra ni a tomar apuntes. Entras a un departamento cálido con luz tenue, te pones la pechera que te llevarás a casa, te servimos una copa y te ensucias las manos cocinando lo que cenarás minutos después.
+  </p>
+</section>
+
+<!-- ══ LOS 6 ELEMENTOS INCLUIDOS EN LA EXPERIENCIA ════════ -->
+<div class="experience-grid reveal">
+
+  <div class="exp-item">
+    <div>
+      <span class="exp-num">01 / El Oficio</span>
+      <h3 class="exp-title">Amasas tu propia pasta</h3>
+      <p class="exp-desc">
+        Harina, huevos de campo y tus manos. Guiamos cada paso para que estires, cortes y prepares fettuccine fresco al dente con técnica italiana real.
       </p>
-      <p class="chapter-detail">
-        Dejamos atrás los eventos masivos y las clases teóricas de 30 personas. Aquí cada milímetro de masa responde a tu propia fuerza. La pasta se entiende tocándola, sintiendo cuándo cede y cuándo pide descanso.
+    </div>
+    <div class="exp-subdetail">Técnica manual · <strong>Sin máquinas industriales</strong></div>
+  </div>
+
+  <div class="exp-item">
+    <div>
+      <span class="exp-num">02 / La Cena</span>
+      <h3 class="exp-title">Cenas como rey</h3>
+      <p class="exp-desc">
+        La pasta que amasaste va directo a la olla y al plato. Salsa casera reducida a fuego lento, queso recién rallado y una cena abundante sentados a la mesa.
+      </p>
+    </div>
+    <div class="exp-subdetail">Cena completa servida · <strong>Al momento exacto</strong></div>
+  </div>
+
+  <div class="exp-item">
+    <div>
+      <span class="exp-num">03 / La Copa</span>
+      <h3 class="exp-title">Vino toda la noche</h3>
+      <p class="exp-desc">
+        Copa llena desde que pisas el departamento hasta que te vas. Vino seleccionado para maridar la salsa y acompañar la conversación del mesón.
+      </p>
+    </div>
+    <div class="exp-subdetail">Maridaje continuo · <strong>Bebe con tranquilidad</strong></div>
+  </div>
+
+  <div class="exp-item gold-highlight">
+    <div>
+      <span class="exp-num">04 / De Regalo</span>
+      <h3 class="exp-title">Tu pechera oficial</h3>
+      <p class="exp-desc">
+        Te recibimos con una pechera de cocina de alta calidad bordada para la ocasión. Es tuya: te la llevas puesta a casa como trofeo de la velada.
+      </p>
+    </div>
+    <div class="exp-subdetail">Incluida en el valor · <strong>1 por persona</strong></div>
+  </div>
+
+  <div class="exp-item">
+    <div>
+      <span class="exp-num">05 / El Recuerdo</span>
+      <h3 class="exp-title">Fotos de la noche</h3>
+      <p class="exp-desc">
+        Olvida el teléfono con las manos llenas de harina. Nosotros registramos los mejores momentos de tu noche cocinando para enviártelos en alta calidad.
+      </p>
+    </div>
+    <div class="exp-subdetail">Registro fotográfico digital · <strong>Directo a tu celular</strong></div>
+  </div>
+
+  <div class="exp-item">
+    <div>
+      <span class="exp-num">06 / La Atmósfera</span>
+      <h3 class="exp-title">Música en vinilo</h3>
+      <p class="exp-desc">
+        Jazz, lo-fi, soul y clásicos italianos sonando en tornamesa mientras el agua hierve y las copas chocan. Una atmósfera envolvente e íntima.
+      </p>
+    </div>
+    <div class="exp-subdetail">Ambiente curado · <strong>Solo 4 comensales</strong></div>
+  </div>
+
+</div>
+
+<!-- ══ STORYTELLING FOTOGRÁFICO: DE PRINCIPIO A FIN ═════ -->
+<section class="photo-narrative">
+
+  <!-- Acto 1: Huevo y Harina -->
+  <div class="narrative-row reveal">
+    <div class="narrative-frame">
+      <span class="narrative-stamp">Foto real del mesón · Santiago</span>
+      <img src="img/huevo_harina.jpg" alt="Volcán de harina y huevos frescos en el mesón" loading="lazy">
+    </div>
+    <div class="narrative-text">
+      <span class="narrative-act">Capítulo I · 20:00 hrs</span>
+      <h2 class="narrative-h2">El volcán sobre <span>la madera.</span></h2>
+      <p class="narrative-lead">
+        "Llegas, te pones tu pechera, te servimos la primera copa de vino y el mesón ya te está esperando."
+      </p>
+      <p class="narrative-body">
+        Aquí no hay masas prehechas ni congeladas. Ves el grano de la harina, rompes el huevo fresco con tus manos y comienzas a construir el plato que cenarás minutos más tarde.
       </p>
     </div>
   </div>
-</section>
 
-<!-- ══ CAPÍTULO 2: EL AMASADO & LA DUPLA (Foto: amasado.jpg) ══════ -->
-<section class="chapter-section reveal">
-  <div class="chapter-grid reverse">
-    <div class="chapter-media">
-      <span class="chapter-tag">02 / El oficio</span>
-      <img src="img/amasado.jpg" alt="Amasando la masa en el mesón de madera" loading="lazy">
+  <!-- Acto 2: El Amasado -->
+  <div class="narrative-row invert reveal">
+    <div class="narrative-frame">
+      <span class="narrative-stamp">Amasado manual en dupla</span>
+      <img src="img/amasado.jpg" alt="Amasado coordinado de la masa de pasta fresca" loading="lazy">
     </div>
-    <div class="chapter-info">
-      <div class="chapter-num">Acto segundo</div>
-      <h2 class="chapter-headline">El trabajo es<br><em>siempre en duplas.</em></h2>
-      <p class="chapter-copy">
-        "Amasar pasta requiere cuatro manos, ritmo coordinado y complicidad absoluta sobre el mesón."
+    <div class="narrative-text">
+      <span class="narrative-act">Capítulo II · 20:30 hrs</span>
+      <h2 class="narrative-h2">Cuatro manos. <span>Una complicidad.</span></h2>
+      <p class="narrative-lead">
+        "Amasar pasta requiere ritmo, risas y trabajo compartido. No se puede hacer con desgano."
       </p>
-      <p class="chapter-detail">
-        Si vienes en pareja, es el date perfecto. Si compras el puesto individual, compartirás mesón y masa codo a codo con un desconocido. Te aseguramos que al final de la noche ya no lo serán.
+      <p class="narrative-body">
+        El trabajo siempre es en duplas. Si vienes con tu pareja o amigo, es el plan definitivo. Si vienes solo, te emparejamos con otro comensal y compartes el esfuerzo del mesón. Al tercer brindis, ya son amigos.
       </p>
     </div>
   </div>
-</section>
 
-<!-- ══ CAPÍTULO 3: EL CORTE (Foto: fettuccine.jpg) ═══════════════ -->
-<section class="chapter-section reveal">
-  <div class="chapter-grid">
-    <div class="chapter-media">
-      <span class="chapter-tag">03 / Precisión</span>
+  <!-- Acto 3: El Corte Fettuccine -->
+  <div class="narrative-row reveal">
+    <div class="narrative-frame">
+      <span class="narrative-stamp">Pasta recién cortada</span>
       <img src="img/fettuccine.jpg" alt="Nidos de fettuccine fresco recién cortado" loading="lazy">
     </div>
-    <div class="chapter-info">
-      <div class="chapter-num">Acto tercero</div>
-      <h2 class="chapter-headline">Del mesón<br><em>a la olla.</em></h2>
-      <p class="chapter-copy">
-        "Ver cómo tu propia lámina de masa se transforma en hebras perfectas de fettuccine es un pequeño triunfo que se aplaude en la mesa."
+    <div class="narrative-text">
+      <span class="narrative-act">Capítulo III · 21:15 hrs</span>
+      <h2 class="narrative-h2">Del mesón <span>al hervor vivo.</span></h2>
+      <p class="narrative-lead">
+        "El momento mágico en que la masa estirada se enrolla y nacen los nidos de fettuccine dorados."
       </p>
-      <p class="chapter-detail">
-        Aquí no hay cajas de regalo ni preparaciones que se guardan para mañana. La pasta fresca recién hecha se cocina en el minuto exacto, cuando el gluten está vivo y la textura es insuperable.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ══ CAPÍTULO 4: FUEGO & AGUA HIRVIENDO (Foto: coccion.jpg) ════ -->
-<section class="chapter-section reveal">
-  <div class="chapter-grid reverse">
-    <div class="chapter-media">
-      <span class="chapter-tag">04 / La mesa viva</span>
-      <img src="img/coccion.jpg" alt="Cocción al dente de la pasta fresca en agua hirviendo" loading="lazy">
-    </div>
-    <div class="chapter-info">
-      <div class="chapter-num">Acto cuarto</div>
-      <h2 class="chapter-headline">Tres minutos de hervor.<br><em>Y a comer.</em></h2>
-      <p class="chapter-copy">
-        "Vapor subiendo, salsa emulsificada con el agua de cocción y el aroma invadiendo el departamento."
-      </p>
-      <p class="chapter-detail">
-        La satisfacción de probar un plato que existe únicamente porque tú estuviste amasando durante la última hora. Se come de inmediato, compartiendo risas y comentarios con los cuatro sentados alrededor del mesón.
+      <p class="narrative-body">
+        La textura elástica de la pasta fresca no tiene comparación con nada de paquete. Es suave, viva y lista para atrapar cada gota de salsa espesa en la sartén.
       </p>
     </div>
   </div>
+
+  <!-- Acto 4: Cocción y Festín -->
+  <div class="narrative-row invert reveal">
+    <div class="narrative-frame">
+      <span class="narrative-stamp">Cocción y cena servida</span>
+      <img src="img/coccion.jpg" alt="Olla hirviendo con pasta fresca al dente" loading="lazy">
+    </div>
+    <div class="narrative-text">
+      <span class="narrative-act">Capítulo IV · 21:45 hrs</span>
+      <h2 class="narrative-h2">Hervor, salsa <span>y a cenar.</span></h2>
+      <p class="narrative-lead">
+        "Tres minutos de cocción, emplatado humeante y sentarse los cuatro a disfrutar lo que ustedes mismos crearon."
+      </p>
+      <p class="narrative-body">
+        Se apagan las luces del mesón, se encienden las velas de la mesa, se rellenan las copas y comienza la cena. Risas, buena música y la satisfacción incomparable de estar comiendo tu propia creación.
+      </p>
+    </div>
+  </div>
+
 </section>
 
-<!-- ══ BANNER ESTRATÉGICO: METRO & TRANQUILIDAD (Foto: vino_noche.jpg) ═ -->
-<section class="metro-banner reveal">
-  <div class="metro-banner-inner">
-    <span class="metro-badge">🚇 Ubicación estratégica en Santiago</span>
-    <h2 class="metro-heading">Bebes vino tranquilo.<br>El metro está <span>en la puerta.</span></h2>
-    <p class="metro-text">
-      Sin autos, sin estacionamientos complejos y sin preocuparse por el alcotest. Un departamento clandestino a pasos exactos de la estación de Metro para que la noche sea una pausa real en la ciudad.
+<!-- ══ VINO & METRO: REGRESO ASEGURADO ══════════════════ -->
+<section class="metro-stage reveal">
+  <div class="metro-inner">
+    <span class="metro-pill-sub">🚇 Logística perfecta en Santiago</span>
+    <h2 class="metro-big-title">Bebe tranquilo.<br>El metro está <em>en la puerta.</em></h2>
+    <p class="metro-p">
+      Una de las mayores ventajas de Mesa Secreta: el departamento queda a pasos exactos de la estación de Metro. Puedes disfrutar de las copas de vino sin preocuparte por manejar, buscar estacionamiento ni exponerte al alcotest. Vienes y vuelves en transporte público con total libertad.
     </p>
-    <div class="metro-specs">
-      <div class="spec-item">
-        <span class="spec-kpi">20:00</span>
-        <span class="spec-lbl">Horario único puntual</span>
+    <div class="metro-data-pills">
+      <div class="m-pill">
+        <span class="m-pill-val">20:00</span>
+        <span class="m-pill-desc">Horario puntual de inicio</span>
       </div>
-      <div class="spec-item">
-        <span class="spec-kpi">4</span>
-        <span class="spec-lbl">Puestos máximos</span>
+      <div class="m-pill">
+        <span class="m-pill-val">4</span>
+        <span class="m-pill-desc">Puestos por noche</span>
       </div>
-      <div class="spec-item">
-        <span class="spec-kpi">Metro</span>
-        <span class="spec-lbl">Regreso a pasos</span>
+      <div class="m-pill">
+        <span class="m-pill-val">Metro</span>
+        <span class="m-pill-desc">A pasos de la estación</span>
       </div>
     </div>
   </div>
@@ -1214,215 +1360,219 @@
 
 <!-- ══ PRECIOS ESCALONADOS ═══════════════════════════════ -->
 <section id="precios" class="reveal">
-  <span class="section-eyebrow">Tarifas transparentes</span>
-  <h2 class="section-title">Elige cómo<br>vivir la noche</h2>
+  <span class="section-eyebrow">Todo incluido · Sin cobros extra</span>
+  <h2 class="section-headline">Elige cómo<br>vivir tu noche</h2>
 
-  <div class="plans-grid">
+  <div class="pricing-deck">
 
     <!-- 1 PUESTO -->
-    <div class="plan-card" onclick="selectPlan('solo', 60000)">
-      <div class="plan-header">
-        <span class="plan-seats">1 Puesto</span>
-        <h3 class="plan-name">Individual / Foodie</h3>
+    <div class="card-tier" onclick="selectPlan('solo', 60000)">
+      <div>
+        <span class="tier-slots">1 Puesto</span>
+        <h3 class="tier-title">Individual / Foodie</h3>
+        <div class="tier-price-box">
+          <div class="tier-amount">$60.000</div>
+          <div class="tier-rate-pp">$60.000 por persona</div>
+        </div>
+        <ul class="tier-list">
+          <li>Experiencia de cocina completa</li>
+          <li>Cena servida con tu pasta fresca</li>
+          <li>Vino libre durante toda la velada</li>
+          <li><strong>Pechera oficial bordada de regalo</strong></li>
+          <li>Fotografías de recuerdo de la noche</li>
+        </ul>
+        <div class="solo-dupla-warning">
+          ⚠ El amasado es siempre en duplas. Te emparejamos en el mesón con otro comensal para cocinar juntos.
+        </div>
       </div>
-      <div class="plan-pricing-box">
-        <div class="plan-price">$60.000</div>
-        <div class="plan-unit">$60.000 por persona</div>
-      </div>
-      <p class="plan-body">
-        Pensado para quien asiste en solitario. Compartirás mesón y amasarás codo a codo con otro comensal aventurero.
-      </p>
-      <div class="plan-alert-box">
-        ⚠ El trabajo de la pasta es siempre en duplas. Te emparejamos en el mesón para amasar juntos.
-      </div>
-      <a href="#reservar" class="plan-cta-btn">Elegir Individual</a>
+      <a href="#reservar" class="tier-btn-choose">Elegir Individual</a>
     </div>
 
     <!-- 2 PUESTOS (DESTACADO) -->
-    <div class="plan-card featured" onclick="selectPlan('dupla', 110000)">
-      <span class="plan-badge">Opción más elegida · Date Night</span>
-      <div class="plan-header">
-        <span class="plan-seats">2 Puestos</span>
-        <h3 class="plan-name">La Dupla</h3>
+    <div class="card-tier most-popular" onclick="selectPlan('dupla', 110000)">
+      <span class="tier-badge-top">Opción más elegida · Date Night</span>
+      <div>
+        <span class="tier-slots">2 Puestos (La Dupla)</span>
+        <h3 class="tier-title">La Dupla</h3>
+        <div class="tier-price-box">
+          <div class="tier-amount">$110.000</div>
+          <div class="tier-rate-pp">$55.000 por persona</div>
+          <span class="tier-discount">Ahorro de $10.000 total</span>
+        </div>
+        <ul class="tier-list">
+          <li>Mesón privado para ustedes dos</li>
+          <li>Cena completa servida a la mesa</li>
+          <li>Vino libre para ambos</li>
+          <li><strong>2 Pecheras bordadas oficiales de regalo</strong></li>
+          <li>Sesión de fotos de su velada</li>
+        </ul>
       </div>
-      <div class="plan-pricing-box">
-        <div class="plan-price">$110.000</div>
-        <div class="plan-unit">$55.000 por persona</div>
-        <span class="plan-saving">Ahorro de $10.000</span>
-      </div>
-      <p class="plan-body">
-        La experiencia estrella para parejas o dos amigos. Su propia tabla, su propio volcán de harina y complicidad total en el mesón.
-      </p>
-      <a href="#reservar" class="plan-cta-btn">Elegir La Dupla</a>
+      <a href="#reservar" class="tier-btn-choose">Elegir La Dupla</a>
     </div>
 
     <!-- 4 PUESTOS (MESA CERRADA) -->
-    <div class="plan-card" onclick="selectPlan('mesa', 200000)">
-      <div class="plan-header">
-        <span class="plan-seats">4 Puestos (Totalidad)</span>
-        <h3 class="plan-name">Mesa Completa Cerrada</h3>
+    <div class="card-tier" onclick="selectPlan('mesa', 200000)">
+      <div>
+        <span class="tier-slots">4 Puestos (Totalidad)</span>
+        <h3 class="tier-title">Mesa Completa Cerrada</h3>
+        <div class="tier-price-box">
+          <div class="tier-amount">$200.000</div>
+          <div class="tier-rate-pp">$50.000 por persona</div>
+          <span class="tier-discount">Ahorro de $40.000 total</span>
+        </div>
+        <ul class="tier-list">
+          <li>Departamento cerrado 100% exclusivo</li>
+          <li>Cena privada para tu grupo de 4</li>
+          <li>Vino libre para todos</li>
+          <li><strong>4 Pecheras oficiales bordadas de regalo</strong></li>
+          <li>Fotos grupales exclusivas</li>
+        </ul>
       </div>
-      <div class="plan-pricing-box">
-        <div class="plan-price">$200.000</div>
-        <div class="plan-unit">$50.000 por persona</div>
-        <span class="plan-saving">Ahorro de $40.000</span>
-      </div>
-      <p class="plan-body">
-        Cierra el departamento exclusivamente para tu grupo privado. Doble cita, celebración íntima o una noche inolvidable entre cuatro.
-      </p>
-      <a href="#reservar" class="plan-cta-btn">Cerrar la Mesa</a>
+      <a href="#reservar" class="tier-btn-choose">Cerrar la Mesa</a>
     </div>
 
   </div>
 </section>
 
-<!-- ══ SECCIÓN DE RESERVA: CALENDARIO & RESUMEN INTERACTIVO ══════ -->
+<!-- ══ CALENDARIO & DOCK DE RESERVA (MOBILE FIRST) ══════ -->
 <section id="reservar">
-  <div class="reservar-container">
+  <div class="booking-wrapper">
 
-    <!-- CALENDARIO INTERACTIVO -->
-    <div class="cal-card reveal">
-      <div class="cal-header">
-        <div class="cal-title-group">
-          <span class="cal-meta">Solo Viernes &amp; Sábados · 20:00 hrs</span>
-          <div class="cal-month" id="calMonthDisplay">Noviembre 2026</div>
+    <!-- CALENDARIO -->
+    <div class="calendar-container reveal">
+      <div class="cal-top">
+        <div>
+          <span class="cal-kicker">Solo Viernes &amp; Sábados · 20:00 hrs</span>
+          <div class="cal-lead-month" id="calDisplayMonth">Noviembre 2026</div>
         </div>
-        <div class="cal-arrows">
-          <button class="cal-nav-btn" onclick="moveMonth(-1)" aria-label="Mes anterior">&#8249;</button>
-          <button class="cal-nav-btn" onclick="moveMonth(1)" aria-label="Mes siguiente">&#8250;</button>
+        <div class="cal-ctrls">
+          <button class="cal-btn-arrow" onclick="navMonth(-1)" aria-label="Mes anterior">&#8249;</button>
+          <button class="cal-btn-arrow" onclick="navMonth(1)" aria-label="Mes siguiente">&#8250;</button>
         </div>
       </div>
 
-      <div class="cal-grid" id="calGrid"></div>
+      <div class="cal-matrix" id="calMatrixGrid"></div>
 
-      <div class="cal-legend">
-        <div class="legend-item">
-          <span class="legend-indicator" style="background:var(--gold);"></span>
-          <span>Fecha seleccionada</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-indicator" style="background:var(--cream);"></span>
-          <span>Fechas disponibles (Vie / Sáb)</span>
-        </div>
+      <div class="cal-footer-note">
+        <span>● Fechas activas: <strong>Vie &amp; Sáb</strong></span>
+        <span>● Inicio: <strong>Noviembre 2026</strong></span>
       </div>
     </div>
 
-    <!-- RESUMEN DE RESERVA INTERACTIVO (MOBILE FIRST) -->
-    <div class="summary-card reveal" style="transition-delay: 0.15s;">
-      <span class="section-eyebrow">Tu Experiencia</span>
-      <h3 class="summary-heading">Configura tu noche</h3>
-      <p class="summary-subtitle">Turno único · 20:00 hrs en punto</p>
+    <!-- RESUMEN INTERACTIVO -->
+    <div class="summary-dock reveal" style="transition-delay: 0.15s;">
+      <h3 class="summary-dock-title">Tu Reserva</h3>
+      <p class="summary-dock-sub">Mesa Secreta · 20:00 hrs puntual</p>
 
-      <!-- Selector de puesto rápido -->
-      <div class="tier-switcher">
-        <div class="tier-option" id="opt-solo" onclick="selectPlan('solo', 60000)">
-          <span class="tier-option-name">1 Puesto (Individual)</span>
-          <span class="tier-option-price">$60.000</span>
+      <!-- Selector de modalidad rápido -->
+      <div class="tier-toggle-stack">
+        <div class="tier-toggle-item" id="pill-solo" onclick="selectPlan('solo', 60000)">
+          <span class="tier-toggle-title">1 Puesto (Individual)</span>
+          <span class="tier-toggle-cost">$60.000</span>
         </div>
-        <div class="tier-option active" id="opt-dupla" onclick="selectPlan('dupla', 110000)">
-          <span class="tier-option-name">2 Puestos (La Dupla)</span>
-          <span class="tier-option-price">$110.000</span>
+        <div class="tier-toggle-item active" id="pill-dupla" onclick="selectPlan('dupla', 110000)">
+          <span class="tier-toggle-title">2 Puestos (La Dupla)</span>
+          <span class="tier-toggle-cost">$110.000</span>
         </div>
-        <div class="tier-option" id="opt-mesa" onclick="selectPlan('mesa', 200000)">
-          <span class="tier-option-name">4 Puestos (Mesa Completa)</span>
-          <span class="tier-option-price">$200.000</span>
+        <div class="tier-toggle-item" id="pill-mesa" onclick="selectPlan('mesa', 200000)">
+          <span class="tier-toggle-title">4 Puestos (Mesa Completa)</span>
+          <span class="tier-toggle-cost">$200.000</span>
         </div>
       </div>
 
-      <!-- Aviso solo si es individual -->
-      <div id="soloNotice" class="solo-pairing-notice hidden">
-        ⚠ <strong>Aviso duplas:</strong> Quienes asisten de forma individual comparten mesón con otro comensal. El amasado de pasta siempre se realiza de a dos.
+      <!-- Alerta de individual -->
+      <div id="soloAlertNotice" class="solo-pairing-box hidden">
+        ⚠ <strong>Aviso duplas:</strong> Quien asiste solo comparte mesón de amasado con otro comensal. El trabajo de la pasta siempre se realiza de a dos.
       </div>
 
-      <!-- Contador de vegetarianos -->
-      <div class="veg-bar">
-        <span class="summary-label">Opción Vegetariana</span>
-        <div class="veg-counter">
-          <button class="veg-count-btn" onclick="changeVeg(-1)" aria-label="Restar">−</button>
-          <span class="veg-count-display" id="vegDisplay">0</span>
-          <button class="veg-count-btn" onclick="changeVeg(1)" aria-label="Sumar">+</button>
-        </div>
-      </div>
-
-      <!-- Detalle dinámico -->
-      <div class="summary-lines">
-        <div class="summary-row">
-          <span class="summary-label">Fecha</span>
-          <span class="summary-val highlight" id="sumDate">— Elige una fecha en el calendario</span>
-        </div>
-        <div class="summary-row">
-          <span class="summary-label">Horario</span>
-          <span class="summary-val">20:00 hrs (Puntualidad requerida)</span>
-        </div>
-        <div class="summary-row">
-          <span class="summary-label">Ubicación</span>
-          <span class="summary-val">A pasos del Metro (Santiago)</span>
-        </div>
-        <div class="summary-row">
-          <span class="summary-label">Modalidad</span>
-          <span class="summary-val" id="sumPlanName">La Dupla (2 personas)</span>
+      <!-- Vegetarianos -->
+      <div class="veg-bar-wrapper">
+        <span class="dock-label">Menú Vegetariano</span>
+        <div class="veg-stepper">
+          <button class="btn-step" onclick="modVeg(-1)" aria-label="Menos">−</button>
+          <span class="veg-count-num" id="vegCountNum">0</span>
+          <button class="btn-step" onclick="modVeg(1)" aria-label="Más">+</button>
         </div>
       </div>
 
-      <!-- Total -->
-      <div class="summary-total-block">
-        <span class="total-title">Total a transferir</span>
-        <span class="total-amount" id="sumPriceDisplay">$110.000</span>
+      <!-- Filas de datos -->
+      <div class="dock-rows">
+        <div class="dock-row">
+          <span class="dock-label">Fecha</span>
+          <span class="dock-val highlight" id="selectedDateText">— Selecciona una fecha</span>
+        </div>
+        <div class="dock-row">
+          <span class="dock-label">Horario</span>
+          <span class="dock-val">20:00 hrs (Puntual)</span>
+        </div>
+        <div class="dock-row">
+          <span class="dock-label">Incluye</span>
+          <span class="dock-val">Pasta + Cena + Vino + Pechera + Fotos</span>
+        </div>
+        <div class="dock-row">
+          <span class="dock-label">Modalidad</span>
+          <span class="dock-val" id="selectedTierText">La Dupla (2 Puestos)</span>
+        </div>
       </div>
 
-      <button class="cta-submit" id="btnSubmitReserva" onclick="openModal()" disabled>
-        Continuar al pago
+      <div class="dock-total-area">
+        <span class="total-title-lbl">Total a pagar</span>
+        <span class="total-big-val" id="dockTotalNum">$110.000</span>
+      </div>
+
+      <button class="btn-proceed" id="btnContinuePayment" onclick="openPaymentModal()" disabled>
+        Continuar al Pago
       </button>
     </div>
 
   </div>
 </section>
 
-<!-- ══ MODAL DE TRANSFERENCIA BANCARIA (PREX 0% COMISIÓN) ═════ -->
-<div id="modal" role="dialog" aria-modal="true" aria-labelledby="modalHeading">
-  <div class="modal-card">
-    <button class="modal-close-btn" onclick="closeModal()" aria-label="Cerrar ventana">✕</button>
-    <span class="modal-kicker">Paso final de reserva</span>
-    <h3 class="modal-heading" id="modalHeading">Transferencia &amp; Confirmación</h3>
+<!-- ══ MODAL DE TRANSFERENCIA BANCARIA PREX ══════════════ -->
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="modalHeaderTitle">
+  <div class="modal-box">
+    <button class="btn-modal-close" onclick="closePaymentModal()" aria-label="Cerrar modal">✕</button>
+    <span class="modal-pretitle">Paso final de reserva</span>
+    <h3 class="modal-maintitle" id="modalHeaderTitle">Confirmación &amp; Pago</h3>
 
-    <div class="modal-recap">
-      <div class="recap-row">
-        <span>Fecha</span>
-        <span id="modalDate">—</span>
+    <div class="modal-summary-box">
+      <div class="m-line">
+        <span>Fecha:</span>
+        <span id="mDateStr">—</span>
       </div>
-      <div class="recap-row">
-        <span>Horario</span>
+      <div class="m-line">
+        <span>Horario:</span>
         <span>20:00 hrs siempre</span>
       </div>
-      <div class="recap-row">
-        <span>Puestos</span>
-        <span id="modalPlan">—</span>
+      <div class="m-line">
+        <span>Puestos:</span>
+        <span id="mTierStr">—</span>
       </div>
-      <div class="recap-row">
-        <span>Vegetarianos</span>
-        <span id="modalVeg">0</span>
+      <div class="m-line">
+        <span>Vegetarianos:</span>
+        <span id="mVegStr">0</span>
       </div>
-      <div class="recap-total">
-        <span class="recap-total-lbl">Monto total</span>
-        <span class="recap-total-num" id="modalTotal">—</span>
+      <div class="m-total-line">
+        <span class="m-total-lbl">Total a transferir</span>
+        <span class="m-total-num" id="mTotalStr">—</span>
       </div>
     </div>
 
-    <!-- Datos Bancarios Oficiales PREX -->
-    <div class="bank-details-box">
-      <span class="bank-badge">◈ Transferencia Bancaria Directa (0% Comisión)</span>
-      <div class="bank-grid-row"><span>Banco:</span><span>PREX</span></div>
-      <div class="bank-grid-row"><span>Tipo de Cuenta:</span><span>Cuenta Vista</span></div>
-      <div class="bank-grid-row"><span>N° de Cuenta:</span><span>12771432</span></div>
-      <div class="bank-grid-row"><span>RUT:</span><span>16.667.108-6</span></div>
-      <div class="bank-grid-row"><span>Titular:</span><span>Dan Mesa Secreta</span></div>
-      <div class="bank-grid-row"><span>Email Comprobante:</span><span>dan.tagle@gmail.com</span></div>
-      <button class="copy-data-btn" id="btnCopyData" onclick="copyBankInfo()">
+    <!-- Datos Bancarios PREX 0% Comisión -->
+    <div class="bank-info-card">
+      <span class="b-badge">◈ Transferencia Bancaria PREX (0% Comisión)</span>
+      <div class="b-row"><span>Banco:</span><span>PREX</span></div>
+      <div class="b-row"><span>Tipo de Cuenta:</span><span>Cuenta Vista</span></div>
+      <div class="b-row"><span>N° de Cuenta:</span><span>12771432</span></div>
+      <div class="b-row"><span>RUT:</span><span>16.667.108-6</span></div>
+      <div class="b-row"><span>Titular:</span><span>Dan Mesa Secreta</span></div>
+      <div class="b-row"><span>Email Comprobante:</span><span>dan.tagle@gmail.com</span></div>
+      <button class="btn-copy-bank" id="btnCopyBankData" onclick="copyPrexDetails()">
         Copiar datos de transferencia
       </button>
     </div>
 
-    <a href="#" id="waLinkBtn" class="wa-button" target="_blank" rel="noopener noreferrer">
+    <a href="#" id="btnFinishWhatsApp" class="btn-whatsapp-finish" target="_blank" rel="noopener noreferrer">
       Enviar Comprobante por WhatsApp →
     </a>
   </div>
@@ -1430,170 +1580,164 @@
 
 <!-- ══ FOOTER ═══════════════════════════════════════════ -->
 <footer>
-  <div class="footer-inner">
+  <div class="footer-flex">
     <div>
-      <div class="footer-brand">MESA SECRETA</div>
-      <p class="footer-quote">
-        "Cuatro personas. Una mesa. Harina en las manos y el regreso resuelto a pasos del metro."
+      <div class="footer-big-brand">MESA SECRETA</div>
+      <p class="footer-baseline">
+        "Amasas tu pasta. Cenas a la mesa. Bebes vino libre. Te llevas tu pechera de regalo y tienes el metro en la puerta."
       </p>
     </div>
-    <div class="footer-right">
+    <div class="footer-details">
       Santiago, Chile · A pasos del Metro<br>
       Viernes y Sábados · <strong>20:00 hrs</strong><br>
-      Exclusivamente desde <strong>Noviembre 2026</strong><br>
+      Desde <strong>Noviembre 2026</strong><br>
       mesasecreta.cl
     </div>
   </div>
 </footer>
 
-<!-- ══ LÓGICA Y ESTADO INTERACTIVO ═══════════════════════ -->
+<!-- ══ SCRIPT INTERACTIVO ════════════════════════════════ -->
 <script>
-/* ── 1. CURSOR FLUIDO ── */
-const cur = document.getElementById('cursor');
-const rng = document.getElementById('cursor-ring');
-let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
-(function animateCursor() {
-  if (cur && rng) {
-    cur.style.left = mouseX + 'px'; cur.style.top = mouseY + 'px';
-    ringX += (mouseX - ringX) * 0.12; ringY += (mouseY - ringY) * 0.12;
-    rng.style.left = ringX + 'px'; rng.style.top = ringY + 'px';
+/* ── 1. CURSOR DESKTOP ── */
+const cursorDot = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursor-ring');
+let mX = 0, mY = 0, rX = 0, rY = 0;
+document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; });
+(function loopCursor() {
+  if (cursorDot && cursorRing) {
+    cursorDot.style.left = mX + 'px'; cursorDot.style.top = mY + 'px';
+    rX += (mX - rX) * 0.12; rY += (mY - rY) * 0.12;
+    cursorRing.style.left = rX + 'px'; cursorRing.style.top = rY + 'px';
   }
-  requestAnimationFrame(animateCursor);
+  requestAnimationFrame(loopCursor);
 })();
 
 /* ── 2. HEADER DINÁMICO ── */
-const siteHdr = document.getElementById('siteHeader');
+const headerBar = document.getElementById('siteHeader');
 window.addEventListener('scroll', () => {
-  siteHdr.classList.toggle('shrunk', window.scrollY > 40);
+  headerBar.classList.toggle('shrunk', window.scrollY > 40);
 });
 
-/* ── 3. REVEAL AL HACER SCROLL ── */
-const observer = new IntersectionObserver((entries) => {
+/* ── 3. REVEAL AL SCROLL ── */
+const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
+      revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-/* ── 4. CONTROLADOR DE AUDIO AMBIENTE ── */
-const audioEl = document.getElementById('audioTrack');
-const btnAudio = document.getElementById('btnAudio');
-const audioLbl = document.getElementById('audioLabel');
-let isAudioActive = false;
+/* ── 4. AUDIO DE FONDO AMBIENTE ── */
+const trackAudio = document.getElementById('audioTrack');
+const btnToggle = document.getElementById('btnAudioToggle');
+const textStatus = document.getElementById('audioStatusText');
+let isAudioPlaying = false;
 
 function toggleAudio() {
-  if (isAudioActive) {
-    audioEl.pause();
-    btnAudio.classList.remove('playing');
-    audioLbl.textContent = 'Música [Play]';
-    isAudioActive = false;
+  if (isAudioPlaying) {
+    trackAudio.pause();
+    btnToggle.classList.remove('active');
+    textStatus.textContent = 'Música [Play]';
+    isAudioPlaying = false;
   } else {
-    audioEl.play().catch(() => {});
-    btnAudio.classList.add('playing');
-    audioLbl.textContent = 'Música [Pausa]';
-    isAudioActive = true;
+    trackAudio.play().catch(() => {});
+    btnToggle.classList.add('active');
+    textStatus.textContent = 'Música [Pausa]';
+    isAudioPlaying = true;
   }
 }
 
-/* ── 5. ESTADO GLOBAL DE RESERVA ── */
-const appState = {
+/* ── 5. ESTADO GLOBAL ── */
+const bookingState = {
   year: 2026,
-  month: 10, // Noviembre (base 0)
+  month: 10, // Noviembre 2026
   tier: 'dupla',
   price: 110000,
   date: null,
   vegCount: 0
 };
 
-const TIER_NAMES = {
+const TIER_DESCRIPTIONS = {
   solo: 'Individual / Foodie (1 Puesto)',
   dupla: 'La Dupla (2 Puestos)',
   mesa: 'Mesa Completa Cerrada (4 Puestos)'
 };
 
-/* ── 6. SELECCIÓN DE PLAN / TIER ── */
+/* ── 6. SELECCIÓN DE PLAN ── */
 function selectPlan(tier, price) {
-  appState.tier = tier;
-  appState.price = price;
-  appState.vegCount = 0; // reset vegetarianos al cambiar capacidad
+  bookingState.tier = tier;
+  bookingState.price = price;
+  bookingState.vegCount = 0;
 
-  // Actualizar clases de botones
   ['solo', 'dupla', 'mesa'].forEach(t => {
-    const opt = document.getElementById('opt-' + t);
-    if (opt) opt.classList.toggle('active', t === tier);
+    const pill = document.getElementById('pill-' + t);
+    if (pill) pill.classList.toggle('active', t === tier);
   });
 
-  // Mostrar aviso de duplas solo si es individual
-  const notice = document.getElementById('soloNotice');
+  const notice = document.getElementById('soloAlertNotice');
   if (notice) notice.classList.toggle('hidden', tier !== 'solo');
 
-  document.getElementById('vegDisplay').textContent = '0';
-  renderSummary();
+  document.getElementById('vegCountNum').textContent = '0';
+  syncSummary();
 }
 
-/* ── 7. CONTROL DE VEGETARIANOS ── */
-function changeVeg(delta) {
-  const maxAllowed = appState.tier === 'solo' ? 1 : (appState.tier === 'dupla' ? 2 : 4);
-  appState.vegCount = Math.max(0, Math.min(maxAllowed, appState.vegCount + delta));
-  document.getElementById('vegDisplay').textContent = appState.vegCount;
-  renderSummary();
+/* ── 7. VEGETARIANOS ── */
+function modVeg(delta) {
+  const maxLimit = bookingState.tier === 'solo' ? 1 : (bookingState.tier === 'dupla' ? 2 : 4);
+  bookingState.vegCount = Math.max(0, Math.min(maxLimit, bookingState.vegCount + delta));
+  document.getElementById('vegCountNum').textContent = bookingState.vegCount;
+  syncSummary();
 }
 
-/* ── 8. MOTOR DEL CALENDARIO (Solo Viernes y Sábados desde Nov 2026) ── */
-const MONTH_NAMES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-const DAY_LETTERS = ['Do','Lu','Ma','Mi','Ju','Vi','Sá'];
-const MIN_DATE = new Date(2026, 10, 1); // 1 de Noviembre 2026
+/* ── 8. CALENDARIO ── */
+const MONTH_LABELS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const DOW_HEADERS = ['Do','Lu','Ma','Mi','Ju','Vi','Sá'];
+const EARLIEST_DATE = new Date(2026, 10, 1);
 
-function renderCalendar() {
-  const { year, month } = appState;
-  document.getElementById('calMonthDisplay').textContent = `${MONTH_NAMES[month]} ${year}`;
-  const grid = document.getElementById('calGrid');
+function renderCalendarGrid() {
+  const { year, month } = bookingState;
+  document.getElementById('calDisplayMonth').textContent = `${MONTH_LABELS[month]} ${year}`;
+  const grid = document.getElementById('calMatrixGrid');
   grid.innerHTML = '';
 
-  // Encabezados de días
-  DAY_LETTERS.forEach(day => {
-    const headerCell = document.createElement('div');
-    headerCell.className = 'cal-dow';
-    headerCell.textContent = day;
-    grid.appendChild(headerCell);
+  DOW_HEADERS.forEach(day => {
+    const th = document.createElement('div');
+    th.className = 'cal-matrix-header';
+    th.textContent = day;
+    grid.appendChild(th);
   });
 
-  const firstDayIndex = new Date(year, month, 1).getDay();
-  const totalDays = new Date(year, month + 1, 0).getDate();
+  const startDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-  // Días vacíos previos
-  for (let i = 0; i < firstDayIndex; i++) {
-    const empty = document.createElement('div');
-    grid.appendChild(empty);
+  for (let i = 0; i < startDay; i++) {
+    grid.appendChild(document.createElement('div'));
   }
 
-  // Celdas del mes
-  for (let d = 1; d <= totalDays; d++) {
+  for (let d = 1; d <= daysInMonth; d++) {
     const btn = document.createElement('button');
-    btn.className = 'cal-cell';
+    btn.className = 'cal-slot';
     btn.textContent = d;
-    const current = new Date(year, month, d);
+    const curDate = new Date(year, month, d);
 
-    const isBeforeStart = current < MIN_DATE;
-    const isFridayOrSaturday = current.getDay() === 5 || current.getDay() === 6;
+    const isBeforeNov = curDate < EARLIEST_DATE;
+    const isFriSat = curDate.getDay() === 5 || curDate.getDay() === 6;
 
-    if (isBeforeStart || !isFridayOrSaturday) {
+    if (isBeforeNov || !isFriSat) {
       btn.classList.add('disabled');
       btn.disabled = true;
     } else {
       btn.onclick = () => {
-        appState.date = current;
-        document.querySelectorAll('.cal-cell.selected').forEach(el => el.classList.remove('selected'));
+        bookingState.date = curDate;
+        document.querySelectorAll('.cal-slot.selected').forEach(el => el.classList.remove('selected'));
         btn.classList.add('selected');
-        renderSummary();
+        syncSummary();
       };
     }
 
-    if (appState.date && current.toDateString() === appState.date.toDateString()) {
+    if (bookingState.date && curDate.toDateString() === bookingState.date.toDateString()) {
       btn.classList.add('selected');
     }
 
@@ -1601,80 +1745,79 @@ function renderCalendar() {
   }
 }
 
-function moveMonth(delta) {
-  appState.month += delta;
-  if (appState.month > 11) { appState.month = 0; appState.year++; }
-  if (appState.month < 0)  { appState.month = 11; appState.year--; }
+function navMonth(delta) {
+  bookingState.month += delta;
+  if (bookingState.month > 11) { bookingState.month = 0; bookingState.year++; }
+  if (bookingState.month < 0)  { bookingState.month = 11; bookingState.year--; }
 
-  // Restricción: No retroceder antes de Noviembre 2026
-  if (appState.year < 2026 || (appState.year === 2026 && appState.month < 10)) {
-    appState.year = 2026;
-    appState.month = 10;
+  if (bookingState.year < 2026 || (bookingState.year === 2026 && bookingState.month < 10)) {
+    bookingState.year = 2026;
+    bookingState.month = 10;
   }
-  renderCalendar();
+  renderCalendarGrid();
 }
 
-/* ── 9. ACTUALIZACIÓN DEL RESUMEN ── */
-function formatCLP(val) {
+/* ── 9. SINCRONIZAR RESUMEN ── */
+function formatCurrency(val) {
   return '$' + val.toLocaleString('es-CL');
 }
 
-function renderSummary() {
-  const d = appState.date;
-  const dateStr = d 
+function syncSummary() {
+  const d = bookingState.date;
+  const formatted = d 
     ? d.toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
-    : '— Elige una fecha en el calendario';
+    : '— Selecciona una fecha en el calendario';
 
-  document.getElementById('sumDate').textContent = dateStr;
-  document.getElementById('sumPlanName').textContent = TIER_NAMES[appState.tier];
-  document.getElementById('sumPriceDisplay').textContent = formatCLP(appState.price);
+  document.getElementById('selectedDateText').textContent = formatted;
+  document.getElementById('selectedTierText').textContent = TIER_DESCRIPTIONS[bookingState.tier];
+  document.getElementById('dockTotalNum').textContent = formatCurrency(bookingState.price);
 
-  const btnSubmit = document.getElementById('btnSubmitReserva');
-  btnSubmit.disabled = !d;
+  const btnGo = document.getElementById('btnContinuePayment');
+  btnGo.disabled = !d;
 }
 
-/* ── 10. MODAL & GENERACIÓN WHATSAPP ── */
-function openModal() {
-  if (!appState.date) return;
-  const d = appState.date;
+/* ── 10. MODAL & WHATSAPP ── */
+function openPaymentModal() {
+  if (!bookingState.date) return;
+  const d = bookingState.date;
   const dateFormatted = d.toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
-  document.getElementById('modalDate').textContent = dateFormatted;
-  document.getElementById('modalPlan').textContent = TIER_NAMES[appState.tier];
-  document.getElementById('modalVeg').textContent = appState.vegCount;
-  document.getElementById('modalTotal').textContent = formatCLP(appState.price);
+  document.getElementById('mDateStr').textContent = dateFormatted;
+  document.getElementById('mTierStr').textContent = TIER_DESCRIPTIONS[bookingState.tier];
+  document.getElementById('mVegStr').textContent = bookingState.vegCount;
+  document.getElementById('mTotalStr').textContent = formatCurrency(bookingState.price);
 
-  // Mensaje estructurado WhatsApp
-  const rawMsg = `¡Hola! Quiero confirmar mi reserva en Mesa Secreta 🍷🍝\n\n` +
+  const msg = `¡Hola! Quiero confirmar mi noche en Mesa Secreta 🍷🍝\n\n` +
     `• Fecha: ${dateFormatted}\n` +
-    `• Horario: 20:00 hrs (Turno único)\n` +
-    `• Modalidad: ${TIER_NAMES[appState.tier]}\n` +
-    `• Vegetarianos: ${appState.vegCount}\n` +
-    `• Total transferido: ${formatCLP(appState.price)}\n\n` +
+    `• Horario: 20:00 hrs (Puntual)\n` +
+    `• Puestos: ${TIER_DESCRIPTIONS[bookingState.tier]}\n` +
+    `• Menú Vegetariano: ${bookingState.vegCount}\n` +
+    `• Total: ${formatCurrency(bookingState.price)}\n` +
+    `• Incluye: Pasta fresca + Cena + Vino libre + Pechera de regalo + Fotos de recuerdo\n\n` +
     `Adjunto el comprobante de transferencia bancaria PREX. ¡Quedo atento a la confirmación y dirección exacta!`;
 
-  document.getElementById('waLinkBtn').href = `https://wa.me/56928623092?text=${encodeURIComponent(rawMsg)}`;
+  document.getElementById('btnFinishWhatsApp').href = `https://wa.me/56928623092?text=${encodeURIComponent(msg)}`;
 
-  const modal = document.getElementById('modal');
-  modal.classList.add('open');
+  const m = document.getElementById('modal');
+  m.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
-function closeModal() {
+function closePaymentModal() {
   document.getElementById('modal').classList.remove('open');
   document.body.style.overflow = '';
 }
 
-document.getElementById('modal').addEventListener('click', (e) => {
-  if (e.target === document.getElementById('modal')) closeModal();
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal')) closePaymentModal();
 });
 
-/* ── 11. COPIAR DATOS BANCARIOS PREX ── */
-function copyBankInfo() {
-  const bankText = `Banco: PREX\nTipo de Cuenta: Cuenta Vista\nN° de Cuenta: 12771432\nRUT: 16.667.108-6\nTitular: Dan Mesa Secreta\nEmail: dan.tagle@gmail.com`;
-  navigator.clipboard.writeText(bankText).then(() => {
-    const btn = document.getElementById('btnCopyData');
-    btn.textContent = '✓ Datos copiados al portapapeles';
+/* ── 11. COPIAR DATOS PREX ── */
+function copyPrexDetails() {
+  const bankData = `Banco: PREX\nTipo de Cuenta: Cuenta Vista\nN° de Cuenta: 12771432\nRUT: 16.667.108-6\nTitular: Dan Mesa Secreta\nEmail: dan.tagle@gmail.com`;
+  navigator.clipboard.writeText(bankData).then(() => {
+    const btn = document.getElementById('btnCopyBankData');
+    btn.textContent = '✓ Datos copiados con éxito';
     setTimeout(() => {
       btn.textContent = 'Copiar datos de transferencia';
     }, 2500);
@@ -1682,8 +1825,8 @@ function copyBankInfo() {
 }
 
 /* ── INICIALIZACIÓN ── */
-renderCalendar();
-renderSummary();
+renderCalendarGrid();
+syncSummary();
 selectPlan('dupla', 110000);
 </script>
 </body>
