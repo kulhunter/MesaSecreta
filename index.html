@@ -1,892 +1,1160 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth bg-[#080705] text-[#F4F1EA]">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MESA SECRETA — 4 Puestos. Pasta Fresca a Mano. Santiago.</title>
-  <meta name="description" content="Una experiencia clandestina de cocina en Santiago. Amasas pasta fresca desde cero con tus manos, bebes buen vino y estás al lado del Metro. Solo 4 puestos por noche.">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="MESA SECRETA — Esta noche solo hay 4 puestos">
-  <meta property="og:description" content="Amasas tu propia pasta con tus manos, bebes vino y estás al lado del Metro. Solo 4 personas por noche.">
-  <meta property="og:type" content="website">
+  <title>MESA SECRETA — Pasta Fresca. Santiago.</title>
+  <meta name="description" content="Una experiencia clandestina de cocina en Santiago. Amasas pasta fresca con tus manos. Solo 4 puestos por noche.">
+  <meta property="og:title" content="MESA SECRETA">
+  <meta property="og:description" content="Pasta fresca. Tus manos. Una noche que no olvidarás.">
   <meta property="og:url" content="https://mesasecreta.cl">
-
-  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍝</text></svg>">
 
-  <!-- Typography: Syne (Ultra Bold Poster Headline) + Space Grotesk (Editorial Mono/Body) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@800;900&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            display: ['"Syne"', 'sans-serif'],
-            mono: ['"Space Grotesk"', 'monospace'],
-            sans: ['"Space Grotesk"', 'sans-serif']
-          },
-          colors: {
-            noir: '#080705',
-            card: '#120F0C',
-            surface: '#1A1612',
-            border: '#2E2720',
-            gold: '#D9B46F',
-            goldlight: '#F3D698',
-            wine: '#8A1E27',
-            bone: '#F4F1EA',
-            muted: '#8C8375'
-          }
-        }
-      }
-    }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=DM+Mono:wght@400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-      -webkit-font-smoothing: antialiased;
+    /* ─── RESET ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    :root {
+      --bg: #0a0804;
+      --cream: #f0e8d5;
+      --gold: #c9a84c;
+      --wine: #7a1825;
+      --bone: #e8dfc8;
+      --muted: #5a5040;
+      --ff-display: 'Playfair Display', serif;
+      --ff-headline: 'Bebas Neue', sans-serif;
+      --ff-mono: 'DM Mono', monospace;
     }
 
     body {
-      background-color: #080705;
-      color: #F4F1EA;
-      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--ff-mono);
       overflow-x: hidden;
+      cursor: none;
     }
 
-    /* Cannes Headline Scale */
-    .title-cannes {
-      font-family: 'Syne', sans-serif;
-      font-weight: 900;
-      line-height: 0.9;
-      letter-spacing: -0.04em;
-      text-transform: uppercase;
-    }
-
-    /* Film Grain Simulation */
-    .film-grain {
+    /* ─── CUSTOM CURSOR ─────────────────────────────── */
+    #cursor {
       position: fixed;
-      inset: 0;
+      width: 12px; height: 12px;
+      background: var(--gold);
+      border-radius: 50%;
       pointer-events: none;
-      z-index: 50;
-      opacity: 0.035;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width .2s, height .2s, background .2s;
+      mix-blend-mode: normal;
+    }
+    #cursor-ring {
+      position: fixed;
+      width: 40px; height: 40px;
+      border: 1px solid rgba(201,168,76,.4);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width .35s cubic-bezier(.16,1,.3,1), height .35s cubic-bezier(.16,1,.3,1), opacity .3s;
+    }
+    body:hover #cursor { opacity: 1; }
+    a:hover ~ #cursor, button:hover ~ #cursor { width: 20px; height: 20px; }
+
+    /* ─── FILM GRAIN ────────────────────────────────── */
+    #grain {
+      position: fixed; inset: 0; pointer-events: none; z-index: 100;
+      opacity: .04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    /* Music Disc Spin */
-    @keyframes vinylSpin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    /* ─── PRELOADER ─────────────────────────────────── */
+    #preloader {
+      position: fixed; inset: 0; z-index: 9000;
+      background: var(--bg);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 2rem;
+      transition: opacity .8s ease, visibility .8s ease;
     }
-    .spinning {
-      animation: vinylSpin 4s linear infinite;
+    #preloader.done { opacity: 0; visibility: hidden; }
+    .pre-word {
+      font-family: var(--ff-headline);
+      font-size: clamp(3rem, 12vw, 9rem);
+      letter-spacing: .05em;
+      color: var(--cream);
+      overflow: hidden;
+      line-height: 1;
     }
-
-    /* Real Photo Treatment */
-    .photo-frame {
+    .pre-word span {
+      display: inline-block;
+      transform: translateY(110%);
+      transition: transform .9s cubic-bezier(.16,1,.3,1);
+    }
+    .pre-bar {
+      width: 200px; height: 1px;
+      background: var(--muted);
       position: relative;
       overflow: hidden;
-      border: 1px solid #2E2720;
     }
-    .photo-frame img {
-      width: 100%;
-      height: 100%;
+    .pre-bar::after {
+      content: '';
+      position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: var(--gold);
+      animation: bar-fill 2s cubic-bezier(.16,1,.3,1) forwards;
+    }
+    @keyframes bar-fill { to { left: 0; } }
+
+    /* ─── HEADER ────────────────────────────────────── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      padding: 1.5rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background .4s, padding .4s;
+    }
+    header.shrunk {
+      background: rgba(10,8,4,.92);
+      backdrop-filter: blur(20px);
+      padding: .8rem 3rem;
+      border-bottom: 1px solid rgba(201,168,76,.15);
+    }
+    .logo {
+      font-family: var(--ff-headline);
+      font-size: 1.4rem;
+      letter-spacing: .2em;
+      color: var(--cream);
+      text-decoration: none;
+      transition: color .3s;
+    }
+    .logo:hover { color: var(--gold); }
+    .header-right {
+      display: flex; align-items: center; gap: 1.5rem;
+    }
+    .audio-btn {
+      background: none; border: 1px solid rgba(201,168,76,.3);
+      color: var(--cream); padding: .4rem 1rem;
+      font-family: var(--ff-mono); font-size: .7rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      cursor: none; transition: border-color .3s, color .3s;
+    }
+    .audio-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .cta-header {
+      background: var(--gold); color: var(--bg);
+      padding: .5rem 1.5rem;
+      font-family: var(--ff-headline);
+      letter-spacing: .15em; font-size: 1rem;
+      text-decoration: none; text-transform: uppercase;
+      transition: background .3s;
+      cursor: none;
+    }
+    .cta-header:hover { background: var(--cream); }
+
+    /* ─── HERO ──────────────────────────────────────── */
+    #hero {
+      position: relative;
+      height: 100vh; min-height: 600px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    #hero video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
-      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .photo-frame:hover img {
-      transform: scale(1.04);
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(10,8,4,.55) 0%, rgba(10,8,4,.3) 40%, rgba(10,8,4,.85) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
+    }
+    .hero-eyebrow {
+      font-family: var(--ff-mono);
+      font-size: .7rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0;
+      animation: fade-up .8s .5s forwards;
+    }
+    .hero-title {
+      font-family: var(--ff-headline);
+      font-size: clamp(4.5rem, 16vw, 14rem);
+      line-height: .88;
+      letter-spacing: -.01em;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0;
+      animation: fade-up 1s .7s forwards;
+    }
+    .hero-sub {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.6rem);
+      color: rgba(240,232,213,.7);
+      max-width: 480px;
+      line-height: 1.5;
+      opacity: 0;
+      animation: fade-up .8s 1s forwards;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      opacity: 0; animation: fade-up .6s 1.5s forwards;
+    }
+    .hero-scroll span {
+      font-family: var(--ff-mono); font-size: .6rem;
+      letter-spacing: .3em; text-transform: uppercase; color: var(--muted);
+    }
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scroll-anim 2s 2s infinite;
+    }
+    @keyframes scroll-anim {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Calendar Grid Days */
-    .cal-day-btn {
+    /* ─── MARQUEE ───────────────────────────────────── */
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid rgba(201,168,76,.2);
+      border-bottom: 1px solid rgba(201,168,76,.2);
+      padding: 1rem 0;
+      background: rgba(201,168,76,.04);
+    }
+    .marquee-track {
+      display: flex; gap: 4rem;
+      white-space: nowrap;
+      animation: marquee 18s linear infinite;
+    }
+    .marquee-item {
+      font-family: var(--ff-headline);
+      font-size: 1rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .marquee-dot { color: var(--gold); }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ─── SECTIONS COMUNES ──────────────────────────── */
+    section {
+      padding: 8rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ─── STATEMENT SECTIONS ────────────────────────── */
+    .statement {
+      text-align: center;
+      padding: 10rem 3rem;
+      max-width: 100%;
+    }
+    .statement-text {
+      font-family: var(--ff-headline);
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      line-height: .92;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    .statement-text em {
+      color: var(--gold);
+      font-style: normal;
+    }
+    .statement-caption {
+      margin-top: 2rem;
+      font-family: var(--ff-mono);
+      font-size: .75rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─── PHOTO GRID ────────────────────────────────── */
+    .photo-section {
+      padding: 0;
+      max-width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 50vw 30vw;
+      gap: 4px;
+    }
+    .photo-cell {
+      overflow: hidden;
+      position: relative;
+    }
+    .photo-cell img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 1.2s cubic-bezier(.16,1,.3,1);
+      display: block;
+    }
+    .photo-cell:hover img { transform: scale(1.06); }
+    .photo-cell:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
+    .photo-cell:nth-child(2) { grid-column: 3; grid-row: 1; }
+    .photo-cell:nth-child(3) { grid-column: 1; grid-row: 2; }
+    .photo-cell:nth-child(4) { grid-column: 2 / 4; grid-row: 2; }
+
+    /* ─── PRICING ───────────────────────────────────── */
+    #precios {
+      padding: 8rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-family: var(--ff-mono);
+      font-size: .65rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .section-title {
+      font-family: var(--ff-headline);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: .9;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 4rem;
+    }
+    .plans-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .plan-card {
+      background: #111009;
+      border: 1px solid rgba(201,168,76,.1);
+      padding: 3rem;
+      position: relative;
+      cursor: none;
+      transition: border-color .3s, background .3s;
+    }
+    .plan-card:hover { border-color: rgba(201,168,76,.4); background: #161309; }
+    .plan-card.featured {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .plan-card.featured * { color: var(--bg) !important; }
+    .plan-card.featured:hover { background: #d4b05a; }
+    .plan-badge {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      font-family: var(--ff-mono); font-size: .55rem;
+      letter-spacing: .3em; text-transform: uppercase;
+      background: var(--bg); color: var(--gold);
+      padding: .3rem .8rem;
+    }
+    .plan-name {
+      font-family: var(--ff-headline);
+      font-size: 1.1rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .plan-price {
+      font-family: var(--ff-headline);
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 1;
+      color: var(--cream);
+      margin-bottom: .5rem;
+    }
+    .plan-currency {
+      font-size: .4em;
+      vertical-align: super;
+    }
+    .plan-desc {
+      font-family: var(--ff-mono);
+      font-size: .75rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .plan-alert {
+      background: rgba(122,24,37,.15);
+      border: 1px solid rgba(122,24,37,.4);
+      padding: .8rem 1rem;
+      font-family: var(--ff-mono);
+      font-size: .65rem;
+      letter-spacing: .1em;
+      line-height: 1.6;
+      color: #e88;
+      margin-bottom: 2rem;
+    }
+    .plan-cta {
+      display: inline-block;
+      border: 1px solid var(--cream);
+      color: var(--cream);
+      padding: .7rem 2rem;
+      font-family: var(--ff-headline);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      font-size: 1rem;
+      text-decoration: none;
+      cursor: none;
+      transition: background .3s, color .3s;
+    }
+    .plan-cta:hover { background: var(--cream); color: var(--bg); }
+    .plan-card.featured .plan-cta {
+      border-color: var(--bg);
+    }
+    .plan-card.featured .plan-cta:hover { background: var(--bg); color: var(--gold); }
+
+    /* ─── CALENDAR ──────────────────────────────────── */
+    #reservar {
+      background: #0e0b07;
+      padding: 8rem 3rem;
+      max-width: 100%;
+      border-top: 1px solid rgba(201,168,76,.1);
+      border-bottom: 1px solid rgba(201,168,76,.1);
+    }
+    .reservar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .calendar-wrap { }
+    .cal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .cal-month {
+      font-family: var(--ff-headline);
+      font-size: 1.4rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    .cal-nav {
+      background: none; border: 1px solid rgba(201,168,76,.3);
+      color: var(--cream); width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: none; font-size: 1rem;
+      transition: border-color .3s, background .3s;
+    }
+    .cal-nav:hover { border-color: var(--gold); background: rgba(201,168,76,.1); }
+    .cal-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+    .cal-dow {
+      font-family: var(--ff-mono); font-size: .55rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--muted); text-align: center;
+      padding: .5rem 0;
+    }
+    .cal-day {
       aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
-      border: 1px solid #2E2720;
-      background: #120F0C;
-      color: #F4F1EA;
-      transition: all 0.2s ease;
-      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--ff-mono); font-size: .75rem; font-weight: 500;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--cream);
+      cursor: none;
+      transition: all .2s;
     }
-    .cal-day-btn:hover:not(.disabled) {
-      background: #D9B46F;
-      color: #080705;
-      border-color: #D9B46F;
-      transform: scale(1.05);
+    .cal-day:not(.disabled):hover {
+      border-color: var(--gold); color: var(--gold);
     }
-    .cal-day-btn.selected {
-      background: #D9B46F !important;
-      color: #080705 !important;
-      border-color: #D9B46F !important;
-      font-weight: 900;
+    .cal-day.selected {
+      background: var(--gold); color: var(--bg);
+      border-color: var(--gold); font-weight: 700;
     }
-    .cal-day-btn.disabled {
-      color: #3D352B;
-      background: #080705;
-      border-color: #1A1612;
-      cursor: not-allowed;
-      opacity: 0.35;
+    .cal-day.disabled { color: var(--muted); cursor: not-allowed; opacity: .3; }
+
+    /* ─── FORM SUMMARY ──────────────────────────────── */
+    .summary-box { position: sticky; top: 100px; }
+    .summary-title {
+      font-family: var(--ff-headline);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 2rem;
+      line-height: .9;
+    }
+    .summary-row {
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid rgba(201,168,76,.1);
+      padding: .8rem 0;
+      font-family: var(--ff-mono); font-size: .75rem;
+      color: var(--muted);
+    }
+    .summary-row span:last-child { color: var(--cream); }
+    .summary-total {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 1.5rem 0;
+    }
+    .summary-total-label {
+      font-family: var(--ff-mono); font-size: .65rem;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+    }
+    .summary-total-price {
+      font-family: var(--ff-headline); font-size: 2.5rem;
+      color: var(--gold); line-height: 1;
     }
 
-    /* Custom Selection */
-    ::selection {
-      background: #D9B46F;
-      color: #080705;
+    .veg-controls {
+      display: flex; align-items: center; gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .veg-label {
+      font-family: var(--ff-mono); font-size: .7rem;
+      letter-spacing: .15em; text-transform: uppercase; color: var(--muted);
+      flex: 1;
+    }
+    .veg-btn {
+      background: none; border: 1px solid rgba(201,168,76,.3);
+      color: var(--cream); width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: none; font-size: 1rem; font-family: var(--ff-mono);
+      transition: border-color .3s, background .3s;
+    }
+    .veg-btn:hover { border-color: var(--gold); background: rgba(201,168,76,.1); }
+    .veg-count {
+      font-family: var(--ff-headline); font-size: 1.5rem; color: var(--cream);
+      min-width: 2ch; text-align: center;
     }
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #080705; }
-    ::-webkit-scrollbar-thumb { background: #2E2720; }
-    ::-webkit-scrollbar-thumb:hover { background: #D9B46F; }
+    .plan-selector {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4px; margin-bottom: 1.5rem;
+    }
+    .plan-btn {
+      background: #111009; border: 1px solid rgba(201,168,76,.1);
+      color: var(--muted); padding: .8rem;
+      font-family: var(--ff-mono); font-size: .65rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      cursor: none; transition: all .25s;
+      text-align: center;
+    }
+    .plan-btn.active {
+      background: var(--gold); border-color: var(--gold); color: var(--bg);
+    }
+    .plan-btn:not(.active):hover { border-color: rgba(201,168,76,.4); color: var(--cream); }
+
+    .btn-continue {
+      width: 100%;
+      background: var(--cream); color: var(--bg);
+      padding: 1rem 2rem;
+      font-family: var(--ff-headline); font-size: 1.2rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      border: none; cursor: none;
+      transition: background .3s;
+      margin-top: 1rem;
+    }
+    .btn-continue:hover { background: var(--gold); }
+    .btn-continue:disabled {
+      background: var(--muted); color: rgba(240,232,213,.3); cursor: not-allowed;
+    }
+
+    /* ─── MODAL ─────────────────────────────────────── */
+    #modal {
+      position: fixed; inset: 0; z-index: 800;
+      background: rgba(10,8,4,.95);
+      backdrop-filter: blur(20px);
+      display: none;
+      align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+    #modal.open { display: flex; }
+    .modal-box {
+      background: #111009;
+      border: 1px solid rgba(201,168,76,.2);
+      max-width: 520px; width: 100%;
+      padding: 3rem;
+      position: relative;
+      max-height: 90vh; overflow-y: auto;
+    }
+    .modal-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: none; border: none; color: var(--muted);
+      font-size: 1.2rem; cursor: none; line-height: 1;
+      transition: color .3s;
+    }
+    .modal-close:hover { color: var(--cream); }
+    .modal-title {
+      font-family: var(--ff-headline); font-size: 2rem;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--cream); margin-bottom: .5rem;
+    }
+    .modal-subtitle {
+      font-family: var(--ff-mono); font-size: .7rem;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 2rem;
+    }
+    .modal-detail {
+      border: 1px solid rgba(201,168,76,.15);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal-detail-row {
+      display: flex; justify-content: space-between;
+      font-family: var(--ff-mono); font-size: .75rem;
+      color: var(--muted); padding: .4rem 0;
+    }
+    .modal-detail-row span:last-child { color: var(--cream); }
+    .modal-total {
+      display: flex; justify-content: space-between; align-items: baseline;
+      border-top: 1px solid rgba(201,168,76,.15);
+      padding-top: 1rem; margin-top: .5rem;
+    }
+    .modal-total-label {
+      font-family: var(--ff-mono); font-size: .65rem;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+    }
+    .modal-total-price {
+      font-family: var(--ff-headline); font-size: 2.2rem; color: var(--gold);
+    }
+    .bank-box {
+      background: rgba(201,168,76,.05);
+      border: 1px solid rgba(201,168,76,.2);
+      padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .bank-row {
+      font-family: var(--ff-mono); font-size: .7rem;
+      color: var(--muted); margin-bottom: .5rem;
+      display: flex; justify-content: space-between;
+    }
+    .bank-row span:last-child { color: var(--cream); }
+    .copy-btn {
+      background: none; border: 1px solid rgba(201,168,76,.3);
+      color: var(--gold); padding: .4rem 1rem;
+      font-family: var(--ff-mono); font-size: .6rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      cursor: none; width: 100%; margin-top: 1rem;
+      transition: background .3s;
+    }
+    .copy-btn:hover { background: rgba(201,168,76,.1); }
+    .btn-wa {
+      display: block; width: 100%;
+      background: #25d366; color: #fff;
+      padding: 1rem; text-align: center;
+      font-family: var(--ff-headline); font-size: 1.1rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      text-decoration: none; cursor: none;
+      transition: background .3s;
+    }
+    .btn-wa:hover { background: #1da851; }
+
+    /* ─── FOOTER ────────────────────────────────────── */
+    footer {
+      border-top: 1px solid rgba(201,168,76,.1);
+      padding: 4rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 2rem;
+    }
+    .footer-brand {
+      font-family: var(--ff-headline);
+      font-size: 2rem; letter-spacing: .15em;
+      color: var(--cream);
+    }
+    .footer-tagline {
+      font-family: var(--ff-display); font-style: italic;
+      color: var(--muted); font-size: .9rem;
+    }
+    .footer-right {
+      font-family: var(--ff-mono); font-size: .65rem;
+      letter-spacing: .15em; color: var(--muted);
+      text-align: right; line-height: 2;
+    }
+
+    /* ─── SCROLLBAR ──────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--muted); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+    ::selection { background: var(--gold); color: var(--bg); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 768px) {
+      header { padding: 1rem 1.5rem; }
+      header.shrunk { padding: .7rem 1.5rem; }
+      section { padding: 5rem 1.5rem; }
+      .statement { padding: 6rem 1.5rem; }
+      .plans-grid { grid-template-columns: 1fr; }
+      .photo-section {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 50vw 50vw 50vw;
+      }
+      .photo-cell:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
+      .photo-cell:nth-child(2) { grid-column: 1; grid-row: 2; }
+      .photo-cell:nth-child(3) { grid-column: 2; grid-row: 2; }
+      .photo-cell:nth-child(4) { grid-column: 1 / 3; grid-row: 3; }
+      .reservar-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .summary-box { position: static; }
+      footer { flex-direction: column; align-items: flex-start; }
+      .footer-right { text-align: left; }
+      .header-right .cta-header { padding: .4rem 1rem; font-size: .85rem; }
+    }
+
+    /* ─── UTILITY ────────────────────────────────────── */
+    .hidden { display: none !important; }
   </style>
 </head>
-<body class="relative">
+<body>
 
-  <div class="film-grain"></div>
+<!-- cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<!-- grain overlay -->
+<div id="grain"></div>
 
-  <!-- REAL AUDIO ELEMENT -->
-  <audio id="audioTrack" src="noche.mp3" loop preload="auto"></audio>
+<!-- audio -->
+<audio id="audioTrack" src="noche.mp3" loop preload="auto"></audio>
 
-  <!-- FIXED HEADER -->
-  <header class="fixed top-0 left-0 right-0 z-40 px-5 sm:px-8 py-4 flex items-center justify-between border-b border-[#2E2720]/80 bg-[#080705]/90 backdrop-blur-md">
-    <div class="flex items-center gap-3">
-      <span class="w-2.5 h-2.5 rounded-full bg-[#D9B46F] animate-pulse"></span>
-      <a href="#inicio" class="font-display font-black text-sm tracking-widest text-[#F4F1EA] hover:text-[#D9B46F] transition">
-        MESA SECRETA
-      </a>
-      <span class="hidden md:inline-block text-xs uppercase tracking-widest text-[#8C8375] border-l border-[#2E2720] pl-3 font-mono">
-        4 SILLAS · SANTIAGO
-      </span>
+<!-- ══════════════════════════════════════
+     PRELOADER
+══════════════════════════════════════ -->
+<div id="preloader" aria-hidden="true">
+  <div class="pre-word"><span>MESA</span></div>
+  <div class="pre-word"><span>SECRETA</span></div>
+  <div class="pre-bar"></div>
+</div>
+
+<!-- ══════════════════════════════════════
+     HEADER
+══════════════════════════════════════ -->
+<header id="siteHeader">
+  <a href="#" class="logo">Mesa Secreta</a>
+  <div class="header-right">
+    <button class="audio-btn" id="btnAudio" onclick="toggleAudio()">
+      <span id="audioLabel">▶ Música</span>
+    </button>
+    <a href="#reservar" class="cta-header">Reservar</a>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="hero" style="padding:0; max-width:100%;">
+  <video autoplay muted loop playsinline poster="img/amasado.jpg">
+    <source src="video/pasta_loop.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Santiago · Sólo 4 puestos por noche</p>
+    <h1 class="hero-title">Mesa<br>Secreta</h1>
+    <p class="hero-sub">Pasta fresca. Tus manos. Una noche que no olvidarás.</p>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     MARQUEE
+══════════════════════════════════════ -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Pasta a Mano <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Vino Natural <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">4 Personas <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Experiencia Única <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Santiago <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">A Pasos del Metro <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Pasta a Mano <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Vino Natural <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">4 Personas <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Experiencia Única <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Santiago <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">A Pasos del Metro <span class="marquee-dot">◆</span></span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     STATEMENT 1
+══════════════════════════════════════ -->
+<div class="statement reveal">
+  <h2 class="statement-text">
+    Esta noche<br><em>amasas</em><br>tu propia pasta.
+  </h2>
+  <p class="statement-caption">Con tus manos. Sin receta. Sin miedo.</p>
+</div>
+
+<!-- ══════════════════════════════════════
+     FOTO GRID
+══════════════════════════════════════ -->
+<div class="photo-section">
+  <div class="photo-cell reveal">
+    <img src="img/amasado.jpg" alt="Amasado de pasta" loading="lazy">
+  </div>
+  <div class="photo-cell reveal" style="transition-delay:.15s">
+    <img src="img/huevo_harina.jpg" alt="Huevo y harina" loading="lazy">
+  </div>
+  <div class="photo-cell reveal" style="transition-delay:.3s">
+    <img src="img/fettuccine.jpg" alt="Fettuccine fresco" loading="lazy">
+  </div>
+  <div class="photo-cell reveal" style="transition-delay:.45s">
+    <img src="img/vino_noche.jpg" alt="Vino de la noche" loading="lazy">
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     STATEMENT 2
+══════════════════════════════════════ -->
+<div class="statement reveal">
+  <h2 class="statement-text">
+    Una mesa.<br>Cuatro extraños.<br><em>Una noche.</em>
+  </h2>
+  <p class="statement-caption">Siempre en duplas. Siempre en compañía.</p>
+</div>
+
+<!-- ══════════════════════════════════════
+     FOTO SOLA — COCCIÓN
+══════════════════════════════════════ -->
+<div style="width:100%; height:65vmax; max-height:700px; overflow:hidden;" class="reveal">
+  <img src="img/coccion.jpg" alt="Cocción de la pasta"
+       style="width:100%; height:100%; object-fit:cover; display:block;
+              transition: transform 1.5s cubic-bezier(.16,1,.3,1);"
+       onmouseenter="this.style.transform='scale(1.04)'"
+       onmouseleave="this.style.transform='scale(1)'">
+</div>
+
+<!-- ══════════════════════════════════════
+     STATEMENT 3
+══════════════════════════════════════ -->
+<div class="statement reveal">
+  <h2 class="statement-text">
+    La receta<br>es simple.<br><em>La experiencia, no.</em>
+  </h2>
+  <p class="statement-caption">Harina. Huevo. Tiempo. Y una copa de vino bien elegida.</p>
+</div>
+
+<!-- ══════════════════════════════════════
+     PRECIOS
+══════════════════════════════════════ -->
+<div id="precios" class="reveal">
+  <span class="section-label">¿Cómo quieres venir?</span>
+  <h2 class="section-title">Elige<br>tu experiencia</h2>
+
+  <div class="plans-grid">
+    <!-- SOLITARIO -->
+    <div class="plan-card" id="card-solo" onclick="selectPlan('solo',59000)">
+      <div class="plan-name">Solitario</div>
+      <div class="plan-price"><span class="plan-currency">$</span>59.000</div>
+      <p class="plan-desc">
+        Llegas solo. Compartirás la mesa<br>con quien el destino decida.
+      </p>
+      <div class="plan-alert">
+        ⚠ El trabajo es siempre en duplas.<br>
+        Si vienes solo, te emparejamos con otro aventurero.
+      </div>
+      <a href="#reservar" class="plan-cta">Elegir solitario</a>
     </div>
 
-    <div class="flex items-center gap-3 sm:gap-5">
-      <!-- Metro badge -->
-      <div class="hidden sm:flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#D9B46F] bg-[#1A1612] px-3 py-1.5 border border-[#2E2720]">
-        <span>🚇</span>
-        <span>A PASOS DEL METRO</span>
-      </div>
-
-      <!-- Real Audio Player Button -->
-      <button id="btnAudioToggle" onclick="toggleAudio()" class="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-[#2E2720] bg-[#120F0C] hover:border-[#D9B46F] text-xs font-mono tracking-wider transition text-[#F4F1EA] group">
-        <span id="discIcon" class="inline-block text-sm transition-transform">💿</span>
-        <span id="audioStatusText" class="font-bold">MÚSICA [PLAY]</span>
-      </button>
-
-      <!-- Book CTA -->
-      <a href="#reservar" class="px-4 py-2 bg-[#D9B46F] text-[#080705] font-display font-black text-xs uppercase tracking-widest hover:bg-white transition">
-        RESERVAR
-      </a>
-    </div>
-  </header>
-
-  <!-- ═════════════════════════════════════════════════════════════════
-       ACTO 1: EL IMPACTO (LA COARTADA DE LAS 4 SILLAS)
-  ═════════════════════════════════════════════════════════════════ -->
-  <section id="inicio" class="min-h-screen pt-32 pb-20 px-4 flex flex-col justify-center items-center text-center relative border-b border-[#2E2720]">
-    <div class="max-w-5xl mx-auto w-full">
-      <p class="text-xs sm:text-sm font-mono uppercase tracking-[0.35em] text-[#D9B46F] mb-6">
-        SANTIAGO · NOVIEMBRE 2026 · 20:00 HRS
+    <!-- DUPLA — featured -->
+    <div class="plan-card featured" id="card-dupla" onclick="selectPlan('dupla',99000)">
+      <div class="plan-badge">Más elegida</div>
+      <div class="plan-name">Dupla</div>
+      <div class="plan-price"><span class="plan-currency">$</span>99.000</div>
+      <p class="plan-desc">
+        Ven con quien quieras.<br>Compartan la experiencia completa.
       </p>
-
-      <h1 class="title-cannes text-5xl sm:text-7xl md:text-8xl lg:text-[7.8rem] text-[#F4F1EA] mb-8">
-        EN SANTIAGO HAY<br>
-        7 MILLONES.<br>
-        <span class="text-[#D9B46F]">ESTA NOCHE SOLO<br>HAY CUATRO.</span>
-      </h1>
-
-      <p class="max-w-2xl mx-auto text-base sm:text-xl text-[#8C8375] font-light leading-relaxed mb-10">
-        No es un restaurante. Mi departamento abre una sola mesa.<br class="hidden sm:inline">
-        Vienes a amasar tu propia pasta, beber buen vino y cenar a puertas cerradas.
-      </p>
-
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
-        <a href="#reservar" class="w-full sm:w-auto px-10 py-5 bg-[#D9B46F] text-[#080705] font-display font-black text-sm tracking-widest uppercase hover:bg-white transition shadow-xl shadow-[#D9B46F]/10">
-          ASEGURAR MI NOCHE →
-        </a>
-        <a href="#experiencia" class="w-full sm:w-auto px-8 py-5 border border-[#2E2720] bg-[#120F0C] text-[#F4F1EA] font-display font-bold text-sm tracking-widest uppercase hover:border-[#D9B46F] transition">
-          LA EXPERIENCIA ↓
-        </a>
-      </div>
-    </div>
-
-    <!-- HERO IMAGE: REAL, PROMINENT, CRISP -->
-    <div class="max-w-5xl mx-auto w-full px-2 sm:px-0">
-      <div class="photo-frame h-[320px] sm:h-[500px] w-full rounded-sm">
-        <img src="img/amasado.jpg" alt="Amasado de pasta fresca artesanal con harina en las manos">
-      </div>
-      <p class="text-left text-xs font-mono text-[#8C8375] mt-3 uppercase tracking-wider">
-        ↑ FOTO REAL DEL AMASADO · HARINA, HUEVOS Y TUS PROPIAS MANOS
-      </p>
-    </div>
-  </section>
-
-  <!-- ═════════════════════════════════════════════════════════════════
-       ACTO 2: EL CORAZÓN DE LA EXPERIENCIA (PREPARAR LA PASTA)
-  ═════════════════════════════════════════════════════════════════ -->
-  <section id="experiencia" class="py-24 sm:py-32 px-4 bg-[#120F0C] border-b border-[#2E2720]">
-    <div class="max-w-5xl mx-auto text-center">
-      <p class="text-xs font-mono uppercase tracking-[0.35em] text-[#D9B46F] mb-4">
-        01 / LA EXPERIENCIA
-      </p>
-
-      <h2 class="title-cannes text-4xl sm:text-6xl md:text-7xl text-[#F4F1EA] mb-8">
-        EL OBJETIVO ES<br>
-        <span class="text-[#D9B46F]">PREPARAR LA PASTA.</span>
-      </h2>
-
-      <p class="max-w-2xl mx-auto text-lg sm:text-2xl text-[#8C8375] font-light leading-relaxed mb-16">
-        Aquí no vienes a sentarte a mirar una carta.<br>
-        Vienes a ensuciarte las manos. La pasta que cenas la hiciste tú.
-      </p>
-
-      <!-- 2 VISIBLE LARGE PHOTOS GRID -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 text-left">
-        <div>
-          <div class="photo-frame h-[360px] w-full mb-4">
-            <img src="img/huevo_harina.jpg" alt="El volcán de harina con yema de huevo fresca">
-          </div>
-          <h3 class="font-display font-black text-2xl text-[#F4F1EA] mb-2 uppercase">EL VOLCÁN DE HARINA</h3>
-          <p class="text-sm text-[#8C8375] leading-relaxed">
-            Harina sobre la madera, huevos frescos al centro. Amasas a mano con fuerza, paciencia y técnica hasta lograr una masa lisa, viva y elástica.
-          </p>
-        </div>
-
-        <div>
-          <div class="photo-frame h-[360px] w-full mb-4">
-            <img src="img/fettuccine.jpg" alt="Corte artesanal de fettuccine a mano">
-          </div>
-          <h3 class="font-display font-black text-2xl text-[#F4F1EA] mb-2 uppercase">EL ESTIRADO Y CORTE</h3>
-          <p class="text-sm text-[#8C8375] leading-relaxed">
-            Estirar hasta el grosor exacto. Plegar y cortar a mano cada cinta de fettuccine. Al agua hirviendo por solo dos minutos y directo al plato.
-          </p>
-        </div>
-      </div>
-
-      <!-- Essential Rules Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left border-t border-[#2E2720] pt-12">
-        <div class="p-6 bg-[#1A1612] border border-[#2E2720]">
-          <p class="text-xs font-mono uppercase text-[#D9B46F] tracking-widest mb-2">TRABAJO EN DUPLAS</p>
-          <p class="font-display font-black text-xl text-[#F4F1EA] mb-3">DE A DOS</p>
-          <p class="text-xs text-[#8C8375] leading-relaxed">
-            La pasta se prepara en duplas. Si vienes en pareja, amasan juntos. Si vienes solo, compartirás estación con otro invitado.
-          </p>
-        </div>
-
-        <div class="p-6 bg-[#1A1612] border border-[#2E2720]">
-          <p class="text-xs font-mono uppercase text-[#D9B46F] tracking-widest mb-2">LAS SALSAS</p>
-          <p class="font-display font-black text-xl text-[#F4F1EA] mb-3">SABOR REAL</p>
-          <p class="text-xs text-[#8C8375] leading-relaxed">
-            Ragù tradicional de cocción lenta y salsa bechamel sedosa sin carne (apta para vegetarianos). Pesto fresco si es época.
-          </p>
-        </div>
-
-        <div class="p-6 bg-[#1A1612] border border-[#2E2720]">
-          <p class="text-xs font-mono uppercase text-[#D9B46F] tracking-widest mb-2">TODO INCLUIDO</p>
-          <p class="font-display font-black text-xl text-[#F4F1EA] mb-3">CERO COMPLICACIÓN</p>
-          <p class="text-xs text-[#8C8375] leading-relaxed">
-            Harina, huevos, servicio, platos, salsas y vino para acompañar la noche. Solo traes tus ganas de cocinar.
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ═════════════════════════════════════════════════════════════════
-       ACTO 3: EL VINO Y LA LIBERTAD DEL METRO
-  ═════════════════════════════════════════════════════════════════ -->
-  <section class="py-24 sm:py-32 px-4 bg-[#080705] border-b border-[#2E2720]">
-    <div class="max-w-5xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        
-        <div class="lg:col-span-6 text-left">
-          <p class="text-xs font-mono uppercase tracking-[0.35em] text-[#D9B46F] mb-4">
-            02 / LA COARTADA
-          </p>
-          <h2 class="title-cannes text-4xl sm:text-6xl text-[#F4F1EA] mb-6">
-            BEBE EN PAZ.<br>
-            <span class="text-[#D9B46F]">EL METRO ESTÁ<br>A LA PUERTA.</span>
-          </h2>
-          <p class="text-base sm:text-lg text-[#8C8375] font-light leading-relaxed mb-6">
-            El vino acompaña toda la velada: copa en mano mientras tienes las manos llenas de harina y copas servidas en la mesa cuando la pasta sale humeante.
-          </p>
-          <p class="text-sm text-[#F4F1EA] font-medium leading-relaxed mb-8">
-            Mi departamento está literalmente al lado de la estación del Metro. No necesitas auto, no te preocupas por controles de alcotest ni por buscar estacionamiento. Vienes, cocinas, bebes y te regresas tranquilo.
-          </p>
-          <div class="inline-flex items-center gap-3 px-5 py-3 border border-[#D9B46F] bg-[#120F0C] text-xs font-mono uppercase tracking-widest text-[#D9B46F]">
-            <span>🚇</span>
-            <span>A PASOS DE LA ESTACIÓN · SANTIAGO</span>
-          </div>
-        </div>
-
-        <div class="lg:col-span-6">
-          <div class="photo-frame h-[420px] w-full rounded-sm">
-            <img src="img/vino_noche.jpg" alt="Copa de vino tinto y plato de pasta fresca en la mesa">
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════════════════════════════════════════════════════════════
-       ACTO 4: LOS PRECIOS ESCALONADOS
-       A más puestos, más barato p/p.
-  ═════════════════════════════════════════════════════════════════ -->
-  <section id="precios" class="py-24 sm:py-32 px-4 bg-[#120F0C] border-b border-[#2E2720]">
-    <div class="max-w-5xl mx-auto text-center">
-      <p class="text-xs font-mono uppercase tracking-[0.35em] text-[#D9B46F] mb-4">
-        03 / LOS PUESTOS
-      </p>
-
-      <h2 class="title-cannes text-4xl sm:text-6xl md:text-7xl text-[#F4F1EA] mb-4">
-        TRES FORMAS<br>DE ENTRAR.
-      </h2>
-
-      <p class="text-sm font-mono text-[#8C8375] uppercase tracking-widest mb-16">
-        A MÁS PUESTOS RESERVES, MENOR EL VALOR POR PERSONA
-      </p>
-
-      <!-- 3 CARDS GRID -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-        
-        <!-- 1 PUESTO -->
-        <div onclick="pickTierAndScroll('single')" class="p-8 bg-[#1A1612] border border-[#2E2720] hover:border-[#D9B46F] transition cursor-pointer flex flex-col justify-between group">
-          <div>
-            <div class="flex justify-between items-start mb-6">
-              <span class="text-xs font-mono uppercase tracking-widest text-[#8C8375]">1 PUESTO</span>
-              <span class="text-xs px-2.5 py-1 bg-[#2E2720] text-[#D9B46F] font-mono">SOLO</span>
-            </div>
-            <p class="font-display font-black text-4xl sm:text-5xl text-[#F4F1EA] group-hover:text-[#D9B46F] transition mb-2">
-              $60.000
-            </p>
-            <p class="text-xs font-mono text-[#8C8375] uppercase tracking-wider mb-6">
-              $60.000 CLP POR PERSONA
-            </p>
-            <div class="p-4 bg-[#120F0C] border border-[#2E2720] text-xs text-[#F4F1EA] leading-relaxed mb-6">
-              <strong class="text-[#D9B46F] block mb-1">⚠️ IMPORTANTE:</strong>
-              El amasado siempre se hace en duplas. Si vienes solo, compartirás estación y amasarás codo a codo con un desconocido. (Al final de la noche ya nadie es un extraño).
-            </div>
-          </div>
-          <button class="w-full py-4 text-center font-display font-black text-xs uppercase tracking-widest border border-[#2E2720] text-[#F4F1EA] group-hover:bg-[#D9B46F] group-hover:text-[#080705] group-hover:border-[#D9B46F] transition">
-            ELEGIR 1 PUESTO →
-          </button>
-        </div>
-
-        <!-- 2 PUESTOS (LA DUPLA) -->
-        <div onclick="pickTierAndScroll('dupla')" class="relative p-8 bg-[#1E1914] border-2 border-[#D9B46F] transition cursor-pointer flex flex-col justify-between group shadow-2xl shadow-[#D9B46F]/10">
-          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#D9B46F] text-[#080705] font-display font-black text-[10px] tracking-widest uppercase">
-            LA OPCIÓN MÁS ELEGIDA
-          </div>
-          <div>
-            <div class="flex justify-between items-start mb-6 mt-2">
-              <span class="text-xs font-mono uppercase tracking-widest text-[#D9B46F]">LA DUPLA</span>
-              <span class="text-xs px-2.5 py-1 bg-[#D9B46F]/20 text-[#D9B46F] font-mono font-bold">2 PUESTOS</span>
-            </div>
-            <p class="font-display font-black text-4xl sm:text-5xl text-[#D9B46F] mb-2">
-              $110.000
-            </p>
-            <p class="text-xs font-mono text-[#D9B46F]/80 uppercase tracking-wider mb-6 font-bold">
-              $55.000 CLP POR PERSONA
-            </p>
-            <p class="text-sm text-[#F4F1EA]/90 leading-relaxed mb-8">
-              Tu dupla completa. Parejas o dos amigos en su propia estación de amasado. La mejor cita gastronómica a puertas cerradas.
-            </p>
-          </div>
-          <button class="w-full py-4 text-center font-display font-black text-xs uppercase tracking-widest bg-[#D9B46F] text-[#080705] hover:bg-white transition">
-            ELEGIR LA DUPLA →
-          </button>
-        </div>
-
-        <!-- 4 PUESTOS (MESA COMPLETA) -->
-        <div onclick="pickTierAndScroll('mesa_completa')" class="p-8 bg-[#1A1612] border border-[#2E2720] hover:border-[#D9B46F] transition cursor-pointer flex flex-col justify-between group">
-          <div>
-            <div class="flex justify-between items-start mb-6">
-              <span class="text-xs font-mono uppercase tracking-widest text-[#8C8375]">MESA COMPLETA</span>
-              <span class="text-xs px-2.5 py-1 bg-[#2E2720] text-[#D9B46F] font-mono">4 PUESTOS</span>
-            </div>
-            <p class="font-display font-black text-4xl sm:text-5xl text-[#F4F1EA] group-hover:text-[#D9B46F] transition mb-2">
-              $200.000
-            </p>
-            <p class="text-xs font-mono text-[#8C8375] uppercase tracking-wider mb-6">
-              $50.000 CLP POR PERSONA
-            </p>
-            <p class="text-sm text-[#8C8375] leading-relaxed mb-8">
-              Cierra el departamento exclusivamente para tu grupo de 4. Amasado, vino, cena íntima y las 4 sillas solo para ustedes.
-            </p>
-          </div>
-          <button class="w-full py-4 text-center font-display font-black text-xs uppercase tracking-widest border border-[#2E2720] text-[#F4F1EA] group-hover:bg-[#D9B46F] group-hover:text-[#080705] group-hover:border-[#D9B46F] transition">
-            CERRAR MESA (4) →
-          </button>
-        </div>
-
-      </div>
-
-      <!-- Detail checklist -->
-      <div class="mt-12 pt-8 border-t border-[#2E2720] text-xs font-mono text-[#8C8375] flex flex-wrap justify-center gap-6 uppercase tracking-wider">
-        <span>✓ TODOS LOS INGREDIENTES INCLUIDOS</span>
-        <span>✓ VINO DE ACOMPAÑAMIENTO</span>
-        <span>✓ APTO VEGETARIANOS (BECHAMEL)</span>
-        <span>✕ NO APTO VEGANOS NI CELÍACOS</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════════════════════════════════════════════════════════════
-       ACTO 5: LA AGENDA Y RESERVA (TERMINAL BRUTALISTA)
-  ═════════════════════════════════════════════════════════════════ -->
-  <section id="reservar" class="py-24 sm:py-32 px-4 bg-[#080705]">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-12">
-        <p class="text-xs font-mono uppercase tracking-[0.35em] text-[#D9B46F] mb-3">
-          AGENDA OFICIAL
-        </p>
-        <h2 class="title-cannes text-4xl sm:text-6xl text-[#F4F1EA] mb-4">
-          RESERVA TU FECHA.
-        </h2>
-        <p class="text-xs sm:text-sm font-mono text-[#8C8375] uppercase tracking-widest">
-          DISPONIBLE DESDE NOVIEMBRE 2026 · 20:00 HRS SIEMPRE
-        </p>
-      </div>
-
-      <div class="bg-[#120F0C] border border-[#2E2720] p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 text-left">
-        
-        <!-- CALENDAR (7 COLS) -->
-        <div class="lg:col-span-7">
-          <div class="flex items-center justify-between pb-4 mb-6 border-b border-[#2E2720]">
-            <p id="calMonthHeader" class="font-display font-black text-xl text-[#F4F1EA] uppercase tracking-wider"></p>
-            <div class="flex gap-2">
-              <button onclick="navCal(-1)" class="w-9 h-9 flex items-center justify-center border border-[#2E2720] hover:border-[#D9B46F] text-[#F4F1EA] transition">
-                ←
-              </button>
-              <button onclick="navCal(1)" class="w-9 h-9 flex items-center justify-center border border-[#2E2720] hover:border-[#D9B46F] text-[#F4F1EA] transition">
-                →
-              </button>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-7 gap-1 text-center mb-2 font-mono text-[11px] text-[#8C8375]">
-            <span>LU</span><span>MA</span><span>MI</span><span>JU</span><span>VI</span><span>SA</span><span>DO</span>
-          </div>
-
-          <div id="calGrid" class="grid grid-cols-7 gap-1"></div>
-
-          <!-- Policy notice -->
-          <div class="mt-6 p-4 bg-[#080705] border border-[#2E2720] text-xs text-[#8C8375] leading-relaxed">
-            <strong class="text-[#D9B46F]">POLÍTICA DE CANCELACIÓN:</strong> Reagendamiento permitido con 72 hrs de anticipación para los siguientes 7 días. Con menos de 72 hrs no hay reembolso, pero tu reserva es <strong class="text-[#F4F1EA]">100% transferible</strong> a quien tú elijas.
-          </div>
-        </div>
-
-        <!-- FORM DOSSIER (5 COLS) -->
-        <div class="lg:col-span-5 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-[#2E2720] pt-6 lg:pt-0 lg:pl-8">
-          <div>
-            <p class="text-xs font-mono uppercase tracking-widest text-[#8C8375] mb-4">
-              DETALLES DE LA NOCHE
-            </p>
-
-            <!-- Tier Selector -->
-            <div class="mb-5">
-              <label class="block text-xs font-mono uppercase text-[#8C8375] mb-2">FORMATO</label>
-              <div class="grid grid-cols-3 gap-2">
-                <button type="button" onclick="chooseTier('single')" id="btnTierSingle" class="py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#2E2720] bg-[#080705] text-[#8C8375] hover:border-[#D9B46F] transition">
-                  1 PUESTO<br><span class="text-[10px]">$60K</span>
-                </button>
-                <button type="button" onclick="chooseTier('dupla')" id="btnTierDupla" class="py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#D9B46F] bg-[#D9B46F]/15 text-[#D9B46F] font-bold transition">
-                  LA DUPLA<br><span class="text-[10px]">$110K</span>
-                </button>
-                <button type="button" onclick="chooseTier('mesa_completa')" id="btnTierMesa" class="py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#2E2720] bg-[#080705] text-[#8C8375] hover:border-[#D9B46F] transition">
-                  MESA (4)<br><span class="text-[10px]">$200K</span>
-                </button>
-              </div>
-
-              <!-- Dynamic Solo Warning -->
-              <div id="soloNotice" class="hidden mt-3 p-3 bg-[#1A1612] border border-[#D9B46F]/50 text-xs text-[#D9B46F] leading-relaxed">
-                <strong>⚠️ SI VIENES SOLO:</strong> El trabajo de la pasta es en duplas. Amasarás y compartirás mesón con otro comensal desconocido.
-              </div>
-            </div>
-
-            <!-- Date Box -->
-            <div class="p-3 bg-[#080705] border border-[#2E2720] mb-5">
-              <span class="block text-[10px] font-mono uppercase text-[#8C8375]">FECHA SELECCIONADA</span>
-              <span id="dateDisplay" class="font-display font-bold text-base text-[#D9B46F]">
-                Elige un día en el calendario
-              </span>
-              <span class="block text-[11px] text-[#8C8375] mt-1">Horario: 20:00 HRS (Puntual)</span>
-            </div>
-
-            <!-- Inputs -->
-            <div class="space-y-3 mb-5">
-              <div>
-                <label class="block text-[10px] font-mono uppercase text-[#8C8375] mb-1">NOMBRE COMPLETO</label>
-                <input type="text" id="inputName" placeholder="Tu nombre" class="w-full bg-[#080705] border border-[#2E2720] px-3 py-2 text-sm text-[#F4F1EA] focus:outline-none focus:border-[#D9B46F]">
-              </div>
-              <div>
-                <label class="block text-[10px] font-mono uppercase text-[#8C8375] mb-1">WHATSAPP</label>
-                <input type="tel" id="inputPhone" placeholder="+56 9 1234 5678" class="w-full bg-[#080705] border border-[#2E2720] px-3 py-2 text-sm text-[#F4F1EA] focus:outline-none focus:border-[#D9B46F]">
-              </div>
-              <div>
-                <label class="block text-[10px] font-mono uppercase text-[#8C8375] mb-1">EMAIL</label>
-                <input type="email" id="inputEmail" placeholder="tu@email.com" class="w-full bg-[#080705] border border-[#2E2720] px-3 py-2 text-sm text-[#F4F1EA] focus:outline-none focus:border-[#D9B46F]">
-              </div>
-
-              <!-- Vegetarians counter -->
-              <div class="flex items-center justify-between p-2.5 bg-[#080705] border border-[#2E2720]">
-                <span class="text-xs font-mono uppercase text-[#8C8375]">¿VEGETARIANOS?</span>
-                <div class="flex items-center gap-3">
-                  <button type="button" onclick="alterVeg(-1)" class="w-7 h-7 border border-[#2E2720] hover:border-[#D9B46F] text-sm flex items-center justify-center text-[#F4F1EA] transition">−</button>
-                  <span id="vegCount" class="font-mono font-bold text-sm text-[#D9B46F]">0</span>
-                  <button type="button" onclick="alterVeg(1)" class="w-7 h-7 border border-[#2E2720] hover:border-[#D9B46F] text-sm flex items-center justify-center text-[#F4F1EA] transition">+</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Total display -->
-            <div class="flex justify-between items-end pb-4 mb-6 border-b border-[#2E2720]">
-              <span class="text-xs font-mono uppercase tracking-widest text-[#8C8375]">TOTAL TRANSFERENCIA</span>
-              <span id="totalDisplay" class="font-display font-black text-3xl text-[#D9B46F]">
-                $110.000 CLP
-              </span>
-            </div>
-          </div>
-
-          <button onclick="submitReservation()" class="w-full py-5 bg-[#D9B46F] text-[#080705] font-display font-black text-sm uppercase tracking-widest hover:bg-white transition transform hover:-translate-y-0.5 shadow-xl shadow-[#D9B46F]/10">
-            CONTINUAR A TRANSFERENCIA →
-          </button>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ═════════════════════════════════════════════════════════════════
-       MODAL: TRANSFERENCIA PREX
-  ═════════════════════════════════════════════════════════════════ -->
-  <div id="transferModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#080705]/95 backdrop-blur-xl hidden">
-    <div class="relative w-full max-w-lg bg-[#120F0C] border border-[#D9B46F] p-7 sm:p-9 text-left shadow-2xl">
-      
-      <button onclick="closeModal()" class="absolute top-6 right-6 text-xl text-[#8C8375] hover:text-white transition">
-        ✕
-      </button>
-
-      <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#D9B46F] mb-2">
-        PASO FINAL · PAGO DIRECTO
-      </p>
-
-      <h3 class="font-display font-black text-3xl text-[#F4F1EA] mb-4">
-        DATOS DE TRANSFERENCIA
-      </h3>
-
-      <!-- Reservation Summary -->
-      <div class="p-4 bg-[#080705] border border-[#2E2720] mb-5 text-xs">
-        <div class="flex justify-between mb-1.5"><span class="text-[#8C8375]">FORMATO:</span><strong id="modalTipo" class="text-[#F4F1EA]">-</strong></div>
-        <div class="flex justify-between mb-1.5"><span class="text-[#8C8375]">FECHA:</span><strong id="modalFecha" class="text-[#F4F1EA]">-</strong></div>
-        <div class="flex justify-between mb-1.5"><span class="text-[#8C8375]">HORA:</span><strong class="text-[#F4F1EA]">20:00 HRS (Puntual)</strong></div>
-        <div class="flex justify-between pt-2 border-t border-[#2E2720] mt-2">
-          <span class="text-[#8C8375]">TOTAL A TRANSFERIR:</span>
-          <strong id="modalTotal" class="font-display font-black text-lg text-[#D9B46F]">-</strong>
-        </div>
-      </div>
-
-      <!-- Bank Details -->
-      <div class="space-y-2 p-4 bg-[#1A1612] border border-[#D9B46F]/40 text-xs font-mono mb-6">
-        <div class="flex justify-between"><span class="text-[#8C8375]">BANCO:</span><strong class="text-[#F4F1EA]">PREX</strong></div>
-        <div class="flex justify-between"><span class="text-[#8C8375]">TIPO DE CUENTA:</span><strong class="text-[#F4F1EA]">CUENTA VISTA</strong></div>
-        <div class="flex justify-between"><span class="text-[#8C8375]">N° CUENTA:</span><strong class="text-[#D9B46F] text-sm">12771432</strong></div>
-        <div class="flex justify-between"><span class="text-[#8C8375]">RUT:</span><strong class="text-[#F4F1EA]">16.667.108-6</strong></div>
-        <div class="flex justify-between"><span class="text-[#8C8375]">TITULAR:</span><strong class="text-[#F4F1EA]">Dan Mesa Secreta</strong></div>
-        <div class="flex justify-between"><span class="text-[#8C8375]">EMAIL COMPROBANTE:</span><strong class="text-[#F4F1EA]">dan.tagle@gmail.com</strong></div>
-      </div>
-
-      <!-- Actions -->
-      <div class="space-y-3">
-        <button onclick="copyBankInfo()" id="btnCopyData" class="w-full py-3.5 bg-[#080705] border border-[#D9B46F] text-[#D9B46F] font-display font-black text-xs uppercase tracking-widest hover:bg-[#D9B46F] hover:text-[#080705] transition flex items-center justify-center gap-2">
-          <span>📋</span>
-          <span id="copyBtnText">COPIAR DATOS BANCARIOS</span>
-        </button>
-
-        <a id="btnSendWA" href="#" target="_blank" class="w-full py-4 bg-[#25D366] text-black font-display font-black text-xs uppercase tracking-widest hover:bg-white transition flex items-center justify-center gap-2">
-          <span>💬</span>
-          <span>ENVIAR COMPROBANTE POR WHATSAPP (+56 9 2862 3092)</span>
-        </a>
-      </div>
-
-      <p class="text-[11px] text-[#8C8375] text-center mt-4">
-        Tus puestos quedan bloqueados al enviar el comprobante. La dirección exacta se comparte 48 hrs antes por WhatsApp.
-      </p>
-
+      <a href="#reservar" class="plan-cta">Elegir dupla</a>
     </div>
   </div>
+</div>
 
-  <!-- FOOTER -->
-  <footer class="py-16 px-6 bg-[#080705] border-t border-[#2E2720] text-center">
-    <div class="max-w-4xl mx-auto">
-      <h4 class="font-display font-black text-2xl tracking-widest text-[#F4F1EA] mb-3">
-        MESA SECRETA
-      </h4>
-      <p class="text-xs font-mono uppercase tracking-[0.25em] text-[#8C8375] mb-6">
-        4 PUESTOS · SANTIAGO · A PASOS DEL METRO · 20:00 HRS
-      </p>
-      <div class="flex justify-center gap-6 text-xs text-[#8C8375] mb-8">
-        <a href="mailto:dan.tagle@gmail.com" class="hover:text-[#D9B46F] transition">dan.tagle@gmail.com</a>
-        <span>·</span>
-        <a href="https://wa.me/56928623092" target="_blank" class="hover:text-[#D9B46F] transition">+56 9 2862 3092</a>
+<!-- ══════════════════════════════════════
+     RESERVAR
+══════════════════════════════════════ -->
+<div id="reservar">
+  <div class="reservar-inner">
+
+    <!-- Columna izquierda: calendario -->
+    <div class="calendar-wrap reveal">
+      <span class="section-label">Elige tu fecha</span>
+      <div class="cal-header">
+        <div class="cal-month" id="calMonth">Octubre 2025</div>
+        <div style="display:flex;gap:.5rem">
+          <button class="cal-nav" onclick="moveMonth(-1)" aria-label="Mes anterior">&#8249;</button>
+          <button class="cal-nav" onclick="moveMonth(1)" aria-label="Mes siguiente">&#8250;</button>
+        </div>
       </div>
-      <p class="text-[10px] text-[#8C8375]/50 font-mono">
-        © 2026 MESA SECRETA. TODOS LOS DERECHOS RESERVADOS.
-      </p>
+      <div class="cal-grid" id="calGrid"></div>
     </div>
-  </footer>
 
-  <!-- SCRIPT -->
-  <script>
-    const BANK_DATA = {
-      banco: 'PREX',
-      tipoCuenta: 'Cuenta Vista',
-      numeroCuenta: '12771432',
-      rut: '16.667.108-6',
-      nombre: 'Dan Mesa Secreta',
-      email: 'dan.tagle@gmail.com',
-      whatsapp: '56928623092'
-    };
+    <!-- Columna derecha: resumen -->
+    <div class="summary-box reveal" style="transition-delay:.2s">
+      <span class="section-label">Tu reserva</span>
+      <h3 class="summary-title">Resumen<br>de la noche</h3>
 
-    const PRICES = {
-      single: 60000,
-      dupla: 110000,
-      mesa_completa: 200000
-    };
+      <div class="plan-selector">
+        <button class="plan-btn" id="btn-solo" onclick="selectPlan('solo',59000)">Solitario — $59k</button>
+        <button class="plan-btn active" id="btn-dupla" onclick="selectPlan('dupla',99000)">Dupla — $99k</button>
+      </div>
 
-    const TIER_NAMES = {
-      single: '1 Puesto Individual ($60.000 CLP)',
-      dupla: 'La Dupla — 2 Puestos ($110.000 CLP)',
-      mesa_completa: 'Mesa Completa — 4 Puestos ($200.000 CLP)'
-    };
+      <div id="solo-alert" class="plan-alert hidden">
+        ⚠ Vienes solo. Te asignamos compañero de mesa.<br>El trabajo es siempre en duplas.
+      </div>
 
-    const MONTHS = [
-      'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-    ];
+      <div class="veg-controls">
+        <span class="veg-label">Vegetarianos en el grupo</span>
+        <button class="veg-btn" onclick="changeVeg(-1)">−</button>
+        <span class="veg-count" id="vegCount">0</span>
+        <button class="veg-btn" onclick="changeVeg(1)">+</button>
+      </div>
 
-    const state = {
-      year: 2026,
-      month: 10, // November 2026 (0-indexed: 10)
-      tier: 'dupla',
-      selectedDate: null,
-      vegetarians: 0
-    };
+      <div class="summary-row">
+        <span>Fecha elegida</span>
+        <span id="summDate">— elige una fecha</span>
+      </div>
+      <div class="summary-row">
+        <span>Plan</span>
+        <span id="summPlan">Dupla</span>
+      </div>
+      <div class="summary-row">
+        <span>Vegetarianos</span>
+        <span id="summVeg">0</span>
+      </div>
+      <div class="summary-total">
+        <span class="summary-total-label">Total</span>
+        <span class="summary-total-price" id="summTotal">$99.000</span>
+      </div>
 
-    // REAL AUDIO PLAYBACK
-    function toggleAudio() {
-      const audio = document.getElementById('audioTrack');
-      const text = document.getElementById('audioStatusText');
-      const disc = document.getElementById('discIcon');
+      <button class="btn-continue" id="btnContinue" onclick="openModal()" disabled>
+        Continuar a Transferencia
+      </button>
+    </div>
 
-      if (audio.paused) {
-        audio.play().then(() => {
-          text.textContent = 'MÚSICA [PAUSA]';
-          disc.classList.add('spinning');
-        }).catch(err => {
-          console.log('Error playing audio:', err);
-        });
-      } else {
-        audio.pause();
-        text.textContent = 'MÚSICA [PLAY]';
-        disc.classList.remove('spinning');
-      }
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     MODAL
+══════════════════════════════════════ -->
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-heading">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">✕</button>
+    <div class="modal-title" id="modal-heading">Pago &amp; Confirmación</div>
+    <p class="modal-subtitle">Transfiere y envía el comprobante por WhatsApp</p>
+
+    <div class="modal-detail">
+      <div class="modal-detail-row"><span>Fecha</span><span id="mDate">—</span></div>
+      <div class="modal-detail-row"><span>Plan</span><span id="mPlan">—</span></div>
+      <div class="modal-detail-row"><span>Vegetarianos</span><span id="mVeg">0</span></div>
+      <div class="modal-total">
+        <span class="modal-total-label">Total a pagar</span>
+        <span class="modal-total-price" id="mTotal">—</span>
+      </div>
+    </div>
+
+    <div class="bank-box">
+      <div class="bank-row"><span>Banco</span><span>BancoEstado</span></div>
+      <div class="bank-row"><span>Tipo</span><span>Cuenta Corriente</span></div>
+      <div class="bank-row"><span>Número</span><span>12345678</span></div>
+      <div class="bank-row"><span>RUT</span><span>12.345.678-9</span></div>
+      <div class="bank-row"><span>Nombre</span><span>Mesa Secreta SpA</span></div>
+      <div class="bank-row"><span>Email</span><span>pago@mesasecreta.cl</span></div>
+      <button class="copy-btn" onclick="copyBank()">◈ Copiar datos bancarios</button>
+    </div>
+
+    <a href="#" id="btnWA" class="btn-wa" target="_blank" rel="noopener noreferrer">
+      ✉ Enviar comprobante por WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <div>
+    <div class="footer-brand">Mesa Secreta</div>
+    <div class="footer-tagline">Pasta fresca. Una noche. Cuatro personas.</div>
+  </div>
+  <div class="footer-right">
+    Santiago, Chile<br>
+    A pasos del Metro<br>
+    mesasecreta.cl
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+<script>
+/* ── CURSOR ─────────────────────────────────────── */
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+function animCursor() {
+  cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  rx += (mx - rx) * .12; ry += (my - ry) * .12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+
+/* ── PRELOADER ──────────────────────────────────── */
+window.addEventListener('DOMContentLoaded', () => {
+  const spans = document.querySelectorAll('.pre-word span');
+  setTimeout(() => {
+    spans.forEach((s, i) => { setTimeout(() => s.style.transform = 'translateY(0)', i * 180); });
+  }, 200);
+  setTimeout(() => {
+    document.getElementById('preloader').classList.add('done');
+  }, 2400);
+});
+
+/* ── HEADER SHRINK ──────────────────────────────── */
+const hdr = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('shrunk', window.scrollY > 60);
+});
+
+/* ── REVEAL ON SCROLL ───────────────────────────── */
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+reveals.forEach(el => io.observe(el));
+
+/* ── AUDIO ──────────────────────────────────────── */
+const audio = document.getElementById('audioTrack');
+const audioLabel = document.getElementById('audioLabel');
+let audioPlaying = false;
+function toggleAudio() {
+  if (audioPlaying) {
+    audio.pause(); audioLabel.textContent = '▶ Música'; audioPlaying = false;
+  } else {
+    audio.play().catch(() => {});
+    audioLabel.textContent = '◼ Pausar'; audioPlaying = true;
+  }
+}
+
+/* ── STATE ──────────────────────────────────────── */
+const state = { year: new Date().getFullYear(), month: new Date().getMonth(), tier: 'dupla', price: 99000, date: null, veg: 0 };
+
+/* ── PLAN SELECTOR ──────────────────────────────── */
+function selectPlan(tier, price) {
+  state.tier = tier; state.price = price;
+  document.getElementById('btn-solo').classList.toggle('active', tier === 'solo');
+  document.getElementById('btn-dupla').classList.toggle('active', tier === 'dupla');
+  document.getElementById('solo-alert').classList.toggle('hidden', tier !== 'solo');
+  updateSummary();
+}
+
+/* ── VEG ────────────────────────────────────────── */
+function changeVeg(d) {
+  const max = state.tier === 'dupla' ? 2 : 1;
+  state.veg = Math.max(0, Math.min(max, state.veg + d));
+  document.getElementById('vegCount').textContent = state.veg;
+  updateSummary();
+}
+
+/* ── CALENDAR ───────────────────────────────────── */
+const MONTHS = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const DAYS = ['Do','Lu','Ma','Mi','Ju','Vi','Sá'];
+function renderCal() {
+  const { year, month } = state;
+  document.getElementById('calMonth').textContent = `${MONTHS[month]} ${year}`;
+  const grid = document.getElementById('calGrid');
+  grid.innerHTML = '';
+  DAYS.forEach(d => { const el = document.createElement('div'); el.className = 'cal-dow'; el.textContent = d; grid.appendChild(el); });
+  const first = new Date(year, month, 1).getDay();
+  const total = new Date(year, month + 1, 0).getDate();
+  const today = new Date(); today.setHours(0,0,0,0);
+  for (let i = 0; i < first; i++) { const el = document.createElement('div'); grid.appendChild(el); }
+  for (let d = 1; d <= total; d++) {
+    const el = document.createElement('button');
+    el.className = 'cal-day';
+    el.textContent = d;
+    const dt = new Date(year, month, d);
+    const isPast = dt < today;
+    const isFri = dt.getDay() === 5 || dt.getDay() === 6;
+    if (isPast || !isFri) { el.classList.add('disabled'); el.disabled = true; }
+    else {
+      el.onclick = () => { state.date = dt; document.querySelectorAll('.cal-day.selected').forEach(x => x.classList.remove('selected')); el.classList.add('selected'); updateSummary(); };
     }
+    if (state.date && dt.toDateString() === state.date.toDateString()) el.classList.add('selected');
+    grid.appendChild(el);
+  }
+}
+function moveMonth(d) { state.month += d; if (state.month > 11) { state.month = 0; state.year++; } if (state.month < 0) { state.month = 11; state.year--; } renderCal(); }
 
-    // TIER SELECTION
-    function chooseTier(tierKey) {
-      state.tier = tierKey;
+/* ── SUMMARY ────────────────────────────────────── */
+function fmt(n) { return '$' + n.toLocaleString('es-CL'); }
+function updateSummary() {
+  const d = state.date;
+  const dateStr = d ? d.toLocaleDateString('es-CL', { weekday:'long', day:'numeric', month:'long' }) : '— elige una fecha';
+  document.getElementById('summDate').textContent = dateStr;
+  document.getElementById('summPlan').textContent = state.tier === 'dupla' ? 'Dupla' : 'Solitario';
+  document.getElementById('summVeg').textContent = state.veg;
+  document.getElementById('summTotal').textContent = fmt(state.price);
+  document.getElementById('vegCount').textContent = state.veg;
+  document.getElementById('btnContinue').disabled = !d;
+}
 
-      const btnSingle = document.getElementById('btnTierSingle');
-      const btnDupla = document.getElementById('btnTierDupla');
-      const btnMesa = document.getElementById('btnTierMesa');
+/* ── MODAL ──────────────────────────────────────── */
+function openModal() {
+  if (!state.date) return;
+  const d = state.date;
+  const dateStr = d.toLocaleDateString('es-CL', { weekday:'long', day:'numeric', month:'long' });
+  document.getElementById('mDate').textContent = dateStr;
+  document.getElementById('mPlan').textContent = state.tier === 'dupla' ? 'Dupla' : 'Solitario';
+  document.getElementById('mVeg').textContent = state.veg;
+  document.getElementById('mTotal').textContent = fmt(state.price);
+  const msg = encodeURIComponent(
+    `Hola Mesa Secreta!\n\nQuiero reservar:\nFecha: ${dateStr}\nPlan: ${state.tier === 'dupla' ? 'Dupla' : 'Solitario'}\nVegetarianos: ${state.veg}\nTotal: ${fmt(state.price)}\n\nAdjunto comprobante de transferencia.`
+  );
+  document.getElementById('btnWA').href = `https://wa.me/56928623092?text=${msg}`;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('modal').addEventListener('click', e => { if (e.target === document.getElementById('modal')) closeModal(); });
 
-      [btnSingle, btnDupla, btnMesa].forEach(b => {
-        b.className = 'py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#2E2720] bg-[#080705] text-[#8C8375] hover:border-[#D9B46F] transition';
-      });
+/* ── COPY BANK ──────────────────────────────────── */
+function copyBank() {
+  const txt = `Banco: BancoEstado\nTipo: Cuenta Corriente\nNúmero: 12345678\nRUT: 12.345.678-9\nNombre: Mesa Secreta SpA\nEmail: pago@mesasecreta.cl`;
+  navigator.clipboard.writeText(txt).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = '✓ Copiado!'; setTimeout(() => btn.textContent = '◈ Copiar datos bancarios', 2000);
+  });
+}
 
-      if (tierKey === 'single') {
-        btnSingle.className = 'py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#D9B46F] bg-[#D9B46F]/15 text-[#D9B46F] font-bold transition';
-      } else if (tierKey === 'dupla') {
-        btnDupla.className = 'py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#D9B46F] bg-[#D9B46F]/15 text-[#D9B46F] font-bold transition';
-      } else if (tierKey === 'mesa_completa') {
-        btnMesa.className = 'py-2.5 px-2 text-center text-xs font-mono uppercase border border-[#D9B46F] bg-[#D9B46F]/15 text-[#D9B46F] font-bold transition';
-      }
-
-      document.getElementById('totalDisplay').textContent = `$${PRICES[tierKey].toLocaleString('es-CL')} CLP`;
-
-      // Solo warning toggle
-      const soloNotice = document.getElementById('soloNotice');
-      if (tierKey === 'single') {
-        soloNotice.classList.remove('hidden');
-      } else {
-        soloNotice.classList.add('hidden');
-      }
-
-      // Cap veg count
-      const max = tierKey === 'single' ? 1 : (tierKey === 'dupla' ? 2 : 4);
-      if (state.vegetarians > max) {
-        state.vegetarians = max;
-        document.getElementById('vegCount').textContent = max;
-      }
-    }
-
-    function pickTierAndScroll(tierKey) {
-      chooseTier(tierKey);
-      document.getElementById('reservar').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function alterVeg(d) {
-      const max = state.tier === 'single' ? 1 : (state.tier === 'dupla' ? 2 : 4);
-      const next = state.vegetarians + d;
-      if (next >= 0 && next <= max) {
-        state.vegetarians = next;
-        document.getElementById('vegCount').textContent = next;
-      }
-    }
-
-    // CALENDAR (November 2026 onwards)
-    function renderCal() {
-      const y = state.year;
-      const m = state.month;
-
-      document.getElementById('calMonthHeader').textContent = `${MONTHS[m]} ${y}`;
-      const grid = document.getElementById('calGrid');
-      grid.innerHTML = '';
-
-      const firstDay = new Date(y, m, 1).getDay();
-      const offset = firstDay === 0 ? 6 : firstDay - 1;
-      const totalDays = new Date(y, m + 1, 0).getDate();
-
-      for (let i = 0; i < offset; i++) {
-        const blank = document.createElement('div');
-        blank.className = 'cal-day-btn disabled';
-        grid.appendChild(blank);
-      }
-
-      for (let d = 1; d <= totalDays; d++) {
-        const cell = document.createElement('div');
-        const isEligible = (y > 2026) || (y === 2026 && m >= 10);
-        const dateStr = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-
-        if (isEligible) {
-          cell.className = 'cal-day-btn';
-          if (state.selectedDate && state.selectedDate.str === dateStr) {
-            cell.classList.add('selected');
-          }
-          cell.onclick = () => {
-            state.selectedDate = { y, m, d, str: dateStr };
-            document.getElementById('dateDisplay').textContent = `${d} de ${MONTHS[m]} ${y}`;
-            renderCal();
-          };
-        } else {
-          cell.className = 'cal-day-btn disabled';
-        }
-
-        cell.textContent = d;
-        grid.appendChild(cell);
-      }
-    }
-
-    function navCal(d) {
-      if (state.year === 2026 && state.month <= 10 && d < 0) return;
-      state.month += d;
-      if (state.month > 11) { state.month = 0; state.year++; }
-      if (state.month < 0) { state.month = 11; state.year--; }
-      renderCal();
-    }
-
-    // RESERVATION & MODAL
-    function submitReservation() {
-      if (!state.selectedDate) {
-        alert('Por favor selecciona una fecha disponible en el calendario (Noviembre 2026 en adelante).');
-        return;
-      }
-
-      const name = document.getElementById('inputName').value.trim();
-      const phone = document.getElementById('inputPhone').value.trim();
-      const email = document.getElementById('inputEmail').value.trim();
-
-      if (!name || !phone || !email) {
-        alert('Por favor ingresa tu Nombre, WhatsApp y Email de contacto.');
-        return;
-      }
-
-      const totalFmt = `$${PRICES[state.tier].toLocaleString('es-CL')} CLP`;
-      const dateFmt = `${state.selectedDate.d} de ${MONTHS[state.selectedDate.m]} ${state.selectedDate.y}`;
-
-      document.getElementById('modalTipo').textContent = TIER_NAMES[state.tier];
-      document.getElementById('modalFecha').textContent = `${dateFmt} — 20:00 HRS`;
-      document.getElementById('modalTotal').textContent = totalFmt;
-
-      const waMsg = `Hola Dan! Acabo de registrar mi reserva en Mesa Secreta:
-- Nombre: ${name}
-- Fecha: ${dateFmt} a las 20:00 HRS
-- Formato: ${TIER_NAMES[state.tier]}
-- Total: ${totalFmt}
-- Vegetarianos: ${state.vegetarians}
-
-Te adjunto el comprobante de transferencia PREX para congelar mis puestos. ¡Gracias!`;
-
-      document.getElementById('btnSendWA').href = `https://wa.me/${BANK_DATA.whatsapp}?text=${encodeURIComponent(waMsg)}`;
-
-      fetch(`https://formsubmit.co/ajax/${BANK_DATA.email}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          _subject: `NUEVA RESERVA: ${name} (${dateFmt})`,
-          Nombre: name,
-          Telefono: phone,
-          Email: email,
-          Fecha: `${dateFmt} — 20:00 HRS`,
-          Formato: TIER_NAMES[state.tier],
-          Total: totalFmt,
-          Vegetarianos: state.vegetarians
-        })
-      }).catch(err => console.log('Log local:', err));
-
-      document.getElementById('transferModal').classList.remove('hidden');
-    }
-
-    function closeModal() {
-      document.getElementById('transferModal').classList.add('hidden');
-    }
-
-    function copyBankInfo() {
-      const totalFmt = `$${PRICES[state.tier].toLocaleString('es-CL')} CLP`;
-      const txt = `DATOS DE TRANSFERENCIA — MESA SECRETA
-Banco: ${BANK_DATA.banco}
-Tipo: ${BANK_DATA.tipoCuenta}
-N° Cuenta: ${BANK_DATA.numeroCuenta}
-RUT: ${BANK_DATA.rut}
-Titular: ${BANK_DATA.nombre}
-Email: ${BANK_DATA.email}
-Monto: ${totalFmt}
-Horario: 20:00 HRS (A pasos del Metro)`;
-
-      navigator.clipboard.writeText(txt).then(() => {
-        const btn = document.getElementById('copyBtnText');
-        btn.textContent = '¡DATOS COPIADOS!';
-        setTimeout(() => { btn.textContent = 'COPIAR DATOS BANCARIOS'; }, 3000);
-      }).catch(() => alert(txt));
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      chooseTier('dupla');
-      renderCal();
-    });
-  </script>
+/* ── INIT ───────────────────────────────────────── */
+renderCal();
+updateSummary();
+selectPlan('dupla', 99000);
+</script>
 </body>
 </html>
