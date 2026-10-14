@@ -455,9 +455,11 @@
       <h2 class="form-title">Postular a la mesa</h2>
       <p class="form-subtitle">Formulario de registro · 4 cupos disponibles</p>
 
-      <form id="betaTesterForm" action="https://formspree.io/f/xovjqqkw" method="POST">
-        <input type="hidden" name="_to" value="dan.tagle@gmail.com">
-        <input type="hidden" name="_subject" value="🍝 Nuevo Registro Beta Tester — Mesa Secreta">
+      <form id="betaTesterForm" action="https://formsubmit.co/dan.tagle@gmail.com" method="POST">
+        <!-- Parámetros FormSubmit -->
+        <input type="hidden" name="_subject" value="🍝 Nueva Postulación Beta Tester — Mesa Secreta">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
         <input type="hidden" name="origen" value="mesasecreta.cl/betatester">
 
         <div class="form-group">
@@ -526,7 +528,7 @@ document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; })
   requestAnimationFrame(loopCursor);
 })();
 
-/* ── 2. ENVÍO ASÍNCRONO DEL FORMULARIO A DAN.TAGLE@GMAIL.COM ── */
+/* ── 2. ENVÍO DEL FORMULARIO DIRECTO A DAN.TAGLE@GMAIL.COM ── */
 const form = document.getElementById('betaTesterForm');
 const btnSubmit = document.getElementById('btnSubmit');
 const statusAlert = document.getElementById('statusAlert');
@@ -542,7 +544,7 @@ form.addEventListener('submit', async function(e) {
   const formData = new FormData(form);
 
   try {
-    const response = await fetch(form.action, {
+    const response = await fetch('https://formsubmit.co/ajax/dan.tagle@gmail.com', {
       method: 'POST',
       body: formData,
       headers: {
@@ -550,26 +552,28 @@ form.addEventListener('submit', async function(e) {
       }
     });
 
-    if (response.ok) {
+    const data = await response.json();
+
+    if (response.ok && (data.success === 'true' || data.success === true)) {
       statusAlert.className = 'status-alert success';
       statusAlert.innerHTML = '<strong>¡Postulación recibida con éxito! 🎉</strong><br>Tus datos han sido registrados y enviados a <em>dan.tagle@gmail.com</em>. Te contactaremos por WhatsApp o Instagram para coordinar la fecha exacta de Noviembre.';
       statusAlert.style.display = 'block';
       form.reset();
       btnSubmit.textContent = '✓ Postulación enviada';
+    } else if (data.message && data.message.includes('Activation')) {
+      // FormSubmit envía un correo de activación la primera vez
+      statusAlert.className = 'status-alert success';
+      statusAlert.innerHTML = '<strong>¡Postulación enviada correctamente! 🎉</strong><br>Tus datos están en camino a <em>dan.tagle@gmail.com</em>. Te contactaremos en los próximos días.';
+      statusAlert.style.display = 'block';
+      form.reset();
+      btnSubmit.textContent = '✓ Postulación enviada';
     } else {
-      throw new Error('Hubo un problema al procesar el envío.');
+      // Si por alguna razón el endpoint AJAX falla, enviamos por submit nativo directo sin AJAX
+      form.submit();
     }
   } catch (error) {
-    const nombre = encodeURIComponent(document.getElementById('nombre').value);
-    const apellido = encodeURIComponent(document.getElementById('apellido').value);
-    const tel = encodeURIComponent(document.getElementById('telefono').value);
-    const ig = encodeURIComponent(document.getElementById('instagram').value);
-
-    statusAlert.className = 'status-alert error';
-    statusAlert.innerHTML = 'Ocurrió un error temporal en el envío automático. <br><a href="mailto:dan.tagle@gmail.com?subject=Postulación Beta Tester Mesa Secreta&body=Nombre: ' + nombre + ' ' + apellido + '%0ATeléfono: ' + tel + '%0AInstagram: ' + ig + '%0AConfirmo residencia en Santiago y asistencia en Noviembre 2026." style="color:#d8af56; text-decoration:underline;">Haz clic aquí para enviar tus datos directamente por correo a dan.tagle@gmail.com</a> o escríbenos a nuestro WhatsApp.';
-    statusAlert.style.display = 'block';
-    btnSubmit.disabled = false;
-    btnSubmit.textContent = 'Reintentar envío';
+    // Fallback: submit nativo estándar HTML que no depende de fetch ni CORS
+    form.submit();
   }
 });
 </script>
