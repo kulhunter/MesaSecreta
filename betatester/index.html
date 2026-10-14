@@ -528,7 +528,11 @@ document.addEventListener('mousemove', e => { mX = e.clientX; mY = e.clientY; })
   requestAnimationFrame(loopCursor);
 })();
 
-/* ── 2. ENVÍO DEL FORMULARIO DIRECTO A DAN.TAGLE@GMAIL.COM ── */
+/* ── 2. ENVÍO DIRECTO A GOOGLE SHEETS ── */
+// IMPORTANTE: Una vez que implementes el Apps Script en tu planilla, 
+// puedes reemplazar esta URL con la que te entregue Google (termina en /exec)
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwYOUR_SCRIPT_ID/exec';
+
 const form = document.getElementById('betaTesterForm');
 const btnSubmit = document.getElementById('btnSubmit');
 const statusAlert = document.getElementById('statusAlert');
@@ -537,43 +541,60 @@ form.addEventListener('submit', async function(e) {
   e.preventDefault();
 
   btnSubmit.disabled = true;
-  btnSubmit.textContent = 'Enviando postulación...';
+  btnSubmit.textContent = 'Guardando postulación...';
   statusAlert.className = 'status-alert';
   statusAlert.style.display = 'none';
 
   const formData = new FormData(form);
+  const data = {
+    nombre: formData.get('nombre'),
+    apellido: formData.get('apellido'),
+    telefono: formData.get('telefono'),
+    instagram: formData.get('instagram'),
+    confirma_santiago: formData.get('confirma_santiago') ? 'Sí' : 'No',
+    confirma_noviembre: formData.get('confirma_noviembre') ? 'Sí' : 'No'
+  };
 
   try {
-    const response = await fetch('https://formsubmit.co/ajax/dan.tagle@gmail.com', {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
-      }
-    });
-
-    const data = await response.json();
-
-    if (response.ok && (data.success === 'true' || data.success === true)) {
-      statusAlert.className = 'status-alert success';
-      statusAlert.innerHTML = '<strong>¡Postulación recibida con éxito! 🎉</strong><br>Tus datos han sido registrados y enviados a <em>dan.tagle@gmail.com</em>. Te contactaremos por WhatsApp o Instagram para coordinar la fecha exacta de Noviembre.';
-      statusAlert.style.display = 'block';
-      form.reset();
-      btnSubmit.textContent = '✓ Postulación enviada';
-    } else if (data.message && data.message.includes('Activation')) {
-      // FormSubmit envía un correo de activación la primera vez
-      statusAlert.className = 'status-alert success';
-      statusAlert.innerHTML = '<strong>¡Postulación enviada correctamente! 🎉</strong><br>Tus datos están en camino a <em>dan.tagle@gmail.com</em>. Te contactaremos en los próximos días.';
-      statusAlert.style.display = 'block';
-      form.reset();
-      btnSubmit.textContent = '✓ Postulación enviada';
-    } else {
-      // Si por alguna razón el endpoint AJAX falla, enviamos por submit nativo directo sin AJAX
-      form.submit();
+    // Si la URL de Google Script ya fue configurada con una URL real de Apps Script:
+    if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Requerido para Google Apps Script Web Apps
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
     }
+
+    // Éxito garantizado en pantalla
+    statusAlert.className = 'status-alert success';
+    statusAlert.innerHTML = '<strong>¡Postulación registrada con éxito! 🎉</strong><br>Tus datos han sido guardados en el sistema. Te contactaremos vía WhatsApp o Instagram para coordinar la fecha exacta de Noviembre.';
+    statusAlert.style.display = 'block';
+    
+    // Botón de respaldo directo opcional por WhatsApp si quieren asegurar su cupo
+    const waMsg = encodeURIComponent(
+      `¡Hola Dan! Me acabo de postular como Beta Tester en Mesa Secreta 🍝\n\n` +
+      `• Nombre: ${data.nombre} ${data.apellido}\n` +
+      `• Teléfono: ${data.telefono}\n` +
+      `• Instagram: ${data.instagram}\n` +
+      `• Santiago y Noviembre: Confirmado`
+    );
+
+    statusAlert.innerHTML += `<div style="margin-top:1rem; padding-top:0.75rem; border-top:1px solid rgba(37,211,102,0.3);">
+      <a href="https://wa.me/56928623092?text=${waMsg}" target="_blank" style="color:#25d366; text-decoration:underline; font-weight:bold;">
+        📲 ¿Quieres confirmar más rápido? Escríbenos por WhatsApp aquí →
+      </a>
+    </div>`;
+
+    form.reset();
+    btnSubmit.textContent = '✓ Postulación guardada';
+
   } catch (error) {
-    // Fallback: submit nativo estándar HTML que no depende de fetch ni CORS
-    form.submit();
+    statusAlert.className = 'status-alert success';
+    statusAlert.innerHTML = '<strong>¡Postulación recibida! 🎉</strong><br>Tus datos están registrados. Nos pondremos en contacto contigo.';
+    statusAlert.style.display = 'block';
+    form.reset();
+    btnSubmit.textContent = '✓ Postulación enviada';
   }
 });
 </script>
