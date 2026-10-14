@@ -6,17 +6,15 @@
   <title>BETA TESTERS — MESA SECRETA | Santiago</title>
   <meta name="description" content="Convocatoria exclusiva para Beta Testers en Santiago. Postula para vivir una noche completa GRATIS en Mesa Secreta (Noviembre 2026).">
   <meta property="og:title" content="BETA TESTERS — Una noche GRATIS en Mesa Secreta">
-  <meta property="og:description" content="Amasas tu pasta, cenas, bebes vino libre y te llevas tu pechera. Solo 4 comensales seleccionados. Santiago.">
+  <meta property="og:description" content="Amasas tu pasta fresca, cenas a la mesa y disfrutas vino maridado. Solo 4 comensales seleccionados en Santiago.">
   <meta property="og:url" content="https://mesasecreta.cl/betatester">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍝</text></svg>">
 
-  <!-- Google Fonts coherentes con la marca principal -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ── RESET & TOKENS ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
     :root {
@@ -50,7 +48,7 @@
       justify-content: space-between;
     }
 
-    /* ── CURSOR FLUIDO (Desktop) ── */
+    /* ── CURSOR INTERACTIVO (Desktop fine pointer) ── */
     @media (hover: hover) and (pointer: fine) {
       body { cursor: none; }
       #cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .18s, height .18s; }
@@ -68,7 +66,7 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    /* ── HEADER MÍNIMO ── */
+    /* ── HEADER ── */
     header {
       padding: 1.25rem 1.5rem;
       display: flex;
@@ -113,7 +111,7 @@
     }
     .back-home:hover { color: var(--gold); }
 
-    /* ── CONTENIDO PRINCIPAL (SPLIT LAYOUT) ── */
+    /* ── CONTENIDO PRINCIPAL ── */
     main {
       flex: 1;
       max-width: 1240px;
@@ -138,7 +136,7 @@
       }
     }
 
-    /* ── LADO IZQUIERDO: CONVOCATORIA & STORYTELLING ── */
+    /* ── LADO IZQUIERDO ── */
     .tester-info {
       display: flex;
       flex-direction: column;
@@ -222,7 +220,6 @@
     }
     .bullet-list strong { color: var(--cream); }
 
-    /* Requisitos clave */
     .conditions-card {
       background: rgba(130,23,39,0.12);
       border-left: 2px solid var(--wine);
@@ -234,7 +231,7 @@
     }
     .conditions-card strong { color: #fff; }
 
-    /* ── LADO DERECHO: FORMULARIO DE POSTULACIÓN ── */
+    /* ── LADO DERECHO: FORMULARIO ── */
     .form-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -298,7 +295,6 @@
       font-size: 0.85rem;
     }
 
-    /* Checkbox de requisitos */
     .checkbox-block {
       margin: 1.75rem 0;
       display: flex;
@@ -364,7 +360,6 @@
       cursor: not-allowed;
     }
 
-    /* Mensajes de éxito / error */
     .status-alert {
       display: none;
       padding: 1.25rem;
@@ -421,28 +416,27 @@
 <main>
   <div class="tester-grid">
 
-    <!-- LADO IZQUIERDO: EXPLICACIÓN Y VALOR -->
+    <!-- LADO IZQUIERDO -->
     <div class="tester-info">
       <div class="badge-convocatoria">
         <span class="badge-dot"></span>
-        <span>Cupos ultra limitados · Noviembre 2026</span>
+        <span>Cupos limitados · Noviembre 2026</span>
       </div>
 
       <h1 class="tester-headline">
-        Vive la experiencia completa <span>100% Gratis.</span>
+        Vive la experiencia <span>100% Gratis.</span>
       </h1>
 
       <p class="tester-lead">
-        Buscamos a nuestros primeros comensales para probar el formato antes del estreno oficial. Una noche completa de cocina, pasta al dente y vino libre para afinar cada segundo de la velada.
+        Buscamos a nuestros primeros comensales para probar el formato antes del estreno oficial. Una noche completa de cocina, pasta al dente y vino seleccionado para afinar cada segundo de la velada.
       </p>
 
       <div class="tester-bullets">
-        <h3 class="bullet-title">Lo que vivirás esa noche:</h3>
+        <h3 class="bullet-title">Lo que incluye la noche de prueba:</h3>
         <ul class="bullet-list">
-          <li><strong>Amasas tu propia pasta:</strong> Técnica manual desde cero con huevos de campo y harina.</li>
-          <li><strong>Cena completa a la mesa:</strong> Tu pasta servida al momento con salsa casera reducida.</li>
-          <li><strong>Vino libre durante la velada:</strong> Copas servidas para disfrutar sin restricciones.</li>
-          <li><strong>Pechera oficial bordada de regalo:</strong> Te la llevas puesta a casa.</li>
+          <li><strong>Amasas tu propia pasta:</strong> Técnica manual desde cero con huevos de campo y harina sobre mesón de madera.</li>
+          <li><strong>Cena completa a la mesa:</strong> Tu pasta recién cocinada servida al momento con salsa casera reducida.</li>
+          <li><strong>Vino seleccionado:</strong> Copas servidas para maridar y acompañar la velada.</li>
           <li><strong>Fotografías de recuerdo:</strong> Sesión digital en alta resolución directo a tu celular.</li>
           <li><strong>Ambiente íntimo con vinilos:</strong> Solo 4 comensales alrededor del mesón.</li>
         </ul>
@@ -452,18 +446,16 @@
         <strong>Requisitos obligatorios para postular:</strong><br>
         1. Residir en Santiago o poder trasladarte por tus medios.<br>
         2. Disponibilidad de asistencia en fecha por definir durante Noviembre 2026 (a las 20:00 hrs).<br>
-        3. Ayudarnos con feedback honesto y una breve reseña al terminar la noche.
+        3. Ayudarnos con feedback honesto al terminar la velada.
       </div>
     </div>
 
-    <!-- LADO DERECHO: FORMULARIO DIRECTO A DAN.TAGLE@GMAIL.COM -->
+    <!-- LADO DERECHO: FORMULARIO A DAN.TAGLE@GMAIL.COM -->
     <div class="form-card">
       <h2 class="form-title">Postular a la mesa</h2>
       <p class="form-subtitle">Formulario de registro · 4 cupos disponibles</p>
 
-      <!-- Formspree configurado directamente a dan.tagle@gmail.com -->
       <form id="betaTesterForm" action="https://formspree.io/f/xovjqqkw" method="POST">
-        <!-- Destinatario explícito y asunto -->
         <input type="hidden" name="_to" value="dan.tagle@gmail.com">
         <input type="hidden" name="_subject" value="🍝 Nuevo Registro Beta Tester — Mesa Secreta">
         <input type="hidden" name="origen" value="mesasecreta.cl/betatester">
@@ -488,7 +480,6 @@
           <input class="form-input" type="text" id="instagram" name="instagram" placeholder="@tu_usuario" required>
         </div>
 
-        <!-- Confirmación de requisitos -->
         <div class="checkbox-block">
           <label class="checkbox-item">
             <input type="checkbox" id="checkStgo" name="confirma_santiago" required>
@@ -520,7 +511,6 @@
   </p>
 </footer>
 
-<!-- ══ SCRIPT DE ENVÍO Y RESPUESTA ══════════════════════ -->
 <script>
 /* ── 1. CURSOR FLUIDO ── */
 const curDot = document.getElementById('cursor');
@@ -570,7 +560,6 @@ form.addEventListener('submit', async function(e) {
       throw new Error('Hubo un problema al procesar el envío.');
     }
   } catch (error) {
-    // Si Formspree requiere fallback o el fetch falla por CORS/adblocker, respaldamos con mailto directo
     const nombre = encodeURIComponent(document.getElementById('nombre').value);
     const apellido = encodeURIComponent(document.getElementById('apellido').value);
     const tel = encodeURIComponent(document.getElementById('telefono').value);

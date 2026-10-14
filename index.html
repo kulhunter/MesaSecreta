@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>MESA SECRETA — 4 Puestos. La Noche Clandestina de Pasta en Santiago.</title>
-  <meta name="description" content="Una experiencia íntima y clandestina en Santiago: amasas tu pasta fresca, cenas a 4 tiempos con maridaje libre de vino, vinilos sonando, sesión de fotos y tu pechera de cocina de regalo. Solo 4 sillas por noche.">
+  <title>MESA SECRETA — 4 Puestos. Pasta Fresca a Mano & Cena en Santiago.</title>
+  <meta name="description" content="Una experiencia clandestina en Santiago: amasas tu pasta fresca, cenas a la mesa con vino maridado, vinilos de fondo y sesión de fotos. Solo 4 puestos por noche a pasos del Metro.">
   <meta property="og:title" content="MESA SECRETA — Esta noche no es una clase, es un festín privado">
-  <meta property="og:description" content="Cocinas con tus manos, bebes buen vino, cenas con desconocidos que terminan siendo amigos y te llevas tu pechera de regalo. A pasos del metro.">
+  <meta property="og:description" content="Amasas tu propia pasta con tus manos, cenas a la mesa, disfrutas buen vino y tienes el metro en la puerta para volver tranquilo.">
   <meta property="og:url" content="https://mesasecreta.cl">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍝</text></svg>">
 
-  <!-- Tipografías seleccionadas: Editorial de Alto Impacto -->
+  <!-- Tipografías editoriales limpias y contundentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ── RESET & VARIABLES DE COLOR PROFUNDO ── */
+    /* ── RESET & TOKENS ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
     :root {
@@ -59,7 +59,7 @@
       #cursor, #cursor-ring { display: none !important; }
     }
 
-    /* ── FILM GRAIN EDITORIAL ── */
+    /* ── FILM GRAIN ── */
     #grain {
       position: fixed; inset: 0; pointer-events: none; z-index: 80; opacity: 0.038;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -142,7 +142,7 @@
     }
     .header-cta:hover { background: var(--cream); transform: translateY(-1px); }
 
-    /* ── HERO EDITORIAL CON VIDEO AMBIENTE INTEGRADO ── */
+    /* ── HERO EDITORIAL CINEMATOGRÁFICO ── */
     #hero {
       position: relative;
       min-height: 100svh;
@@ -214,7 +214,6 @@
       margin-bottom: 2rem;
     }
 
-    /* Checklist rápida de lo que vives */
     .hero-perks {
       display: flex; flex-wrap: wrap; gap: 0.75rem 1.75rem;
       margin-bottom: 2.2rem;
@@ -254,7 +253,7 @@
     }
     .hero-note-metro strong { color: var(--cream); font-weight: 500; }
 
-    /* ── TICKER DE MARCA ── */
+    /* ── TICKER STREAM ── */
     .ticker-bar {
       overflow: hidden;
       border-top: 1px solid var(--border-subtle);
@@ -278,7 +277,7 @@
     .ticker-diamond { color: var(--gold); font-size: 0.75rem; }
     @keyframes tickerRun { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* ── EL MANIFIESTO: POR QUÉ VALE CADA PESO ── */
+    /* ── MANIFIESTO ── */
     .manifesto-section {
       padding: 5rem 1.25rem;
       max-width: 1050px;
@@ -316,7 +315,7 @@
       margin: 0 auto 2.5rem;
     }
 
-    /* ── EL FLUJO COMPLETO DE LA EXPERIENCIA (6 PILARES) ── */
+    /* ── PILARES DE LA EXPERIENCIA ── */
     .experience-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -329,7 +328,7 @@
       .experience-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.75rem;
-        padding: 0 3rem 8rem;
+        padding: 0 3rem 7rem;
       }
     }
     @media (min-width: 1040px) {
@@ -484,7 +483,7 @@
       line-height: 1.65;
     }
 
-    /* ── BANNER DESTACADO METRO ── */
+    /* ── METRO STAGE ── */
     .metro-stage {
       background: var(--bg-card);
       border-top: 1px solid var(--border);
@@ -529,7 +528,7 @@
       font-family: var(--ff-mono); font-size: 0.62rem; letter-spacing: .2em; color: var(--muted); text-transform: uppercase; margin-top: 4px;
     }
 
-    /* ── SECCIÓN DE PRECIOS TRANSPARENTES ── */
+    /* ── TARIFAS TRANSPARENTES ── */
     #precios {
       padding: 5rem 1.25rem;
       max-width: 1200px;
@@ -699,7 +698,7 @@
       background: var(--cream); border-color: var(--cream);
     }
 
-    /* ── RESERVA & CALENDARIO FLUIDO ── */
+    /* ── CALENDARIO & DOCK DE RESERVA ── */
     #reservar {
       background: #080604;
       border-top: 1px solid var(--border);
@@ -815,7 +814,7 @@
     }
     .cal-footer-note strong { color: var(--gold); }
 
-    /* ── TARJETA RESUMEN INTERACTIVA (MOBILE-FIRST) ── */
+    /* ── DOCK SUMMARY ── */
     .summary-dock {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -1119,7 +1118,7 @@
   </div>
 </header>
 
-<!-- ══ HERO: STORYTELLING POTENTE & VIDEO LOOP ══════════ -->
+<!-- ══ HERO: FOTOGRAFÍA CINEMATOGRÁFICA & STORYTELLING ══════ -->
 <section id="hero">
   <div class="hero-media-bg">
     <img src="img/hero_cinematic.jpg" alt="Amasado artesanal de pasta fresca y vino en mesón rústico" class="hero-cinematic-img">
@@ -1135,15 +1134,14 @@
       No es una clase.<br>Es un <span>festín privado.</span>
     </h1>
     <p class="hero-statement">
-      Amasas tu pasta desde cero con copa en mano, cenas un menú completo a la mesa con vino libre, suena vinilo de fondo, te llevas una pechera de cocina de regalo y tienes el metro en la puerta para volver a casa tranquilo.
+      Amasas tu pasta desde cero con copa en mano, cenas un menú completo a la mesa con vino maridado, suena vinilo de fondo y tienes el metro en la puerta para volver a casa tranquilo.
     </p>
 
     <!-- Perks reales de la noche -->
     <div class="hero-perks">
       <span class="perk-pill">🍝 <strong>Amasas &amp; Cenas</strong></span>
-      <span class="perk-pill">🍷 <strong>Vino libre</strong></span>
-      <span class="perk-pill">🎁 <strong>Pechera de regalo</strong></span>
-      <span class="perk-pill">📸 <strong>Fotos de la noche</strong></span>
+      <span class="perk-pill">🍷 <strong>Vino seleccionado</strong></span>
+      <span class="perk-pill">📸 <strong>Fotos de recuerdo</strong></span>
       <span class="perk-pill">🎵 <strong>Música &amp; Vinilos</strong></span>
       <span class="perk-pill">🚇 <strong>Al lado del Metro</strong></span>
     </div>
@@ -1165,31 +1163,29 @@
   <div class="ticker-stream">
     <span class="ticker-point">Haces tu pasta <span class="ticker-diamond">◆</span></span>
     <span class="ticker-point">Cenas a la mesa <span class="ticker-diamond">◆</span></span>
-    <span class="ticker-point">Vino Libre <span class="ticker-diamond">◆</span></span>
-    <span class="ticker-point">Pechera de Regalo <span class="ticker-diamond">◆</span></span>
+    <span class="ticker-point">Vino Maridado <span class="ticker-diamond">◆</span></span>
     <span class="ticker-point">Fotos de tu noche <span class="ticker-diamond">◆</span></span>
     <span class="ticker-point">Música y Vinilos <span class="ticker-diamond">◆</span></span>
     <span class="ticker-point">Metro en la puerta <span class="ticker-diamond">◆</span></span>
     <span class="ticker-point">Haces tu pasta <span class="ticker-diamond">◆</span></span>
     <span class="ticker-point">Cenas a la mesa <span class="ticker-diamond">◆</span></span>
-    <span class="ticker-point">Vino Libre <span class="ticker-diamond">◆</span></span>
-    <span class="ticker-point">Pechera de Regalo <span class="ticker-diamond">◆</span></span>
+    <span class="ticker-point">Vino Maridado <span class="ticker-diamond">◆</span></span>
     <span class="ticker-point">Fotos de tu noche <span class="ticker-diamond">◆</span></span>
     <span class="ticker-point">Música y Vinilos <span class="ticker-diamond">◆</span></span>
     <span class="ticker-point">Metro en la puerta <span class="ticker-diamond">◆</span></span>
   </div>
 </div>
 
-<!-- ══ MANIFIESTO: LO QUE HACE INOLVIDABLE LA NOCHE ══════ -->
+<!-- ══ MANIFIESTO ═══════════════════════════════════════ -->
 <section class="manifesto-section reveal">
-  <span class="manifesto-kicker">¿Qué estás pagando realmente?</span>
-  <h2 class="manifesto-title">Una noche completa.<br><em>Nada a medias.</em></h2>
+  <span class="manifesto-kicker">¿Qué estás viviendo realmente?</span>
+  <h2 class="manifesto-title">Una noche íntima.<br><em>Nada a medias.</em></h2>
   <p class="manifesto-p">
-    No vienes a mirar una pizarra ni a tomar apuntes. Entras a un departamento cálido con luz tenue, te pones la pechera que te llevarás a casa, te servimos una copa y te ensucias las manos cocinando lo que cenarás minutos después.
+    No vienes a mirar una pizarra ni a tomar apuntes. Entras a un departamento cálido con luz tenue, te servimos una copa de vino y te ensucias las manos cocinando lo que cenarás minutos después alrededor de la mesa.
   </p>
 </section>
 
-<!-- ══ LOS 6 ELEMENTOS INCLUIDOS EN LA EXPERIENCIA ════════ -->
+<!-- ══ PILARES DE LA NOCHE ═══════════════════════════════ -->
 <div class="experience-grid reveal">
 
   <div class="exp-item">
@@ -1214,31 +1210,20 @@
     <div class="exp-subdetail">Cena completa servida · <strong>Al momento exacto</strong></div>
   </div>
 
-  <div class="exp-item">
-    <div>
-      <span class="exp-num">03 / La Copa</span>
-      <h3 class="exp-title">Vino toda la noche</h3>
-      <p class="exp-desc">
-        Copa llena desde que pisas el departamento hasta que te vas. Vino seleccionado para maridar la salsa y acompañar la conversación del mesón.
-      </p>
-    </div>
-    <div class="exp-subdetail">Maridaje continuo · <strong>Bebe con tranquilidad</strong></div>
-  </div>
-
   <div class="exp-item gold-highlight">
     <div>
-      <span class="exp-num">04 / De Regalo</span>
-      <h3 class="exp-title">Tu pechera oficial</h3>
+      <span class="exp-num">03 / La Copa</span>
+      <h3 class="exp-title">Vino durante la velada</h3>
       <p class="exp-desc">
-        Te recibimos con una pechera de cocina de alta calidad bordada para la ocasión. Es tuya: te la llevas puesta a casa como trofeo de la velada.
+        Copa servida desde que pisas el departamento. Vino seleccionado para maridar la salsa y acompañar la conversación y el amasado en el mesón.
       </p>
     </div>
-    <div class="exp-subdetail">Incluida en el valor · <strong>1 por persona</strong></div>
+    <div class="exp-subdetail">Maridaje curado · <strong>Bebe con tranquilidad</strong></div>
   </div>
 
   <div class="exp-item">
     <div>
-      <span class="exp-num">05 / El Recuerdo</span>
+      <span class="exp-num">04 / El Recuerdo</span>
       <h3 class="exp-title">Fotos de la noche</h3>
       <p class="exp-desc">
         Olvida el teléfono con las manos llenas de harina. Nosotros registramos los mejores momentos de tu noche cocinando para enviártelos en alta calidad.
@@ -1249,7 +1234,7 @@
 
   <div class="exp-item">
     <div>
-      <span class="exp-num">06 / La Atmósfera</span>
+      <span class="exp-num">05 / La Atmósfera</span>
       <h3 class="exp-title">Música en vinilo</h3>
       <p class="exp-desc">
         Jazz, lo-fi, soul y clásicos italianos sonando en tornamesa mientras el agua hierve y las copas chocan. Una atmósfera envolvente e íntima.
@@ -1258,9 +1243,20 @@
     <div class="exp-subdetail">Ambiente curado · <strong>Solo 4 comensales</strong></div>
   </div>
 
+  <div class="exp-item">
+    <div>
+      <span class="exp-num">06 / El Regreso</span>
+      <h3 class="exp-title">Metro a pasos</h3>
+      <p class="exp-desc">
+        La noche está pensada para que te relajes al 100%. Sin buscar estacionamiento ni preocuparte por el alcotest: caminas una cuadra y estás en la estación.
+      </p>
+    </div>
+    <div class="exp-subdetail">Ubicación estratégica · <strong>Santiago</strong></div>
+  </div>
+
 </div>
 
-<!-- ══ STORYTELLING FOTOGRÁFICO: DE PRINCIPIO A FIN ═════ -->
+<!-- ══ STORYTELLING FOTOGRÁFICO REAL ═════════════════════ -->
 <section class="photo-narrative">
 
   <!-- Acto 1: Huevo y Harina -->
@@ -1273,7 +1269,7 @@
       <span class="narrative-act">Capítulo I · 20:00 hrs</span>
       <h2 class="narrative-h2">El volcán sobre <span>la madera.</span></h2>
       <p class="narrative-lead">
-        "Llegas, te pones tu pechera, te servimos la primera copa de vino y el mesón ya te está esperando."
+        "Llegas, te servimos la primera copa de vino y el mesón ya te está esperando con los ingredientes vivos."
       </p>
       <p class="narrative-body">
         Aquí no hay masas prehechas ni congeladas. Ves el grano de la harina, rompes el huevo fresco con tus manos y comienzas a construir el plato que cenarás minutos más tarde.
@@ -1337,7 +1333,7 @@
 
 </section>
 
-<!-- ══ VINO & METRO: REGRESO ASEGURADO ══════════════════ -->
+<!-- ══ METRO BANNER ═════════════════════════════════════ -->
 <section class="metro-stage reveal">
   <div class="metro-inner">
     <span class="metro-pill-sub">🚇 Logística perfecta en Santiago</span>
@@ -1364,7 +1360,7 @@
 
 <!-- ══ PRECIOS ESCALONADOS ═══════════════════════════════ -->
 <section id="precios" class="reveal">
-  <span class="section-eyebrow">Todo incluido · Sin cobros extra</span>
+  <span class="section-eyebrow">Tarifas todo incluido</span>
   <h2 class="section-headline">Elige cómo<br>vivir tu noche</h2>
 
   <div class="pricing-deck">
@@ -1379,11 +1375,10 @@
           <div class="tier-rate-pp">$60.000 por persona</div>
         </div>
         <ul class="tier-list">
-          <li>Experiencia de cocina completa</li>
+          <li>Experiencia de cocina manual completa</li>
           <li>Cena servida con tu pasta fresca</li>
-          <li>Vino libre durante toda la velada</li>
-          <li><strong>Pechera oficial bordada de regalo</strong></li>
-          <li>Fotografías de recuerdo de la noche</li>
+          <li>Vino maridado durante la velada</li>
+          <li>Fotografías digitales de recuerdo</li>
         </ul>
         <div class="solo-dupla-warning">
           ⚠ El amasado es siempre en duplas. Te emparejamos en el mesón con otro comensal para cocinar juntos.
@@ -1406,8 +1401,7 @@
         <ul class="tier-list">
           <li>Mesón privado para ustedes dos</li>
           <li>Cena completa servida a la mesa</li>
-          <li>Vino libre para ambos</li>
-          <li><strong>2 Pecheras bordadas oficiales de regalo</strong></li>
+          <li>Vino maridado para ambos</li>
           <li>Sesión de fotos de su velada</li>
         </ul>
       </div>
@@ -1427,8 +1421,7 @@
         <ul class="tier-list">
           <li>Departamento cerrado 100% exclusivo</li>
           <li>Cena privada para tu grupo de 4</li>
-          <li>Vino libre para todos</li>
-          <li><strong>4 Pecheras oficiales bordadas de regalo</strong></li>
+          <li>Vino maridado para todos</li>
           <li>Fotos grupales exclusivas</li>
         </ul>
       </div>
@@ -1511,7 +1504,7 @@
         </div>
         <div class="dock-row">
           <span class="dock-label">Incluye</span>
-          <span class="dock-val">Pasta + Cena + Vino + Pechera + Fotos</span>
+          <span class="dock-val">Amasado + Cena + Vino + Fotos</span>
         </div>
         <div class="dock-row">
           <span class="dock-label">Modalidad</span>
@@ -1588,7 +1581,7 @@
     <div>
       <div class="footer-big-brand">MESA SECRETA</div>
       <p class="footer-baseline">
-        "Amasas tu pasta. Cenas a la mesa. Bebes vino libre. Te llevas tu pechera de regalo y tienes el metro en la puerta."
+        "Amasas tu pasta. Cenas a la mesa. Disfrutas buen vino y tienes el metro en la puerta."
       </p>
     </div>
     <div class="footer-details">
@@ -1797,7 +1790,7 @@ function openPaymentModal() {
     `• Puestos: ${TIER_DESCRIPTIONS[bookingState.tier]}\n` +
     `• Menú Vegetariano: ${bookingState.vegCount}\n` +
     `• Total: ${formatCurrency(bookingState.price)}\n` +
-    `• Incluye: Pasta fresca + Cena + Vino libre + Pechera de regalo + Fotos de recuerdo\n\n` +
+    `• Incluye: Amasado de pasta fresca + Cena a la mesa + Vino maridado + Fotos de recuerdo\n\n` +
     `Adjunto el comprobante de transferencia bancaria PREX. ¡Quedo atento a la confirmación y dirección exacta!`;
 
   document.getElementById('btnFinishWhatsApp').href = `https://wa.me/56928623092?text=${encodeURIComponent(msg)}`;
